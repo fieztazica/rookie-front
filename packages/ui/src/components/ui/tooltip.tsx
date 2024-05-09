@@ -1,15 +1,15 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import * as TooltipPrimitive from "@radix-ui/react-tooltip"
+import * as React from "react";
+import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 
-import { cn } from "@repo/utils"
+import { cn } from "@repo/utils";
 
-const TooltipProvider = TooltipPrimitive.Provider
+const TooltipProvider = TooltipPrimitive.Provider;
 
-const Tooltip = TooltipPrimitive.Root
+const Tooltip = TooltipPrimitive.Root;
 
-const TooltipTrigger = TooltipPrimitive.Trigger
+const TooltipTrigger = TooltipPrimitive.Trigger;
 
 const TooltipContent = React.forwardRef<
   React.ElementRef<typeof TooltipPrimitive.Content>,
@@ -20,11 +20,11 @@ const TooltipContent = React.forwardRef<
     sideOffset={sideOffset}
     className={cn(
       "ui-z-50 ui-overflow-hidden ui-rounded-md ui-border ui-border-slate-200 ui-bg-white ui-px-3 ui-py-1.5 ui-text-sm ui-text-slate-950 ui-shadow-md ui-animate-in ui-fade-in-0 ui-zoom-in-95 data-[state=closed]:ui-animate-out data-[state=closed]:ui-fade-out-0 data-[state=closed]:ui-zoom-out-95 data-[side=bottom]:ui-slide-in-from-top-2 data-[side=left]:ui-slide-in-from-right-2 data-[side=right]:ui-slide-in-from-left-2 data-[side=top]:ui-slide-in-from-bottom-2 dark:ui-border-slate-800 dark:ui-bg-slate-950 dark:ui-text-slate-50",
-      className
+      className,
     )}
     {...props}
   />
-))
-TooltipContent.displayName = TooltipPrimitive.Content.displayName
+));
+TooltipContent.displayName = TooltipPrimitive.Content.displayName;
 
-export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider }
+export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider };

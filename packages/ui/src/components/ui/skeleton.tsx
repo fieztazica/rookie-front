@@ -1,4 +1,4 @@
-import { cn } from "@repo/utils"
+import { cn } from "@repo/utils";
 
 function Skeleton({
   className,
@@ -6,10 +6,13 @@ function Skeleton({
 }: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
-      className={cn("ui-animate-pulse ui-rounded-md ui-bg-slate-100 dark:ui-bg-slate-800", className)}
+      className={cn(
+        "ui-animate-pulse ui-rounded-md ui-bg-slate-100 dark:ui-bg-slate-800",
+        className,
+      )}
       {...props}
     />
-  )
+  );
 }
 
-export { Skeleton }
+export { Skeleton };
