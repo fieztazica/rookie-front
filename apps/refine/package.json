@@ -30,7 +30,8 @@
     "antd": "^5.0.5",
     "js-cookie": "^3.0.5",
     "@ant-design/nextjs-registry": "^1.0.0",
-    "next-auth": "^4.24.5"
+    "next-auth": "^4.24.5",
+    "@repo/auth": "workspace:*"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",

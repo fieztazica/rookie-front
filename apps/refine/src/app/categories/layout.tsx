@@ -1,4 +1,4 @@
-import authOptions from "@app/api/auth/[...nextauth]/options";
+import authOptions from "@repo/auth/options";
 import { ThemedLayout } from "@components/themed-layout";
 import { getServerSession } from "next-auth/next";
 import { redirect } from "next/navigation";
@@ -16,6 +16,16 @@ export default async function Layout({ children }: React.PropsWithChildren) {
 
 async function getData() {
   const session = await getServerSession(authOptions);
+
+  fetch("http://localhost:7000/items", {
+    headers: {
+        "Authorization": `Bearer ${session?.access_token}`
+    }
+  })
+    .then((r) => r.json())
+    .then(console.log)
+    .catch(console.error);
+
   return {
     session,
   };

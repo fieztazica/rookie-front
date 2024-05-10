@@ -19,7 +19,7 @@ type RefineContextProps = {
 };
 
 export const RefineContext = (
-  props: React.PropsWithChildren<RefineContextProps>
+  props: React.PropsWithChildren<RefineContextProps>,
 ) => {
   return (
     <SessionProvider>
