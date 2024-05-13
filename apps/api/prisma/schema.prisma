@@ -1,0 +1,154 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+enum Gender {
+    MALE
+    FEMALE
+    UNDEFINED
+}
+
+model Customer {
+    id          String  @id @default(cuid()) @map("customer_id")
+    username    String  @unique @db.VarChar(64)
+    email       String  @unique @db.VarChar(255)
+    phoneNumber String  @unique @db.VarChar(24)
+    firstName   String  @db.VarChar(255)
+    lastName    String  @db.VarChar(255)
+    gender      Gender? @default(UNDEFINED)
+
+    accountId String? @map("account_id")
+
+    orders   Order[]
+    feedback Feedback[]
+
+    isDeleted Boolean  @default(false)
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("customers")
+}
+
+model Product {
+    id          String  @id @default(cuid()) @map("product_id")
+    name        String  @unique @db.VarChar(255)
+    description String? @db.VarChar(255)
+    price       Decimal @db.Decimal(10, 2)
+    accountId   String? @map("account_id")
+
+    categories ProductToCategory[]
+    orderItems OrderItem[]
+    feedbacks  Feedback[]
+    images     Image[]
+
+    isDeleted Boolean  @default(false)
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("products")
+}
+
+model Image {
+    id          Int     @default(autoincrement()) @map("image_id")
+    productId   String  @map("product_id")
+    url         String  @db.Text
+    alt         String? @db.VarChar(255)
+    isThumbnail Boolean @default(false)
+
+    product Product @relation(fields: [productId], references: [id])
+
+    isDeleted Boolean  @default(false)
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@id([id, productId])
+    @@map("images")
+}
+
+model Category {
+    id          String  @id @default(cuid()) @map("category_id")
+    name        String  @unique @db.VarChar(255)
+    description String? @db.VarChar(255)
+
+    products ProductToCategory[]
+
+    isDeleted Boolean  @default(false)
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("categories")
+}
+
+model ProductToCategory {
+    productId  String @map("product_id")
+    categoryId String @map("category_id")
+
+    category Category @relation(fields: [categoryId], references: [id])
+    product  Product  @relation(fields: [productId], references: [id])
+
+    isDeleted Boolean  @default(false)
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@id([productId, categoryId])
+    @@map("product_to_categories")
+}
+
+model Feedback {
+    id         String  @id @default(cuid()) @map("feedback_id")
+    customerId String  @map("customer_id")
+    productId  String  @map("product_id")
+    message    String  @db.Text
+    rating     Int     @db.SmallInt
+    status     String? @db.VarChar(255)
+
+    customer Customer @relation(fields: [customerId], references: [id])
+    product  Product  @relation(fields: [productId], references: [id])
+
+    isDeleted Boolean  @default(false)
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("feedbacks")
+}
+
+model Order {
+    id         String @id @default(cuid()) @map("order_id")
+    customerId String @map("customer_id")
+
+    customer   Customer    @relation(fields: [customerId], references: [id])
+    orderItems OrderItem[]
+
+    isDeleted Boolean  @default(false)
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("orders")
+}
+
+model OrderItem {
+    orderId   String @map("order_id")
+    productId String @map("product_id")
+    quantity  Int
+
+    order   Order   @relation(fields: [orderId], references: [id])
+    product Product @relation(fields: [productId], references: [id])
+
+    isDeleted Boolean  @default(false)
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@id([orderId, productId])
+    @@map("order_items")
+}

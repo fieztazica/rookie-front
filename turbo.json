@@ -1,19 +1,45 @@
 {
-  "$schema": "https://turbo.build/schema.json",
-  "globalDependencies": ["**/.env.*local"],
-  "pipeline": {
-    "build": {
-      "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
-    },
-    "lint": {},
-    "type-check": {},
-    "dev": {
-      "cache": false,
-      "persistent": true
-    },
-    "clean": {
-      "cache": false
+    "$schema": "https://turbo.build/schema.json",
+    "globalDependencies": [
+        "**/.env.*local"
+    ],
+    "pipeline": {
+        "build": {
+            "dependsOn": [
+                "^build"
+            ],
+            "outputs": [
+                "dist/**",
+                ".next/**",
+                "!.next/cache/**"
+            ]
+        },
+        "lint": {},
+        "type-check": {},
+        "dev": {
+            "cache": false,
+            "persistent": true
+        },
+        "clean": {
+            "cache": false
+        },
+        "dev:refine": {
+            "env": [
+                "AUTH0_CLIENT_ID",
+                "AUTH0_CLIENT_SECRET",
+                "AUTH0_DOMAIN",
+                "AUTH0_ISSUER_URL",
+                "AUTH0_AUDIENCE",
+                "AUTH_SECRET"
+            ]
+        },
+        "dev:api": {
+            "env": [
+                "DATABASE_URL",
+                "API_PORT",
+                "THROTTLE_LIMIT",
+                "THROTTLE_TTL"
+            ]
+        }
     }
-  }
 }
