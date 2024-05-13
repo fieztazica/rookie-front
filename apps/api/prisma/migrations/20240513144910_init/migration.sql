@@ -11,7 +11,7 @@ CREATE TABLE "customers" (
     "lastName" VARCHAR(255) NOT NULL,
     "gender" "Gender" DEFAULT 'UNDEFINED',
     "account_id" TEXT,
-    "isDeleted" BOOLEAN NOT NULL DEFAULT false,
+    "deleted" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -25,7 +25,7 @@ CREATE TABLE "products" (
     "description" VARCHAR(255),
     "price" DECIMAL(10,2) NOT NULL,
     "account_id" TEXT,
-    "isDeleted" BOOLEAN NOT NULL DEFAULT false,
+    "deleted" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -39,7 +39,7 @@ CREATE TABLE "images" (
     "url" TEXT NOT NULL,
     "alt" VARCHAR(255),
     "isThumbnail" BOOLEAN NOT NULL DEFAULT false,
-    "isDeleted" BOOLEAN NOT NULL DEFAULT false,
+    "deleted" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -51,7 +51,7 @@ CREATE TABLE "categories" (
     "category_id" TEXT NOT NULL,
     "name" VARCHAR(255) NOT NULL,
     "description" VARCHAR(255),
-    "isDeleted" BOOLEAN NOT NULL DEFAULT false,
+    "deleted" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -62,7 +62,6 @@ CREATE TABLE "categories" (
 CREATE TABLE "product_to_categories" (
     "product_id" TEXT NOT NULL,
     "category_id" TEXT NOT NULL,
-    "isDeleted" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -77,7 +76,7 @@ CREATE TABLE "feedbacks" (
     "message" TEXT NOT NULL,
     "rating" SMALLINT NOT NULL,
     "status" VARCHAR(255),
-    "isDeleted" BOOLEAN NOT NULL DEFAULT false,
+    "deleted" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -88,7 +87,7 @@ CREATE TABLE "feedbacks" (
 CREATE TABLE "orders" (
     "order_id" TEXT NOT NULL,
     "customer_id" TEXT NOT NULL,
-    "isDeleted" BOOLEAN NOT NULL DEFAULT false,
+    "deleted" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -100,7 +99,6 @@ CREATE TABLE "order_items" (
     "order_id" TEXT NOT NULL,
     "product_id" TEXT NOT NULL,
     "quantity" INTEGER NOT NULL,
-    "isDeleted" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 

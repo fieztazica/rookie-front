@@ -34,5 +34,5 @@ export class CustomerEntity implements Customer {
   updatedAt: Date;
 
   @Field(() => Boolean, { nullable: true, defaultValue: false })
-  isDeleted: boolean;
+  deleted: boolean;
 }

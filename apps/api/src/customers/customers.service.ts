@@ -1,11 +1,14 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { CreateCustomerInput } from './dto/create-customer.input';
 import { UpdateCustomerInput } from './dto/update-customer.input';
 import { PrismaService } from '../common/database/prisma.service';
+import { ENHANCED_PRISMA } from '@zenstackhq/server/nestjs';
 
 @Injectable()
 export class CustomersService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    @Inject(ENHANCED_PRISMA) private readonly prisma: PrismaService,
+  ) {}
   create(createCustomerInput: CreateCustomerInput) {
     return this.prisma.customer.create({ data: createCustomerInput });
   }
