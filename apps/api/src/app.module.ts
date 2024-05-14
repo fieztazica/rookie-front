@@ -14,6 +14,8 @@ import { CustomersModule } from './customers/customers.module';
 import { FeedbacksModule } from './feedbacks/feedbacks.module';
 import { OrdersModule } from './orders/orders.module';
 import { ProductsModule } from './products/products.module';
+import { AdminModule } from './admin/admin.module';
+import { AuthModule } from './auth/auth.module';
 
 @Global()
 @Module({
@@ -47,6 +49,8 @@ import { ProductsModule } from './products/products.module';
       autoSchemaFile: '~schema.gql',
       playground: true,
     }),
+    AdminModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService, PrismaService],

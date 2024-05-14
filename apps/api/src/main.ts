@@ -9,13 +9,23 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as compression from 'compression';
 import helmet from 'helmet';
 import { AppModule } from './app.module';
+import { NestExpressApplication } from '@nestjs/platform-express';
+import { join } from 'path';
+import * as hbs from 'hbs';
 
 async function bootstrap() {
-  const app: INestApplication = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
   app.enableCors();
   app.use(helmet());
   app.use(compression());
+
+  app.useStaticAssets(join(__dirname, '..', 'public'));
+  app.setBaseViewsDir(join(__dirname, '..', 'views'));
+  app.setViewEngine('hbs');
+  hbs.registerPartials(join(__dirname, '..', 'views', 'partials'));
+
+  app.setLocal('title', 'Rookie Store');
 
   const configService: ConfigService = app.get(ConfigService);
   const port: number = configService.get('port');
