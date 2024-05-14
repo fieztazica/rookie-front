@@ -1,6 +1,5 @@
 "use client";
 
-import { CATEGORIES_LIST_QUERY } from "@queries/categories";
 import {
   DeleteButton,
   EditButton,
@@ -8,8 +7,9 @@ import {
   ShowButton,
   useTable,
 } from "@refinedev/antd";
-import { BaseRecord } from "@refinedev/core";
+import type { BaseRecord } from "@refinedev/core";
 import { Space, Table } from "antd";
+import { CATEGORIES_LIST_QUERY } from "@queries/categories";
 
 export default function CategoryList() {
   const { tableProps } = useTable({
@@ -22,18 +22,18 @@ export default function CategoryList() {
   return (
     <List>
       <Table {...tableProps} rowKey="id">
-        <Table.Column dataIndex="id" title={"ID"} />
-        <Table.Column dataIndex="title" title={"title"} />
+        <Table.Column dataIndex="id" title="ID" />
+        <Table.Column dataIndex="title" title="title" />
         <Table.Column
-          title={"Actions"}
           dataIndex="actions"
           render={(_, record: BaseRecord) => (
             <Space>
-              <EditButton hideText size="small" recordItemId={record.id} />
-              <ShowButton hideText size="small" recordItemId={record.id} />
-              <DeleteButton hideText size="small" recordItemId={record.id} />
+              <EditButton hideText recordItemId={record.id} size="small" />
+              <ShowButton hideText recordItemId={record.id} size="small" />
+              <DeleteButton hideText recordItemId={record.id} size="small" />
             </Space>
           )}
+          title="Actions"
         />
       </Table>
     </List>

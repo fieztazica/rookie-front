@@ -1,6 +1,5 @@
 "use client";
 
-import { ColorModeContext } from "@contexts/color-mode";
 import type { RefineThemedLayoutV2HeaderProps } from "@refinedev/antd";
 import { useGetIdentity } from "@refinedev/core";
 import {
@@ -12,15 +11,16 @@ import {
   Typography,
 } from "antd";
 import React, { useContext } from "react";
+import { ColorModeContext } from "@contexts/color-mode";
 
 const { Text } = Typography;
 const { useToken } = theme;
 
-type IUser = {
+interface IUser {
   id: number;
   name: string;
   avatar: string;
-};
+}
 
 export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
   sticky,
@@ -49,16 +49,14 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
       <Space>
         <Switch
           checkedChildren="🌛"
-          unCheckedChildren="🔆"
-          onChange={() => setMode(mode === "light" ? "dark" : "light")}
           defaultChecked={mode === "dark"}
+          onChange={() => { setMode(mode === "light" ? "dark" : "light"); }}
+          unCheckedChildren="🔆"
         />
-        {(user?.name || user?.avatar) && (
-          <Space style={{ marginLeft: "8px" }} size="middle">
-            {user?.name && <Text strong>{user.name}</Text>}
-            {user?.avatar && <Avatar src={user?.avatar} alt={user?.name} />}
-          </Space>
-        )}
+        {(user?.name || user?.avatar) ? <Space size="middle" style={{ marginLeft: "8px" }}>
+            {user.name ? <Text strong>{user.name}</Text> : null}
+            {user.avatar ? <Avatar alt={user.name} src={user.avatar} /> : null}
+          </Space> : null}
       </Space>
     </AntdLayout.Header>
   );

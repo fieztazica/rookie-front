@@ -3,25 +3,26 @@
 import { RefineThemes } from "@refinedev/antd";
 import { App as AntdApp, ConfigProvider, theme } from "antd";
 import Cookies from "js-cookie";
+import type {
+  PropsWithChildren} from "react";
 import React, {
   createContext,
-  PropsWithChildren,
   useEffect,
   useState,
 } from "react";
 
-type ColorModeContextType = {
+interface ColorModeContextType {
   mode: string;
   setMode: (mode: string) => void;
-};
+}
 
 export const ColorModeContext = createContext<ColorModeContextType>(
   {} as ColorModeContextType,
 );
 
-type ColorModeContextProviderProps = {
+interface ColorModeContextProviderProps {
   defaultMode?: string;
-};
+}
 
 export const ColorModeContextProvider: React.FC<
   PropsWithChildren<ColorModeContextProviderProps>

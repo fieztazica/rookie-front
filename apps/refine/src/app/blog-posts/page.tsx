@@ -9,9 +9,8 @@ import {
   ShowButton,
   useTable,
 } from "@refinedev/antd";
-import { BaseRecord } from "@refinedev/core";
+import type { BaseRecord } from "@refinedev/core";
 import { Space, Table } from "antd";
-
 import { POSTS_LIST_QUERY } from "@queries/blog-posts";
 
 export default function BlogPostList() {
@@ -25,33 +24,33 @@ export default function BlogPostList() {
   return (
     <List>
       <Table {...tableProps} rowKey="id">
-        <Table.Column dataIndex="id" title={"ID"} />
-        <Table.Column dataIndex="title" title={"Title"} />
+        <Table.Column dataIndex="id" title="ID" />
+        <Table.Column dataIndex="title" title="Title" />
         <Table.Column
           dataIndex="content"
-          title={"Content"}
           render={(value: any) => {
             if (!value) return "-";
-            return <MarkdownField value={value.slice(0, 80) + "..."} />;
+            return <MarkdownField value={`${value.slice(0, 80)  }...`} />;
           }}
+          title="Content"
         />
-        <Table.Column dataIndex={["category", "title"]} title={"Category"} />
-        <Table.Column dataIndex="status" title={"Status"} />
+        <Table.Column dataIndex={["category", "title"]} title="Category" />
+        <Table.Column dataIndex="status" title="Status" />
         <Table.Column
           dataIndex={["createdAt"]}
-          title={"Created at"}
           render={(value: any) => <DateField value={value} />}
+          title="Created at"
         />
         <Table.Column
-          title={"Actions"}
           dataIndex="actions"
           render={(_, record: BaseRecord) => (
             <Space>
-              <EditButton hideText size="small" recordItemId={record.id} />
-              <ShowButton hideText size="small" recordItemId={record.id} />
-              <DeleteButton hideText size="small" recordItemId={record.id} />
+              <EditButton hideText recordItemId={record.id} size="small" />
+              <ShowButton hideText recordItemId={record.id} size="small" />
+              <DeleteButton hideText recordItemId={record.id} size="small" />
             </Space>
           )}
+          title="Actions"
         />
       </Table>
     </List>

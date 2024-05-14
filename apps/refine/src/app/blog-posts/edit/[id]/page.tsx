@@ -1,11 +1,11 @@
 "use client";
 
+import { Edit, useForm, useSelect } from "@refinedev/antd";
+import { Form, Input, Select } from "antd";
 import {
   CATEGORIES_SELECT_QUERY,
   POST_EDIT_MUTATION,
 } from "@queries/blog-posts";
-import { Edit, useForm, useSelect } from "@refinedev/antd";
-import { Form, Input, Select } from "antd";
 
 export default function BlogPostEdit() {
   const { formProps, saveButtonProps, queryResult } = useForm({
@@ -28,7 +28,7 @@ export default function BlogPostEdit() {
     <Edit saveButtonProps={saveButtonProps}>
       <Form {...formProps} layout="vertical">
         <Form.Item
-          label={"Title"}
+          label="Title"
           name={["title"]}
           rules={[
             {
@@ -39,7 +39,7 @@ export default function BlogPostEdit() {
           <Input />
         </Form.Item>
         <Form.Item
-          label={"Content"}
+          label="Content"
           name="content"
           rules={[
             {
@@ -50,9 +50,9 @@ export default function BlogPostEdit() {
           <Input.TextArea rows={5} />
         </Form.Item>
         <Form.Item
-          label={"Category"}
-          name={"categoryId"}
-          initialValue={formProps?.initialValues?.category?.id}
+          initialValue={formProps.initialValues?.category?.id}
+          label="Category"
+          name="categoryId"
           rules={[
             {
               required: true,
@@ -62,9 +62,9 @@ export default function BlogPostEdit() {
           <Select {...categorySelectProps} />
         </Form.Item>
         <Form.Item
-          label={"Status"}
+          initialValue="DRAFT"
+          label="Status"
           name={["status"]}
-          initialValue={"DRAFT"}
           rules={[
             {
               required: true,
@@ -72,7 +72,7 @@ export default function BlogPostEdit() {
           ]}
         >
           <Select
-            defaultValue={"DRAFT"}
+            defaultValue="DRAFT"
             options={[
               { value: "DRAFT", label: "Draft" },
               { value: "PUBLISHED", label: "Published" },

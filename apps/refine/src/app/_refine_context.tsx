@@ -1,38 +1,35 @@
 "use client";
 
 import { useNotificationProvider } from "@refinedev/antd";
-import { AuthProvider, GitHubBanner, Refine } from "@refinedev/core";
+import type { AuthProvider} from "@refinedev/core";
+import { GitHubBanner, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import { SessionProvider, signIn, signOut, useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import React from "react";
-
 import routerProvider from "@refinedev/nextjs-router";
-
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { ColorModeContextProvider } from "@contexts/color-mode";
 import { dataProvider, liveProvider } from "@providers/data-provider";
 import "@refinedev/antd/dist/reset.css";
 
-type RefineContextProps = {
+interface RefineContextProps {
   defaultMode?: string;
-};
+}
 
-export const RefineContext = (
-  props: React.PropsWithChildren<RefineContextProps>,
-) => {
+export function RefineContext(props: React.PropsWithChildren<RefineContextProps>) {
   return (
     <SessionProvider>
       <App {...props} />
     </SessionProvider>
   );
-};
+}
 
-type AppProps = {
+interface AppProps {
   defaultMode?: string;
-};
+}
 
-const App = (props: React.PropsWithChildren<AppProps>) => {
+function App(props: React.PropsWithChildren<AppProps>) {
   const { data, status } = useSession();
   const to = usePathname();
 
@@ -100,7 +97,7 @@ const App = (props: React.PropsWithChildren<AppProps>) => {
     },
   };
 
-  const defaultMode = props?.defaultMode;
+  const defaultMode = props.defaultMode;
 
   return (
     <>
@@ -109,11 +106,15 @@ const App = (props: React.PropsWithChildren<AppProps>) => {
         <AntdRegistry>
           <ColorModeContextProvider defaultMode={defaultMode}>
             <Refine
-              routerProvider={routerProvider}
+              authProvider={authProvider}
               dataProvider={dataProvider}
               liveProvider={liveProvider}
               notificationProvider={useNotificationProvider}
-              authProvider={authProvider}
+              options={{
+                syncWithLocation: true,
+                warnWhenUnsavedChanges: true,
+                useNewQueryKeys: true,
+              }}
               resources={[
                 {
                   name: "blog_posts",
@@ -136,11 +137,7 @@ const App = (props: React.PropsWithChildren<AppProps>) => {
                   },
                 },
               ]}
-              options={{
-                syncWithLocation: true,
-                warnWhenUnsavedChanges: true,
-                useNewQueryKeys: true,
-              }}
+              routerProvider={routerProvider}
             >
               {props.children}
               <RefineKbar />
@@ -150,4 +147,4 @@ const App = (props: React.PropsWithChildren<AppProps>) => {
       </RefineKbarProvider>
     </>
   );
-};
+}

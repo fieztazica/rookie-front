@@ -1,8 +1,8 @@
 "use client";
 
-import { CATEGORY_CREATE_MUTATION } from "@queries/categories";
 import { Create, useForm } from "@refinedev/antd";
 import { Form, Input } from "antd";
+import { CATEGORY_CREATE_MUTATION } from "@queries/categories";
 
 export default function CategoryCreate() {
   const { formProps, saveButtonProps } = useForm({
@@ -15,7 +15,7 @@ export default function CategoryCreate() {
     <Create saveButtonProps={saveButtonProps}>
       <Form {...formProps} layout="vertical">
         <Form.Item
-          label={"Title"}
+          label="Title"
           name={["title"]}
           rules={[
             {

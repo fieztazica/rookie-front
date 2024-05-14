@@ -1,8 +1,8 @@
 "use client";
 
-import { CATEGORY_EDIT_MUTATION } from "@queries/categories";
 import { Edit, useForm } from "@refinedev/antd";
 import { Form, Input } from "antd";
+import { CATEGORY_EDIT_MUTATION } from "@queries/categories";
 
 export default function CategoryEdit() {
   const { formProps, saveButtonProps } = useForm({
@@ -15,7 +15,7 @@ export default function CategoryEdit() {
     <Edit saveButtonProps={saveButtonProps}>
       <Form {...formProps} layout="vertical">
         <Form.Item
-          label={"Title"}
+          label="Title"
           name={["title"]}
           rules={[
             {
