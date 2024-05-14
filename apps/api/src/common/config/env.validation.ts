@@ -7,7 +7,7 @@ enum Environment {
   Production = 'production',
 }
 
-process.env.NODE_ENV ??= Environment.Development
+process.env.NODE_ENV ??= Environment.Development;
 
 class EnvironmentVariables {
   @IsEnum(Environment)

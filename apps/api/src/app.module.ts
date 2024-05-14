@@ -13,7 +13,6 @@ import { CustomersModule } from './customers/customers.module';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-
       load: [configuration],
       validate,
       expandVariables: true,
