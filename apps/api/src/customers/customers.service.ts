@@ -1,15 +1,15 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { CreateCustomerInput } from './dto/create-customer.input';
-import { UpdateCustomerInput } from './dto/update-customer.input';
 import { PrismaService } from '../common/database/prisma.service';
 import { ENHANCED_PRISMA } from '@zenstackhq/server/nestjs';
+import { CustomerCreateInput } from '../@generated/customer/customer-create.input';
+import { CustomerUpdateInput } from '../@generated/customer/customer-update.input';
 
 @Injectable()
 export class CustomersService {
   constructor(
     @Inject(ENHANCED_PRISMA) private readonly prisma: PrismaService,
   ) {}
-  create(createCustomerInput: CreateCustomerInput) {
+  create(createCustomerInput: CustomerCreateInput) {
     return this.prisma.customer.create({ data: createCustomerInput });
   }
 
@@ -21,7 +21,7 @@ export class CustomersService {
     return this.prisma.customer.findUnique({ where: { id } });
   }
 
-  update(id: string, updateCustomerInput: UpdateCustomerInput) {
+  update(id: string, updateCustomerInput: CustomerUpdateInput) {
     return this.prisma.customer.update({
       where: { id },
       data: updateCustomerInput,
@@ -29,6 +29,6 @@ export class CustomersService {
   }
 
   remove(id: string) {
-    return `This action removes a #${id} customer`;
+    return this.prisma.customer.delete({ where: { id } });
   }
 }

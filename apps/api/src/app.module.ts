@@ -1,18 +1,17 @@
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { GraphQLModule } from '@nestjs/graphql';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { CategoriesModule } from './categories/categories.module';
 import configuration from './common/config/configuration';
 import { validate } from './common/config/env.validation';
 import { PrismaModule } from './common/database/prisma.module';
 import { PrismaService } from './common/database/prisma.service';
 import { CustomersModule } from './customers/customers.module';
-import { GraphQLModule } from '@nestjs/graphql';
-import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { FeedbacksModule } from './feedbacks/feedbacks.module';
-import { CategoriesModule } from './categories/categories.module';
-import { ProductsModule } from './products/products.module';
 import { OrdersModule } from './orders/orders.module';
 import { ProductsModule } from './products/products.module';
 
@@ -44,7 +43,8 @@ import { ProductsModule } from './products/products.module';
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      autoSchemaFile: true,
+      autoSchemaFile: '~schema.gql',
+      playground: true,
     }),
   ],
   controllers: [AppController],
