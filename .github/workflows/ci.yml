@@ -14,10 +14,10 @@ on:
 
 jobs:
   type-check:
-    uses: ./github/workflows/type-check.yml
+    uses: ./.github/workflows/type-check.yml
   lint:
-    uses: ./github/workflows/lint.yml
+    uses: ./.github/workflows/lint.yml
   test:
-    uses: ./github/workflows/test.yml
+    uses: ./.github/workflows/test.yml
   build:
     uses: ./.github/workflows/build.yml
