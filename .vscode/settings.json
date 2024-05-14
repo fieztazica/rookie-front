@@ -1,11 +1,10 @@
 {
-  "eslint.workingDirectories": [
-    {
-      "mode": "auto"
-    }
-],
-"conventionalCommits.scopes": [
-    "apps/refine",
-    "auth"
-]
+    "eslint.workingDirectories": [
+        {
+            "mode": "auto"
+        }
+    ],
+    "conventionalCommits.scopes": [
+        "auth"
+    ]
 }

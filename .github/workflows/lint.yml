@@ -36,7 +36,5 @@ jobs:
         run: pnpm install
       - name: API/Lint
         run: pnpm --filter=api run lint
-      - name: Refine/Lint
-        run: pnpm --filter=refine run lint
       - name: Web/Lint
         run: pnpm --filter=web run lint
