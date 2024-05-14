@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+    branches: ['master', 'main', 'dev']
+  pull_request:
+    branches: ['master', 'main', 'dev']
+
+  # allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+  # allow the workflow to be re-used in other workflows
+  workflow_call:
+
+jobs:
+  type-check:
+    uses: ./github/workflows/type-check.yml
+  lint:
+    uses: ./github/workflows/lint.yml
+  test:
+    uses: ./github/workflows/test.yml
+  build:
+    uses: ./.github/workflows/build.yml
