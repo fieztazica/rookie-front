@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { CreateCategoryInput } from './dto/create-category.input';
+import { CategoryCreateInput } from './dto/create-category.input';
 import { UpdateCategoryInput } from './dto/update-category.input';
 import { PrismaService } from '../common/database/prisma.service';
 import { ENHANCED_PRISMA } from '@zenstackhq/server/nestjs';
@@ -9,7 +9,7 @@ export class CategoriesService {
   constructor(
     @Inject(ENHANCED_PRISMA) private readonly prisma: PrismaService,
   ) {}
-  create(createCategoryInput: CreateCategoryInput) {
+  create(createCategoryInput: CategoryCreateInput) {
     return this.prisma.category.create({ data: createCategoryInput });
   }
 

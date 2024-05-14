@@ -24,6 +24,9 @@ export class CustomerMaxOrderByAggregateInput {
     lastName?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
+    displayName?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
     gender?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})

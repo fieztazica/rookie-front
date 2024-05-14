@@ -12,10 +12,16 @@ export class ProductCountAggregate {
     name!: number;
 
     @Field(() => Int, {nullable:false})
+    displayName!: number;
+
+    @Field(() => Int, {nullable:false})
     description!: number;
 
     @Field(() => Int, {nullable:false})
     price!: number;
+
+    @Field(() => Int, {nullable:false})
+    salePrice!: number;
 
     @Field(() => Int, {nullable:false})
     accountId!: number;

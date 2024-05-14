@@ -18,10 +18,16 @@ export class ProductGroupBy {
     name!: string;
 
     @Field(() => String, {nullable:true})
+    displayName?: string;
+
+    @Field(() => String, {nullable:true})
     description?: string;
 
     @Field(() => GraphQLDecimal, {nullable:false})
     price!: Decimal;
+
+    @Field(() => GraphQLDecimal, {nullable:true})
+    salePrice?: Decimal;
 
     @Field(() => String, {nullable:true})
     accountId?: string;

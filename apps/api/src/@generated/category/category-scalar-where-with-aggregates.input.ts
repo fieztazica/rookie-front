@@ -25,6 +25,9 @@ export class CategoryScalarWhereWithAggregatesInput {
     @Field(() => StringWithAggregatesFilter, {nullable:true})
     description?: StringWithAggregatesFilter;
 
+    @Field(() => StringWithAggregatesFilter, {nullable:true})
+    displayName?: StringWithAggregatesFilter;
+
     @Field(() => BoolWithAggregatesFilter, {nullable:true})
     deleted?: BoolWithAggregatesFilter;
 

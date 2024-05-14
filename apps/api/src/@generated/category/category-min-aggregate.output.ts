@@ -13,6 +13,9 @@ export class CategoryMinAggregate {
     @Field(() => String, {nullable:true})
     description?: string;
 
+    @Field(() => String, {nullable:true})
+    displayName?: string;
+
     @Field(() => Boolean, {nullable:true})
     deleted?: boolean;
 

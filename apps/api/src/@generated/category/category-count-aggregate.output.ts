@@ -15,6 +15,9 @@ export class CategoryCountAggregate {
     description!: number;
 
     @Field(() => Int, {nullable:false})
+    displayName!: number;
+
+    @Field(() => Int, {nullable:false})
     deleted!: number;
 
     @Field(() => Int, {nullable:false})

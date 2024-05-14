@@ -2,8 +2,8 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { SortOrder } from '../prisma/sort-order.enum';
 import { SortOrderInput } from '../prisma/sort-order.input';
-import { ProductToCategoryOrderByRelationAggregateInput } from '../product-to-category/product-to-category-order-by-relation-aggregate.input';
 import { Type } from 'class-transformer';
+import { ProductToCategoryOrderByRelationAggregateInput } from '../product-to-category/product-to-category-order-by-relation-aggregate.input';
 import { OrderItemOrderByRelationAggregateInput } from '../order-item/order-item-order-by-relation-aggregate.input';
 import { FeedbackOrderByRelationAggregateInput } from '../feedback/feedback-order-by-relation-aggregate.input';
 import { ImageOrderByRelationAggregateInput } from '../image/image-order-by-relation-aggregate.input';
@@ -18,10 +18,17 @@ export class ProductOrderByWithRelationInput {
     name?: keyof typeof SortOrder;
 
     @Field(() => SortOrderInput, {nullable:true})
+    displayName?: SortOrderInput;
+
+    @Field(() => SortOrderInput, {nullable:true})
     description?: SortOrderInput;
 
     @Field(() => SortOrder, {nullable:true})
     price?: keyof typeof SortOrder;
+
+    @Field(() => SortOrderInput, {nullable:true})
+    @Type(() => SortOrderInput)
+    salePrice?: SortOrderInput;
 
     @Field(() => SortOrderInput, {nullable:true})
     accountId?: SortOrderInput;

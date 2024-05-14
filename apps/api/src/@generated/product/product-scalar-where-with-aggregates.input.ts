@@ -28,11 +28,18 @@ export class ProductScalarWhereWithAggregatesInput {
     name?: StringWithAggregatesFilter;
 
     @Field(() => StringWithAggregatesFilter, {nullable:true})
+    displayName?: StringWithAggregatesFilter;
+
+    @Field(() => StringWithAggregatesFilter, {nullable:true})
     description?: StringWithAggregatesFilter;
 
     @Field(() => DecimalWithAggregatesFilter, {nullable:true})
     @Type(() => DecimalWithAggregatesFilter)
     price?: DecimalWithAggregatesFilter;
+
+    @Field(() => DecimalWithAggregatesFilter, {nullable:true})
+    @Type(() => DecimalWithAggregatesFilter)
+    salePrice?: DecimalWithAggregatesFilter;
 
     @Field(() => StringWithAggregatesFilter, {nullable:true})
     accountId?: StringWithAggregatesFilter;

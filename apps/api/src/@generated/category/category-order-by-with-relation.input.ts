@@ -17,6 +17,9 @@ export class CategoryOrderByWithRelationInput {
     @Field(() => SortOrderInput, {nullable:true})
     description?: SortOrderInput;
 
+    @Field(() => SortOrderInput, {nullable:true})
+    displayName?: SortOrderInput;
+
     @Field(() => SortOrder, {nullable:true})
     deleted?: keyof typeof SortOrder;
 

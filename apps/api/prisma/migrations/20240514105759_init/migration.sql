@@ -9,6 +9,7 @@ CREATE TABLE "customers" (
     "phoneNumber" VARCHAR(24) NOT NULL,
     "firstName" VARCHAR(255) NOT NULL,
     "lastName" VARCHAR(255) NOT NULL,
+    "displayName" VARCHAR(255),
     "gender" "Gender" DEFAULT 'UNDEFINED',
     "account_id" TEXT,
     "deleted" BOOLEAN NOT NULL DEFAULT false,
@@ -22,8 +23,10 @@ CREATE TABLE "customers" (
 CREATE TABLE "products" (
     "product_id" TEXT NOT NULL,
     "name" VARCHAR(255) NOT NULL,
+    "displayName" VARCHAR(255),
     "description" VARCHAR(255),
-    "price" DECIMAL(10,2) NOT NULL,
+    "price" DECIMAL NOT NULL,
+    "salePrice" DECIMAL,
     "account_id" TEXT,
     "deleted" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -51,6 +54,7 @@ CREATE TABLE "categories" (
     "category_id" TEXT NOT NULL,
     "name" VARCHAR(255) NOT NULL,
     "description" VARCHAR(255),
+    "displayName" VARCHAR(255),
     "deleted" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -87,6 +91,7 @@ CREATE TABLE "feedbacks" (
 CREATE TABLE "orders" (
     "order_id" TEXT NOT NULL,
     "customer_id" TEXT NOT NULL,
+    "total" DECIMAL NOT NULL,
     "deleted" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -98,6 +103,7 @@ CREATE TABLE "orders" (
 CREATE TABLE "order_items" (
     "order_id" TEXT NOT NULL,
     "product_id" TEXT NOT NULL,
+    "price" DECIMAL NOT NULL,
     "quantity" INTEGER NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,

@@ -15,6 +15,9 @@ export class CategoryCountOrderByAggregateInput {
     description?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
+    displayName?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
     deleted?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})

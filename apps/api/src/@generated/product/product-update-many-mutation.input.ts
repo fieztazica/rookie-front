@@ -16,12 +16,20 @@ export class ProductUpdateManyMutationInput {
     name?: string;
 
     @Field(() => String, {nullable:true})
+    displayName?: string;
+
+    @Field(() => String, {nullable:true})
     description?: string;
 
     @Field(() => GraphQLDecimal, {nullable:true})
     @Type(() => Object)
     @Transform(transformToDecimal)
     price?: Decimal;
+
+    @Field(() => GraphQLDecimal, {nullable:true})
+    @Type(() => Object)
+    @Transform(transformToDecimal)
+    salePrice?: Decimal;
 
     @Field(() => String, {nullable:true})
     accountId?: string;

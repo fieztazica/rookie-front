@@ -22,10 +22,16 @@ export class Product {
     name!: string;
 
     @Field(() => String, {nullable:true})
+    displayName!: string | null;
+
+    @Field(() => String, {nullable:true})
     description!: string | null;
 
     @Field(() => GraphQLDecimal, {nullable:false})
     price!: Decimal;
+
+    @Field(() => GraphQLDecimal, {nullable:true})
+    salePrice!: Decimal | null;
 
     @Field(() => String, {nullable:true})
     accountId!: string | null;

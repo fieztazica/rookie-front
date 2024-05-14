@@ -24,6 +24,9 @@ export class CustomerCountAggregate {
     lastName!: number;
 
     @Field(() => Int, {nullable:false})
+    displayName!: number;
+
+    @Field(() => Int, {nullable:false})
     gender!: number;
 
     @Field(() => Int, {nullable:false})

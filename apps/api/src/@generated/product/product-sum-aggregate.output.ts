@@ -8,4 +8,7 @@ export class ProductSumAggregate {
 
     @Field(() => GraphQLDecimal, {nullable:true})
     price?: Decimal;
+
+    @Field(() => GraphQLDecimal, {nullable:true})
+    salePrice?: Decimal;
 }

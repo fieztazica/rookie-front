@@ -7,6 +7,7 @@ export enum CustomerScalarFieldEnum {
     phoneNumber = "phoneNumber",
     firstName = "firstName",
     lastName = "lastName",
+    displayName = "displayName",
     gender = "gender",
     accountId = "accountId",
     deleted = "deleted",

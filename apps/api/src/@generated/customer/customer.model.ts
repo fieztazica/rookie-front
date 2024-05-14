@@ -30,6 +30,9 @@ export class Customer {
     @Field(() => String, {nullable:false})
     lastName!: string;
 
+    @Field(() => String, {nullable:true})
+    displayName!: string | null;
+
     @Field(() => Gender, {nullable:true,defaultValue:'UNDEFINED'})
     gender!: keyof typeof Gender | null;
 

@@ -35,6 +35,9 @@ export class CustomerScalarWhereWithAggregatesInput {
     @Field(() => StringWithAggregatesFilter, {nullable:true})
     lastName?: StringWithAggregatesFilter;
 
+    @Field(() => StringWithAggregatesFilter, {nullable:true})
+    displayName?: StringWithAggregatesFilter;
+
     @Field(() => EnumGenderWithAggregatesFilter, {nullable:true})
     gender?: EnumGenderWithAggregatesFilter;
 

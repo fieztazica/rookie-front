@@ -33,11 +33,18 @@ export class ProductWhereUniqueInput {
     NOT?: Array<ProductWhereInput>;
 
     @Field(() => StringFilter, {nullable:true})
+    displayName?: StringFilter;
+
+    @Field(() => StringFilter, {nullable:true})
     description?: StringFilter;
 
     @Field(() => DecimalFilter, {nullable:true})
     @Type(() => DecimalFilter)
     price?: DecimalFilter;
+
+    @Field(() => DecimalFilter, {nullable:true})
+    @Type(() => DecimalFilter)
+    salePrice?: DecimalFilter;
 
     @Field(() => StringFilter, {nullable:true})
     accountId?: StringFilter;

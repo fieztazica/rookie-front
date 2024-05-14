@@ -11,10 +11,16 @@ export class ProductMaxAggregateInput {
     name?: true;
 
     @Field(() => Boolean, {nullable:true})
+    displayName?: true;
+
+    @Field(() => Boolean, {nullable:true})
     description?: true;
 
     @Field(() => Boolean, {nullable:true})
     price?: true;
+
+    @Field(() => Boolean, {nullable:true})
+    salePrice?: true;
 
     @Field(() => Boolean, {nullable:true})
     accountId?: true;

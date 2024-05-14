@@ -26,6 +26,9 @@ export class CustomerCreateInput {
     @Field(() => String, {nullable:false})
     lastName!: string;
 
+    @Field(() => String, {nullable:true})
+    displayName?: string;
+
     @Field(() => Gender, {nullable:true})
     gender?: keyof typeof Gender;
 

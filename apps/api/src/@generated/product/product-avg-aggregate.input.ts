@@ -6,4 +6,7 @@ export class ProductAvgAggregateInput {
 
     @Field(() => Boolean, {nullable:true})
     price?: true;
+
+    @Field(() => Boolean, {nullable:true})
+    salePrice?: true;
 }

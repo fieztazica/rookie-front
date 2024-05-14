@@ -4,6 +4,7 @@ export enum CategoryScalarFieldEnum {
     id = "id",
     name = "name",
     description = "description",
+    displayName = "displayName",
     deleted = "deleted",
     createdAt = "createdAt",
     updatedAt = "updatedAt"

@@ -27,6 +27,9 @@ export class CategoryWhereInput {
     @Field(() => StringFilter, {nullable:true})
     description?: StringFilter;
 
+    @Field(() => StringFilter, {nullable:true})
+    displayName?: StringFilter;
+
     @Field(() => BoolFilter, {nullable:true})
     deleted?: BoolFilter;
 

@@ -14,6 +14,9 @@ export class CategoryMinAggregateInput {
     description?: true;
 
     @Field(() => Boolean, {nullable:true})
+    displayName?: true;
+
+    @Field(() => Boolean, {nullable:true})
     deleted?: true;
 
     @Field(() => Boolean, {nullable:true})

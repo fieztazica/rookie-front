@@ -19,6 +19,9 @@ export class Category {
     @Field(() => String, {nullable:true})
     description!: string | null;
 
+    @Field(() => String, {nullable:true})
+    displayName!: string | null;
+
     /**
      * @omit
      */

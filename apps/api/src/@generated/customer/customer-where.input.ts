@@ -38,6 +38,9 @@ export class CustomerWhereInput {
     @Field(() => StringFilter, {nullable:true})
     lastName?: StringFilter;
 
+    @Field(() => StringFilter, {nullable:true})
+    displayName?: StringFilter;
+
     @Field(() => EnumGenderFilter, {nullable:true})
     gender?: EnumGenderFilter;
 

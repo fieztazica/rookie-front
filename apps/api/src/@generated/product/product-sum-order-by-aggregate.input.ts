@@ -7,4 +7,7 @@ export class ProductSumOrderByAggregateInput {
 
     @Field(() => SortOrder, {nullable:true})
     price?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    salePrice?: keyof typeof SortOrder;
 }

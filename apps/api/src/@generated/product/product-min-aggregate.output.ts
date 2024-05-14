@@ -13,10 +13,16 @@ export class ProductMinAggregate {
     name?: string;
 
     @Field(() => String, {nullable:true})
+    displayName?: string;
+
+    @Field(() => String, {nullable:true})
     description?: string;
 
     @Field(() => GraphQLDecimal, {nullable:true})
     price?: Decimal;
+
+    @Field(() => GraphQLDecimal, {nullable:true})
+    salePrice?: Decimal;
 
     @Field(() => String, {nullable:true})
     accountId?: string;

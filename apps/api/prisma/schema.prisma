@@ -33,6 +33,7 @@ model Customer {
   phoneNumber String     @unique() @db.VarChar(24)
   firstName   String     @db.VarChar(255)
   lastName    String     @db.VarChar(255)
+  displayName String?    @db.VarChar(255)
   gender      Gender?    @default(UNDEFINED)
   accountId   String?    @map("account_id")
   orders      Order[]
@@ -49,8 +50,10 @@ model Customer {
 model Product {
   id          String              @id() @default(cuid()) @map("product_id")
   name        String              @unique() @db.VarChar(255)
+  displayName String?             @db.VarChar(255)
   description String?             @db.VarChar(255)
   price       Decimal             @db.Decimal()
+  salePrice   Decimal?            @db.Decimal()
   accountId   String?             @map("account_id")
   categories  ProductToCategory[]
   orderItems  OrderItem[]
@@ -86,6 +89,7 @@ model Category {
   id          String              @id() @default(cuid()) @map("category_id")
   name        String              @unique() @db.VarChar(255)
   description String?             @db.VarChar(255)
+  displayName String?             @db.VarChar(255)
   products    ProductToCategory[]
   /// @omit
   deleted     Boolean             @default(false)
