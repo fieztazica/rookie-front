@@ -34,5 +34,7 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
+      - name: API/Generate Prisma Client
+        run: pnpm run prisma generate
       - name: Test API with Jest
         run: pnpm --filter=api run test
