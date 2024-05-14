@@ -34,6 +34,8 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
+      - name: API/Generate ZenStack Enhance
+        run: pnpm run --filter=api zenstack generate
       - name: API/Generate Prisma Client
         run: pnpm run --filter=api prisma generate
       - name: Turbo build
