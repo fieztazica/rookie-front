@@ -8,6 +8,15 @@ generator client {
     provider = "prisma-client-js"
 }
 
+generator nestgraphql {
+    // provider = "node node_modules/prisma-nestjs-graphql"
+    // for yarn monorepos
+    provider = "prisma-nestjs-graphql"
+    output = "../src/@generated"
+    combineScalarFilters = true
+    noAtomicOperations = true
+}
+
 datasource db {
     provider = "postgresql"
     url      = env("DATABASE_URL")
@@ -45,7 +54,7 @@ model Product {
     id          String              @id @default(cuid()) @map("product_id")
     name        String              @unique @db.VarChar(255)
     description String?             @db.VarChar(255)
-    price       Decimal             @db.Decimal(10, 2)
+    price       Decimal             @db.Decimal
     accountId   String?             @map("account_id")
 
     categories  ProductToCategory[]
@@ -130,6 +139,7 @@ model Feedback {
 model Order {
     id         String      @id @default(cuid()) @map("order_id")
     customerId String      @map("customer_id")
+    total      Decimal     @db.Decimal
 
     customer   Customer    @relation(fields: [customerId], references: [id])
     orderItems OrderItem[]
@@ -145,6 +155,7 @@ model Order {
 model OrderItem {
     orderId   String   @map("order_id")
     productId String   @map("product_id")
+    price     Decimal  @db.Decimal
     quantity  Int
 
     order     Order    @relation(fields: [orderId], references: [id])

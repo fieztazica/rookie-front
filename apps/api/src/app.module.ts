@@ -8,9 +8,22 @@ import { validate } from './common/config/env.validation';
 import { PrismaModule } from './common/database/prisma.module';
 import { PrismaService } from './common/database/prisma.service';
 import { CustomersModule } from './customers/customers.module';
+import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { FeedbacksModule } from './feedbacks/feedbacks.module';
+import { CategoriesModule } from './categories/categories.module';
+import { ProductsModule } from './products/products.module';
+import { OrdersModule } from './orders/orders.module';
+import { ProductsModule } from './products/products.module';
 
 @Module({
   imports: [
+    PrismaModule,
+    CustomersModule,
+    FeedbacksModule,
+    CategoriesModule,
+    ProductsModule,
+    OrdersModule,
     ConfigModule.forRoot({
       isGlobal: true,
       load: [configuration],
@@ -29,8 +42,10 @@ import { CustomersModule } from './customers/customers.module';
         ],
       }),
     }),
-    PrismaModule,
-    CustomersModule,
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      autoSchemaFile: true,
+    }),
   ],
   controllers: [AppController],
   providers: [AppService, PrismaService],
