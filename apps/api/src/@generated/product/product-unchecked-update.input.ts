@@ -9,6 +9,8 @@ import { ProductToCategoryUncheckedUpdateManyWithoutProductNestedInput } from '.
 import { OrderItemUncheckedUpdateManyWithoutProductNestedInput } from '../order-item/order-item-unchecked-update-many-without-product-nested.input';
 import { FeedbackUncheckedUpdateManyWithoutProductNestedInput } from '../feedback/feedback-unchecked-update-many-without-product-nested.input';
 import { ImageUncheckedUpdateManyWithoutProductNestedInput } from '../image/image-unchecked-update-many-without-product-nested.input';
+import { ProductToPublisherUncheckedUpdateManyWithoutProductNestedInput } from '../product-to-publisher/product-to-publisher-unchecked-update-many-without-product-nested.input';
+import { ProductToAuthorUncheckedUpdateManyWithoutProductNestedInput } from '../product-to-author/product-to-author-unchecked-update-many-without-product-nested.input';
 
 @InputType()
 export class ProductUncheckedUpdateInput {
@@ -62,4 +64,12 @@ export class ProductUncheckedUpdateInput {
     @Field(() => ImageUncheckedUpdateManyWithoutProductNestedInput, {nullable:true})
     @Type(() => ImageUncheckedUpdateManyWithoutProductNestedInput)
     images?: ImageUncheckedUpdateManyWithoutProductNestedInput;
+
+    @Field(() => ProductToPublisherUncheckedUpdateManyWithoutProductNestedInput, {nullable:true})
+    @Type(() => ProductToPublisherUncheckedUpdateManyWithoutProductNestedInput)
+    productToPublishers?: ProductToPublisherUncheckedUpdateManyWithoutProductNestedInput;
+
+    @Field(() => ProductToAuthorUncheckedUpdateManyWithoutProductNestedInput, {nullable:true})
+    @Type(() => ProductToAuthorUncheckedUpdateManyWithoutProductNestedInput)
+    productToAuthors?: ProductToAuthorUncheckedUpdateManyWithoutProductNestedInput;
 }

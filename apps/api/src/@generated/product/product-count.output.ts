@@ -16,4 +16,10 @@ export class ProductCount {
 
     @Field(() => Int, {nullable:false})
     images?: number;
+
+    @Field(() => Int, {nullable:false})
+    productToPublishers?: number;
+
+    @Field(() => Int, {nullable:false})
+    productToAuthors?: number;
 }

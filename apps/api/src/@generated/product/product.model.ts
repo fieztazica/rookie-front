@@ -7,6 +7,8 @@ import { ProductToCategory } from '../product-to-category/product-to-category.mo
 import { OrderItem } from '../order-item/order-item.model';
 import { Feedback } from '../feedback/feedback.model';
 import { Image } from '../image/image.model';
+import { ProductToPublisher } from '../product-to-publisher/product-to-publisher.model';
+import { ProductToAuthor } from '../product-to-author/product-to-author.model';
 import { ProductCount } from './product-count.output';
 
 /**
@@ -59,6 +61,12 @@ export class Product {
 
     @Field(() => [Image], {nullable:true})
     images?: Array<Image>;
+
+    @Field(() => [ProductToPublisher], {nullable:true})
+    productToPublishers?: Array<ProductToPublisher>;
+
+    @Field(() => [ProductToAuthor], {nullable:true})
+    productToAuthors?: Array<ProductToAuthor>;
 
     @Field(() => ProductCount, {nullable:false})
     _count?: ProductCount;

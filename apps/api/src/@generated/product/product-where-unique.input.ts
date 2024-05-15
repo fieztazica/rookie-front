@@ -10,6 +10,8 @@ import { ProductToCategoryListRelationFilter } from '../product-to-category/prod
 import { OrderItemListRelationFilter } from '../order-item/order-item-list-relation-filter.input';
 import { FeedbackListRelationFilter } from '../feedback/feedback-list-relation-filter.input';
 import { ImageListRelationFilter } from '../image/image-list-relation-filter.input';
+import { ProductToPublisherListRelationFilter } from '../product-to-publisher/product-to-publisher-list-relation-filter.input';
+import { ProductToAuthorListRelationFilter } from '../product-to-author/product-to-author-list-relation-filter.input';
 
 @InputType()
 export class ProductWhereUniqueInput {
@@ -73,4 +75,12 @@ export class ProductWhereUniqueInput {
     @Field(() => ImageListRelationFilter, {nullable:true})
     @Type(() => ImageListRelationFilter)
     images?: ImageListRelationFilter;
+
+    @Field(() => ProductToPublisherListRelationFilter, {nullable:true})
+    @Type(() => ProductToPublisherListRelationFilter)
+    productToPublishers?: ProductToPublisherListRelationFilter;
+
+    @Field(() => ProductToAuthorListRelationFilter, {nullable:true})
+    @Type(() => ProductToAuthorListRelationFilter)
+    productToAuthors?: ProductToAuthorListRelationFilter;
 }

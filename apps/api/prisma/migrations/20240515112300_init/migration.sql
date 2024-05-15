@@ -20,6 +20,55 @@ CREATE TABLE "customers" (
 );
 
 -- CreateTable
+CREATE TABLE "authors" (
+    "author_id" TEXT NOT NULL,
+    "name" VARCHAR(64) NOT NULL,
+    "displayName" VARCHAR(255),
+    "email" VARCHAR(255) NOT NULL,
+    "phoneNumber" VARCHAR(24) NOT NULL,
+    "deleted" BOOLEAN NOT NULL DEFAULT false,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "authors_pkey" PRIMARY KEY ("author_id")
+);
+
+-- CreateTable
+CREATE TABLE "publishers" (
+    "publisher_id" TEXT NOT NULL,
+    "name" VARCHAR(64) NOT NULL,
+    "displayName" VARCHAR(255),
+    "email" VARCHAR(255) NOT NULL,
+    "phoneNumber" VARCHAR(24) NOT NULL,
+    "website" VARCHAR(24) NOT NULL,
+    "deleted" BOOLEAN NOT NULL DEFAULT false,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "publishers_pkey" PRIMARY KEY ("publisher_id")
+);
+
+-- CreateTable
+CREATE TABLE "product_to_authors" (
+    "product_id" TEXT NOT NULL,
+    "author_id" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "product_to_authors_pkey" PRIMARY KEY ("product_id","author_id")
+);
+
+-- CreateTable
+CREATE TABLE "product_to_publishers" (
+    "product_id" TEXT NOT NULL,
+    "publisher_id" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "product_to_publishers_pkey" PRIMARY KEY ("product_id","publisher_id")
+);
+
+-- CreateTable
 CREATE TABLE "products" (
     "product_id" TEXT NOT NULL,
     "name" VARCHAR(255) NOT NULL,
@@ -121,10 +170,34 @@ CREATE UNIQUE INDEX "customers_email_key" ON "customers"("email");
 CREATE UNIQUE INDEX "customers_phoneNumber_key" ON "customers"("phoneNumber");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "authors_name_key" ON "authors"("name");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "authors_email_key" ON "authors"("email");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "publishers_name_key" ON "publishers"("name");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "publishers_email_key" ON "publishers"("email");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "products_name_key" ON "products"("name");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "categories_name_key" ON "categories"("name");
+
+-- AddForeignKey
+ALTER TABLE "product_to_authors" ADD CONSTRAINT "product_to_authors_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products"("product_id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "product_to_authors" ADD CONSTRAINT "product_to_authors_author_id_fkey" FOREIGN KEY ("author_id") REFERENCES "authors"("author_id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "product_to_publishers" ADD CONSTRAINT "product_to_publishers_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products"("product_id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "product_to_publishers" ADD CONSTRAINT "product_to_publishers_publisher_id_fkey" FOREIGN KEY ("publisher_id") REFERENCES "publishers"("publisher_id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "images" ADD CONSTRAINT "images_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products"("product_id") ON DELETE RESTRICT ON UPDATE CASCADE;

@@ -9,6 +9,8 @@ import { ProductToCategoryUncheckedCreateNestedManyWithoutProductInput } from '.
 import { OrderItemUncheckedCreateNestedManyWithoutProductInput } from '../order-item/order-item-unchecked-create-nested-many-without-product.input';
 import { FeedbackUncheckedCreateNestedManyWithoutProductInput } from '../feedback/feedback-unchecked-create-nested-many-without-product.input';
 import { ImageUncheckedCreateNestedManyWithoutProductInput } from '../image/image-unchecked-create-nested-many-without-product.input';
+import { ProductToPublisherUncheckedCreateNestedManyWithoutProductInput } from '../product-to-publisher/product-to-publisher-unchecked-create-nested-many-without-product.input';
+import { ProductToAuthorUncheckedCreateNestedManyWithoutProductInput } from '../product-to-author/product-to-author-unchecked-create-nested-many-without-product.input';
 
 @InputType()
 export class ProductUncheckedCreateInput {
@@ -62,4 +64,12 @@ export class ProductUncheckedCreateInput {
     @Field(() => ImageUncheckedCreateNestedManyWithoutProductInput, {nullable:true})
     @Type(() => ImageUncheckedCreateNestedManyWithoutProductInput)
     images?: ImageUncheckedCreateNestedManyWithoutProductInput;
+
+    @Field(() => ProductToPublisherUncheckedCreateNestedManyWithoutProductInput, {nullable:true})
+    @Type(() => ProductToPublisherUncheckedCreateNestedManyWithoutProductInput)
+    productToPublishers?: ProductToPublisherUncheckedCreateNestedManyWithoutProductInput;
+
+    @Field(() => ProductToAuthorUncheckedCreateNestedManyWithoutProductInput, {nullable:true})
+    @Type(() => ProductToAuthorUncheckedCreateNestedManyWithoutProductInput)
+    productToAuthors?: ProductToAuthorUncheckedCreateNestedManyWithoutProductInput;
 }

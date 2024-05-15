@@ -8,6 +8,8 @@ import { Type } from 'class-transformer';
 import { OrderItemUpdateManyWithoutProductNestedInput } from '../order-item/order-item-update-many-without-product-nested.input';
 import { FeedbackUpdateManyWithoutProductNestedInput } from '../feedback/feedback-update-many-without-product-nested.input';
 import { ImageUpdateManyWithoutProductNestedInput } from '../image/image-update-many-without-product-nested.input';
+import { ProductToPublisherUpdateManyWithoutProductNestedInput } from '../product-to-publisher/product-to-publisher-update-many-without-product-nested.input';
+import { ProductToAuthorUpdateManyWithoutProductNestedInput } from '../product-to-author/product-to-author-update-many-without-product-nested.input';
 
 @InputType()
 export class ProductUpdateWithoutCategoriesInput {
@@ -57,4 +59,12 @@ export class ProductUpdateWithoutCategoriesInput {
     @Field(() => ImageUpdateManyWithoutProductNestedInput, {nullable:true})
     @Type(() => ImageUpdateManyWithoutProductNestedInput)
     images?: ImageUpdateManyWithoutProductNestedInput;
+
+    @Field(() => ProductToPublisherUpdateManyWithoutProductNestedInput, {nullable:true})
+    @Type(() => ProductToPublisherUpdateManyWithoutProductNestedInput)
+    productToPublishers?: ProductToPublisherUpdateManyWithoutProductNestedInput;
+
+    @Field(() => ProductToAuthorUpdateManyWithoutProductNestedInput, {nullable:true})
+    @Type(() => ProductToAuthorUpdateManyWithoutProductNestedInput)
+    productToAuthors?: ProductToAuthorUpdateManyWithoutProductNestedInput;
 }

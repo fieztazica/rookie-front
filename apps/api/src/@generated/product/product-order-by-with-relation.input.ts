@@ -7,6 +7,8 @@ import { ProductToCategoryOrderByRelationAggregateInput } from '../product-to-ca
 import { OrderItemOrderByRelationAggregateInput } from '../order-item/order-item-order-by-relation-aggregate.input';
 import { FeedbackOrderByRelationAggregateInput } from '../feedback/feedback-order-by-relation-aggregate.input';
 import { ImageOrderByRelationAggregateInput } from '../image/image-order-by-relation-aggregate.input';
+import { ProductToPublisherOrderByRelationAggregateInput } from '../product-to-publisher/product-to-publisher-order-by-relation-aggregate.input';
+import { ProductToAuthorOrderByRelationAggregateInput } from '../product-to-author/product-to-author-order-by-relation-aggregate.input';
 
 @InputType()
 export class ProductOrderByWithRelationInput {
@@ -57,4 +59,12 @@ export class ProductOrderByWithRelationInput {
     @Field(() => ImageOrderByRelationAggregateInput, {nullable:true})
     @Type(() => ImageOrderByRelationAggregateInput)
     images?: ImageOrderByRelationAggregateInput;
+
+    @Field(() => ProductToPublisherOrderByRelationAggregateInput, {nullable:true})
+    @Type(() => ProductToPublisherOrderByRelationAggregateInput)
+    productToPublishers?: ProductToPublisherOrderByRelationAggregateInput;
+
+    @Field(() => ProductToAuthorOrderByRelationAggregateInput, {nullable:true})
+    @Type(() => ProductToAuthorOrderByRelationAggregateInput)
+    productToAuthors?: ProductToAuthorOrderByRelationAggregateInput;
 }

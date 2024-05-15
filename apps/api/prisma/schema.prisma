@@ -47,22 +47,81 @@ model Customer {
 }
 
 /// @@deny('read', deleted)
-model Product {
-  id          String              @id() @default(cuid()) @map("product_id")
-  name        String              @unique() @db.VarChar(255)
-  displayName String?             @db.VarChar(255)
-  description String?             @db.VarChar(255)
-  price       Decimal             @db.Decimal()
-  salePrice   Decimal?            @db.Decimal()
-  accountId   String?             @map("account_id")
-  categories  ProductToCategory[]
-  orderItems  OrderItem[]
-  feedbacks   Feedback[]
-  images      Image[]
+model Author {
+  id               String            @id() @default(cuid()) @map("author_id")
+  name             String            @unique() @db.VarChar(64)
+  displayName      String?           @db.VarChar(255)
+  email            String            @unique() @db.VarChar(255)
+  phoneNumber      String            @db.VarChar(24)
   /// @omit
-  deleted     Boolean             @default(false)
-  createdAt   DateTime            @default(now())
-  updatedAt   DateTime            @updatedAt()
+  deleted          Boolean           @default(false)
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt()
+  productToAuthors ProductToAuthor[]
+
+  @@map("authors")
+}
+
+/// @@deny('read', deleted)
+model Publisher {
+  id                  String               @id() @default(cuid()) @map("publisher_id")
+  name                String               @unique() @db.VarChar(64)
+  displayName         String?              @db.VarChar(255)
+  email               String               @unique() @db.VarChar(255)
+  phoneNumber         String               @db.VarChar(24)
+  website             String               @db.VarChar(24)
+  /// @omit
+  deleted             Boolean              @default(false)
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt()
+  productToPublishers ProductToPublisher[]
+
+  @@map("publishers")
+}
+
+model ProductToAuthor {
+  productId String   @map("product_id")
+  authorId  String   @map("author_id")
+  product   Product  @relation(fields: [productId], references: [id])
+  author    Author   @relation(fields: [authorId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+
+  @@id([productId, authorId])
+  @@map("product_to_authors")
+}
+
+model ProductToPublisher {
+  productId   String    @map("product_id")
+  publisherId String    @map("publisher_id")
+  product     Product   @relation(fields: [productId], references: [id])
+  publisher   Publisher @relation(fields: [publisherId], references: [id])
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt()
+
+  @@id([productId, publisherId])
+  @@map("product_to_publishers")
+}
+
+/// @@deny('read', deleted)
+model Product {
+  id                  String               @id() @default(cuid()) @map("product_id")
+  name                String               @unique() @db.VarChar(255)
+  displayName         String?              @db.VarChar(255)
+  description         String?              @db.VarChar(255)
+  price               Decimal              @db.Decimal()
+  salePrice           Decimal?             @db.Decimal()
+  accountId           String?              @map("account_id")
+  categories          ProductToCategory[]
+  orderItems          OrderItem[]
+  feedbacks           Feedback[]
+  images              Image[]
+  productToPublishers ProductToPublisher[]
+  productToAuthors    ProductToAuthor[]
+  /// @omit
+  deleted             Boolean              @default(false)
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt()
 
   @@map("products")
 }

@@ -8,6 +8,8 @@ import { Type } from 'class-transformer';
 import { ProductToCategoryCreateNestedManyWithoutProductInput } from '../product-to-category/product-to-category-create-nested-many-without-product.input';
 import { OrderItemCreateNestedManyWithoutProductInput } from '../order-item/order-item-create-nested-many-without-product.input';
 import { FeedbackCreateNestedManyWithoutProductInput } from '../feedback/feedback-create-nested-many-without-product.input';
+import { ProductToPublisherCreateNestedManyWithoutProductInput } from '../product-to-publisher/product-to-publisher-create-nested-many-without-product.input';
+import { ProductToAuthorCreateNestedManyWithoutProductInput } from '../product-to-author/product-to-author-create-nested-many-without-product.input';
 
 @InputType()
 export class ProductCreateWithoutImagesInput {
@@ -57,4 +59,12 @@ export class ProductCreateWithoutImagesInput {
     @Field(() => FeedbackCreateNestedManyWithoutProductInput, {nullable:true})
     @Type(() => FeedbackCreateNestedManyWithoutProductInput)
     feedbacks?: FeedbackCreateNestedManyWithoutProductInput;
+
+    @Field(() => ProductToPublisherCreateNestedManyWithoutProductInput, {nullable:true})
+    @Type(() => ProductToPublisherCreateNestedManyWithoutProductInput)
+    productToPublishers?: ProductToPublisherCreateNestedManyWithoutProductInput;
+
+    @Field(() => ProductToAuthorCreateNestedManyWithoutProductInput, {nullable:true})
+    @Type(() => ProductToAuthorCreateNestedManyWithoutProductInput)
+    productToAuthors?: ProductToAuthorCreateNestedManyWithoutProductInput;
 }
