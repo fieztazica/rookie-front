@@ -5,6 +5,9 @@
         "test",
         "dist",
         "**/*spec.ts",
-        "@generated"
+        "@generated",
+        "public",
+        "assets",
+        "views"
     ]
 }
