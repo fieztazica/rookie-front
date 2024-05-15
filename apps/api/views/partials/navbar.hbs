@@ -1,5 +1,18 @@
-<nav>
-  <div>
-  NAVBAR
-  </div>
+<nav class="w-full bg-slate-400">
+    <div class="flex justify-between px-8 py-4">
+        <div class="font-bold">ROOKIE STORE</div>
+        <div class="flex space-x-4">
+            {{#if userinfo}}
+            <a>Dashboard</a>
+            <a>Products</a>
+            <a>Categories</a>
+            <a>Customers</a>
+            <a>Orders</a>
+            <p>Hi, {{userinfo.name}}</p>
+            <a href="/auth/logout">Logout</a>
+            {{else}}
+            <a href="/auth/login">Login</a>
+            {{/if}}
+        </div>
+    </div>
 </nav>
