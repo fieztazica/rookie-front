@@ -1,13 +1,16 @@
-import { Controller, Get, Render } from '@nestjs/common';
+import { Controller, Get, Render, Req } from '@nestjs/common';
+import { RedirectAuth } from 'src/auth/decorator/redirectAuth.decorator';
 
 @Controller('admin')
 export class AdminController {
   @Get()
-  @Render('login')
-  loginPage() {
+  @Render('home')
+  home(@Req() req) {
     return {
-      message: 'Hello admin login',
-      bool: true
+      message: req?.user?.userinfo
+        ? `Have a nice day, ${req?.user?.userinfo}!`
+        : 'Please login to access the admin dashboard.',
+      userinfo: req?.user?.userinfo,
     };
   }
 }
