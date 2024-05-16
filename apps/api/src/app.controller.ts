@@ -11,4 +11,3 @@ export class AppController {
     res.redirect('/admin');
   }
 }
-
