@@ -23,7 +23,6 @@ export class CategoriesResolver {
 
   @Query(() => Category, { name: 'category' })
   findOne(@Args('id', { type: () => String }) id: string) {
-    console.log(id)
     return this.categoriesService.findOne(id);
   }
 
