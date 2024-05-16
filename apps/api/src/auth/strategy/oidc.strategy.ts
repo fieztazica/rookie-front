@@ -1,11 +1,11 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import {
-    Client,
-    Issuer,
-    Strategy,
-    TokenSet,
-    UserinfoResponse,
+  Client,
+  Issuer,
+  Strategy,
+  TokenSet,
+  UserinfoResponse,
 } from 'openid-client';
 import { AuthService } from '../auth.service';
 
