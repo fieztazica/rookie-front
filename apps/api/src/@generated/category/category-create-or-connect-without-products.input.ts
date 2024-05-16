@@ -7,12 +7,11 @@ import { CategoryCreateWithoutProductsInput } from './category-create-without-pr
 
 @InputType()
 export class CategoryCreateOrConnectWithoutProductsInput {
+  @Field(() => CategoryWhereUniqueInput, { nullable: false })
+  @Type(() => CategoryWhereUniqueInput)
+  where!: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name'>;
 
-    @Field(() => CategoryWhereUniqueInput, {nullable:false})
-    @Type(() => CategoryWhereUniqueInput)
-    where!: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name'>;
-
-    @Field(() => CategoryCreateWithoutProductsInput, {nullable:false})
-    @Type(() => CategoryCreateWithoutProductsInput)
-    create!: CategoryCreateWithoutProductsInput;
+  @Field(() => CategoryCreateWithoutProductsInput, { nullable: false })
+  @Type(() => CategoryCreateWithoutProductsInput)
+  create!: CategoryCreateWithoutProductsInput;
 }

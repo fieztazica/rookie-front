@@ -12,32 +12,31 @@ import { PublisherMaxAggregateInput } from './publisher-max-aggregate.input';
 
 @ArgsType()
 export class PublisherGroupByArgs {
+  @Field(() => PublisherWhereInput, { nullable: true })
+  @Type(() => PublisherWhereInput)
+  where?: PublisherWhereInput;
 
-    @Field(() => PublisherWhereInput, {nullable:true})
-    @Type(() => PublisherWhereInput)
-    where?: PublisherWhereInput;
+  @Field(() => [PublisherOrderByWithAggregationInput], { nullable: true })
+  orderBy?: Array<PublisherOrderByWithAggregationInput>;
 
-    @Field(() => [PublisherOrderByWithAggregationInput], {nullable:true})
-    orderBy?: Array<PublisherOrderByWithAggregationInput>;
+  @Field(() => [PublisherScalarFieldEnum], { nullable: false })
+  by!: Array<keyof typeof PublisherScalarFieldEnum>;
 
-    @Field(() => [PublisherScalarFieldEnum], {nullable:false})
-    by!: Array<keyof typeof PublisherScalarFieldEnum>;
+  @Field(() => PublisherScalarWhereWithAggregatesInput, { nullable: true })
+  having?: PublisherScalarWhereWithAggregatesInput;
 
-    @Field(() => PublisherScalarWhereWithAggregatesInput, {nullable:true})
-    having?: PublisherScalarWhereWithAggregatesInput;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
+  @Field(() => PublisherCountAggregateInput, { nullable: true })
+  _count?: PublisherCountAggregateInput;
 
-    @Field(() => PublisherCountAggregateInput, {nullable:true})
-    _count?: PublisherCountAggregateInput;
+  @Field(() => PublisherMinAggregateInput, { nullable: true })
+  _min?: PublisherMinAggregateInput;
 
-    @Field(() => PublisherMinAggregateInput, {nullable:true})
-    _min?: PublisherMinAggregateInput;
-
-    @Field(() => PublisherMaxAggregateInput, {nullable:true})
-    _max?: PublisherMaxAggregateInput;
+  @Field(() => PublisherMaxAggregateInput, { nullable: true })
+  _max?: PublisherMaxAggregateInput;
 }

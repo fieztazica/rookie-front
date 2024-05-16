@@ -4,31 +4,30 @@ import { SortOrder } from '../prisma/sort-order.enum';
 
 @InputType()
 export class PublisherCountOrderByAggregateInput {
+  @Field(() => SortOrder, { nullable: true })
+  id?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    id?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  name?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    name?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  displayName?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    displayName?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  email?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    email?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  phoneNumber?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    phoneNumber?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  website?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    website?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  deleted?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    deleted?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  createdAt?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    createdAt?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
-    updatedAt?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  updatedAt?: keyof typeof SortOrder;
 }

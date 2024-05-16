@@ -10,23 +10,22 @@ import { ImageScalarFieldEnum } from './image-scalar-field.enum';
 
 @ArgsType()
 export class FindManyImageArgs {
+  @Field(() => ImageWhereInput, { nullable: true })
+  @Type(() => ImageWhereInput)
+  where?: ImageWhereInput;
 
-    @Field(() => ImageWhereInput, {nullable:true})
-    @Type(() => ImageWhereInput)
-    where?: ImageWhereInput;
+  @Field(() => [ImageOrderByWithRelationInput], { nullable: true })
+  orderBy?: Array<ImageOrderByWithRelationInput>;
 
-    @Field(() => [ImageOrderByWithRelationInput], {nullable:true})
-    orderBy?: Array<ImageOrderByWithRelationInput>;
+  @Field(() => ImageWhereUniqueInput, { nullable: true })
+  cursor?: Prisma.AtLeast<ImageWhereUniqueInput, 'id_productId'>;
 
-    @Field(() => ImageWhereUniqueInput, {nullable:true})
-    cursor?: Prisma.AtLeast<ImageWhereUniqueInput, 'id_productId'>;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
-
-    @Field(() => [ImageScalarFieldEnum], {nullable:true})
-    distinct?: Array<keyof typeof ImageScalarFieldEnum>;
+  @Field(() => [ImageScalarFieldEnum], { nullable: true })
+  distinct?: Array<keyof typeof ImageScalarFieldEnum>;
 }

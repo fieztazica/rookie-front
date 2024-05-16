@@ -6,8 +6,7 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class FindUniqueImageOrThrowArgs {
-
-    @Field(() => ImageWhereUniqueInput, {nullable:false})
-    @Type(() => ImageWhereUniqueInput)
-    where!: Prisma.AtLeast<ImageWhereUniqueInput, 'id_productId'>;
+  @Field(() => ImageWhereUniqueInput, { nullable: false })
+  @Type(() => ImageWhereUniqueInput)
+  where!: Prisma.AtLeast<ImageWhereUniqueInput, 'id_productId'>;
 }

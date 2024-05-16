@@ -7,12 +7,14 @@ import { ProductToPublisherWhereUniqueInput } from './product-to-publisher-where
 
 @ArgsType()
 export class UpdateOneProductToPublisherArgs {
+  @Field(() => ProductToPublisherUpdateInput, { nullable: false })
+  @Type(() => ProductToPublisherUpdateInput)
+  data!: ProductToPublisherUpdateInput;
 
-    @Field(() => ProductToPublisherUpdateInput, {nullable:false})
-    @Type(() => ProductToPublisherUpdateInput)
-    data!: ProductToPublisherUpdateInput;
-
-    @Field(() => ProductToPublisherWhereUniqueInput, {nullable:false})
-    @Type(() => ProductToPublisherWhereUniqueInput)
-    where!: Prisma.AtLeast<ProductToPublisherWhereUniqueInput, 'productId_publisherId'>;
+  @Field(() => ProductToPublisherWhereUniqueInput, { nullable: false })
+  @Type(() => ProductToPublisherWhereUniqueInput)
+  where!: Prisma.AtLeast<
+    ProductToPublisherWhereUniqueInput,
+    'productId_publisherId'
+  >;
 }

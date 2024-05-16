@@ -6,13 +6,12 @@ import { AuthorMaxAggregate } from './author-max-aggregate.output';
 
 @ObjectType()
 export class AggregateAuthor {
+  @Field(() => AuthorCountAggregate, { nullable: true })
+  _count?: AuthorCountAggregate;
 
-    @Field(() => AuthorCountAggregate, {nullable:true})
-    _count?: AuthorCountAggregate;
+  @Field(() => AuthorMinAggregate, { nullable: true })
+  _min?: AuthorMinAggregate;
 
-    @Field(() => AuthorMinAggregate, {nullable:true})
-    _min?: AuthorMinAggregate;
-
-    @Field(() => AuthorMaxAggregate, {nullable:true})
-    _max?: AuthorMaxAggregate;
+  @Field(() => AuthorMaxAggregate, { nullable: true })
+  _max?: AuthorMaxAggregate;
 }

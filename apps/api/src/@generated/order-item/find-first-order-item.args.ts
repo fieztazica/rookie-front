@@ -10,25 +10,24 @@ import { OrderItemScalarFieldEnum } from './order-item-scalar-field.enum';
 
 @ArgsType()
 export class FindFirstOrderItemArgs {
+  @Field(() => OrderItemWhereInput, { nullable: true })
+  @Type(() => OrderItemWhereInput)
+  where?: OrderItemWhereInput;
 
-    @Field(() => OrderItemWhereInput, {nullable:true})
-    @Type(() => OrderItemWhereInput)
-    where?: OrderItemWhereInput;
+  @Field(() => [OrderItemOrderByWithRelationInput], { nullable: true })
+  @Type(() => OrderItemOrderByWithRelationInput)
+  orderBy?: Array<OrderItemOrderByWithRelationInput>;
 
-    @Field(() => [OrderItemOrderByWithRelationInput], {nullable:true})
-    @Type(() => OrderItemOrderByWithRelationInput)
-    orderBy?: Array<OrderItemOrderByWithRelationInput>;
+  @Field(() => OrderItemWhereUniqueInput, { nullable: true })
+  @Type(() => OrderItemWhereUniqueInput)
+  cursor?: Prisma.AtLeast<OrderItemWhereUniqueInput, 'orderId_productId'>;
 
-    @Field(() => OrderItemWhereUniqueInput, {nullable:true})
-    @Type(() => OrderItemWhereUniqueInput)
-    cursor?: Prisma.AtLeast<OrderItemWhereUniqueInput, 'orderId_productId'>;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
-
-    @Field(() => [OrderItemScalarFieldEnum], {nullable:true})
-    distinct?: Array<keyof typeof OrderItemScalarFieldEnum>;
+  @Field(() => [OrderItemScalarFieldEnum], { nullable: true })
+  distinct?: Array<keyof typeof OrderItemScalarFieldEnum>;
 }

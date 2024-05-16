@@ -8,16 +8,18 @@ import { CustomerWhereUniqueInput } from './customer-where-unique.input';
 
 @InputType()
 export class CustomerCreateNestedOneWithoutFeedbackInput {
+  @Field(() => CustomerCreateWithoutFeedbackInput, { nullable: true })
+  @Type(() => CustomerCreateWithoutFeedbackInput)
+  create?: CustomerCreateWithoutFeedbackInput;
 
-    @Field(() => CustomerCreateWithoutFeedbackInput, {nullable:true})
-    @Type(() => CustomerCreateWithoutFeedbackInput)
-    create?: CustomerCreateWithoutFeedbackInput;
+  @Field(() => CustomerCreateOrConnectWithoutFeedbackInput, { nullable: true })
+  @Type(() => CustomerCreateOrConnectWithoutFeedbackInput)
+  connectOrCreate?: CustomerCreateOrConnectWithoutFeedbackInput;
 
-    @Field(() => CustomerCreateOrConnectWithoutFeedbackInput, {nullable:true})
-    @Type(() => CustomerCreateOrConnectWithoutFeedbackInput)
-    connectOrCreate?: CustomerCreateOrConnectWithoutFeedbackInput;
-
-    @Field(() => CustomerWhereUniqueInput, {nullable:true})
-    @Type(() => CustomerWhereUniqueInput)
-    connect?: Prisma.AtLeast<CustomerWhereUniqueInput, 'id' | 'username' | 'email' | 'phoneNumber'>;
+  @Field(() => CustomerWhereUniqueInput, { nullable: true })
+  @Type(() => CustomerWhereUniqueInput)
+  connect?: Prisma.AtLeast<
+    CustomerWhereUniqueInput,
+    'id' | 'username' | 'email' | 'phoneNumber'
+  >;
 }

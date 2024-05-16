@@ -5,8 +5,7 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class CreateOneAuthorArgs {
-
-    @Field(() => AuthorCreateInput, {nullable:false})
-    @Type(() => AuthorCreateInput)
-    data!: AuthorCreateInput;
+  @Field(() => AuthorCreateInput, { nullable: false })
+  @Type(() => AuthorCreateInput)
+  data!: AuthorCreateInput;
 }

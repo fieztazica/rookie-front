@@ -7,12 +7,11 @@ import { ProductToAuthorWhereUniqueInput } from './product-to-author-where-uniqu
 
 @ArgsType()
 export class UpdateOneProductToAuthorArgs {
+  @Field(() => ProductToAuthorUpdateInput, { nullable: false })
+  @Type(() => ProductToAuthorUpdateInput)
+  data!: ProductToAuthorUpdateInput;
 
-    @Field(() => ProductToAuthorUpdateInput, {nullable:false})
-    @Type(() => ProductToAuthorUpdateInput)
-    data!: ProductToAuthorUpdateInput;
-
-    @Field(() => ProductToAuthorWhereUniqueInput, {nullable:false})
-    @Type(() => ProductToAuthorWhereUniqueInput)
-    where!: Prisma.AtLeast<ProductToAuthorWhereUniqueInput, 'productId_authorId'>;
+  @Field(() => ProductToAuthorWhereUniqueInput, { nullable: false })
+  @Type(() => ProductToAuthorWhereUniqueInput)
+  where!: Prisma.AtLeast<ProductToAuthorWhereUniqueInput, 'productId_authorId'>;
 }

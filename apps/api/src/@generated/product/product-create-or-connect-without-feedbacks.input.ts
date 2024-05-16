@@ -7,12 +7,11 @@ import { ProductCreateWithoutFeedbacksInput } from './product-create-without-fee
 
 @InputType()
 export class ProductCreateOrConnectWithoutFeedbacksInput {
+  @Field(() => ProductWhereUniqueInput, { nullable: false })
+  @Type(() => ProductWhereUniqueInput)
+  where!: Prisma.AtLeast<ProductWhereUniqueInput, 'id' | 'name'>;
 
-    @Field(() => ProductWhereUniqueInput, {nullable:false})
-    @Type(() => ProductWhereUniqueInput)
-    where!: Prisma.AtLeast<ProductWhereUniqueInput, 'id' | 'name'>;
-
-    @Field(() => ProductCreateWithoutFeedbacksInput, {nullable:false})
-    @Type(() => ProductCreateWithoutFeedbacksInput)
-    create!: ProductCreateWithoutFeedbacksInput;
+  @Field(() => ProductCreateWithoutFeedbacksInput, { nullable: false })
+  @Type(() => ProductCreateWithoutFeedbacksInput)
+  create!: ProductCreateWithoutFeedbacksInput;
 }

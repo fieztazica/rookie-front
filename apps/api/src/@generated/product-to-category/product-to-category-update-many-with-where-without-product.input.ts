@@ -6,12 +6,11 @@ import { ProductToCategoryUpdateManyMutationInput } from './product-to-category-
 
 @InputType()
 export class ProductToCategoryUpdateManyWithWhereWithoutProductInput {
+  @Field(() => ProductToCategoryScalarWhereInput, { nullable: false })
+  @Type(() => ProductToCategoryScalarWhereInput)
+  where!: ProductToCategoryScalarWhereInput;
 
-    @Field(() => ProductToCategoryScalarWhereInput, {nullable:false})
-    @Type(() => ProductToCategoryScalarWhereInput)
-    where!: ProductToCategoryScalarWhereInput;
-
-    @Field(() => ProductToCategoryUpdateManyMutationInput, {nullable:false})
-    @Type(() => ProductToCategoryUpdateManyMutationInput)
-    data!: ProductToCategoryUpdateManyMutationInput;
+  @Field(() => ProductToCategoryUpdateManyMutationInput, { nullable: false })
+  @Type(() => ProductToCategoryUpdateManyMutationInput)
+  data!: ProductToCategoryUpdateManyMutationInput;
 }

@@ -7,16 +7,19 @@ import { ProductWhereInput } from './product-where.input';
 
 @InputType()
 export class ProductUpsertWithoutProductToPublishersInput {
+  @Field(() => ProductUpdateWithoutProductToPublishersInput, {
+    nullable: false,
+  })
+  @Type(() => ProductUpdateWithoutProductToPublishersInput)
+  update!: ProductUpdateWithoutProductToPublishersInput;
 
-    @Field(() => ProductUpdateWithoutProductToPublishersInput, {nullable:false})
-    @Type(() => ProductUpdateWithoutProductToPublishersInput)
-    update!: ProductUpdateWithoutProductToPublishersInput;
+  @Field(() => ProductCreateWithoutProductToPublishersInput, {
+    nullable: false,
+  })
+  @Type(() => ProductCreateWithoutProductToPublishersInput)
+  create!: ProductCreateWithoutProductToPublishersInput;
 
-    @Field(() => ProductCreateWithoutProductToPublishersInput, {nullable:false})
-    @Type(() => ProductCreateWithoutProductToPublishersInput)
-    create!: ProductCreateWithoutProductToPublishersInput;
-
-    @Field(() => ProductWhereInput, {nullable:true})
-    @Type(() => ProductWhereInput)
-    where?: ProductWhereInput;
+  @Field(() => ProductWhereInput, { nullable: true })
+  @Type(() => ProductWhereInput)
+  where?: ProductWhereInput;
 }

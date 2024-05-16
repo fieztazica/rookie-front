@@ -6,12 +6,11 @@ import { OrderUpdateWithoutOrderItemsInput } from './order-update-without-order-
 
 @InputType()
 export class OrderUpdateToOneWithWhereWithoutOrderItemsInput {
+  @Field(() => OrderWhereInput, { nullable: true })
+  @Type(() => OrderWhereInput)
+  where?: OrderWhereInput;
 
-    @Field(() => OrderWhereInput, {nullable:true})
-    @Type(() => OrderWhereInput)
-    where?: OrderWhereInput;
-
-    @Field(() => OrderUpdateWithoutOrderItemsInput, {nullable:false})
-    @Type(() => OrderUpdateWithoutOrderItemsInput)
-    data!: OrderUpdateWithoutOrderItemsInput;
+  @Field(() => OrderUpdateWithoutOrderItemsInput, { nullable: false })
+  @Type(() => OrderUpdateWithoutOrderItemsInput)
+  data!: OrderUpdateWithoutOrderItemsInput;
 }

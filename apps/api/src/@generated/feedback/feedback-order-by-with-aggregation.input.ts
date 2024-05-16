@@ -10,46 +10,45 @@ import { FeedbackSumOrderByAggregateInput } from './feedback-sum-order-by-aggreg
 
 @InputType()
 export class FeedbackOrderByWithAggregationInput {
+  @Field(() => SortOrder, { nullable: true })
+  id?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    id?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  customerId?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    customerId?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  productId?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    productId?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  message?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    message?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  rating?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    rating?: keyof typeof SortOrder;
+  @Field(() => SortOrderInput, { nullable: true })
+  status?: SortOrderInput;
 
-    @Field(() => SortOrderInput, {nullable:true})
-    status?: SortOrderInput;
+  @Field(() => SortOrder, { nullable: true })
+  deleted?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    deleted?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  createdAt?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    createdAt?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  updatedAt?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    updatedAt?: keyof typeof SortOrder;
+  @Field(() => FeedbackCountOrderByAggregateInput, { nullable: true })
+  _count?: FeedbackCountOrderByAggregateInput;
 
-    @Field(() => FeedbackCountOrderByAggregateInput, {nullable:true})
-    _count?: FeedbackCountOrderByAggregateInput;
+  @Field(() => FeedbackAvgOrderByAggregateInput, { nullable: true })
+  _avg?: FeedbackAvgOrderByAggregateInput;
 
-    @Field(() => FeedbackAvgOrderByAggregateInput, {nullable:true})
-    _avg?: FeedbackAvgOrderByAggregateInput;
+  @Field(() => FeedbackMaxOrderByAggregateInput, { nullable: true })
+  _max?: FeedbackMaxOrderByAggregateInput;
 
-    @Field(() => FeedbackMaxOrderByAggregateInput, {nullable:true})
-    _max?: FeedbackMaxOrderByAggregateInput;
+  @Field(() => FeedbackMinOrderByAggregateInput, { nullable: true })
+  _min?: FeedbackMinOrderByAggregateInput;
 
-    @Field(() => FeedbackMinOrderByAggregateInput, {nullable:true})
-    _min?: FeedbackMinOrderByAggregateInput;
-
-    @Field(() => FeedbackSumOrderByAggregateInput, {nullable:true})
-    _sum?: FeedbackSumOrderByAggregateInput;
+  @Field(() => FeedbackSumOrderByAggregateInput, { nullable: true })
+  _sum?: FeedbackSumOrderByAggregateInput;
 }

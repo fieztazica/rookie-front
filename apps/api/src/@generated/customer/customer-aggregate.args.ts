@@ -12,29 +12,31 @@ import { CustomerMaxAggregateInput } from './customer-max-aggregate.input';
 
 @ArgsType()
 export class CustomerAggregateArgs {
+  @Field(() => CustomerWhereInput, { nullable: true })
+  @Type(() => CustomerWhereInput)
+  where?: CustomerWhereInput;
 
-    @Field(() => CustomerWhereInput, {nullable:true})
-    @Type(() => CustomerWhereInput)
-    where?: CustomerWhereInput;
+  @Field(() => [CustomerOrderByWithRelationInput], { nullable: true })
+  orderBy?: Array<CustomerOrderByWithRelationInput>;
 
-    @Field(() => [CustomerOrderByWithRelationInput], {nullable:true})
-    orderBy?: Array<CustomerOrderByWithRelationInput>;
+  @Field(() => CustomerWhereUniqueInput, { nullable: true })
+  cursor?: Prisma.AtLeast<
+    CustomerWhereUniqueInput,
+    'id' | 'username' | 'email' | 'phoneNumber'
+  >;
 
-    @Field(() => CustomerWhereUniqueInput, {nullable:true})
-    cursor?: Prisma.AtLeast<CustomerWhereUniqueInput, 'id' | 'username' | 'email' | 'phoneNumber'>;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
+  @Field(() => CustomerCountAggregateInput, { nullable: true })
+  _count?: CustomerCountAggregateInput;
 
-    @Field(() => CustomerCountAggregateInput, {nullable:true})
-    _count?: CustomerCountAggregateInput;
+  @Field(() => CustomerMinAggregateInput, { nullable: true })
+  _min?: CustomerMinAggregateInput;
 
-    @Field(() => CustomerMinAggregateInput, {nullable:true})
-    _min?: CustomerMinAggregateInput;
-
-    @Field(() => CustomerMaxAggregateInput, {nullable:true})
-    _max?: CustomerMaxAggregateInput;
+  @Field(() => CustomerMaxAggregateInput, { nullable: true })
+  _max?: CustomerMaxAggregateInput;
 }

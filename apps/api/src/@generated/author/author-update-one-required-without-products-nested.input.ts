@@ -10,24 +10,28 @@ import { AuthorUpdateToOneWithWhereWithoutProductsInput } from './author-update-
 
 @InputType()
 export class AuthorUpdateOneRequiredWithoutProductsNestedInput {
+  @Field(() => AuthorCreateWithoutProductsInput, { nullable: true })
+  @Type(() => AuthorCreateWithoutProductsInput)
+  create?: AuthorCreateWithoutProductsInput;
 
-    @Field(() => AuthorCreateWithoutProductsInput, {nullable:true})
-    @Type(() => AuthorCreateWithoutProductsInput)
-    create?: AuthorCreateWithoutProductsInput;
+  @Field(() => AuthorCreateOrConnectWithoutProductsInput, { nullable: true })
+  @Type(() => AuthorCreateOrConnectWithoutProductsInput)
+  connectOrCreate?: AuthorCreateOrConnectWithoutProductsInput;
 
-    @Field(() => AuthorCreateOrConnectWithoutProductsInput, {nullable:true})
-    @Type(() => AuthorCreateOrConnectWithoutProductsInput)
-    connectOrCreate?: AuthorCreateOrConnectWithoutProductsInput;
+  @Field(() => AuthorUpsertWithoutProductsInput, { nullable: true })
+  @Type(() => AuthorUpsertWithoutProductsInput)
+  upsert?: AuthorUpsertWithoutProductsInput;
 
-    @Field(() => AuthorUpsertWithoutProductsInput, {nullable:true})
-    @Type(() => AuthorUpsertWithoutProductsInput)
-    upsert?: AuthorUpsertWithoutProductsInput;
+  @Field(() => AuthorWhereUniqueInput, { nullable: true })
+  @Type(() => AuthorWhereUniqueInput)
+  connect?: Prisma.AtLeast<
+    AuthorWhereUniqueInput,
+    'id' | 'email' | 'phoneNumber'
+  >;
 
-    @Field(() => AuthorWhereUniqueInput, {nullable:true})
-    @Type(() => AuthorWhereUniqueInput)
-    connect?: Prisma.AtLeast<AuthorWhereUniqueInput, 'id' | 'email' | 'phoneNumber'>;
-
-    @Field(() => AuthorUpdateToOneWithWhereWithoutProductsInput, {nullable:true})
-    @Type(() => AuthorUpdateToOneWithWhereWithoutProductsInput)
-    update?: AuthorUpdateToOneWithWhereWithoutProductsInput;
+  @Field(() => AuthorUpdateToOneWithWhereWithoutProductsInput, {
+    nullable: true,
+  })
+  @Type(() => AuthorUpdateToOneWithWhereWithoutProductsInput)
+  update?: AuthorUpdateToOneWithWhereWithoutProductsInput;
 }

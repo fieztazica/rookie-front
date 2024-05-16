@@ -8,19 +8,18 @@ import { FeedbackMaxAggregate } from './feedback-max-aggregate.output';
 
 @ObjectType()
 export class AggregateFeedback {
+  @Field(() => FeedbackCountAggregate, { nullable: true })
+  _count?: FeedbackCountAggregate;
 
-    @Field(() => FeedbackCountAggregate, {nullable:true})
-    _count?: FeedbackCountAggregate;
+  @Field(() => FeedbackAvgAggregate, { nullable: true })
+  _avg?: FeedbackAvgAggregate;
 
-    @Field(() => FeedbackAvgAggregate, {nullable:true})
-    _avg?: FeedbackAvgAggregate;
+  @Field(() => FeedbackSumAggregate, { nullable: true })
+  _sum?: FeedbackSumAggregate;
 
-    @Field(() => FeedbackSumAggregate, {nullable:true})
-    _sum?: FeedbackSumAggregate;
+  @Field(() => FeedbackMinAggregate, { nullable: true })
+  _min?: FeedbackMinAggregate;
 
-    @Field(() => FeedbackMinAggregate, {nullable:true})
-    _min?: FeedbackMinAggregate;
-
-    @Field(() => FeedbackMaxAggregate, {nullable:true})
-    _max?: FeedbackMaxAggregate;
+  @Field(() => FeedbackMaxAggregate, { nullable: true })
+  _max?: FeedbackMaxAggregate;
 }

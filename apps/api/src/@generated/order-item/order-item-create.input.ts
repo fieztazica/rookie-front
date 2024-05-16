@@ -11,26 +11,27 @@ import { ProductCreateNestedOneWithoutOrderItemsInput } from '../product/product
 
 @InputType()
 export class OrderItemCreateInput {
+  @Field(() => GraphQLDecimal, { nullable: false })
+  @Type(() => Object)
+  @Transform(transformToDecimal)
+  price!: Decimal;
 
-    @Field(() => GraphQLDecimal, {nullable:false})
-    @Type(() => Object)
-    @Transform(transformToDecimal)
-    price!: Decimal;
+  @Field(() => Int, { nullable: false })
+  quantity!: number;
 
-    @Field(() => Int, {nullable:false})
-    quantity!: number;
+  @Field(() => Date, { nullable: true })
+  createdAt?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
+  @Field(() => Date, { nullable: true })
+  updatedAt?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    updatedAt?: Date | string;
+  @Field(() => OrderCreateNestedOneWithoutOrderItemsInput, { nullable: false })
+  @Type(() => OrderCreateNestedOneWithoutOrderItemsInput)
+  order!: OrderCreateNestedOneWithoutOrderItemsInput;
 
-    @Field(() => OrderCreateNestedOneWithoutOrderItemsInput, {nullable:false})
-    @Type(() => OrderCreateNestedOneWithoutOrderItemsInput)
-    order!: OrderCreateNestedOneWithoutOrderItemsInput;
-
-    @Field(() => ProductCreateNestedOneWithoutOrderItemsInput, {nullable:false})
-    @Type(() => ProductCreateNestedOneWithoutOrderItemsInput)
-    product!: ProductCreateNestedOneWithoutOrderItemsInput;
+  @Field(() => ProductCreateNestedOneWithoutOrderItemsInput, {
+    nullable: false,
+  })
+  @Type(() => ProductCreateNestedOneWithoutOrderItemsInput)
+  product!: ProductCreateNestedOneWithoutOrderItemsInput;
 }

@@ -4,13 +4,14 @@ import { PublisherCreateNestedOneWithoutProductsInput } from '../publisher/publi
 
 @InputType()
 export class ProductToPublisherCreateWithoutProductInput {
+  @Field(() => Date, { nullable: true })
+  createdAt?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
+  @Field(() => Date, { nullable: true })
+  updatedAt?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    updatedAt?: Date | string;
-
-    @Field(() => PublisherCreateNestedOneWithoutProductsInput, {nullable:false})
-    publisher!: PublisherCreateNestedOneWithoutProductsInput;
+  @Field(() => PublisherCreateNestedOneWithoutProductsInput, {
+    nullable: false,
+  })
+  publisher!: PublisherCreateNestedOneWithoutProductsInput;
 }

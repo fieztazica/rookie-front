@@ -7,25 +7,24 @@ import { ProductToCategoryMinOrderByAggregateInput } from './product-to-category
 
 @InputType()
 export class ProductToCategoryOrderByWithAggregationInput {
+  @Field(() => SortOrder, { nullable: true })
+  productId?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    productId?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  categoryId?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    categoryId?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  createdAt?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    createdAt?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  updatedAt?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    updatedAt?: keyof typeof SortOrder;
+  @Field(() => ProductToCategoryCountOrderByAggregateInput, { nullable: true })
+  _count?: ProductToCategoryCountOrderByAggregateInput;
 
-    @Field(() => ProductToCategoryCountOrderByAggregateInput, {nullable:true})
-    _count?: ProductToCategoryCountOrderByAggregateInput;
+  @Field(() => ProductToCategoryMaxOrderByAggregateInput, { nullable: true })
+  _max?: ProductToCategoryMaxOrderByAggregateInput;
 
-    @Field(() => ProductToCategoryMaxOrderByAggregateInput, {nullable:true})
-    _max?: ProductToCategoryMaxOrderByAggregateInput;
-
-    @Field(() => ProductToCategoryMinOrderByAggregateInput, {nullable:true})
-    _min?: ProductToCategoryMinOrderByAggregateInput;
+  @Field(() => ProductToCategoryMinOrderByAggregateInput, { nullable: true })
+  _min?: ProductToCategoryMinOrderByAggregateInput;
 }

@@ -5,7 +5,6 @@ import { GraphQLDecimal } from 'prisma-graphql-type-decimal';
 
 @ObjectType()
 export class OrderSumAggregate {
-
-    @Field(() => GraphQLDecimal, {nullable:true})
-    total?: Decimal;
+  @Field(() => GraphQLDecimal, { nullable: true })
+  total?: Decimal;
 }

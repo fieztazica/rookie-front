@@ -5,22 +5,21 @@ import { Product } from '../product/product.model';
 
 @ObjectType()
 export class ProductToCategory {
+  @Field(() => String, { nullable: false })
+  productId!: string;
 
-    @Field(() => String, {nullable:false})
-    productId!: string;
+  @Field(() => String, { nullable: false })
+  categoryId!: string;
 
-    @Field(() => String, {nullable:false})
-    categoryId!: string;
+  @Field(() => Date, { nullable: false })
+  createdAt!: Date;
 
-    @Field(() => Date, {nullable:false})
-    createdAt!: Date;
+  @Field(() => Date, { nullable: false })
+  updatedAt!: Date;
 
-    @Field(() => Date, {nullable:false})
-    updatedAt!: Date;
+  @Field(() => Category, { nullable: false })
+  category?: Category;
 
-    @Field(() => Category, {nullable:false})
-    category?: Category;
-
-    @Field(() => Product, {nullable:false})
-    product?: Product;
+  @Field(() => Product, { nullable: false })
+  product?: Product;
 }

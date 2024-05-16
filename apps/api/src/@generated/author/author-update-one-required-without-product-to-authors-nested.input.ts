@@ -10,24 +10,30 @@ import { AuthorUpdateToOneWithWhereWithoutProductToAuthorsInput } from './author
 
 @InputType()
 export class AuthorUpdateOneRequiredWithoutProductToAuthorsNestedInput {
+  @Field(() => AuthorCreateWithoutProductToAuthorsInput, { nullable: true })
+  @Type(() => AuthorCreateWithoutProductToAuthorsInput)
+  create?: AuthorCreateWithoutProductToAuthorsInput;
 
-    @Field(() => AuthorCreateWithoutProductToAuthorsInput, {nullable:true})
-    @Type(() => AuthorCreateWithoutProductToAuthorsInput)
-    create?: AuthorCreateWithoutProductToAuthorsInput;
+  @Field(() => AuthorCreateOrConnectWithoutProductToAuthorsInput, {
+    nullable: true,
+  })
+  @Type(() => AuthorCreateOrConnectWithoutProductToAuthorsInput)
+  connectOrCreate?: AuthorCreateOrConnectWithoutProductToAuthorsInput;
 
-    @Field(() => AuthorCreateOrConnectWithoutProductToAuthorsInput, {nullable:true})
-    @Type(() => AuthorCreateOrConnectWithoutProductToAuthorsInput)
-    connectOrCreate?: AuthorCreateOrConnectWithoutProductToAuthorsInput;
+  @Field(() => AuthorUpsertWithoutProductToAuthorsInput, { nullable: true })
+  @Type(() => AuthorUpsertWithoutProductToAuthorsInput)
+  upsert?: AuthorUpsertWithoutProductToAuthorsInput;
 
-    @Field(() => AuthorUpsertWithoutProductToAuthorsInput, {nullable:true})
-    @Type(() => AuthorUpsertWithoutProductToAuthorsInput)
-    upsert?: AuthorUpsertWithoutProductToAuthorsInput;
+  @Field(() => AuthorWhereUniqueInput, { nullable: true })
+  @Type(() => AuthorWhereUniqueInput)
+  connect?: Prisma.AtLeast<
+    AuthorWhereUniqueInput,
+    'id' | 'email' | 'phoneNumber'
+  >;
 
-    @Field(() => AuthorWhereUniqueInput, {nullable:true})
-    @Type(() => AuthorWhereUniqueInput)
-    connect?: Prisma.AtLeast<AuthorWhereUniqueInput, 'id' | 'email' | 'phoneNumber'>;
-
-    @Field(() => AuthorUpdateToOneWithWhereWithoutProductToAuthorsInput, {nullable:true})
-    @Type(() => AuthorUpdateToOneWithWhereWithoutProductToAuthorsInput)
-    update?: AuthorUpdateToOneWithWhereWithoutProductToAuthorsInput;
+  @Field(() => AuthorUpdateToOneWithWhereWithoutProductToAuthorsInput, {
+    nullable: true,
+  })
+  @Type(() => AuthorUpdateToOneWithWhereWithoutProductToAuthorsInput)
+  update?: AuthorUpdateToOneWithWhereWithoutProductToAuthorsInput;
 }

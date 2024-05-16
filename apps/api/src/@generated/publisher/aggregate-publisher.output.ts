@@ -6,13 +6,12 @@ import { PublisherMaxAggregate } from './publisher-max-aggregate.output';
 
 @ObjectType()
 export class AggregatePublisher {
+  @Field(() => PublisherCountAggregate, { nullable: true })
+  _count?: PublisherCountAggregate;
 
-    @Field(() => PublisherCountAggregate, {nullable:true})
-    _count?: PublisherCountAggregate;
+  @Field(() => PublisherMinAggregate, { nullable: true })
+  _min?: PublisherMinAggregate;
 
-    @Field(() => PublisherMinAggregate, {nullable:true})
-    _min?: PublisherMinAggregate;
-
-    @Field(() => PublisherMaxAggregate, {nullable:true})
-    _max?: PublisherMaxAggregate;
+  @Field(() => PublisherMaxAggregate, { nullable: true })
+  _max?: PublisherMaxAggregate;
 }

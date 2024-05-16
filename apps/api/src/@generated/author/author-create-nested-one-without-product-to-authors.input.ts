@@ -8,16 +8,20 @@ import { AuthorWhereUniqueInput } from './author-where-unique.input';
 
 @InputType()
 export class AuthorCreateNestedOneWithoutProductToAuthorsInput {
+  @Field(() => AuthorCreateWithoutProductToAuthorsInput, { nullable: true })
+  @Type(() => AuthorCreateWithoutProductToAuthorsInput)
+  create?: AuthorCreateWithoutProductToAuthorsInput;
 
-    @Field(() => AuthorCreateWithoutProductToAuthorsInput, {nullable:true})
-    @Type(() => AuthorCreateWithoutProductToAuthorsInput)
-    create?: AuthorCreateWithoutProductToAuthorsInput;
+  @Field(() => AuthorCreateOrConnectWithoutProductToAuthorsInput, {
+    nullable: true,
+  })
+  @Type(() => AuthorCreateOrConnectWithoutProductToAuthorsInput)
+  connectOrCreate?: AuthorCreateOrConnectWithoutProductToAuthorsInput;
 
-    @Field(() => AuthorCreateOrConnectWithoutProductToAuthorsInput, {nullable:true})
-    @Type(() => AuthorCreateOrConnectWithoutProductToAuthorsInput)
-    connectOrCreate?: AuthorCreateOrConnectWithoutProductToAuthorsInput;
-
-    @Field(() => AuthorWhereUniqueInput, {nullable:true})
-    @Type(() => AuthorWhereUniqueInput)
-    connect?: Prisma.AtLeast<AuthorWhereUniqueInput, 'id' | 'email' | 'phoneNumber'>;
+  @Field(() => AuthorWhereUniqueInput, { nullable: true })
+  @Type(() => AuthorWhereUniqueInput)
+  connect?: Prisma.AtLeast<
+    AuthorWhereUniqueInput,
+    'id' | 'email' | 'phoneNumber'
+  >;
 }

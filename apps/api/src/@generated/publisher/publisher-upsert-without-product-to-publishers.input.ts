@@ -7,16 +7,19 @@ import { PublisherWhereInput } from './publisher-where.input';
 
 @InputType()
 export class PublisherUpsertWithoutProductToPublishersInput {
+  @Field(() => PublisherUpdateWithoutProductToPublishersInput, {
+    nullable: false,
+  })
+  @Type(() => PublisherUpdateWithoutProductToPublishersInput)
+  update!: PublisherUpdateWithoutProductToPublishersInput;
 
-    @Field(() => PublisherUpdateWithoutProductToPublishersInput, {nullable:false})
-    @Type(() => PublisherUpdateWithoutProductToPublishersInput)
-    update!: PublisherUpdateWithoutProductToPublishersInput;
+  @Field(() => PublisherCreateWithoutProductToPublishersInput, {
+    nullable: false,
+  })
+  @Type(() => PublisherCreateWithoutProductToPublishersInput)
+  create!: PublisherCreateWithoutProductToPublishersInput;
 
-    @Field(() => PublisherCreateWithoutProductToPublishersInput, {nullable:false})
-    @Type(() => PublisherCreateWithoutProductToPublishersInput)
-    create!: PublisherCreateWithoutProductToPublishersInput;
-
-    @Field(() => PublisherWhereInput, {nullable:true})
-    @Type(() => PublisherWhereInput)
-    where?: PublisherWhereInput;
+  @Field(() => PublisherWhereInput, { nullable: true })
+  @Type(() => PublisherWhereInput)
+  where?: PublisherWhereInput;
 }

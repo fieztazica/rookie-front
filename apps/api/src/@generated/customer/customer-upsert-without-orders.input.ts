@@ -7,16 +7,15 @@ import { CustomerWhereInput } from './customer-where.input';
 
 @InputType()
 export class CustomerUpsertWithoutOrdersInput {
+  @Field(() => CustomerUpdateWithoutOrdersInput, { nullable: false })
+  @Type(() => CustomerUpdateWithoutOrdersInput)
+  update!: CustomerUpdateWithoutOrdersInput;
 
-    @Field(() => CustomerUpdateWithoutOrdersInput, {nullable:false})
-    @Type(() => CustomerUpdateWithoutOrdersInput)
-    update!: CustomerUpdateWithoutOrdersInput;
+  @Field(() => CustomerCreateWithoutOrdersInput, { nullable: false })
+  @Type(() => CustomerCreateWithoutOrdersInput)
+  create!: CustomerCreateWithoutOrdersInput;
 
-    @Field(() => CustomerCreateWithoutOrdersInput, {nullable:false})
-    @Type(() => CustomerCreateWithoutOrdersInput)
-    create!: CustomerCreateWithoutOrdersInput;
-
-    @Field(() => CustomerWhereInput, {nullable:true})
-    @Type(() => CustomerWhereInput)
-    where?: CustomerWhereInput;
+  @Field(() => CustomerWhereInput, { nullable: true })
+  @Type(() => CustomerWhereInput)
+  where?: CustomerWhereInput;
 }

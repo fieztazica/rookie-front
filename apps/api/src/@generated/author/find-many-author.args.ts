@@ -10,23 +10,25 @@ import { AuthorScalarFieldEnum } from './author-scalar-field.enum';
 
 @ArgsType()
 export class FindManyAuthorArgs {
+  @Field(() => AuthorWhereInput, { nullable: true })
+  @Type(() => AuthorWhereInput)
+  where?: AuthorWhereInput;
 
-    @Field(() => AuthorWhereInput, {nullable:true})
-    @Type(() => AuthorWhereInput)
-    where?: AuthorWhereInput;
+  @Field(() => [AuthorOrderByWithRelationInput], { nullable: true })
+  orderBy?: Array<AuthorOrderByWithRelationInput>;
 
-    @Field(() => [AuthorOrderByWithRelationInput], {nullable:true})
-    orderBy?: Array<AuthorOrderByWithRelationInput>;
+  @Field(() => AuthorWhereUniqueInput, { nullable: true })
+  cursor?: Prisma.AtLeast<
+    AuthorWhereUniqueInput,
+    'id' | 'email' | 'phoneNumber'
+  >;
 
-    @Field(() => AuthorWhereUniqueInput, {nullable:true})
-    cursor?: Prisma.AtLeast<AuthorWhereUniqueInput, 'id' | 'email' | 'phoneNumber'>;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
-
-    @Field(() => [AuthorScalarFieldEnum], {nullable:true})
-    distinct?: Array<keyof typeof AuthorScalarFieldEnum>;
+  @Field(() => [AuthorScalarFieldEnum], { nullable: true })
+  distinct?: Array<keyof typeof AuthorScalarFieldEnum>;
 }

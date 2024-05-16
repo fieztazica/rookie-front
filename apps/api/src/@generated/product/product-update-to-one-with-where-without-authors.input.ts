@@ -6,12 +6,11 @@ import { ProductUpdateWithoutAuthorsInput } from './product-update-without-autho
 
 @InputType()
 export class ProductUpdateToOneWithWhereWithoutAuthorsInput {
+  @Field(() => ProductWhereInput, { nullable: true })
+  @Type(() => ProductWhereInput)
+  where?: ProductWhereInput;
 
-    @Field(() => ProductWhereInput, {nullable:true})
-    @Type(() => ProductWhereInput)
-    where?: ProductWhereInput;
-
-    @Field(() => ProductUpdateWithoutAuthorsInput, {nullable:false})
-    @Type(() => ProductUpdateWithoutAuthorsInput)
-    data!: ProductUpdateWithoutAuthorsInput;
+  @Field(() => ProductUpdateWithoutAuthorsInput, { nullable: false })
+  @Type(() => ProductUpdateWithoutAuthorsInput)
+  data!: ProductUpdateWithoutAuthorsInput;
 }

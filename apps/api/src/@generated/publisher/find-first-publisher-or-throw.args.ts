@@ -10,23 +10,22 @@ import { PublisherScalarFieldEnum } from './publisher-scalar-field.enum';
 
 @ArgsType()
 export class FindFirstPublisherOrThrowArgs {
+  @Field(() => PublisherWhereInput, { nullable: true })
+  @Type(() => PublisherWhereInput)
+  where?: PublisherWhereInput;
 
-    @Field(() => PublisherWhereInput, {nullable:true})
-    @Type(() => PublisherWhereInput)
-    where?: PublisherWhereInput;
+  @Field(() => [PublisherOrderByWithRelationInput], { nullable: true })
+  orderBy?: Array<PublisherOrderByWithRelationInput>;
 
-    @Field(() => [PublisherOrderByWithRelationInput], {nullable:true})
-    orderBy?: Array<PublisherOrderByWithRelationInput>;
+  @Field(() => PublisherWhereUniqueInput, { nullable: true })
+  cursor?: Prisma.AtLeast<PublisherWhereUniqueInput, 'id' | 'name' | 'email'>;
 
-    @Field(() => PublisherWhereUniqueInput, {nullable:true})
-    cursor?: Prisma.AtLeast<PublisherWhereUniqueInput, 'id' | 'name' | 'email'>;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
-
-    @Field(() => [PublisherScalarFieldEnum], {nullable:true})
-    distinct?: Array<keyof typeof PublisherScalarFieldEnum>;
+  @Field(() => [PublisherScalarFieldEnum], { nullable: true })
+  distinct?: Array<keyof typeof PublisherScalarFieldEnum>;
 }

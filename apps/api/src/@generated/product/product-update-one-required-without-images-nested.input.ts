@@ -10,24 +10,25 @@ import { ProductUpdateToOneWithWhereWithoutImagesInput } from './product-update-
 
 @InputType()
 export class ProductUpdateOneRequiredWithoutImagesNestedInput {
+  @Field(() => ProductCreateWithoutImagesInput, { nullable: true })
+  @Type(() => ProductCreateWithoutImagesInput)
+  create?: ProductCreateWithoutImagesInput;
 
-    @Field(() => ProductCreateWithoutImagesInput, {nullable:true})
-    @Type(() => ProductCreateWithoutImagesInput)
-    create?: ProductCreateWithoutImagesInput;
+  @Field(() => ProductCreateOrConnectWithoutImagesInput, { nullable: true })
+  @Type(() => ProductCreateOrConnectWithoutImagesInput)
+  connectOrCreate?: ProductCreateOrConnectWithoutImagesInput;
 
-    @Field(() => ProductCreateOrConnectWithoutImagesInput, {nullable:true})
-    @Type(() => ProductCreateOrConnectWithoutImagesInput)
-    connectOrCreate?: ProductCreateOrConnectWithoutImagesInput;
+  @Field(() => ProductUpsertWithoutImagesInput, { nullable: true })
+  @Type(() => ProductUpsertWithoutImagesInput)
+  upsert?: ProductUpsertWithoutImagesInput;
 
-    @Field(() => ProductUpsertWithoutImagesInput, {nullable:true})
-    @Type(() => ProductUpsertWithoutImagesInput)
-    upsert?: ProductUpsertWithoutImagesInput;
+  @Field(() => ProductWhereUniqueInput, { nullable: true })
+  @Type(() => ProductWhereUniqueInput)
+  connect?: Prisma.AtLeast<ProductWhereUniqueInput, 'id' | 'name'>;
 
-    @Field(() => ProductWhereUniqueInput, {nullable:true})
-    @Type(() => ProductWhereUniqueInput)
-    connect?: Prisma.AtLeast<ProductWhereUniqueInput, 'id' | 'name'>;
-
-    @Field(() => ProductUpdateToOneWithWhereWithoutImagesInput, {nullable:true})
-    @Type(() => ProductUpdateToOneWithWhereWithoutImagesInput)
-    update?: ProductUpdateToOneWithWhereWithoutImagesInput;
+  @Field(() => ProductUpdateToOneWithWhereWithoutImagesInput, {
+    nullable: true,
+  })
+  @Type(() => ProductUpdateToOneWithWhereWithoutImagesInput)
+  update?: ProductUpdateToOneWithWhereWithoutImagesInput;
 }

@@ -8,19 +8,18 @@ import { ImageMaxAggregate } from './image-max-aggregate.output';
 
 @ObjectType()
 export class AggregateImage {
+  @Field(() => ImageCountAggregate, { nullable: true })
+  _count?: ImageCountAggregate;
 
-    @Field(() => ImageCountAggregate, {nullable:true})
-    _count?: ImageCountAggregate;
+  @Field(() => ImageAvgAggregate, { nullable: true })
+  _avg?: ImageAvgAggregate;
 
-    @Field(() => ImageAvgAggregate, {nullable:true})
-    _avg?: ImageAvgAggregate;
+  @Field(() => ImageSumAggregate, { nullable: true })
+  _sum?: ImageSumAggregate;
 
-    @Field(() => ImageSumAggregate, {nullable:true})
-    _sum?: ImageSumAggregate;
+  @Field(() => ImageMinAggregate, { nullable: true })
+  _min?: ImageMinAggregate;
 
-    @Field(() => ImageMinAggregate, {nullable:true})
-    _min?: ImageMinAggregate;
-
-    @Field(() => ImageMaxAggregate, {nullable:true})
-    _max?: ImageMaxAggregate;
+  @Field(() => ImageMaxAggregate, { nullable: true })
+  _max?: ImageMaxAggregate;
 }

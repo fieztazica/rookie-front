@@ -14,35 +14,34 @@ import { FeedbackMaxAggregateInput } from './feedback-max-aggregate.input';
 
 @ArgsType()
 export class FeedbackAggregateArgs {
+  @Field(() => FeedbackWhereInput, { nullable: true })
+  @Type(() => FeedbackWhereInput)
+  where?: FeedbackWhereInput;
 
-    @Field(() => FeedbackWhereInput, {nullable:true})
-    @Type(() => FeedbackWhereInput)
-    where?: FeedbackWhereInput;
+  @Field(() => [FeedbackOrderByWithRelationInput], { nullable: true })
+  orderBy?: Array<FeedbackOrderByWithRelationInput>;
 
-    @Field(() => [FeedbackOrderByWithRelationInput], {nullable:true})
-    orderBy?: Array<FeedbackOrderByWithRelationInput>;
+  @Field(() => FeedbackWhereUniqueInput, { nullable: true })
+  cursor?: Prisma.AtLeast<FeedbackWhereUniqueInput, 'id'>;
 
-    @Field(() => FeedbackWhereUniqueInput, {nullable:true})
-    cursor?: Prisma.AtLeast<FeedbackWhereUniqueInput, 'id'>;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
+  @Field(() => FeedbackCountAggregateInput, { nullable: true })
+  _count?: FeedbackCountAggregateInput;
 
-    @Field(() => FeedbackCountAggregateInput, {nullable:true})
-    _count?: FeedbackCountAggregateInput;
+  @Field(() => FeedbackAvgAggregateInput, { nullable: true })
+  _avg?: FeedbackAvgAggregateInput;
 
-    @Field(() => FeedbackAvgAggregateInput, {nullable:true})
-    _avg?: FeedbackAvgAggregateInput;
+  @Field(() => FeedbackSumAggregateInput, { nullable: true })
+  _sum?: FeedbackSumAggregateInput;
 
-    @Field(() => FeedbackSumAggregateInput, {nullable:true})
-    _sum?: FeedbackSumAggregateInput;
+  @Field(() => FeedbackMinAggregateInput, { nullable: true })
+  _min?: FeedbackMinAggregateInput;
 
-    @Field(() => FeedbackMinAggregateInput, {nullable:true})
-    _min?: FeedbackMinAggregateInput;
-
-    @Field(() => FeedbackMaxAggregateInput, {nullable:true})
-    _max?: FeedbackMaxAggregateInput;
+  @Field(() => FeedbackMaxAggregateInput, { nullable: true })
+  _max?: FeedbackMaxAggregateInput;
 }

@@ -6,12 +6,11 @@ import { FeedbackWhereInput } from './feedback-where.input';
 
 @ArgsType()
 export class UpdateManyFeedbackArgs {
+  @Field(() => FeedbackUpdateManyMutationInput, { nullable: false })
+  @Type(() => FeedbackUpdateManyMutationInput)
+  data!: FeedbackUpdateManyMutationInput;
 
-    @Field(() => FeedbackUpdateManyMutationInput, {nullable:false})
-    @Type(() => FeedbackUpdateManyMutationInput)
-    data!: FeedbackUpdateManyMutationInput;
-
-    @Field(() => FeedbackWhereInput, {nullable:true})
-    @Type(() => FeedbackWhereInput)
-    where?: FeedbackWhereInput;
+  @Field(() => FeedbackWhereInput, { nullable: true })
+  @Type(() => FeedbackWhereInput)
+  where?: FeedbackWhereInput;
 }

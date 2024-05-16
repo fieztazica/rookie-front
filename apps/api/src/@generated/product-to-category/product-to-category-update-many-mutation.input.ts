@@ -3,10 +3,9 @@ import { InputType } from '@nestjs/graphql';
 
 @InputType()
 export class ProductToCategoryUpdateManyMutationInput {
+  @Field(() => Date, { nullable: true })
+  createdAt?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
-
-    @Field(() => Date, {nullable:true})
-    updatedAt?: Date | string;
+  @Field(() => Date, { nullable: true })
+  updatedAt?: Date | string;
 }

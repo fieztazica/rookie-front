@@ -6,34 +6,33 @@ import { CategoryMaxAggregate } from './category-max-aggregate.output';
 
 @ObjectType()
 export class CategoryGroupBy {
+  @Field(() => String, { nullable: false })
+  id!: string;
 
-    @Field(() => String, {nullable:false})
-    id!: string;
+  @Field(() => String, { nullable: false })
+  name!: string;
 
-    @Field(() => String, {nullable:false})
-    name!: string;
+  @Field(() => String, { nullable: true })
+  description?: string;
 
-    @Field(() => String, {nullable:true})
-    description?: string;
+  @Field(() => String, { nullable: true })
+  displayName?: string;
 
-    @Field(() => String, {nullable:true})
-    displayName?: string;
+  @Field(() => Boolean, { nullable: false })
+  deleted!: boolean;
 
-    @Field(() => Boolean, {nullable:false})
-    deleted!: boolean;
+  @Field(() => Date, { nullable: false })
+  createdAt!: Date | string;
 
-    @Field(() => Date, {nullable:false})
-    createdAt!: Date | string;
+  @Field(() => Date, { nullable: false })
+  updatedAt!: Date | string;
 
-    @Field(() => Date, {nullable:false})
-    updatedAt!: Date | string;
+  @Field(() => CategoryCountAggregate, { nullable: true })
+  _count?: CategoryCountAggregate;
 
-    @Field(() => CategoryCountAggregate, {nullable:true})
-    _count?: CategoryCountAggregate;
+  @Field(() => CategoryMinAggregate, { nullable: true })
+  _min?: CategoryMinAggregate;
 
-    @Field(() => CategoryMinAggregate, {nullable:true})
-    _min?: CategoryMinAggregate;
-
-    @Field(() => CategoryMaxAggregate, {nullable:true})
-    _max?: CategoryMaxAggregate;
+  @Field(() => CategoryMaxAggregate, { nullable: true })
+  _max?: CategoryMaxAggregate;
 }

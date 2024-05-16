@@ -6,12 +6,11 @@ import { ProductToAuthorWhereInput } from './product-to-author-where.input';
 
 @ArgsType()
 export class UpdateManyProductToAuthorArgs {
+  @Field(() => ProductToAuthorUpdateManyMutationInput, { nullable: false })
+  @Type(() => ProductToAuthorUpdateManyMutationInput)
+  data!: ProductToAuthorUpdateManyMutationInput;
 
-    @Field(() => ProductToAuthorUpdateManyMutationInput, {nullable:false})
-    @Type(() => ProductToAuthorUpdateManyMutationInput)
-    data!: ProductToAuthorUpdateManyMutationInput;
-
-    @Field(() => ProductToAuthorWhereInput, {nullable:true})
-    @Type(() => ProductToAuthorWhereInput)
-    where?: ProductToAuthorWhereInput;
+  @Field(() => ProductToAuthorWhereInput, { nullable: true })
+  @Type(() => ProductToAuthorWhereInput)
+  where?: ProductToAuthorWhereInput;
 }

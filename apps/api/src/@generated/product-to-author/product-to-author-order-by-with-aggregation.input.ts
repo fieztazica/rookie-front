@@ -7,25 +7,24 @@ import { ProductToAuthorMinOrderByAggregateInput } from './product-to-author-min
 
 @InputType()
 export class ProductToAuthorOrderByWithAggregationInput {
+  @Field(() => SortOrder, { nullable: true })
+  productId?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    productId?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  authorId?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    authorId?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  createdAt?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    createdAt?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  updatedAt?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    updatedAt?: keyof typeof SortOrder;
+  @Field(() => ProductToAuthorCountOrderByAggregateInput, { nullable: true })
+  _count?: ProductToAuthorCountOrderByAggregateInput;
 
-    @Field(() => ProductToAuthorCountOrderByAggregateInput, {nullable:true})
-    _count?: ProductToAuthorCountOrderByAggregateInput;
+  @Field(() => ProductToAuthorMaxOrderByAggregateInput, { nullable: true })
+  _max?: ProductToAuthorMaxOrderByAggregateInput;
 
-    @Field(() => ProductToAuthorMaxOrderByAggregateInput, {nullable:true})
-    _max?: ProductToAuthorMaxOrderByAggregateInput;
-
-    @Field(() => ProductToAuthorMinOrderByAggregateInput, {nullable:true})
-    _min?: ProductToAuthorMinOrderByAggregateInput;
+  @Field(() => ProductToAuthorMinOrderByAggregateInput, { nullable: true })
+  _min?: ProductToAuthorMinOrderByAggregateInput;
 }

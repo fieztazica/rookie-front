@@ -5,25 +5,30 @@ import { DateTimeWithAggregatesFilter } from '../prisma/date-time-with-aggregate
 
 @InputType()
 export class ProductToPublisherScalarWhereWithAggregatesInput {
+  @Field(() => [ProductToPublisherScalarWhereWithAggregatesInput], {
+    nullable: true,
+  })
+  AND?: Array<ProductToPublisherScalarWhereWithAggregatesInput>;
 
-    @Field(() => [ProductToPublisherScalarWhereWithAggregatesInput], {nullable:true})
-    AND?: Array<ProductToPublisherScalarWhereWithAggregatesInput>;
+  @Field(() => [ProductToPublisherScalarWhereWithAggregatesInput], {
+    nullable: true,
+  })
+  OR?: Array<ProductToPublisherScalarWhereWithAggregatesInput>;
 
-    @Field(() => [ProductToPublisherScalarWhereWithAggregatesInput], {nullable:true})
-    OR?: Array<ProductToPublisherScalarWhereWithAggregatesInput>;
+  @Field(() => [ProductToPublisherScalarWhereWithAggregatesInput], {
+    nullable: true,
+  })
+  NOT?: Array<ProductToPublisherScalarWhereWithAggregatesInput>;
 
-    @Field(() => [ProductToPublisherScalarWhereWithAggregatesInput], {nullable:true})
-    NOT?: Array<ProductToPublisherScalarWhereWithAggregatesInput>;
+  @Field(() => StringWithAggregatesFilter, { nullable: true })
+  productId?: StringWithAggregatesFilter;
 
-    @Field(() => StringWithAggregatesFilter, {nullable:true})
-    productId?: StringWithAggregatesFilter;
+  @Field(() => StringWithAggregatesFilter, { nullable: true })
+  publisherId?: StringWithAggregatesFilter;
 
-    @Field(() => StringWithAggregatesFilter, {nullable:true})
-    publisherId?: StringWithAggregatesFilter;
+  @Field(() => DateTimeWithAggregatesFilter, { nullable: true })
+  createdAt?: DateTimeWithAggregatesFilter;
 
-    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
-    createdAt?: DateTimeWithAggregatesFilter;
-
-    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
-    updatedAt?: DateTimeWithAggregatesFilter;
+  @Field(() => DateTimeWithAggregatesFilter, { nullable: true })
+  updatedAt?: DateTimeWithAggregatesFilter;
 }

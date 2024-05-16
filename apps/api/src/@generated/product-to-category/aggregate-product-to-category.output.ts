@@ -6,13 +6,12 @@ import { ProductToCategoryMaxAggregate } from './product-to-category-max-aggrega
 
 @ObjectType()
 export class AggregateProductToCategory {
+  @Field(() => ProductToCategoryCountAggregate, { nullable: true })
+  _count?: ProductToCategoryCountAggregate;
 
-    @Field(() => ProductToCategoryCountAggregate, {nullable:true})
-    _count?: ProductToCategoryCountAggregate;
+  @Field(() => ProductToCategoryMinAggregate, { nullable: true })
+  _min?: ProductToCategoryMinAggregate;
 
-    @Field(() => ProductToCategoryMinAggregate, {nullable:true})
-    _min?: ProductToCategoryMinAggregate;
-
-    @Field(() => ProductToCategoryMaxAggregate, {nullable:true})
-    _max?: ProductToCategoryMaxAggregate;
+  @Field(() => ProductToCategoryMaxAggregate, { nullable: true })
+  _max?: ProductToCategoryMaxAggregate;
 }

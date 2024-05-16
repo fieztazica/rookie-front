@@ -6,12 +6,11 @@ import { ProductToPublisherUpdateManyMutationInput } from './product-to-publishe
 
 @InputType()
 export class ProductToPublisherUpdateManyWithWhereWithoutPublisherInput {
+  @Field(() => ProductToPublisherScalarWhereInput, { nullable: false })
+  @Type(() => ProductToPublisherScalarWhereInput)
+  where!: ProductToPublisherScalarWhereInput;
 
-    @Field(() => ProductToPublisherScalarWhereInput, {nullable:false})
-    @Type(() => ProductToPublisherScalarWhereInput)
-    where!: ProductToPublisherScalarWhereInput;
-
-    @Field(() => ProductToPublisherUpdateManyMutationInput, {nullable:false})
-    @Type(() => ProductToPublisherUpdateManyMutationInput)
-    data!: ProductToPublisherUpdateManyMutationInput;
+  @Field(() => ProductToPublisherUpdateManyMutationInput, { nullable: false })
+  @Type(() => ProductToPublisherUpdateManyMutationInput)
+  data!: ProductToPublisherUpdateManyMutationInput;
 }

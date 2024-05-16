@@ -8,16 +8,15 @@ import { ProductToAuthorUpdateInput } from './product-to-author-update.input';
 
 @ArgsType()
 export class UpsertOneProductToAuthorArgs {
+  @Field(() => ProductToAuthorWhereUniqueInput, { nullable: false })
+  @Type(() => ProductToAuthorWhereUniqueInput)
+  where!: Prisma.AtLeast<ProductToAuthorWhereUniqueInput, 'productId_authorId'>;
 
-    @Field(() => ProductToAuthorWhereUniqueInput, {nullable:false})
-    @Type(() => ProductToAuthorWhereUniqueInput)
-    where!: Prisma.AtLeast<ProductToAuthorWhereUniqueInput, 'productId_authorId'>;
+  @Field(() => ProductToAuthorCreateInput, { nullable: false })
+  @Type(() => ProductToAuthorCreateInput)
+  create!: ProductToAuthorCreateInput;
 
-    @Field(() => ProductToAuthorCreateInput, {nullable:false})
-    @Type(() => ProductToAuthorCreateInput)
-    create!: ProductToAuthorCreateInput;
-
-    @Field(() => ProductToAuthorUpdateInput, {nullable:false})
-    @Type(() => ProductToAuthorUpdateInput)
-    update!: ProductToAuthorUpdateInput;
+  @Field(() => ProductToAuthorUpdateInput, { nullable: false })
+  @Type(() => ProductToAuthorUpdateInput)
+  update!: ProductToAuthorUpdateInput;
 }

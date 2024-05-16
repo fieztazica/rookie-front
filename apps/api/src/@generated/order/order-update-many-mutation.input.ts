@@ -8,21 +8,20 @@ import { Type } from 'class-transformer';
 
 @InputType()
 export class OrderUpdateManyMutationInput {
+  @Field(() => String, { nullable: true })
+  id?: string;
 
-    @Field(() => String, {nullable:true})
-    id?: string;
+  @Field(() => GraphQLDecimal, { nullable: true })
+  @Type(() => Object)
+  @Transform(transformToDecimal)
+  total?: Decimal;
 
-    @Field(() => GraphQLDecimal, {nullable:true})
-    @Type(() => Object)
-    @Transform(transformToDecimal)
-    total?: Decimal;
+  @Field(() => Boolean, { nullable: true })
+  deleted?: boolean;
 
-    @Field(() => Boolean, {nullable:true})
-    deleted?: boolean;
+  @Field(() => Date, { nullable: true })
+  createdAt?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
-
-    @Field(() => Date, {nullable:true})
-    updatedAt?: Date | string;
+  @Field(() => Date, { nullable: true })
+  updatedAt?: Date | string;
 }

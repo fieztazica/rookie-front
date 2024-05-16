@@ -13,48 +13,65 @@ import { ProductToCategoryScalarWhereInput } from './product-to-category-scalar-
 
 @InputType()
 export class ProductToCategoryUpdateManyWithoutProductNestedInput {
+  @Field(() => [ProductToCategoryCreateWithoutProductInput], { nullable: true })
+  @Type(() => ProductToCategoryCreateWithoutProductInput)
+  create?: Array<ProductToCategoryCreateWithoutProductInput>;
 
-    @Field(() => [ProductToCategoryCreateWithoutProductInput], {nullable:true})
-    @Type(() => ProductToCategoryCreateWithoutProductInput)
-    create?: Array<ProductToCategoryCreateWithoutProductInput>;
+  @Field(() => [ProductToCategoryCreateOrConnectWithoutProductInput], {
+    nullable: true,
+  })
+  @Type(() => ProductToCategoryCreateOrConnectWithoutProductInput)
+  connectOrCreate?: Array<ProductToCategoryCreateOrConnectWithoutProductInput>;
 
-    @Field(() => [ProductToCategoryCreateOrConnectWithoutProductInput], {nullable:true})
-    @Type(() => ProductToCategoryCreateOrConnectWithoutProductInput)
-    connectOrCreate?: Array<ProductToCategoryCreateOrConnectWithoutProductInput>;
+  @Field(() => [ProductToCategoryUpsertWithWhereUniqueWithoutProductInput], {
+    nullable: true,
+  })
+  @Type(() => ProductToCategoryUpsertWithWhereUniqueWithoutProductInput)
+  upsert?: Array<ProductToCategoryUpsertWithWhereUniqueWithoutProductInput>;
 
-    @Field(() => [ProductToCategoryUpsertWithWhereUniqueWithoutProductInput], {nullable:true})
-    @Type(() => ProductToCategoryUpsertWithWhereUniqueWithoutProductInput)
-    upsert?: Array<ProductToCategoryUpsertWithWhereUniqueWithoutProductInput>;
+  @Field(() => ProductToCategoryCreateManyProductInputEnvelope, {
+    nullable: true,
+  })
+  @Type(() => ProductToCategoryCreateManyProductInputEnvelope)
+  createMany?: ProductToCategoryCreateManyProductInputEnvelope;
 
-    @Field(() => ProductToCategoryCreateManyProductInputEnvelope, {nullable:true})
-    @Type(() => ProductToCategoryCreateManyProductInputEnvelope)
-    createMany?: ProductToCategoryCreateManyProductInputEnvelope;
+  @Field(() => [ProductToCategoryWhereUniqueInput], { nullable: true })
+  @Type(() => ProductToCategoryWhereUniqueInput)
+  set?: Array<
+    Prisma.AtLeast<ProductToCategoryWhereUniqueInput, 'productId_categoryId'>
+  >;
 
-    @Field(() => [ProductToCategoryWhereUniqueInput], {nullable:true})
-    @Type(() => ProductToCategoryWhereUniqueInput)
-    set?: Array<Prisma.AtLeast<ProductToCategoryWhereUniqueInput, 'productId_categoryId'>>;
+  @Field(() => [ProductToCategoryWhereUniqueInput], { nullable: true })
+  @Type(() => ProductToCategoryWhereUniqueInput)
+  disconnect?: Array<
+    Prisma.AtLeast<ProductToCategoryWhereUniqueInput, 'productId_categoryId'>
+  >;
 
-    @Field(() => [ProductToCategoryWhereUniqueInput], {nullable:true})
-    @Type(() => ProductToCategoryWhereUniqueInput)
-    disconnect?: Array<Prisma.AtLeast<ProductToCategoryWhereUniqueInput, 'productId_categoryId'>>;
+  @Field(() => [ProductToCategoryWhereUniqueInput], { nullable: true })
+  @Type(() => ProductToCategoryWhereUniqueInput)
+  delete?: Array<
+    Prisma.AtLeast<ProductToCategoryWhereUniqueInput, 'productId_categoryId'>
+  >;
 
-    @Field(() => [ProductToCategoryWhereUniqueInput], {nullable:true})
-    @Type(() => ProductToCategoryWhereUniqueInput)
-    delete?: Array<Prisma.AtLeast<ProductToCategoryWhereUniqueInput, 'productId_categoryId'>>;
+  @Field(() => [ProductToCategoryWhereUniqueInput], { nullable: true })
+  @Type(() => ProductToCategoryWhereUniqueInput)
+  connect?: Array<
+    Prisma.AtLeast<ProductToCategoryWhereUniqueInput, 'productId_categoryId'>
+  >;
 
-    @Field(() => [ProductToCategoryWhereUniqueInput], {nullable:true})
-    @Type(() => ProductToCategoryWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<ProductToCategoryWhereUniqueInput, 'productId_categoryId'>>;
+  @Field(() => [ProductToCategoryUpdateWithWhereUniqueWithoutProductInput], {
+    nullable: true,
+  })
+  @Type(() => ProductToCategoryUpdateWithWhereUniqueWithoutProductInput)
+  update?: Array<ProductToCategoryUpdateWithWhereUniqueWithoutProductInput>;
 
-    @Field(() => [ProductToCategoryUpdateWithWhereUniqueWithoutProductInput], {nullable:true})
-    @Type(() => ProductToCategoryUpdateWithWhereUniqueWithoutProductInput)
-    update?: Array<ProductToCategoryUpdateWithWhereUniqueWithoutProductInput>;
+  @Field(() => [ProductToCategoryUpdateManyWithWhereWithoutProductInput], {
+    nullable: true,
+  })
+  @Type(() => ProductToCategoryUpdateManyWithWhereWithoutProductInput)
+  updateMany?: Array<ProductToCategoryUpdateManyWithWhereWithoutProductInput>;
 
-    @Field(() => [ProductToCategoryUpdateManyWithWhereWithoutProductInput], {nullable:true})
-    @Type(() => ProductToCategoryUpdateManyWithWhereWithoutProductInput)
-    updateMany?: Array<ProductToCategoryUpdateManyWithWhereWithoutProductInput>;
-
-    @Field(() => [ProductToCategoryScalarWhereInput], {nullable:true})
-    @Type(() => ProductToCategoryScalarWhereInput)
-    deleteMany?: Array<ProductToCategoryScalarWhereInput>;
+  @Field(() => [ProductToCategoryScalarWhereInput], { nullable: true })
+  @Type(() => ProductToCategoryScalarWhereInput)
+  deleteMany?: Array<ProductToCategoryScalarWhereInput>;
 }

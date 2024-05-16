@@ -12,32 +12,31 @@ import { CategoryMaxAggregateInput } from './category-max-aggregate.input';
 
 @ArgsType()
 export class CategoryGroupByArgs {
+  @Field(() => CategoryWhereInput, { nullable: true })
+  @Type(() => CategoryWhereInput)
+  where?: CategoryWhereInput;
 
-    @Field(() => CategoryWhereInput, {nullable:true})
-    @Type(() => CategoryWhereInput)
-    where?: CategoryWhereInput;
+  @Field(() => [CategoryOrderByWithAggregationInput], { nullable: true })
+  orderBy?: Array<CategoryOrderByWithAggregationInput>;
 
-    @Field(() => [CategoryOrderByWithAggregationInput], {nullable:true})
-    orderBy?: Array<CategoryOrderByWithAggregationInput>;
+  @Field(() => [CategoryScalarFieldEnum], { nullable: false })
+  by!: Array<keyof typeof CategoryScalarFieldEnum>;
 
-    @Field(() => [CategoryScalarFieldEnum], {nullable:false})
-    by!: Array<keyof typeof CategoryScalarFieldEnum>;
+  @Field(() => CategoryScalarWhereWithAggregatesInput, { nullable: true })
+  having?: CategoryScalarWhereWithAggregatesInput;
 
-    @Field(() => CategoryScalarWhereWithAggregatesInput, {nullable:true})
-    having?: CategoryScalarWhereWithAggregatesInput;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
+  @Field(() => CategoryCountAggregateInput, { nullable: true })
+  _count?: CategoryCountAggregateInput;
 
-    @Field(() => CategoryCountAggregateInput, {nullable:true})
-    _count?: CategoryCountAggregateInput;
+  @Field(() => CategoryMinAggregateInput, { nullable: true })
+  _min?: CategoryMinAggregateInput;
 
-    @Field(() => CategoryMinAggregateInput, {nullable:true})
-    _min?: CategoryMinAggregateInput;
-
-    @Field(() => CategoryMaxAggregateInput, {nullable:true})
-    _max?: CategoryMaxAggregateInput;
+  @Field(() => CategoryMaxAggregateInput, { nullable: true })
+  _max?: CategoryMaxAggregateInput;
 }

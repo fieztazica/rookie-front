@@ -10,23 +10,25 @@ import { ProductToPublisherScalarFieldEnum } from './product-to-publisher-scalar
 
 @ArgsType()
 export class FindFirstProductToPublisherArgs {
+  @Field(() => ProductToPublisherWhereInput, { nullable: true })
+  @Type(() => ProductToPublisherWhereInput)
+  where?: ProductToPublisherWhereInput;
 
-    @Field(() => ProductToPublisherWhereInput, {nullable:true})
-    @Type(() => ProductToPublisherWhereInput)
-    where?: ProductToPublisherWhereInput;
+  @Field(() => [ProductToPublisherOrderByWithRelationInput], { nullable: true })
+  orderBy?: Array<ProductToPublisherOrderByWithRelationInput>;
 
-    @Field(() => [ProductToPublisherOrderByWithRelationInput], {nullable:true})
-    orderBy?: Array<ProductToPublisherOrderByWithRelationInput>;
+  @Field(() => ProductToPublisherWhereUniqueInput, { nullable: true })
+  cursor?: Prisma.AtLeast<
+    ProductToPublisherWhereUniqueInput,
+    'productId_publisherId'
+  >;
 
-    @Field(() => ProductToPublisherWhereUniqueInput, {nullable:true})
-    cursor?: Prisma.AtLeast<ProductToPublisherWhereUniqueInput, 'productId_publisherId'>;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
-
-    @Field(() => [ProductToPublisherScalarFieldEnum], {nullable:true})
-    distinct?: Array<keyof typeof ProductToPublisherScalarFieldEnum>;
+  @Field(() => [ProductToPublisherScalarFieldEnum], { nullable: true })
+  distinct?: Array<keyof typeof ProductToPublisherScalarFieldEnum>;
 }

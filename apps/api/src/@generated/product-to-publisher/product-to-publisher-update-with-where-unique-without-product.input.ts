@@ -7,12 +7,14 @@ import { ProductToPublisherUpdateWithoutProductInput } from './product-to-publis
 
 @InputType()
 export class ProductToPublisherUpdateWithWhereUniqueWithoutProductInput {
+  @Field(() => ProductToPublisherWhereUniqueInput, { nullable: false })
+  @Type(() => ProductToPublisherWhereUniqueInput)
+  where!: Prisma.AtLeast<
+    ProductToPublisherWhereUniqueInput,
+    'productId_publisherId'
+  >;
 
-    @Field(() => ProductToPublisherWhereUniqueInput, {nullable:false})
-    @Type(() => ProductToPublisherWhereUniqueInput)
-    where!: Prisma.AtLeast<ProductToPublisherWhereUniqueInput, 'productId_publisherId'>;
-
-    @Field(() => ProductToPublisherUpdateWithoutProductInput, {nullable:false})
-    @Type(() => ProductToPublisherUpdateWithoutProductInput)
-    data!: ProductToPublisherUpdateWithoutProductInput;
+  @Field(() => ProductToPublisherUpdateWithoutProductInput, { nullable: false })
+  @Type(() => ProductToPublisherUpdateWithoutProductInput)
+  data!: ProductToPublisherUpdateWithoutProductInput;
 }

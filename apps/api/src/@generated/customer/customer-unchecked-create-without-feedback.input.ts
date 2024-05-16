@@ -6,44 +6,45 @@ import { Type } from 'class-transformer';
 
 @InputType()
 export class CustomerUncheckedCreateWithoutFeedbackInput {
+  @Field(() => String, { nullable: true })
+  id?: string;
 
-    @Field(() => String, {nullable:true})
-    id?: string;
+  @Field(() => String, { nullable: false })
+  username!: string;
 
-    @Field(() => String, {nullable:false})
-    username!: string;
+  @Field(() => String, { nullable: false })
+  email!: string;
 
-    @Field(() => String, {nullable:false})
-    email!: string;
+  @Field(() => String, { nullable: false })
+  phoneNumber!: string;
 
-    @Field(() => String, {nullable:false})
-    phoneNumber!: string;
+  @Field(() => String, { nullable: false })
+  firstName!: string;
 
-    @Field(() => String, {nullable:false})
-    firstName!: string;
+  @Field(() => String, { nullable: false })
+  lastName!: string;
 
-    @Field(() => String, {nullable:false})
-    lastName!: string;
+  @Field(() => String, { nullable: true })
+  displayName?: string;
 
-    @Field(() => String, {nullable:true})
-    displayName?: string;
+  @Field(() => Gender, { nullable: true })
+  gender?: keyof typeof Gender;
 
-    @Field(() => Gender, {nullable:true})
-    gender?: keyof typeof Gender;
+  @Field(() => String, { nullable: true })
+  accountId?: string;
 
-    @Field(() => String, {nullable:true})
-    accountId?: string;
+  @Field(() => Boolean, { nullable: true })
+  deleted?: boolean;
 
-    @Field(() => Boolean, {nullable:true})
-    deleted?: boolean;
+  @Field(() => Date, { nullable: true })
+  createdAt?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
+  @Field(() => Date, { nullable: true })
+  updatedAt?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    updatedAt?: Date | string;
-
-    @Field(() => OrderUncheckedCreateNestedManyWithoutCustomerInput, {nullable:true})
-    @Type(() => OrderUncheckedCreateNestedManyWithoutCustomerInput)
-    orders?: OrderUncheckedCreateNestedManyWithoutCustomerInput;
+  @Field(() => OrderUncheckedCreateNestedManyWithoutCustomerInput, {
+    nullable: true,
+  })
+  @Type(() => OrderUncheckedCreateNestedManyWithoutCustomerInput)
+  orders?: OrderUncheckedCreateNestedManyWithoutCustomerInput;
 }

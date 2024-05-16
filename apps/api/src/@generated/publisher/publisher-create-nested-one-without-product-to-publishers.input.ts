@@ -8,16 +8,19 @@ import { PublisherWhereUniqueInput } from './publisher-where-unique.input';
 
 @InputType()
 export class PublisherCreateNestedOneWithoutProductToPublishersInput {
+  @Field(() => PublisherCreateWithoutProductToPublishersInput, {
+    nullable: true,
+  })
+  @Type(() => PublisherCreateWithoutProductToPublishersInput)
+  create?: PublisherCreateWithoutProductToPublishersInput;
 
-    @Field(() => PublisherCreateWithoutProductToPublishersInput, {nullable:true})
-    @Type(() => PublisherCreateWithoutProductToPublishersInput)
-    create?: PublisherCreateWithoutProductToPublishersInput;
+  @Field(() => PublisherCreateOrConnectWithoutProductToPublishersInput, {
+    nullable: true,
+  })
+  @Type(() => PublisherCreateOrConnectWithoutProductToPublishersInput)
+  connectOrCreate?: PublisherCreateOrConnectWithoutProductToPublishersInput;
 
-    @Field(() => PublisherCreateOrConnectWithoutProductToPublishersInput, {nullable:true})
-    @Type(() => PublisherCreateOrConnectWithoutProductToPublishersInput)
-    connectOrCreate?: PublisherCreateOrConnectWithoutProductToPublishersInput;
-
-    @Field(() => PublisherWhereUniqueInput, {nullable:true})
-    @Type(() => PublisherWhereUniqueInput)
-    connect?: Prisma.AtLeast<PublisherWhereUniqueInput, 'id' | 'name' | 'email'>;
+  @Field(() => PublisherWhereUniqueInput, { nullable: true })
+  @Type(() => PublisherWhereUniqueInput)
+  connect?: Prisma.AtLeast<PublisherWhereUniqueInput, 'id' | 'name' | 'email'>;
 }

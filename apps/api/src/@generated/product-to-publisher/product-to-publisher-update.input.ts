@@ -6,17 +6,20 @@ import { PublisherUpdateOneRequiredWithoutProductsNestedInput } from '../publish
 
 @InputType()
 export class ProductToPublisherUpdateInput {
+  @Field(() => Date, { nullable: true })
+  createdAt?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
+  @Field(() => Date, { nullable: true })
+  updatedAt?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    updatedAt?: Date | string;
+  @Field(() => ProductUpdateOneRequiredWithoutPublishersNestedInput, {
+    nullable: true,
+  })
+  @Type(() => ProductUpdateOneRequiredWithoutPublishersNestedInput)
+  product?: ProductUpdateOneRequiredWithoutPublishersNestedInput;
 
-    @Field(() => ProductUpdateOneRequiredWithoutPublishersNestedInput, {nullable:true})
-    @Type(() => ProductUpdateOneRequiredWithoutPublishersNestedInput)
-    product?: ProductUpdateOneRequiredWithoutPublishersNestedInput;
-
-    @Field(() => PublisherUpdateOneRequiredWithoutProductsNestedInput, {nullable:true})
-    publisher?: PublisherUpdateOneRequiredWithoutProductsNestedInput;
+  @Field(() => PublisherUpdateOneRequiredWithoutProductsNestedInput, {
+    nullable: true,
+  })
+  publisher?: PublisherUpdateOneRequiredWithoutProductsNestedInput;
 }

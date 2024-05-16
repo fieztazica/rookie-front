@@ -5,14 +5,15 @@ import { Type } from 'class-transformer';
 
 @InputType()
 export class ProductToCategoryCreateWithoutCategoryInput {
+  @Field(() => Date, { nullable: true })
+  createdAt?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
+  @Field(() => Date, { nullable: true })
+  updatedAt?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    updatedAt?: Date | string;
-
-    @Field(() => ProductCreateNestedOneWithoutCategoriesInput, {nullable:false})
-    @Type(() => ProductCreateNestedOneWithoutCategoriesInput)
-    product!: ProductCreateNestedOneWithoutCategoriesInput;
+  @Field(() => ProductCreateNestedOneWithoutCategoriesInput, {
+    nullable: false,
+  })
+  @Type(() => ProductCreateNestedOneWithoutCategoriesInput)
+  product!: ProductCreateNestedOneWithoutCategoriesInput;
 }

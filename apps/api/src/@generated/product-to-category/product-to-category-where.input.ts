@@ -8,32 +8,31 @@ import { Type } from 'class-transformer';
 
 @InputType()
 export class ProductToCategoryWhereInput {
+  @Field(() => [ProductToCategoryWhereInput], { nullable: true })
+  AND?: Array<ProductToCategoryWhereInput>;
 
-    @Field(() => [ProductToCategoryWhereInput], {nullable:true})
-    AND?: Array<ProductToCategoryWhereInput>;
+  @Field(() => [ProductToCategoryWhereInput], { nullable: true })
+  OR?: Array<ProductToCategoryWhereInput>;
 
-    @Field(() => [ProductToCategoryWhereInput], {nullable:true})
-    OR?: Array<ProductToCategoryWhereInput>;
+  @Field(() => [ProductToCategoryWhereInput], { nullable: true })
+  NOT?: Array<ProductToCategoryWhereInput>;
 
-    @Field(() => [ProductToCategoryWhereInput], {nullable:true})
-    NOT?: Array<ProductToCategoryWhereInput>;
+  @Field(() => StringFilter, { nullable: true })
+  productId?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    productId?: StringFilter;
+  @Field(() => StringFilter, { nullable: true })
+  categoryId?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    categoryId?: StringFilter;
+  @Field(() => DateTimeFilter, { nullable: true })
+  createdAt?: DateTimeFilter;
 
-    @Field(() => DateTimeFilter, {nullable:true})
-    createdAt?: DateTimeFilter;
+  @Field(() => DateTimeFilter, { nullable: true })
+  updatedAt?: DateTimeFilter;
 
-    @Field(() => DateTimeFilter, {nullable:true})
-    updatedAt?: DateTimeFilter;
+  @Field(() => CategoryRelationFilter, { nullable: true })
+  category?: CategoryRelationFilter;
 
-    @Field(() => CategoryRelationFilter, {nullable:true})
-    category?: CategoryRelationFilter;
-
-    @Field(() => ProductRelationFilter, {nullable:true})
-    @Type(() => ProductRelationFilter)
-    product?: ProductRelationFilter;
+  @Field(() => ProductRelationFilter, { nullable: true })
+  @Type(() => ProductRelationFilter)
+  product?: ProductRelationFilter;
 }

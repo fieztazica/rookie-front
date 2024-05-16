@@ -6,12 +6,11 @@ import { OrderUpdateManyMutationInput } from './order-update-many-mutation.input
 
 @InputType()
 export class OrderUpdateManyWithWhereWithoutCustomerInput {
+  @Field(() => OrderScalarWhereInput, { nullable: false })
+  @Type(() => OrderScalarWhereInput)
+  where!: OrderScalarWhereInput;
 
-    @Field(() => OrderScalarWhereInput, {nullable:false})
-    @Type(() => OrderScalarWhereInput)
-    where!: OrderScalarWhereInput;
-
-    @Field(() => OrderUpdateManyMutationInput, {nullable:false})
-    @Type(() => OrderUpdateManyMutationInput)
-    data!: OrderUpdateManyMutationInput;
+  @Field(() => OrderUpdateManyMutationInput, { nullable: false })
+  @Type(() => OrderUpdateManyMutationInput)
+  data!: OrderUpdateManyMutationInput;
 }

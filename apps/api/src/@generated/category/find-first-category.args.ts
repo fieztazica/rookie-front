@@ -10,23 +10,22 @@ import { CategoryScalarFieldEnum } from './category-scalar-field.enum';
 
 @ArgsType()
 export class FindFirstCategoryArgs {
+  @Field(() => CategoryWhereInput, { nullable: true })
+  @Type(() => CategoryWhereInput)
+  where?: CategoryWhereInput;
 
-    @Field(() => CategoryWhereInput, {nullable:true})
-    @Type(() => CategoryWhereInput)
-    where?: CategoryWhereInput;
+  @Field(() => [CategoryOrderByWithRelationInput], { nullable: true })
+  orderBy?: Array<CategoryOrderByWithRelationInput>;
 
-    @Field(() => [CategoryOrderByWithRelationInput], {nullable:true})
-    orderBy?: Array<CategoryOrderByWithRelationInput>;
+  @Field(() => CategoryWhereUniqueInput, { nullable: true })
+  cursor?: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name'>;
 
-    @Field(() => CategoryWhereUniqueInput, {nullable:true})
-    cursor?: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name'>;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
-
-    @Field(() => [CategoryScalarFieldEnum], {nullable:true})
-    distinct?: Array<keyof typeof CategoryScalarFieldEnum>;
+  @Field(() => [CategoryScalarFieldEnum], { nullable: true })
+  distinct?: Array<keyof typeof CategoryScalarFieldEnum>;
 }

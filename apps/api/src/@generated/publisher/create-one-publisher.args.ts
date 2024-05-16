@@ -5,8 +5,7 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class CreateOnePublisherArgs {
-
-    @Field(() => PublisherCreateInput, {nullable:false})
-    @Type(() => PublisherCreateInput)
-    data!: PublisherCreateInput;
+  @Field(() => PublisherCreateInput, { nullable: false })
+  @Type(() => PublisherCreateInput)
+  data!: PublisherCreateInput;
 }

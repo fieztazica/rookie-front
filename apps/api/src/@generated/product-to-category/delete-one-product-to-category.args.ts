@@ -6,8 +6,10 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class DeleteOneProductToCategoryArgs {
-
-    @Field(() => ProductToCategoryWhereUniqueInput, {nullable:false})
-    @Type(() => ProductToCategoryWhereUniqueInput)
-    where!: Prisma.AtLeast<ProductToCategoryWhereUniqueInput, 'productId_categoryId'>;
+  @Field(() => ProductToCategoryWhereUniqueInput, { nullable: false })
+  @Type(() => ProductToCategoryWhereUniqueInput)
+  where!: Prisma.AtLeast<
+    ProductToCategoryWhereUniqueInput,
+    'productId_categoryId'
+  >;
 }

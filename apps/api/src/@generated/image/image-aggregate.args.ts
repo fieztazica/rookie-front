@@ -14,35 +14,34 @@ import { ImageMaxAggregateInput } from './image-max-aggregate.input';
 
 @ArgsType()
 export class ImageAggregateArgs {
+  @Field(() => ImageWhereInput, { nullable: true })
+  @Type(() => ImageWhereInput)
+  where?: ImageWhereInput;
 
-    @Field(() => ImageWhereInput, {nullable:true})
-    @Type(() => ImageWhereInput)
-    where?: ImageWhereInput;
+  @Field(() => [ImageOrderByWithRelationInput], { nullable: true })
+  orderBy?: Array<ImageOrderByWithRelationInput>;
 
-    @Field(() => [ImageOrderByWithRelationInput], {nullable:true})
-    orderBy?: Array<ImageOrderByWithRelationInput>;
+  @Field(() => ImageWhereUniqueInput, { nullable: true })
+  cursor?: Prisma.AtLeast<ImageWhereUniqueInput, 'id_productId'>;
 
-    @Field(() => ImageWhereUniqueInput, {nullable:true})
-    cursor?: Prisma.AtLeast<ImageWhereUniqueInput, 'id_productId'>;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
+  @Field(() => ImageCountAggregateInput, { nullable: true })
+  _count?: ImageCountAggregateInput;
 
-    @Field(() => ImageCountAggregateInput, {nullable:true})
-    _count?: ImageCountAggregateInput;
+  @Field(() => ImageAvgAggregateInput, { nullable: true })
+  _avg?: ImageAvgAggregateInput;
 
-    @Field(() => ImageAvgAggregateInput, {nullable:true})
-    _avg?: ImageAvgAggregateInput;
+  @Field(() => ImageSumAggregateInput, { nullable: true })
+  _sum?: ImageSumAggregateInput;
 
-    @Field(() => ImageSumAggregateInput, {nullable:true})
-    _sum?: ImageSumAggregateInput;
+  @Field(() => ImageMinAggregateInput, { nullable: true })
+  _min?: ImageMinAggregateInput;
 
-    @Field(() => ImageMinAggregateInput, {nullable:true})
-    _min?: ImageMinAggregateInput;
-
-    @Field(() => ImageMaxAggregateInput, {nullable:true})
-    _max?: ImageMaxAggregateInput;
+  @Field(() => ImageMaxAggregateInput, { nullable: true })
+  _max?: ImageMaxAggregateInput;
 }

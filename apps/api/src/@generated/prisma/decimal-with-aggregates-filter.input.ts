@@ -10,57 +10,56 @@ import { DecimalFilter } from './decimal-filter.input';
 
 @InputType()
 export class DecimalWithAggregatesFilter {
+  @Field(() => GraphQLDecimal, { nullable: true })
+  @Type(() => Object)
+  @Transform(transformToDecimal)
+  equals?: Decimal;
 
-    @Field(() => GraphQLDecimal, {nullable:true})
-    @Type(() => Object)
-    @Transform(transformToDecimal)
-    equals?: Decimal;
+  @Field(() => [GraphQLDecimal], { nullable: true })
+  @Type(() => Object)
+  @Transform(transformToDecimal)
+  in?: Array<Decimal>;
 
-    @Field(() => [GraphQLDecimal], {nullable:true})
-    @Type(() => Object)
-    @Transform(transformToDecimal)
-    in?: Array<Decimal>;
+  @Field(() => [GraphQLDecimal], { nullable: true })
+  @Type(() => Object)
+  @Transform(transformToDecimal)
+  notIn?: Array<Decimal>;
 
-    @Field(() => [GraphQLDecimal], {nullable:true})
-    @Type(() => Object)
-    @Transform(transformToDecimal)
-    notIn?: Array<Decimal>;
+  @Field(() => GraphQLDecimal, { nullable: true })
+  @Type(() => Object)
+  @Transform(transformToDecimal)
+  lt?: Decimal;
 
-    @Field(() => GraphQLDecimal, {nullable:true})
-    @Type(() => Object)
-    @Transform(transformToDecimal)
-    lt?: Decimal;
+  @Field(() => GraphQLDecimal, { nullable: true })
+  @Type(() => Object)
+  @Transform(transformToDecimal)
+  lte?: Decimal;
 
-    @Field(() => GraphQLDecimal, {nullable:true})
-    @Type(() => Object)
-    @Transform(transformToDecimal)
-    lte?: Decimal;
+  @Field(() => GraphQLDecimal, { nullable: true })
+  @Type(() => Object)
+  @Transform(transformToDecimal)
+  gt?: Decimal;
 
-    @Field(() => GraphQLDecimal, {nullable:true})
-    @Type(() => Object)
-    @Transform(transformToDecimal)
-    gt?: Decimal;
+  @Field(() => GraphQLDecimal, { nullable: true })
+  @Type(() => Object)
+  @Transform(transformToDecimal)
+  gte?: Decimal;
 
-    @Field(() => GraphQLDecimal, {nullable:true})
-    @Type(() => Object)
-    @Transform(transformToDecimal)
-    gte?: Decimal;
+  @Field(() => DecimalWithAggregatesFilter, { nullable: true })
+  not?: DecimalWithAggregatesFilter;
 
-    @Field(() => DecimalWithAggregatesFilter, {nullable:true})
-    not?: DecimalWithAggregatesFilter;
+  @Field(() => IntFilter, { nullable: true })
+  _count?: IntFilter;
 
-    @Field(() => IntFilter, {nullable:true})
-    _count?: IntFilter;
+  @Field(() => DecimalFilter, { nullable: true })
+  _avg?: DecimalFilter;
 
-    @Field(() => DecimalFilter, {nullable:true})
-    _avg?: DecimalFilter;
+  @Field(() => DecimalFilter, { nullable: true })
+  _sum?: DecimalFilter;
 
-    @Field(() => DecimalFilter, {nullable:true})
-    _sum?: DecimalFilter;
+  @Field(() => DecimalFilter, { nullable: true })
+  _min?: DecimalFilter;
 
-    @Field(() => DecimalFilter, {nullable:true})
-    _min?: DecimalFilter;
-
-    @Field(() => DecimalFilter, {nullable:true})
-    _max?: DecimalFilter;
+  @Field(() => DecimalFilter, { nullable: true })
+  _max?: DecimalFilter;
 }

@@ -7,12 +7,11 @@ import { OrderUpdateWithoutCustomerInput } from './order-update-without-customer
 
 @InputType()
 export class OrderUpdateWithWhereUniqueWithoutCustomerInput {
+  @Field(() => OrderWhereUniqueInput, { nullable: false })
+  @Type(() => OrderWhereUniqueInput)
+  where!: Prisma.AtLeast<OrderWhereUniqueInput, 'id'>;
 
-    @Field(() => OrderWhereUniqueInput, {nullable:false})
-    @Type(() => OrderWhereUniqueInput)
-    where!: Prisma.AtLeast<OrderWhereUniqueInput, 'id'>;
-
-    @Field(() => OrderUpdateWithoutCustomerInput, {nullable:false})
-    @Type(() => OrderUpdateWithoutCustomerInput)
-    data!: OrderUpdateWithoutCustomerInput;
+  @Field(() => OrderUpdateWithoutCustomerInput, { nullable: false })
+  @Type(() => OrderUpdateWithoutCustomerInput)
+  data!: OrderUpdateWithoutCustomerInput;
 }

@@ -4,7 +4,6 @@ import { Int } from '@nestjs/graphql';
 
 @ObjectType()
 export class FeedbackSumAggregate {
-
-    @Field(() => Int, {nullable:true})
-    rating?: number;
+  @Field(() => Int, { nullable: true })
+  rating?: number;
 }

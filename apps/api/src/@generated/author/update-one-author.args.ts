@@ -7,12 +7,14 @@ import { AuthorWhereUniqueInput } from './author-where-unique.input';
 
 @ArgsType()
 export class UpdateOneAuthorArgs {
+  @Field(() => AuthorUpdateInput, { nullable: false })
+  @Type(() => AuthorUpdateInput)
+  data!: AuthorUpdateInput;
 
-    @Field(() => AuthorUpdateInput, {nullable:false})
-    @Type(() => AuthorUpdateInput)
-    data!: AuthorUpdateInput;
-
-    @Field(() => AuthorWhereUniqueInput, {nullable:false})
-    @Type(() => AuthorWhereUniqueInput)
-    where!: Prisma.AtLeast<AuthorWhereUniqueInput, 'id' | 'email' | 'phoneNumber'>;
+  @Field(() => AuthorWhereUniqueInput, { nullable: false })
+  @Type(() => AuthorWhereUniqueInput)
+  where!: Prisma.AtLeast<
+    AuthorWhereUniqueInput,
+    'id' | 'email' | 'phoneNumber'
+  >;
 }

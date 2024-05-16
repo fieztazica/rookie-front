@@ -6,8 +6,7 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class FindUniqueOrderItemOrThrowArgs {
-
-    @Field(() => OrderItemWhereUniqueInput, {nullable:false})
-    @Type(() => OrderItemWhereUniqueInput)
-    where!: Prisma.AtLeast<OrderItemWhereUniqueInput, 'orderId_productId'>;
+  @Field(() => OrderItemWhereUniqueInput, { nullable: false })
+  @Type(() => OrderItemWhereUniqueInput)
+  where!: Prisma.AtLeast<OrderItemWhereUniqueInput, 'orderId_productId'>;
 }

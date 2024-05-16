@@ -7,30 +7,29 @@ import { OrderItemOrderByRelationAggregateInput } from '../order-item/order-item
 
 @InputType()
 export class OrderOrderByWithRelationInput {
+  @Field(() => SortOrder, { nullable: true })
+  id?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    id?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  customerId?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    customerId?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  total?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    total?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  deleted?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    deleted?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  createdAt?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    createdAt?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  updatedAt?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    updatedAt?: keyof typeof SortOrder;
+  @Field(() => CustomerOrderByWithRelationInput, { nullable: true })
+  @Type(() => CustomerOrderByWithRelationInput)
+  customer?: CustomerOrderByWithRelationInput;
 
-    @Field(() => CustomerOrderByWithRelationInput, {nullable:true})
-    @Type(() => CustomerOrderByWithRelationInput)
-    customer?: CustomerOrderByWithRelationInput;
-
-    @Field(() => OrderItemOrderByRelationAggregateInput, {nullable:true})
-    @Type(() => OrderItemOrderByRelationAggregateInput)
-    orderItems?: OrderItemOrderByRelationAggregateInput;
+  @Field(() => OrderItemOrderByRelationAggregateInput, { nullable: true })
+  @Type(() => OrderItemOrderByRelationAggregateInput)
+  orderItems?: OrderItemOrderByRelationAggregateInput;
 }

@@ -13,48 +13,59 @@ import { OrderItemScalarWhereInput } from './order-item-scalar-where.input';
 
 @InputType()
 export class OrderItemUncheckedUpdateManyWithoutOrderNestedInput {
+  @Field(() => [OrderItemCreateWithoutOrderInput], { nullable: true })
+  @Type(() => OrderItemCreateWithoutOrderInput)
+  create?: Array<OrderItemCreateWithoutOrderInput>;
 
-    @Field(() => [OrderItemCreateWithoutOrderInput], {nullable:true})
-    @Type(() => OrderItemCreateWithoutOrderInput)
-    create?: Array<OrderItemCreateWithoutOrderInput>;
+  @Field(() => [OrderItemCreateOrConnectWithoutOrderInput], { nullable: true })
+  @Type(() => OrderItemCreateOrConnectWithoutOrderInput)
+  connectOrCreate?: Array<OrderItemCreateOrConnectWithoutOrderInput>;
 
-    @Field(() => [OrderItemCreateOrConnectWithoutOrderInput], {nullable:true})
-    @Type(() => OrderItemCreateOrConnectWithoutOrderInput)
-    connectOrCreate?: Array<OrderItemCreateOrConnectWithoutOrderInput>;
+  @Field(() => [OrderItemUpsertWithWhereUniqueWithoutOrderInput], {
+    nullable: true,
+  })
+  @Type(() => OrderItemUpsertWithWhereUniqueWithoutOrderInput)
+  upsert?: Array<OrderItemUpsertWithWhereUniqueWithoutOrderInput>;
 
-    @Field(() => [OrderItemUpsertWithWhereUniqueWithoutOrderInput], {nullable:true})
-    @Type(() => OrderItemUpsertWithWhereUniqueWithoutOrderInput)
-    upsert?: Array<OrderItemUpsertWithWhereUniqueWithoutOrderInput>;
+  @Field(() => OrderItemCreateManyOrderInputEnvelope, { nullable: true })
+  @Type(() => OrderItemCreateManyOrderInputEnvelope)
+  createMany?: OrderItemCreateManyOrderInputEnvelope;
 
-    @Field(() => OrderItemCreateManyOrderInputEnvelope, {nullable:true})
-    @Type(() => OrderItemCreateManyOrderInputEnvelope)
-    createMany?: OrderItemCreateManyOrderInputEnvelope;
+  @Field(() => [OrderItemWhereUniqueInput], { nullable: true })
+  @Type(() => OrderItemWhereUniqueInput)
+  set?: Array<Prisma.AtLeast<OrderItemWhereUniqueInput, 'orderId_productId'>>;
 
-    @Field(() => [OrderItemWhereUniqueInput], {nullable:true})
-    @Type(() => OrderItemWhereUniqueInput)
-    set?: Array<Prisma.AtLeast<OrderItemWhereUniqueInput, 'orderId_productId'>>;
+  @Field(() => [OrderItemWhereUniqueInput], { nullable: true })
+  @Type(() => OrderItemWhereUniqueInput)
+  disconnect?: Array<
+    Prisma.AtLeast<OrderItemWhereUniqueInput, 'orderId_productId'>
+  >;
 
-    @Field(() => [OrderItemWhereUniqueInput], {nullable:true})
-    @Type(() => OrderItemWhereUniqueInput)
-    disconnect?: Array<Prisma.AtLeast<OrderItemWhereUniqueInput, 'orderId_productId'>>;
+  @Field(() => [OrderItemWhereUniqueInput], { nullable: true })
+  @Type(() => OrderItemWhereUniqueInput)
+  delete?: Array<
+    Prisma.AtLeast<OrderItemWhereUniqueInput, 'orderId_productId'>
+  >;
 
-    @Field(() => [OrderItemWhereUniqueInput], {nullable:true})
-    @Type(() => OrderItemWhereUniqueInput)
-    delete?: Array<Prisma.AtLeast<OrderItemWhereUniqueInput, 'orderId_productId'>>;
+  @Field(() => [OrderItemWhereUniqueInput], { nullable: true })
+  @Type(() => OrderItemWhereUniqueInput)
+  connect?: Array<
+    Prisma.AtLeast<OrderItemWhereUniqueInput, 'orderId_productId'>
+  >;
 
-    @Field(() => [OrderItemWhereUniqueInput], {nullable:true})
-    @Type(() => OrderItemWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<OrderItemWhereUniqueInput, 'orderId_productId'>>;
+  @Field(() => [OrderItemUpdateWithWhereUniqueWithoutOrderInput], {
+    nullable: true,
+  })
+  @Type(() => OrderItemUpdateWithWhereUniqueWithoutOrderInput)
+  update?: Array<OrderItemUpdateWithWhereUniqueWithoutOrderInput>;
 
-    @Field(() => [OrderItemUpdateWithWhereUniqueWithoutOrderInput], {nullable:true})
-    @Type(() => OrderItemUpdateWithWhereUniqueWithoutOrderInput)
-    update?: Array<OrderItemUpdateWithWhereUniqueWithoutOrderInput>;
+  @Field(() => [OrderItemUpdateManyWithWhereWithoutOrderInput], {
+    nullable: true,
+  })
+  @Type(() => OrderItemUpdateManyWithWhereWithoutOrderInput)
+  updateMany?: Array<OrderItemUpdateManyWithWhereWithoutOrderInput>;
 
-    @Field(() => [OrderItemUpdateManyWithWhereWithoutOrderInput], {nullable:true})
-    @Type(() => OrderItemUpdateManyWithWhereWithoutOrderInput)
-    updateMany?: Array<OrderItemUpdateManyWithWhereWithoutOrderInput>;
-
-    @Field(() => [OrderItemScalarWhereInput], {nullable:true})
-    @Type(() => OrderItemScalarWhereInput)
-    deleteMany?: Array<OrderItemScalarWhereInput>;
+  @Field(() => [OrderItemScalarWhereInput], { nullable: true })
+  @Type(() => OrderItemScalarWhereInput)
+  deleteMany?: Array<OrderItemScalarWhereInput>;
 }

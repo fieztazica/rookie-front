@@ -6,12 +6,13 @@ import { PublisherUpdateWithoutProductToPublishersInput } from './publisher-upda
 
 @InputType()
 export class PublisherUpdateToOneWithWhereWithoutProductToPublishersInput {
+  @Field(() => PublisherWhereInput, { nullable: true })
+  @Type(() => PublisherWhereInput)
+  where?: PublisherWhereInput;
 
-    @Field(() => PublisherWhereInput, {nullable:true})
-    @Type(() => PublisherWhereInput)
-    where?: PublisherWhereInput;
-
-    @Field(() => PublisherUpdateWithoutProductToPublishersInput, {nullable:false})
-    @Type(() => PublisherUpdateWithoutProductToPublishersInput)
-    data!: PublisherUpdateWithoutProductToPublishersInput;
+  @Field(() => PublisherUpdateWithoutProductToPublishersInput, {
+    nullable: false,
+  })
+  @Type(() => PublisherUpdateWithoutProductToPublishersInput)
+  data!: PublisherUpdateWithoutProductToPublishersInput;
 }

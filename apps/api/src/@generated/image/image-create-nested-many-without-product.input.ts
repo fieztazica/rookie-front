@@ -9,20 +9,19 @@ import { ImageWhereUniqueInput } from './image-where-unique.input';
 
 @InputType()
 export class ImageCreateNestedManyWithoutProductInput {
+  @Field(() => [ImageCreateWithoutProductInput], { nullable: true })
+  @Type(() => ImageCreateWithoutProductInput)
+  create?: Array<ImageCreateWithoutProductInput>;
 
-    @Field(() => [ImageCreateWithoutProductInput], {nullable:true})
-    @Type(() => ImageCreateWithoutProductInput)
-    create?: Array<ImageCreateWithoutProductInput>;
+  @Field(() => [ImageCreateOrConnectWithoutProductInput], { nullable: true })
+  @Type(() => ImageCreateOrConnectWithoutProductInput)
+  connectOrCreate?: Array<ImageCreateOrConnectWithoutProductInput>;
 
-    @Field(() => [ImageCreateOrConnectWithoutProductInput], {nullable:true})
-    @Type(() => ImageCreateOrConnectWithoutProductInput)
-    connectOrCreate?: Array<ImageCreateOrConnectWithoutProductInput>;
+  @Field(() => ImageCreateManyProductInputEnvelope, { nullable: true })
+  @Type(() => ImageCreateManyProductInputEnvelope)
+  createMany?: ImageCreateManyProductInputEnvelope;
 
-    @Field(() => ImageCreateManyProductInputEnvelope, {nullable:true})
-    @Type(() => ImageCreateManyProductInputEnvelope)
-    createMany?: ImageCreateManyProductInputEnvelope;
-
-    @Field(() => [ImageWhereUniqueInput], {nullable:true})
-    @Type(() => ImageWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<ImageWhereUniqueInput, 'id_productId'>>;
+  @Field(() => [ImageWhereUniqueInput], { nullable: true })
+  @Type(() => ImageWhereUniqueInput)
+  connect?: Array<Prisma.AtLeast<ImageWhereUniqueInput, 'id_productId'>>;
 }

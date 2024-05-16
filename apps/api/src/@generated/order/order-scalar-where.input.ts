@@ -8,35 +8,34 @@ import { DateTimeFilter } from '../prisma/date-time-filter.input';
 
 @InputType()
 export class OrderScalarWhereInput {
+  @Field(() => [OrderScalarWhereInput], { nullable: true })
+  @Type(() => OrderScalarWhereInput)
+  AND?: Array<OrderScalarWhereInput>;
 
-    @Field(() => [OrderScalarWhereInput], {nullable:true})
-    @Type(() => OrderScalarWhereInput)
-    AND?: Array<OrderScalarWhereInput>;
+  @Field(() => [OrderScalarWhereInput], { nullable: true })
+  @Type(() => OrderScalarWhereInput)
+  OR?: Array<OrderScalarWhereInput>;
 
-    @Field(() => [OrderScalarWhereInput], {nullable:true})
-    @Type(() => OrderScalarWhereInput)
-    OR?: Array<OrderScalarWhereInput>;
+  @Field(() => [OrderScalarWhereInput], { nullable: true })
+  @Type(() => OrderScalarWhereInput)
+  NOT?: Array<OrderScalarWhereInput>;
 
-    @Field(() => [OrderScalarWhereInput], {nullable:true})
-    @Type(() => OrderScalarWhereInput)
-    NOT?: Array<OrderScalarWhereInput>;
+  @Field(() => StringFilter, { nullable: true })
+  id?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    id?: StringFilter;
+  @Field(() => StringFilter, { nullable: true })
+  customerId?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    customerId?: StringFilter;
+  @Field(() => DecimalFilter, { nullable: true })
+  @Type(() => DecimalFilter)
+  total?: DecimalFilter;
 
-    @Field(() => DecimalFilter, {nullable:true})
-    @Type(() => DecimalFilter)
-    total?: DecimalFilter;
+  @Field(() => BoolFilter, { nullable: true })
+  deleted?: BoolFilter;
 
-    @Field(() => BoolFilter, {nullable:true})
-    deleted?: BoolFilter;
+  @Field(() => DateTimeFilter, { nullable: true })
+  createdAt?: DateTimeFilter;
 
-    @Field(() => DateTimeFilter, {nullable:true})
-    createdAt?: DateTimeFilter;
-
-    @Field(() => DateTimeFilter, {nullable:true})
-    updatedAt?: DateTimeFilter;
+  @Field(() => DateTimeFilter, { nullable: true })
+  updatedAt?: DateTimeFilter;
 }

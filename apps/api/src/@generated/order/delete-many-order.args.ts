@@ -5,8 +5,7 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class DeleteManyOrderArgs {
-
-    @Field(() => OrderWhereInput, {nullable:true})
-    @Type(() => OrderWhereInput)
-    where?: OrderWhereInput;
+  @Field(() => OrderWhereInput, { nullable: true })
+  @Type(() => OrderWhereInput)
+  where?: OrderWhereInput;
 }

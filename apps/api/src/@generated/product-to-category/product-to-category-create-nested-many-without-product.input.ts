@@ -9,20 +9,25 @@ import { ProductToCategoryWhereUniqueInput } from './product-to-category-where-u
 
 @InputType()
 export class ProductToCategoryCreateNestedManyWithoutProductInput {
+  @Field(() => [ProductToCategoryCreateWithoutProductInput], { nullable: true })
+  @Type(() => ProductToCategoryCreateWithoutProductInput)
+  create?: Array<ProductToCategoryCreateWithoutProductInput>;
 
-    @Field(() => [ProductToCategoryCreateWithoutProductInput], {nullable:true})
-    @Type(() => ProductToCategoryCreateWithoutProductInput)
-    create?: Array<ProductToCategoryCreateWithoutProductInput>;
+  @Field(() => [ProductToCategoryCreateOrConnectWithoutProductInput], {
+    nullable: true,
+  })
+  @Type(() => ProductToCategoryCreateOrConnectWithoutProductInput)
+  connectOrCreate?: Array<ProductToCategoryCreateOrConnectWithoutProductInput>;
 
-    @Field(() => [ProductToCategoryCreateOrConnectWithoutProductInput], {nullable:true})
-    @Type(() => ProductToCategoryCreateOrConnectWithoutProductInput)
-    connectOrCreate?: Array<ProductToCategoryCreateOrConnectWithoutProductInput>;
+  @Field(() => ProductToCategoryCreateManyProductInputEnvelope, {
+    nullable: true,
+  })
+  @Type(() => ProductToCategoryCreateManyProductInputEnvelope)
+  createMany?: ProductToCategoryCreateManyProductInputEnvelope;
 
-    @Field(() => ProductToCategoryCreateManyProductInputEnvelope, {nullable:true})
-    @Type(() => ProductToCategoryCreateManyProductInputEnvelope)
-    createMany?: ProductToCategoryCreateManyProductInputEnvelope;
-
-    @Field(() => [ProductToCategoryWhereUniqueInput], {nullable:true})
-    @Type(() => ProductToCategoryWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<ProductToCategoryWhereUniqueInput, 'productId_categoryId'>>;
+  @Field(() => [ProductToCategoryWhereUniqueInput], { nullable: true })
+  @Type(() => ProductToCategoryWhereUniqueInput)
+  connect?: Array<
+    Prisma.AtLeast<ProductToCategoryWhereUniqueInput, 'productId_categoryId'>
+  >;
 }

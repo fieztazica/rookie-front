@@ -8,48 +8,47 @@ import { FeedbackOrderByRelationAggregateInput } from '../feedback/feedback-orde
 
 @InputType()
 export class CustomerOrderByWithRelationInput {
+  @Field(() => SortOrder, { nullable: true })
+  id?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    id?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  username?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    username?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  email?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    email?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  phoneNumber?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    phoneNumber?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  firstName?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    firstName?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  lastName?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    lastName?: keyof typeof SortOrder;
+  @Field(() => SortOrderInput, { nullable: true })
+  displayName?: SortOrderInput;
 
-    @Field(() => SortOrderInput, {nullable:true})
-    displayName?: SortOrderInput;
+  @Field(() => SortOrderInput, { nullable: true })
+  gender?: SortOrderInput;
 
-    @Field(() => SortOrderInput, {nullable:true})
-    gender?: SortOrderInput;
+  @Field(() => SortOrderInput, { nullable: true })
+  accountId?: SortOrderInput;
 
-    @Field(() => SortOrderInput, {nullable:true})
-    accountId?: SortOrderInput;
+  @Field(() => SortOrder, { nullable: true })
+  deleted?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    deleted?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  createdAt?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    createdAt?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  updatedAt?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    updatedAt?: keyof typeof SortOrder;
+  @Field(() => OrderOrderByRelationAggregateInput, { nullable: true })
+  @Type(() => OrderOrderByRelationAggregateInput)
+  orders?: OrderOrderByRelationAggregateInput;
 
-    @Field(() => OrderOrderByRelationAggregateInput, {nullable:true})
-    @Type(() => OrderOrderByRelationAggregateInput)
-    orders?: OrderOrderByRelationAggregateInput;
-
-    @Field(() => FeedbackOrderByRelationAggregateInput, {nullable:true})
-    @Type(() => FeedbackOrderByRelationAggregateInput)
-    feedback?: FeedbackOrderByRelationAggregateInput;
+  @Field(() => FeedbackOrderByRelationAggregateInput, { nullable: true })
+  @Type(() => FeedbackOrderByRelationAggregateInput)
+  feedback?: FeedbackOrderByRelationAggregateInput;
 }

@@ -8,16 +8,18 @@ import { ProductToCategoryUpdateInput } from './product-to-category-update.input
 
 @ArgsType()
 export class UpsertOneProductToCategoryArgs {
+  @Field(() => ProductToCategoryWhereUniqueInput, { nullable: false })
+  @Type(() => ProductToCategoryWhereUniqueInput)
+  where!: Prisma.AtLeast<
+    ProductToCategoryWhereUniqueInput,
+    'productId_categoryId'
+  >;
 
-    @Field(() => ProductToCategoryWhereUniqueInput, {nullable:false})
-    @Type(() => ProductToCategoryWhereUniqueInput)
-    where!: Prisma.AtLeast<ProductToCategoryWhereUniqueInput, 'productId_categoryId'>;
+  @Field(() => ProductToCategoryCreateInput, { nullable: false })
+  @Type(() => ProductToCategoryCreateInput)
+  create!: ProductToCategoryCreateInput;
 
-    @Field(() => ProductToCategoryCreateInput, {nullable:false})
-    @Type(() => ProductToCategoryCreateInput)
-    create!: ProductToCategoryCreateInput;
-
-    @Field(() => ProductToCategoryUpdateInput, {nullable:false})
-    @Type(() => ProductToCategoryUpdateInput)
-    update!: ProductToCategoryUpdateInput;
+  @Field(() => ProductToCategoryUpdateInput, { nullable: false })
+  @Type(() => ProductToCategoryUpdateInput)
+  update!: ProductToCategoryUpdateInput;
 }

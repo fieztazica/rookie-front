@@ -12,59 +12,62 @@ import { ProductToAuthorOrderByRelationAggregateInput } from '../product-to-auth
 
 @InputType()
 export class ProductOrderByWithRelationInput {
+  @Field(() => SortOrder, { nullable: true })
+  id?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    id?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  name?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    name?: keyof typeof SortOrder;
+  @Field(() => SortOrderInput, { nullable: true })
+  displayName?: SortOrderInput;
 
-    @Field(() => SortOrderInput, {nullable:true})
-    displayName?: SortOrderInput;
+  @Field(() => SortOrderInput, { nullable: true })
+  description?: SortOrderInput;
 
-    @Field(() => SortOrderInput, {nullable:true})
-    description?: SortOrderInput;
+  @Field(() => SortOrder, { nullable: true })
+  price?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    price?: keyof typeof SortOrder;
+  @Field(() => SortOrderInput, { nullable: true })
+  @Type(() => SortOrderInput)
+  salePrice?: SortOrderInput;
 
-    @Field(() => SortOrderInput, {nullable:true})
-    @Type(() => SortOrderInput)
-    salePrice?: SortOrderInput;
+  @Field(() => SortOrderInput, { nullable: true })
+  accountId?: SortOrderInput;
 
-    @Field(() => SortOrderInput, {nullable:true})
-    accountId?: SortOrderInput;
+  @Field(() => SortOrder, { nullable: true })
+  deleted?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    deleted?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  createdAt?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    createdAt?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  updatedAt?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    updatedAt?: keyof typeof SortOrder;
+  @Field(() => ProductToCategoryOrderByRelationAggregateInput, {
+    nullable: true,
+  })
+  @Type(() => ProductToCategoryOrderByRelationAggregateInput)
+  categories?: ProductToCategoryOrderByRelationAggregateInput;
 
-    @Field(() => ProductToCategoryOrderByRelationAggregateInput, {nullable:true})
-    @Type(() => ProductToCategoryOrderByRelationAggregateInput)
-    categories?: ProductToCategoryOrderByRelationAggregateInput;
+  @Field(() => OrderItemOrderByRelationAggregateInput, { nullable: true })
+  @Type(() => OrderItemOrderByRelationAggregateInput)
+  orderItems?: OrderItemOrderByRelationAggregateInput;
 
-    @Field(() => OrderItemOrderByRelationAggregateInput, {nullable:true})
-    @Type(() => OrderItemOrderByRelationAggregateInput)
-    orderItems?: OrderItemOrderByRelationAggregateInput;
+  @Field(() => FeedbackOrderByRelationAggregateInput, { nullable: true })
+  @Type(() => FeedbackOrderByRelationAggregateInput)
+  feedbacks?: FeedbackOrderByRelationAggregateInput;
 
-    @Field(() => FeedbackOrderByRelationAggregateInput, {nullable:true})
-    @Type(() => FeedbackOrderByRelationAggregateInput)
-    feedbacks?: FeedbackOrderByRelationAggregateInput;
+  @Field(() => ImageOrderByRelationAggregateInput, { nullable: true })
+  @Type(() => ImageOrderByRelationAggregateInput)
+  images?: ImageOrderByRelationAggregateInput;
 
-    @Field(() => ImageOrderByRelationAggregateInput, {nullable:true})
-    @Type(() => ImageOrderByRelationAggregateInput)
-    images?: ImageOrderByRelationAggregateInput;
+  @Field(() => ProductToPublisherOrderByRelationAggregateInput, {
+    nullable: true,
+  })
+  @Type(() => ProductToPublisherOrderByRelationAggregateInput)
+  publishers?: ProductToPublisherOrderByRelationAggregateInput;
 
-    @Field(() => ProductToPublisherOrderByRelationAggregateInput, {nullable:true})
-    @Type(() => ProductToPublisherOrderByRelationAggregateInput)
-    publishers?: ProductToPublisherOrderByRelationAggregateInput;
-
-    @Field(() => ProductToAuthorOrderByRelationAggregateInput, {nullable:true})
-    @Type(() => ProductToAuthorOrderByRelationAggregateInput)
-    authors?: ProductToAuthorOrderByRelationAggregateInput;
+  @Field(() => ProductToAuthorOrderByRelationAggregateInput, { nullable: true })
+  @Type(() => ProductToAuthorOrderByRelationAggregateInput)
+  authors?: ProductToAuthorOrderByRelationAggregateInput;
 }

@@ -4,10 +4,9 @@ import { AuthorWhereInput } from './author-where.input';
 
 @InputType()
 export class AuthorRelationFilter {
+  @Field(() => AuthorWhereInput, { nullable: true })
+  is?: AuthorWhereInput;
 
-    @Field(() => AuthorWhereInput, {nullable:true})
-    is?: AuthorWhereInput;
-
-    @Field(() => AuthorWhereInput, {nullable:true})
-    isNot?: AuthorWhereInput;
+  @Field(() => AuthorWhereInput, { nullable: true })
+  isNot?: AuthorWhereInput;
 }

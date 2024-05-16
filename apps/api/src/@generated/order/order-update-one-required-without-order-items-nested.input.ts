@@ -10,24 +10,25 @@ import { OrderUpdateToOneWithWhereWithoutOrderItemsInput } from './order-update-
 
 @InputType()
 export class OrderUpdateOneRequiredWithoutOrderItemsNestedInput {
+  @Field(() => OrderCreateWithoutOrderItemsInput, { nullable: true })
+  @Type(() => OrderCreateWithoutOrderItemsInput)
+  create?: OrderCreateWithoutOrderItemsInput;
 
-    @Field(() => OrderCreateWithoutOrderItemsInput, {nullable:true})
-    @Type(() => OrderCreateWithoutOrderItemsInput)
-    create?: OrderCreateWithoutOrderItemsInput;
+  @Field(() => OrderCreateOrConnectWithoutOrderItemsInput, { nullable: true })
+  @Type(() => OrderCreateOrConnectWithoutOrderItemsInput)
+  connectOrCreate?: OrderCreateOrConnectWithoutOrderItemsInput;
 
-    @Field(() => OrderCreateOrConnectWithoutOrderItemsInput, {nullable:true})
-    @Type(() => OrderCreateOrConnectWithoutOrderItemsInput)
-    connectOrCreate?: OrderCreateOrConnectWithoutOrderItemsInput;
+  @Field(() => OrderUpsertWithoutOrderItemsInput, { nullable: true })
+  @Type(() => OrderUpsertWithoutOrderItemsInput)
+  upsert?: OrderUpsertWithoutOrderItemsInput;
 
-    @Field(() => OrderUpsertWithoutOrderItemsInput, {nullable:true})
-    @Type(() => OrderUpsertWithoutOrderItemsInput)
-    upsert?: OrderUpsertWithoutOrderItemsInput;
+  @Field(() => OrderWhereUniqueInput, { nullable: true })
+  @Type(() => OrderWhereUniqueInput)
+  connect?: Prisma.AtLeast<OrderWhereUniqueInput, 'id'>;
 
-    @Field(() => OrderWhereUniqueInput, {nullable:true})
-    @Type(() => OrderWhereUniqueInput)
-    connect?: Prisma.AtLeast<OrderWhereUniqueInput, 'id'>;
-
-    @Field(() => OrderUpdateToOneWithWhereWithoutOrderItemsInput, {nullable:true})
-    @Type(() => OrderUpdateToOneWithWhereWithoutOrderItemsInput)
-    update?: OrderUpdateToOneWithWhereWithoutOrderItemsInput;
+  @Field(() => OrderUpdateToOneWithWhereWithoutOrderItemsInput, {
+    nullable: true,
+  })
+  @Type(() => OrderUpdateToOneWithWhereWithoutOrderItemsInput)
+  update?: OrderUpdateToOneWithWhereWithoutOrderItemsInput;
 }

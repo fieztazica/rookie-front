@@ -14,60 +14,63 @@ import { ProductCount } from './product-count.output';
 /**
  * @@deny('read', deleted)
  */
-@ObjectType({description:"@@deny('read', deleted)"})
+@ObjectType({ description: "@@deny('read', deleted)" })
 export class Product {
+  @Field(() => ID, { nullable: false })
+  id!: string;
 
-    @Field(() => ID, {nullable:false})
-    id!: string;
+  @Field(() => String, { nullable: false })
+  name!: string;
 
-    @Field(() => String, {nullable:false})
-    name!: string;
+  @Field(() => String, { nullable: true })
+  displayName!: string | null;
 
-    @Field(() => String, {nullable:true})
-    displayName!: string | null;
+  @Field(() => String, { nullable: true })
+  description!: string | null;
 
-    @Field(() => String, {nullable:true})
-    description!: string | null;
+  @Field(() => GraphQLDecimal, { nullable: false })
+  price!: Decimal;
 
-    @Field(() => GraphQLDecimal, {nullable:false})
-    price!: Decimal;
+  @Field(() => GraphQLDecimal, { nullable: true })
+  salePrice!: Decimal | null;
 
-    @Field(() => GraphQLDecimal, {nullable:true})
-    salePrice!: Decimal | null;
+  @Field(() => String, { nullable: true })
+  accountId!: string | null;
 
-    @Field(() => String, {nullable:true})
-    accountId!: string | null;
+  /**
+   * @omit
+   */
+  @Field(() => Boolean, {
+    nullable: false,
+    defaultValue: false,
+    description: '@omit',
+  })
+  deleted!: boolean;
 
-    /**
-     * @omit
-     */
-    @Field(() => Boolean, {nullable:false,defaultValue:false,description:'@omit'})
-    deleted!: boolean;
+  @Field(() => Date, { nullable: false })
+  createdAt!: Date;
 
-    @Field(() => Date, {nullable:false})
-    createdAt!: Date;
+  @Field(() => Date, { nullable: false })
+  updatedAt!: Date;
 
-    @Field(() => Date, {nullable:false})
-    updatedAt!: Date;
+  @Field(() => [ProductToCategory], { nullable: true })
+  categories?: Array<ProductToCategory>;
 
-    @Field(() => [ProductToCategory], {nullable:true})
-    categories?: Array<ProductToCategory>;
+  @Field(() => [OrderItem], { nullable: true })
+  orderItems?: Array<OrderItem>;
 
-    @Field(() => [OrderItem], {nullable:true})
-    orderItems?: Array<OrderItem>;
+  @Field(() => [Feedback], { nullable: true })
+  feedbacks?: Array<Feedback>;
 
-    @Field(() => [Feedback], {nullable:true})
-    feedbacks?: Array<Feedback>;
+  @Field(() => [Image], { nullable: true })
+  images?: Array<Image>;
 
-    @Field(() => [Image], {nullable:true})
-    images?: Array<Image>;
+  @Field(() => [ProductToPublisher], { nullable: true })
+  publishers?: Array<ProductToPublisher>;
 
-    @Field(() => [ProductToPublisher], {nullable:true})
-    publishers?: Array<ProductToPublisher>;
+  @Field(() => [ProductToAuthor], { nullable: true })
+  authors?: Array<ProductToAuthor>;
 
-    @Field(() => [ProductToAuthor], {nullable:true})
-    authors?: Array<ProductToAuthor>;
-
-    @Field(() => ProductCount, {nullable:false})
-    _count?: ProductCount;
+  @Field(() => ProductCount, { nullable: false })
+  _count?: ProductCount;
 }

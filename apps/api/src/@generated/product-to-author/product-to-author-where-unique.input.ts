@@ -10,35 +10,36 @@ import { AuthorRelationFilter } from '../author/author-relation-filter.input';
 
 @InputType()
 export class ProductToAuthorWhereUniqueInput {
+  @Field(() => ProductToAuthorProductIdAuthorIdCompoundUniqueInput, {
+    nullable: true,
+  })
+  productId_authorId?: ProductToAuthorProductIdAuthorIdCompoundUniqueInput;
 
-    @Field(() => ProductToAuthorProductIdAuthorIdCompoundUniqueInput, {nullable:true})
-    productId_authorId?: ProductToAuthorProductIdAuthorIdCompoundUniqueInput;
+  @Field(() => [ProductToAuthorWhereInput], { nullable: true })
+  AND?: Array<ProductToAuthorWhereInput>;
 
-    @Field(() => [ProductToAuthorWhereInput], {nullable:true})
-    AND?: Array<ProductToAuthorWhereInput>;
+  @Field(() => [ProductToAuthorWhereInput], { nullable: true })
+  OR?: Array<ProductToAuthorWhereInput>;
 
-    @Field(() => [ProductToAuthorWhereInput], {nullable:true})
-    OR?: Array<ProductToAuthorWhereInput>;
+  @Field(() => [ProductToAuthorWhereInput], { nullable: true })
+  NOT?: Array<ProductToAuthorWhereInput>;
 
-    @Field(() => [ProductToAuthorWhereInput], {nullable:true})
-    NOT?: Array<ProductToAuthorWhereInput>;
+  @Field(() => StringFilter, { nullable: true })
+  productId?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    productId?: StringFilter;
+  @Field(() => StringFilter, { nullable: true })
+  authorId?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    authorId?: StringFilter;
+  @Field(() => DateTimeFilter, { nullable: true })
+  createdAt?: DateTimeFilter;
 
-    @Field(() => DateTimeFilter, {nullable:true})
-    createdAt?: DateTimeFilter;
+  @Field(() => DateTimeFilter, { nullable: true })
+  updatedAt?: DateTimeFilter;
 
-    @Field(() => DateTimeFilter, {nullable:true})
-    updatedAt?: DateTimeFilter;
+  @Field(() => ProductRelationFilter, { nullable: true })
+  @Type(() => ProductRelationFilter)
+  product?: ProductRelationFilter;
 
-    @Field(() => ProductRelationFilter, {nullable:true})
-    @Type(() => ProductRelationFilter)
-    product?: ProductRelationFilter;
-
-    @Field(() => AuthorRelationFilter, {nullable:true})
-    author?: AuthorRelationFilter;
+  @Field(() => AuthorRelationFilter, { nullable: true })
+  author?: AuthorRelationFilter;
 }

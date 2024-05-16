@@ -6,17 +6,20 @@ import { AuthorUpdateOneRequiredWithoutProductsNestedInput } from '../author/aut
 
 @InputType()
 export class ProductToAuthorUpdateInput {
+  @Field(() => Date, { nullable: true })
+  createdAt?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
+  @Field(() => Date, { nullable: true })
+  updatedAt?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    updatedAt?: Date | string;
+  @Field(() => ProductUpdateOneRequiredWithoutAuthorsNestedInput, {
+    nullable: true,
+  })
+  @Type(() => ProductUpdateOneRequiredWithoutAuthorsNestedInput)
+  product?: ProductUpdateOneRequiredWithoutAuthorsNestedInput;
 
-    @Field(() => ProductUpdateOneRequiredWithoutAuthorsNestedInput, {nullable:true})
-    @Type(() => ProductUpdateOneRequiredWithoutAuthorsNestedInput)
-    product?: ProductUpdateOneRequiredWithoutAuthorsNestedInput;
-
-    @Field(() => AuthorUpdateOneRequiredWithoutProductsNestedInput, {nullable:true})
-    author?: AuthorUpdateOneRequiredWithoutProductsNestedInput;
+  @Field(() => AuthorUpdateOneRequiredWithoutProductsNestedInput, {
+    nullable: true,
+  })
+  author?: AuthorUpdateOneRequiredWithoutProductsNestedInput;
 }

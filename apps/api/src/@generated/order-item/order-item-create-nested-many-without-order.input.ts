@@ -9,20 +9,21 @@ import { OrderItemWhereUniqueInput } from './order-item-where-unique.input';
 
 @InputType()
 export class OrderItemCreateNestedManyWithoutOrderInput {
+  @Field(() => [OrderItemCreateWithoutOrderInput], { nullable: true })
+  @Type(() => OrderItemCreateWithoutOrderInput)
+  create?: Array<OrderItemCreateWithoutOrderInput>;
 
-    @Field(() => [OrderItemCreateWithoutOrderInput], {nullable:true})
-    @Type(() => OrderItemCreateWithoutOrderInput)
-    create?: Array<OrderItemCreateWithoutOrderInput>;
+  @Field(() => [OrderItemCreateOrConnectWithoutOrderInput], { nullable: true })
+  @Type(() => OrderItemCreateOrConnectWithoutOrderInput)
+  connectOrCreate?: Array<OrderItemCreateOrConnectWithoutOrderInput>;
 
-    @Field(() => [OrderItemCreateOrConnectWithoutOrderInput], {nullable:true})
-    @Type(() => OrderItemCreateOrConnectWithoutOrderInput)
-    connectOrCreate?: Array<OrderItemCreateOrConnectWithoutOrderInput>;
+  @Field(() => OrderItemCreateManyOrderInputEnvelope, { nullable: true })
+  @Type(() => OrderItemCreateManyOrderInputEnvelope)
+  createMany?: OrderItemCreateManyOrderInputEnvelope;
 
-    @Field(() => OrderItemCreateManyOrderInputEnvelope, {nullable:true})
-    @Type(() => OrderItemCreateManyOrderInputEnvelope)
-    createMany?: OrderItemCreateManyOrderInputEnvelope;
-
-    @Field(() => [OrderItemWhereUniqueInput], {nullable:true})
-    @Type(() => OrderItemWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<OrderItemWhereUniqueInput, 'orderId_productId'>>;
+  @Field(() => [OrderItemWhereUniqueInput], { nullable: true })
+  @Type(() => OrderItemWhereUniqueInput)
+  connect?: Array<
+    Prisma.AtLeast<OrderItemWhereUniqueInput, 'orderId_productId'>
+  >;
 }

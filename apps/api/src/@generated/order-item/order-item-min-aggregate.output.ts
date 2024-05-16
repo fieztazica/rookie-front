@@ -6,22 +6,21 @@ import { Int } from '@nestjs/graphql';
 
 @ObjectType()
 export class OrderItemMinAggregate {
+  @Field(() => String, { nullable: true })
+  orderId?: string;
 
-    @Field(() => String, {nullable:true})
-    orderId?: string;
+  @Field(() => String, { nullable: true })
+  productId?: string;
 
-    @Field(() => String, {nullable:true})
-    productId?: string;
+  @Field(() => GraphQLDecimal, { nullable: true })
+  price?: Decimal;
 
-    @Field(() => GraphQLDecimal, {nullable:true})
-    price?: Decimal;
+  @Field(() => Int, { nullable: true })
+  quantity?: number;
 
-    @Field(() => Int, {nullable:true})
-    quantity?: number;
+  @Field(() => Date, { nullable: true })
+  createdAt?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
-
-    @Field(() => Date, {nullable:true})
-    updatedAt?: Date | string;
+  @Field(() => Date, { nullable: true })
+  updatedAt?: Date | string;
 }

@@ -9,20 +9,19 @@ import { FeedbackWhereUniqueInput } from './feedback-where-unique.input';
 
 @InputType()
 export class FeedbackUncheckedCreateNestedManyWithoutProductInput {
+  @Field(() => [FeedbackCreateWithoutProductInput], { nullable: true })
+  @Type(() => FeedbackCreateWithoutProductInput)
+  create?: Array<FeedbackCreateWithoutProductInput>;
 
-    @Field(() => [FeedbackCreateWithoutProductInput], {nullable:true})
-    @Type(() => FeedbackCreateWithoutProductInput)
-    create?: Array<FeedbackCreateWithoutProductInput>;
+  @Field(() => [FeedbackCreateOrConnectWithoutProductInput], { nullable: true })
+  @Type(() => FeedbackCreateOrConnectWithoutProductInput)
+  connectOrCreate?: Array<FeedbackCreateOrConnectWithoutProductInput>;
 
-    @Field(() => [FeedbackCreateOrConnectWithoutProductInput], {nullable:true})
-    @Type(() => FeedbackCreateOrConnectWithoutProductInput)
-    connectOrCreate?: Array<FeedbackCreateOrConnectWithoutProductInput>;
+  @Field(() => FeedbackCreateManyProductInputEnvelope, { nullable: true })
+  @Type(() => FeedbackCreateManyProductInputEnvelope)
+  createMany?: FeedbackCreateManyProductInputEnvelope;
 
-    @Field(() => FeedbackCreateManyProductInputEnvelope, {nullable:true})
-    @Type(() => FeedbackCreateManyProductInputEnvelope)
-    createMany?: FeedbackCreateManyProductInputEnvelope;
-
-    @Field(() => [FeedbackWhereUniqueInput], {nullable:true})
-    @Type(() => FeedbackWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<FeedbackWhereUniqueInput, 'id'>>;
+  @Field(() => [FeedbackWhereUniqueInput], { nullable: true })
+  @Type(() => FeedbackWhereUniqueInput)
+  connect?: Array<Prisma.AtLeast<FeedbackWhereUniqueInput, 'id'>>;
 }

@@ -13,48 +13,55 @@ import { FeedbackScalarWhereInput } from './feedback-scalar-where.input';
 
 @InputType()
 export class FeedbackUpdateManyWithoutCustomerNestedInput {
+  @Field(() => [FeedbackCreateWithoutCustomerInput], { nullable: true })
+  @Type(() => FeedbackCreateWithoutCustomerInput)
+  create?: Array<FeedbackCreateWithoutCustomerInput>;
 
-    @Field(() => [FeedbackCreateWithoutCustomerInput], {nullable:true})
-    @Type(() => FeedbackCreateWithoutCustomerInput)
-    create?: Array<FeedbackCreateWithoutCustomerInput>;
+  @Field(() => [FeedbackCreateOrConnectWithoutCustomerInput], {
+    nullable: true,
+  })
+  @Type(() => FeedbackCreateOrConnectWithoutCustomerInput)
+  connectOrCreate?: Array<FeedbackCreateOrConnectWithoutCustomerInput>;
 
-    @Field(() => [FeedbackCreateOrConnectWithoutCustomerInput], {nullable:true})
-    @Type(() => FeedbackCreateOrConnectWithoutCustomerInput)
-    connectOrCreate?: Array<FeedbackCreateOrConnectWithoutCustomerInput>;
+  @Field(() => [FeedbackUpsertWithWhereUniqueWithoutCustomerInput], {
+    nullable: true,
+  })
+  @Type(() => FeedbackUpsertWithWhereUniqueWithoutCustomerInput)
+  upsert?: Array<FeedbackUpsertWithWhereUniqueWithoutCustomerInput>;
 
-    @Field(() => [FeedbackUpsertWithWhereUniqueWithoutCustomerInput], {nullable:true})
-    @Type(() => FeedbackUpsertWithWhereUniqueWithoutCustomerInput)
-    upsert?: Array<FeedbackUpsertWithWhereUniqueWithoutCustomerInput>;
+  @Field(() => FeedbackCreateManyCustomerInputEnvelope, { nullable: true })
+  @Type(() => FeedbackCreateManyCustomerInputEnvelope)
+  createMany?: FeedbackCreateManyCustomerInputEnvelope;
 
-    @Field(() => FeedbackCreateManyCustomerInputEnvelope, {nullable:true})
-    @Type(() => FeedbackCreateManyCustomerInputEnvelope)
-    createMany?: FeedbackCreateManyCustomerInputEnvelope;
+  @Field(() => [FeedbackWhereUniqueInput], { nullable: true })
+  @Type(() => FeedbackWhereUniqueInput)
+  set?: Array<Prisma.AtLeast<FeedbackWhereUniqueInput, 'id'>>;
 
-    @Field(() => [FeedbackWhereUniqueInput], {nullable:true})
-    @Type(() => FeedbackWhereUniqueInput)
-    set?: Array<Prisma.AtLeast<FeedbackWhereUniqueInput, 'id'>>;
+  @Field(() => [FeedbackWhereUniqueInput], { nullable: true })
+  @Type(() => FeedbackWhereUniqueInput)
+  disconnect?: Array<Prisma.AtLeast<FeedbackWhereUniqueInput, 'id'>>;
 
-    @Field(() => [FeedbackWhereUniqueInput], {nullable:true})
-    @Type(() => FeedbackWhereUniqueInput)
-    disconnect?: Array<Prisma.AtLeast<FeedbackWhereUniqueInput, 'id'>>;
+  @Field(() => [FeedbackWhereUniqueInput], { nullable: true })
+  @Type(() => FeedbackWhereUniqueInput)
+  delete?: Array<Prisma.AtLeast<FeedbackWhereUniqueInput, 'id'>>;
 
-    @Field(() => [FeedbackWhereUniqueInput], {nullable:true})
-    @Type(() => FeedbackWhereUniqueInput)
-    delete?: Array<Prisma.AtLeast<FeedbackWhereUniqueInput, 'id'>>;
+  @Field(() => [FeedbackWhereUniqueInput], { nullable: true })
+  @Type(() => FeedbackWhereUniqueInput)
+  connect?: Array<Prisma.AtLeast<FeedbackWhereUniqueInput, 'id'>>;
 
-    @Field(() => [FeedbackWhereUniqueInput], {nullable:true})
-    @Type(() => FeedbackWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<FeedbackWhereUniqueInput, 'id'>>;
+  @Field(() => [FeedbackUpdateWithWhereUniqueWithoutCustomerInput], {
+    nullable: true,
+  })
+  @Type(() => FeedbackUpdateWithWhereUniqueWithoutCustomerInput)
+  update?: Array<FeedbackUpdateWithWhereUniqueWithoutCustomerInput>;
 
-    @Field(() => [FeedbackUpdateWithWhereUniqueWithoutCustomerInput], {nullable:true})
-    @Type(() => FeedbackUpdateWithWhereUniqueWithoutCustomerInput)
-    update?: Array<FeedbackUpdateWithWhereUniqueWithoutCustomerInput>;
+  @Field(() => [FeedbackUpdateManyWithWhereWithoutCustomerInput], {
+    nullable: true,
+  })
+  @Type(() => FeedbackUpdateManyWithWhereWithoutCustomerInput)
+  updateMany?: Array<FeedbackUpdateManyWithWhereWithoutCustomerInput>;
 
-    @Field(() => [FeedbackUpdateManyWithWhereWithoutCustomerInput], {nullable:true})
-    @Type(() => FeedbackUpdateManyWithWhereWithoutCustomerInput)
-    updateMany?: Array<FeedbackUpdateManyWithWhereWithoutCustomerInput>;
-
-    @Field(() => [FeedbackScalarWhereInput], {nullable:true})
-    @Type(() => FeedbackScalarWhereInput)
-    deleteMany?: Array<FeedbackScalarWhereInput>;
+  @Field(() => [FeedbackScalarWhereInput], { nullable: true })
+  @Type(() => FeedbackScalarWhereInput)
+  deleteMany?: Array<FeedbackScalarWhereInput>;
 }

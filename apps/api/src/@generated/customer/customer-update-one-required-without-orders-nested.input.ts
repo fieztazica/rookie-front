@@ -10,24 +10,28 @@ import { CustomerUpdateToOneWithWhereWithoutOrdersInput } from './customer-updat
 
 @InputType()
 export class CustomerUpdateOneRequiredWithoutOrdersNestedInput {
+  @Field(() => CustomerCreateWithoutOrdersInput, { nullable: true })
+  @Type(() => CustomerCreateWithoutOrdersInput)
+  create?: CustomerCreateWithoutOrdersInput;
 
-    @Field(() => CustomerCreateWithoutOrdersInput, {nullable:true})
-    @Type(() => CustomerCreateWithoutOrdersInput)
-    create?: CustomerCreateWithoutOrdersInput;
+  @Field(() => CustomerCreateOrConnectWithoutOrdersInput, { nullable: true })
+  @Type(() => CustomerCreateOrConnectWithoutOrdersInput)
+  connectOrCreate?: CustomerCreateOrConnectWithoutOrdersInput;
 
-    @Field(() => CustomerCreateOrConnectWithoutOrdersInput, {nullable:true})
-    @Type(() => CustomerCreateOrConnectWithoutOrdersInput)
-    connectOrCreate?: CustomerCreateOrConnectWithoutOrdersInput;
+  @Field(() => CustomerUpsertWithoutOrdersInput, { nullable: true })
+  @Type(() => CustomerUpsertWithoutOrdersInput)
+  upsert?: CustomerUpsertWithoutOrdersInput;
 
-    @Field(() => CustomerUpsertWithoutOrdersInput, {nullable:true})
-    @Type(() => CustomerUpsertWithoutOrdersInput)
-    upsert?: CustomerUpsertWithoutOrdersInput;
+  @Field(() => CustomerWhereUniqueInput, { nullable: true })
+  @Type(() => CustomerWhereUniqueInput)
+  connect?: Prisma.AtLeast<
+    CustomerWhereUniqueInput,
+    'id' | 'username' | 'email' | 'phoneNumber'
+  >;
 
-    @Field(() => CustomerWhereUniqueInput, {nullable:true})
-    @Type(() => CustomerWhereUniqueInput)
-    connect?: Prisma.AtLeast<CustomerWhereUniqueInput, 'id' | 'username' | 'email' | 'phoneNumber'>;
-
-    @Field(() => CustomerUpdateToOneWithWhereWithoutOrdersInput, {nullable:true})
-    @Type(() => CustomerUpdateToOneWithWhereWithoutOrdersInput)
-    update?: CustomerUpdateToOneWithWhereWithoutOrdersInput;
+  @Field(() => CustomerUpdateToOneWithWhereWithoutOrdersInput, {
+    nullable: true,
+  })
+  @Type(() => CustomerUpdateToOneWithWhereWithoutOrdersInput)
+  update?: CustomerUpdateToOneWithWhereWithoutOrdersInput;
 }

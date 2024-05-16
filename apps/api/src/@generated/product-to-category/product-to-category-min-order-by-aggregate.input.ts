@@ -4,16 +4,15 @@ import { SortOrder } from '../prisma/sort-order.enum';
 
 @InputType()
 export class ProductToCategoryMinOrderByAggregateInput {
+  @Field(() => SortOrder, { nullable: true })
+  productId?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    productId?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  categoryId?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    categoryId?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  createdAt?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    createdAt?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
-    updatedAt?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  updatedAt?: keyof typeof SortOrder;
 }

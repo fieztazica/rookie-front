@@ -8,47 +8,46 @@ import { Type } from 'class-transformer';
 
 @InputType()
 export class AuthorWhereInput {
+  @Field(() => [AuthorWhereInput], { nullable: true })
+  AND?: Array<AuthorWhereInput>;
 
-    @Field(() => [AuthorWhereInput], {nullable:true})
-    AND?: Array<AuthorWhereInput>;
+  @Field(() => [AuthorWhereInput], { nullable: true })
+  OR?: Array<AuthorWhereInput>;
 
-    @Field(() => [AuthorWhereInput], {nullable:true})
-    OR?: Array<AuthorWhereInput>;
+  @Field(() => [AuthorWhereInput], { nullable: true })
+  NOT?: Array<AuthorWhereInput>;
 
-    @Field(() => [AuthorWhereInput], {nullable:true})
-    NOT?: Array<AuthorWhereInput>;
+  @Field(() => StringFilter, { nullable: true })
+  id?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    id?: StringFilter;
+  @Field(() => StringFilter, { nullable: true })
+  firstName?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    firstName?: StringFilter;
+  @Field(() => StringFilter, { nullable: true })
+  lastName?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    lastName?: StringFilter;
+  @Field(() => StringFilter, { nullable: true })
+  displayName?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    displayName?: StringFilter;
+  @Field(() => StringFilter, { nullable: true })
+  email?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    email?: StringFilter;
+  @Field(() => StringFilter, { nullable: true })
+  phoneNumber?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    phoneNumber?: StringFilter;
+  @Field(() => StringFilter, { nullable: true })
+  description?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    description?: StringFilter;
+  @Field(() => BoolFilter, { nullable: true })
+  deleted?: BoolFilter;
 
-    @Field(() => BoolFilter, {nullable:true})
-    deleted?: BoolFilter;
+  @Field(() => DateTimeFilter, { nullable: true })
+  createdAt?: DateTimeFilter;
 
-    @Field(() => DateTimeFilter, {nullable:true})
-    createdAt?: DateTimeFilter;
+  @Field(() => DateTimeFilter, { nullable: true })
+  updatedAt?: DateTimeFilter;
 
-    @Field(() => DateTimeFilter, {nullable:true})
-    updatedAt?: DateTimeFilter;
-
-    @Field(() => ProductToAuthorListRelationFilter, {nullable:true})
-    @Type(() => ProductToAuthorListRelationFilter)
-    products?: ProductToAuthorListRelationFilter;
+  @Field(() => ProductToAuthorListRelationFilter, { nullable: true })
+  @Type(() => ProductToAuthorListRelationFilter)
+  products?: ProductToAuthorListRelationFilter;
 }

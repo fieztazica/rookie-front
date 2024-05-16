@@ -8,16 +8,15 @@ import { OrderWhereUniqueInput } from './order-where-unique.input';
 
 @InputType()
 export class OrderCreateNestedOneWithoutOrderItemsInput {
+  @Field(() => OrderCreateWithoutOrderItemsInput, { nullable: true })
+  @Type(() => OrderCreateWithoutOrderItemsInput)
+  create?: OrderCreateWithoutOrderItemsInput;
 
-    @Field(() => OrderCreateWithoutOrderItemsInput, {nullable:true})
-    @Type(() => OrderCreateWithoutOrderItemsInput)
-    create?: OrderCreateWithoutOrderItemsInput;
+  @Field(() => OrderCreateOrConnectWithoutOrderItemsInput, { nullable: true })
+  @Type(() => OrderCreateOrConnectWithoutOrderItemsInput)
+  connectOrCreate?: OrderCreateOrConnectWithoutOrderItemsInput;
 
-    @Field(() => OrderCreateOrConnectWithoutOrderItemsInput, {nullable:true})
-    @Type(() => OrderCreateOrConnectWithoutOrderItemsInput)
-    connectOrCreate?: OrderCreateOrConnectWithoutOrderItemsInput;
-
-    @Field(() => OrderWhereUniqueInput, {nullable:true})
-    @Type(() => OrderWhereUniqueInput)
-    connect?: Prisma.AtLeast<OrderWhereUniqueInput, 'id'>;
+  @Field(() => OrderWhereUniqueInput, { nullable: true })
+  @Type(() => OrderWhereUniqueInput)
+  connect?: Prisma.AtLeast<OrderWhereUniqueInput, 'id'>;
 }

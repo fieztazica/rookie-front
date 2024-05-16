@@ -7,25 +7,24 @@ import { NestedEnumGenderNullableFilter } from './nested-enum-gender-nullable-fi
 
 @InputType()
 export class EnumGenderNullableWithAggregatesFilter {
+  @Field(() => Gender, { nullable: true })
+  equals?: keyof typeof Gender;
 
-    @Field(() => Gender, {nullable:true})
-    equals?: keyof typeof Gender;
+  @Field(() => [Gender], { nullable: true })
+  in?: Array<keyof typeof Gender>;
 
-    @Field(() => [Gender], {nullable:true})
-    in?: Array<keyof typeof Gender>;
+  @Field(() => [Gender], { nullable: true })
+  notIn?: Array<keyof typeof Gender>;
 
-    @Field(() => [Gender], {nullable:true})
-    notIn?: Array<keyof typeof Gender>;
+  @Field(() => NestedEnumGenderNullableWithAggregatesFilter, { nullable: true })
+  not?: NestedEnumGenderNullableWithAggregatesFilter;
 
-    @Field(() => NestedEnumGenderNullableWithAggregatesFilter, {nullable:true})
-    not?: NestedEnumGenderNullableWithAggregatesFilter;
+  @Field(() => NestedIntNullableFilter, { nullable: true })
+  _count?: NestedIntNullableFilter;
 
-    @Field(() => NestedIntNullableFilter, {nullable:true})
-    _count?: NestedIntNullableFilter;
+  @Field(() => NestedEnumGenderNullableFilter, { nullable: true })
+  _min?: NestedEnumGenderNullableFilter;
 
-    @Field(() => NestedEnumGenderNullableFilter, {nullable:true})
-    _min?: NestedEnumGenderNullableFilter;
-
-    @Field(() => NestedEnumGenderNullableFilter, {nullable:true})
-    _max?: NestedEnumGenderNullableFilter;
+  @Field(() => NestedEnumGenderNullableFilter, { nullable: true })
+  _max?: NestedEnumGenderNullableFilter;
 }

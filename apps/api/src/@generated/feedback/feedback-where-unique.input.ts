@@ -11,48 +11,47 @@ import { ProductRelationFilter } from '../product/product-relation-filter.input'
 
 @InputType()
 export class FeedbackWhereUniqueInput {
+  @Field(() => String, { nullable: true })
+  id?: string;
 
-    @Field(() => String, {nullable:true})
-    id?: string;
+  @Field(() => [FeedbackWhereInput], { nullable: true })
+  AND?: Array<FeedbackWhereInput>;
 
-    @Field(() => [FeedbackWhereInput], {nullable:true})
-    AND?: Array<FeedbackWhereInput>;
+  @Field(() => [FeedbackWhereInput], { nullable: true })
+  OR?: Array<FeedbackWhereInput>;
 
-    @Field(() => [FeedbackWhereInput], {nullable:true})
-    OR?: Array<FeedbackWhereInput>;
+  @Field(() => [FeedbackWhereInput], { nullable: true })
+  NOT?: Array<FeedbackWhereInput>;
 
-    @Field(() => [FeedbackWhereInput], {nullable:true})
-    NOT?: Array<FeedbackWhereInput>;
+  @Field(() => StringFilter, { nullable: true })
+  customerId?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    customerId?: StringFilter;
+  @Field(() => StringFilter, { nullable: true })
+  productId?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    productId?: StringFilter;
+  @Field(() => StringFilter, { nullable: true })
+  message?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    message?: StringFilter;
+  @Field(() => IntFilter, { nullable: true })
+  rating?: IntFilter;
 
-    @Field(() => IntFilter, {nullable:true})
-    rating?: IntFilter;
+  @Field(() => StringFilter, { nullable: true })
+  status?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    status?: StringFilter;
+  @Field(() => BoolFilter, { nullable: true })
+  deleted?: BoolFilter;
 
-    @Field(() => BoolFilter, {nullable:true})
-    deleted?: BoolFilter;
+  @Field(() => DateTimeFilter, { nullable: true })
+  createdAt?: DateTimeFilter;
 
-    @Field(() => DateTimeFilter, {nullable:true})
-    createdAt?: DateTimeFilter;
+  @Field(() => DateTimeFilter, { nullable: true })
+  updatedAt?: DateTimeFilter;
 
-    @Field(() => DateTimeFilter, {nullable:true})
-    updatedAt?: DateTimeFilter;
+  @Field(() => CustomerRelationFilter, { nullable: true })
+  @Type(() => CustomerRelationFilter)
+  customer?: CustomerRelationFilter;
 
-    @Field(() => CustomerRelationFilter, {nullable:true})
-    @Type(() => CustomerRelationFilter)
-    customer?: CustomerRelationFilter;
-
-    @Field(() => ProductRelationFilter, {nullable:true})
-    @Type(() => ProductRelationFilter)
-    product?: ProductRelationFilter;
+  @Field(() => ProductRelationFilter, { nullable: true })
+  @Type(() => ProductRelationFilter)
+  product?: ProductRelationFilter;
 }

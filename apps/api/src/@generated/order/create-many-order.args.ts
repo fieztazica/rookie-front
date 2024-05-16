@@ -5,11 +5,10 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class CreateManyOrderArgs {
+  @Field(() => [OrderCreateManyInput], { nullable: false })
+  @Type(() => OrderCreateManyInput)
+  data!: Array<OrderCreateManyInput>;
 
-    @Field(() => [OrderCreateManyInput], {nullable:false})
-    @Type(() => OrderCreateManyInput)
-    data!: Array<OrderCreateManyInput>;
-
-    @Field(() => Boolean, {nullable:true})
-    skipDuplicates?: boolean;
+  @Field(() => Boolean, { nullable: true })
+  skipDuplicates?: boolean;
 }

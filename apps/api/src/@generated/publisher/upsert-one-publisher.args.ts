@@ -8,16 +8,15 @@ import { PublisherUpdateInput } from './publisher-update.input';
 
 @ArgsType()
 export class UpsertOnePublisherArgs {
+  @Field(() => PublisherWhereUniqueInput, { nullable: false })
+  @Type(() => PublisherWhereUniqueInput)
+  where!: Prisma.AtLeast<PublisherWhereUniqueInput, 'id' | 'name' | 'email'>;
 
-    @Field(() => PublisherWhereUniqueInput, {nullable:false})
-    @Type(() => PublisherWhereUniqueInput)
-    where!: Prisma.AtLeast<PublisherWhereUniqueInput, 'id' | 'name' | 'email'>;
+  @Field(() => PublisherCreateInput, { nullable: false })
+  @Type(() => PublisherCreateInput)
+  create!: PublisherCreateInput;
 
-    @Field(() => PublisherCreateInput, {nullable:false})
-    @Type(() => PublisherCreateInput)
-    create!: PublisherCreateInput;
-
-    @Field(() => PublisherUpdateInput, {nullable:false})
-    @Type(() => PublisherUpdateInput)
-    update!: PublisherUpdateInput;
+  @Field(() => PublisherUpdateInput, { nullable: false })
+  @Type(() => PublisherUpdateInput)
+  update!: PublisherUpdateInput;
 }

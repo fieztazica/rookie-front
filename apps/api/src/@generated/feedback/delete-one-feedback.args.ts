@@ -6,8 +6,7 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class DeleteOneFeedbackArgs {
-
-    @Field(() => FeedbackWhereUniqueInput, {nullable:false})
-    @Type(() => FeedbackWhereUniqueInput)
-    where!: Prisma.AtLeast<FeedbackWhereUniqueInput, 'id'>;
+  @Field(() => FeedbackWhereUniqueInput, { nullable: false })
+  @Type(() => FeedbackWhereUniqueInput)
+  where!: Prisma.AtLeast<FeedbackWhereUniqueInput, 'id'>;
 }

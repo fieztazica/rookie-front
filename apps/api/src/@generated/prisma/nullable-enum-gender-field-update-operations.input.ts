@@ -4,7 +4,6 @@ import { Gender } from './gender.enum';
 
 @InputType()
 export class NullableEnumGenderFieldUpdateOperationsInput {
-
-    @Field(() => Gender, {nullable:true})
-    set?: keyof typeof Gender;
+  @Field(() => Gender, { nullable: true })
+  set?: keyof typeof Gender;
 }

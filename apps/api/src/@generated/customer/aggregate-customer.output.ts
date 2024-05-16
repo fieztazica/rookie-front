@@ -6,13 +6,12 @@ import { CustomerMaxAggregate } from './customer-max-aggregate.output';
 
 @ObjectType()
 export class AggregateCustomer {
+  @Field(() => CustomerCountAggregate, { nullable: true })
+  _count?: CustomerCountAggregate;
 
-    @Field(() => CustomerCountAggregate, {nullable:true})
-    _count?: CustomerCountAggregate;
+  @Field(() => CustomerMinAggregate, { nullable: true })
+  _min?: CustomerMinAggregate;
 
-    @Field(() => CustomerMinAggregate, {nullable:true})
-    _min?: CustomerMinAggregate;
-
-    @Field(() => CustomerMaxAggregate, {nullable:true})
-    _max?: CustomerMaxAggregate;
+  @Field(() => CustomerMaxAggregate, { nullable: true })
+  _max?: CustomerMaxAggregate;
 }

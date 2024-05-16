@@ -6,12 +6,11 @@ import { CustomerUpdateWithoutFeedbackInput } from './customer-update-without-fe
 
 @InputType()
 export class CustomerUpdateToOneWithWhereWithoutFeedbackInput {
+  @Field(() => CustomerWhereInput, { nullable: true })
+  @Type(() => CustomerWhereInput)
+  where?: CustomerWhereInput;
 
-    @Field(() => CustomerWhereInput, {nullable:true})
-    @Type(() => CustomerWhereInput)
-    where?: CustomerWhereInput;
-
-    @Field(() => CustomerUpdateWithoutFeedbackInput, {nullable:false})
-    @Type(() => CustomerUpdateWithoutFeedbackInput)
-    data!: CustomerUpdateWithoutFeedbackInput;
+  @Field(() => CustomerUpdateWithoutFeedbackInput, { nullable: false })
+  @Type(() => CustomerUpdateWithoutFeedbackInput)
+  data!: CustomerUpdateWithoutFeedbackInput;
 }

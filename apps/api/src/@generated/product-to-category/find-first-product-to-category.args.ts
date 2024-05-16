@@ -10,23 +10,25 @@ import { ProductToCategoryScalarFieldEnum } from './product-to-category-scalar-f
 
 @ArgsType()
 export class FindFirstProductToCategoryArgs {
+  @Field(() => ProductToCategoryWhereInput, { nullable: true })
+  @Type(() => ProductToCategoryWhereInput)
+  where?: ProductToCategoryWhereInput;
 
-    @Field(() => ProductToCategoryWhereInput, {nullable:true})
-    @Type(() => ProductToCategoryWhereInput)
-    where?: ProductToCategoryWhereInput;
+  @Field(() => [ProductToCategoryOrderByWithRelationInput], { nullable: true })
+  orderBy?: Array<ProductToCategoryOrderByWithRelationInput>;
 
-    @Field(() => [ProductToCategoryOrderByWithRelationInput], {nullable:true})
-    orderBy?: Array<ProductToCategoryOrderByWithRelationInput>;
+  @Field(() => ProductToCategoryWhereUniqueInput, { nullable: true })
+  cursor?: Prisma.AtLeast<
+    ProductToCategoryWhereUniqueInput,
+    'productId_categoryId'
+  >;
 
-    @Field(() => ProductToCategoryWhereUniqueInput, {nullable:true})
-    cursor?: Prisma.AtLeast<ProductToCategoryWhereUniqueInput, 'productId_categoryId'>;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
-
-    @Field(() => [ProductToCategoryScalarFieldEnum], {nullable:true})
-    distinct?: Array<keyof typeof ProductToCategoryScalarFieldEnum>;
+  @Field(() => [ProductToCategoryScalarFieldEnum], { nullable: true })
+  distinct?: Array<keyof typeof ProductToCategoryScalarFieldEnum>;
 }

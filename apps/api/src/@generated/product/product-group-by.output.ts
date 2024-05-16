@@ -10,49 +10,48 @@ import { ProductMaxAggregate } from './product-max-aggregate.output';
 
 @ObjectType()
 export class ProductGroupBy {
+  @Field(() => String, { nullable: false })
+  id!: string;
 
-    @Field(() => String, {nullable:false})
-    id!: string;
+  @Field(() => String, { nullable: false })
+  name!: string;
 
-    @Field(() => String, {nullable:false})
-    name!: string;
+  @Field(() => String, { nullable: true })
+  displayName?: string;
 
-    @Field(() => String, {nullable:true})
-    displayName?: string;
+  @Field(() => String, { nullable: true })
+  description?: string;
 
-    @Field(() => String, {nullable:true})
-    description?: string;
+  @Field(() => GraphQLDecimal, { nullable: false })
+  price!: Decimal;
 
-    @Field(() => GraphQLDecimal, {nullable:false})
-    price!: Decimal;
+  @Field(() => GraphQLDecimal, { nullable: true })
+  salePrice?: Decimal;
 
-    @Field(() => GraphQLDecimal, {nullable:true})
-    salePrice?: Decimal;
+  @Field(() => String, { nullable: true })
+  accountId?: string;
 
-    @Field(() => String, {nullable:true})
-    accountId?: string;
+  @Field(() => Boolean, { nullable: false })
+  deleted!: boolean;
 
-    @Field(() => Boolean, {nullable:false})
-    deleted!: boolean;
+  @Field(() => Date, { nullable: false })
+  createdAt!: Date | string;
 
-    @Field(() => Date, {nullable:false})
-    createdAt!: Date | string;
+  @Field(() => Date, { nullable: false })
+  updatedAt!: Date | string;
 
-    @Field(() => Date, {nullable:false})
-    updatedAt!: Date | string;
+  @Field(() => ProductCountAggregate, { nullable: true })
+  _count?: ProductCountAggregate;
 
-    @Field(() => ProductCountAggregate, {nullable:true})
-    _count?: ProductCountAggregate;
+  @Field(() => ProductAvgAggregate, { nullable: true })
+  _avg?: ProductAvgAggregate;
 
-    @Field(() => ProductAvgAggregate, {nullable:true})
-    _avg?: ProductAvgAggregate;
+  @Field(() => ProductSumAggregate, { nullable: true })
+  _sum?: ProductSumAggregate;
 
-    @Field(() => ProductSumAggregate, {nullable:true})
-    _sum?: ProductSumAggregate;
+  @Field(() => ProductMinAggregate, { nullable: true })
+  _min?: ProductMinAggregate;
 
-    @Field(() => ProductMinAggregate, {nullable:true})
-    _min?: ProductMinAggregate;
-
-    @Field(() => ProductMaxAggregate, {nullable:true})
-    _max?: ProductMaxAggregate;
+  @Field(() => ProductMaxAggregate, { nullable: true })
+  _max?: ProductMaxAggregate;
 }

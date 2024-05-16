@@ -9,20 +9,27 @@ import { ProductToPublisherWhereUniqueInput } from './product-to-publisher-where
 
 @InputType()
 export class ProductToPublisherCreateNestedManyWithoutProductInput {
+  @Field(() => [ProductToPublisherCreateWithoutProductInput], {
+    nullable: true,
+  })
+  @Type(() => ProductToPublisherCreateWithoutProductInput)
+  create?: Array<ProductToPublisherCreateWithoutProductInput>;
 
-    @Field(() => [ProductToPublisherCreateWithoutProductInput], {nullable:true})
-    @Type(() => ProductToPublisherCreateWithoutProductInput)
-    create?: Array<ProductToPublisherCreateWithoutProductInput>;
+  @Field(() => [ProductToPublisherCreateOrConnectWithoutProductInput], {
+    nullable: true,
+  })
+  @Type(() => ProductToPublisherCreateOrConnectWithoutProductInput)
+  connectOrCreate?: Array<ProductToPublisherCreateOrConnectWithoutProductInput>;
 
-    @Field(() => [ProductToPublisherCreateOrConnectWithoutProductInput], {nullable:true})
-    @Type(() => ProductToPublisherCreateOrConnectWithoutProductInput)
-    connectOrCreate?: Array<ProductToPublisherCreateOrConnectWithoutProductInput>;
+  @Field(() => ProductToPublisherCreateManyProductInputEnvelope, {
+    nullable: true,
+  })
+  @Type(() => ProductToPublisherCreateManyProductInputEnvelope)
+  createMany?: ProductToPublisherCreateManyProductInputEnvelope;
 
-    @Field(() => ProductToPublisherCreateManyProductInputEnvelope, {nullable:true})
-    @Type(() => ProductToPublisherCreateManyProductInputEnvelope)
-    createMany?: ProductToPublisherCreateManyProductInputEnvelope;
-
-    @Field(() => [ProductToPublisherWhereUniqueInput], {nullable:true})
-    @Type(() => ProductToPublisherWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<ProductToPublisherWhereUniqueInput, 'productId_publisherId'>>;
+  @Field(() => [ProductToPublisherWhereUniqueInput], { nullable: true })
+  @Type(() => ProductToPublisherWhereUniqueInput)
+  connect?: Array<
+    Prisma.AtLeast<ProductToPublisherWhereUniqueInput, 'productId_publisherId'>
+  >;
 }

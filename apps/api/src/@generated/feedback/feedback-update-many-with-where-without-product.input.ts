@@ -6,12 +6,11 @@ import { FeedbackUpdateManyMutationInput } from './feedback-update-many-mutation
 
 @InputType()
 export class FeedbackUpdateManyWithWhereWithoutProductInput {
+  @Field(() => FeedbackScalarWhereInput, { nullable: false })
+  @Type(() => FeedbackScalarWhereInput)
+  where!: FeedbackScalarWhereInput;
 
-    @Field(() => FeedbackScalarWhereInput, {nullable:false})
-    @Type(() => FeedbackScalarWhereInput)
-    where!: FeedbackScalarWhereInput;
-
-    @Field(() => FeedbackUpdateManyMutationInput, {nullable:false})
-    @Type(() => FeedbackUpdateManyMutationInput)
-    data!: FeedbackUpdateManyMutationInput;
+  @Field(() => FeedbackUpdateManyMutationInput, { nullable: false })
+  @Type(() => FeedbackUpdateManyMutationInput)
+  data!: FeedbackUpdateManyMutationInput;
 }

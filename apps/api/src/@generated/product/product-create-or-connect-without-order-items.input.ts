@@ -7,12 +7,11 @@ import { ProductCreateWithoutOrderItemsInput } from './product-create-without-or
 
 @InputType()
 export class ProductCreateOrConnectWithoutOrderItemsInput {
+  @Field(() => ProductWhereUniqueInput, { nullable: false })
+  @Type(() => ProductWhereUniqueInput)
+  where!: Prisma.AtLeast<ProductWhereUniqueInput, 'id' | 'name'>;
 
-    @Field(() => ProductWhereUniqueInput, {nullable:false})
-    @Type(() => ProductWhereUniqueInput)
-    where!: Prisma.AtLeast<ProductWhereUniqueInput, 'id' | 'name'>;
-
-    @Field(() => ProductCreateWithoutOrderItemsInput, {nullable:false})
-    @Type(() => ProductCreateWithoutOrderItemsInput)
-    create!: ProductCreateWithoutOrderItemsInput;
+  @Field(() => ProductCreateWithoutOrderItemsInput, { nullable: false })
+  @Type(() => ProductCreateWithoutOrderItemsInput)
+  create!: ProductCreateWithoutOrderItemsInput;
 }

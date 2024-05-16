@@ -5,16 +5,15 @@ import { Type } from 'class-transformer';
 
 @InputType()
 export class OrderListRelationFilter {
+  @Field(() => OrderWhereInput, { nullable: true })
+  @Type(() => OrderWhereInput)
+  every?: OrderWhereInput;
 
-    @Field(() => OrderWhereInput, {nullable:true})
-    @Type(() => OrderWhereInput)
-    every?: OrderWhereInput;
+  @Field(() => OrderWhereInput, { nullable: true })
+  @Type(() => OrderWhereInput)
+  some?: OrderWhereInput;
 
-    @Field(() => OrderWhereInput, {nullable:true})
-    @Type(() => OrderWhereInput)
-    some?: OrderWhereInput;
-
-    @Field(() => OrderWhereInput, {nullable:true})
-    @Type(() => OrderWhereInput)
-    none?: OrderWhereInput;
+  @Field(() => OrderWhereInput, { nullable: true })
+  @Type(() => OrderWhereInput)
+  none?: OrderWhereInput;
 }

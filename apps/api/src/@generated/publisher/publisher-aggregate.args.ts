@@ -12,29 +12,28 @@ import { PublisherMaxAggregateInput } from './publisher-max-aggregate.input';
 
 @ArgsType()
 export class PublisherAggregateArgs {
+  @Field(() => PublisherWhereInput, { nullable: true })
+  @Type(() => PublisherWhereInput)
+  where?: PublisherWhereInput;
 
-    @Field(() => PublisherWhereInput, {nullable:true})
-    @Type(() => PublisherWhereInput)
-    where?: PublisherWhereInput;
+  @Field(() => [PublisherOrderByWithRelationInput], { nullable: true })
+  orderBy?: Array<PublisherOrderByWithRelationInput>;
 
-    @Field(() => [PublisherOrderByWithRelationInput], {nullable:true})
-    orderBy?: Array<PublisherOrderByWithRelationInput>;
+  @Field(() => PublisherWhereUniqueInput, { nullable: true })
+  cursor?: Prisma.AtLeast<PublisherWhereUniqueInput, 'id' | 'name' | 'email'>;
 
-    @Field(() => PublisherWhereUniqueInput, {nullable:true})
-    cursor?: Prisma.AtLeast<PublisherWhereUniqueInput, 'id' | 'name' | 'email'>;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
+  @Field(() => PublisherCountAggregateInput, { nullable: true })
+  _count?: PublisherCountAggregateInput;
 
-    @Field(() => PublisherCountAggregateInput, {nullable:true})
-    _count?: PublisherCountAggregateInput;
+  @Field(() => PublisherMinAggregateInput, { nullable: true })
+  _min?: PublisherMinAggregateInput;
 
-    @Field(() => PublisherMinAggregateInput, {nullable:true})
-    _min?: PublisherMinAggregateInput;
-
-    @Field(() => PublisherMaxAggregateInput, {nullable:true})
-    _max?: PublisherMaxAggregateInput;
+  @Field(() => PublisherMaxAggregateInput, { nullable: true })
+  _max?: PublisherMaxAggregateInput;
 }

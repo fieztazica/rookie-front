@@ -5,16 +5,15 @@ import { NestedEnumGenderNullableFilter } from './nested-enum-gender-nullable-fi
 
 @InputType()
 export class EnumGenderNullableFilter {
+  @Field(() => Gender, { nullable: true })
+  equals?: keyof typeof Gender;
 
-    @Field(() => Gender, {nullable:true})
-    equals?: keyof typeof Gender;
+  @Field(() => [Gender], { nullable: true })
+  in?: Array<keyof typeof Gender>;
 
-    @Field(() => [Gender], {nullable:true})
-    in?: Array<keyof typeof Gender>;
+  @Field(() => [Gender], { nullable: true })
+  notIn?: Array<keyof typeof Gender>;
 
-    @Field(() => [Gender], {nullable:true})
-    notIn?: Array<keyof typeof Gender>;
-
-    @Field(() => NestedEnumGenderNullableFilter, {nullable:true})
-    not?: NestedEnumGenderNullableFilter;
+  @Field(() => NestedEnumGenderNullableFilter, { nullable: true })
+  not?: NestedEnumGenderNullableFilter;
 }

@@ -5,8 +5,7 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class CreateOneOrderArgs {
-
-    @Field(() => OrderCreateInput, {nullable:false})
-    @Type(() => OrderCreateInput)
-    data!: OrderCreateInput;
+  @Field(() => OrderCreateInput, { nullable: false })
+  @Type(() => OrderCreateInput)
+  data!: OrderCreateInput;
 }

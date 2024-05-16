@@ -7,12 +7,11 @@ import { CategoryWhereUniqueInput } from './category-where-unique.input';
 
 @ArgsType()
 export class UpdateOneCategoryArgs {
+  @Field(() => CategoryUpdateInput, { nullable: false })
+  @Type(() => CategoryUpdateInput)
+  data!: CategoryUpdateInput;
 
-    @Field(() => CategoryUpdateInput, {nullable:false})
-    @Type(() => CategoryUpdateInput)
-    data!: CategoryUpdateInput;
-
-    @Field(() => CategoryWhereUniqueInput, {nullable:false})
-    @Type(() => CategoryWhereUniqueInput)
-    where!: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name'>;
+  @Field(() => CategoryWhereUniqueInput, { nullable: false })
+  @Type(() => CategoryWhereUniqueInput)
+  where!: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name'>;
 }

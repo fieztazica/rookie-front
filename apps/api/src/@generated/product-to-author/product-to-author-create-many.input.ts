@@ -3,16 +3,15 @@ import { InputType } from '@nestjs/graphql';
 
 @InputType()
 export class ProductToAuthorCreateManyInput {
+  @Field(() => String, { nullable: false })
+  productId!: string;
 
-    @Field(() => String, {nullable:false})
-    productId!: string;
+  @Field(() => String, { nullable: false })
+  authorId!: string;
 
-    @Field(() => String, {nullable:false})
-    authorId!: string;
+  @Field(() => Date, { nullable: true })
+  createdAt?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
-
-    @Field(() => Date, {nullable:true})
-    updatedAt?: Date | string;
+  @Field(() => Date, { nullable: true })
+  updatedAt?: Date | string;
 }

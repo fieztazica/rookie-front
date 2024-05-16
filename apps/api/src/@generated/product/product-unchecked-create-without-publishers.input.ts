@@ -13,58 +13,67 @@ import { ProductToAuthorUncheckedCreateNestedManyWithoutProductInput } from '../
 
 @InputType()
 export class ProductUncheckedCreateWithoutPublishersInput {
+  @Field(() => String, { nullable: true })
+  id?: string;
 
-    @Field(() => String, {nullable:true})
-    id?: string;
+  @Field(() => String, { nullable: false })
+  name!: string;
 
-    @Field(() => String, {nullable:false})
-    name!: string;
+  @Field(() => String, { nullable: true })
+  displayName?: string;
 
-    @Field(() => String, {nullable:true})
-    displayName?: string;
+  @Field(() => String, { nullable: true })
+  description?: string;
 
-    @Field(() => String, {nullable:true})
-    description?: string;
+  @Field(() => GraphQLDecimal, { nullable: false })
+  @Type(() => Object)
+  @Transform(transformToDecimal)
+  price!: Decimal;
 
-    @Field(() => GraphQLDecimal, {nullable:false})
-    @Type(() => Object)
-    @Transform(transformToDecimal)
-    price!: Decimal;
+  @Field(() => GraphQLDecimal, { nullable: true })
+  @Type(() => Object)
+  @Transform(transformToDecimal)
+  salePrice?: Decimal;
 
-    @Field(() => GraphQLDecimal, {nullable:true})
-    @Type(() => Object)
-    @Transform(transformToDecimal)
-    salePrice?: Decimal;
+  @Field(() => String, { nullable: true })
+  accountId?: string;
 
-    @Field(() => String, {nullable:true})
-    accountId?: string;
+  @Field(() => Boolean, { nullable: true })
+  deleted?: boolean;
 
-    @Field(() => Boolean, {nullable:true})
-    deleted?: boolean;
+  @Field(() => Date, { nullable: true })
+  createdAt?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
+  @Field(() => Date, { nullable: true })
+  updatedAt?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    updatedAt?: Date | string;
+  @Field(() => ProductToCategoryUncheckedCreateNestedManyWithoutProductInput, {
+    nullable: true,
+  })
+  @Type(() => ProductToCategoryUncheckedCreateNestedManyWithoutProductInput)
+  categories?: ProductToCategoryUncheckedCreateNestedManyWithoutProductInput;
 
-    @Field(() => ProductToCategoryUncheckedCreateNestedManyWithoutProductInput, {nullable:true})
-    @Type(() => ProductToCategoryUncheckedCreateNestedManyWithoutProductInput)
-    categories?: ProductToCategoryUncheckedCreateNestedManyWithoutProductInput;
+  @Field(() => OrderItemUncheckedCreateNestedManyWithoutProductInput, {
+    nullable: true,
+  })
+  @Type(() => OrderItemUncheckedCreateNestedManyWithoutProductInput)
+  orderItems?: OrderItemUncheckedCreateNestedManyWithoutProductInput;
 
-    @Field(() => OrderItemUncheckedCreateNestedManyWithoutProductInput, {nullable:true})
-    @Type(() => OrderItemUncheckedCreateNestedManyWithoutProductInput)
-    orderItems?: OrderItemUncheckedCreateNestedManyWithoutProductInput;
+  @Field(() => FeedbackUncheckedCreateNestedManyWithoutProductInput, {
+    nullable: true,
+  })
+  @Type(() => FeedbackUncheckedCreateNestedManyWithoutProductInput)
+  feedbacks?: FeedbackUncheckedCreateNestedManyWithoutProductInput;
 
-    @Field(() => FeedbackUncheckedCreateNestedManyWithoutProductInput, {nullable:true})
-    @Type(() => FeedbackUncheckedCreateNestedManyWithoutProductInput)
-    feedbacks?: FeedbackUncheckedCreateNestedManyWithoutProductInput;
+  @Field(() => ImageUncheckedCreateNestedManyWithoutProductInput, {
+    nullable: true,
+  })
+  @Type(() => ImageUncheckedCreateNestedManyWithoutProductInput)
+  images?: ImageUncheckedCreateNestedManyWithoutProductInput;
 
-    @Field(() => ImageUncheckedCreateNestedManyWithoutProductInput, {nullable:true})
-    @Type(() => ImageUncheckedCreateNestedManyWithoutProductInput)
-    images?: ImageUncheckedCreateNestedManyWithoutProductInput;
-
-    @Field(() => ProductToAuthorUncheckedCreateNestedManyWithoutProductInput, {nullable:true})
-    @Type(() => ProductToAuthorUncheckedCreateNestedManyWithoutProductInput)
-    authors?: ProductToAuthorUncheckedCreateNestedManyWithoutProductInput;
+  @Field(() => ProductToAuthorUncheckedCreateNestedManyWithoutProductInput, {
+    nullable: true,
+  })
+  @Type(() => ProductToAuthorUncheckedCreateNestedManyWithoutProductInput)
+  authors?: ProductToAuthorUncheckedCreateNestedManyWithoutProductInput;
 }

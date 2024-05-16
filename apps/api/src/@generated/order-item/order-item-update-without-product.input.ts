@@ -10,22 +10,23 @@ import { OrderUpdateOneRequiredWithoutOrderItemsNestedInput } from '../order/ord
 
 @InputType()
 export class OrderItemUpdateWithoutProductInput {
+  @Field(() => GraphQLDecimal, { nullable: true })
+  @Type(() => Object)
+  @Transform(transformToDecimal)
+  price?: Decimal;
 
-    @Field(() => GraphQLDecimal, {nullable:true})
-    @Type(() => Object)
-    @Transform(transformToDecimal)
-    price?: Decimal;
+  @Field(() => Int, { nullable: true })
+  quantity?: number;
 
-    @Field(() => Int, {nullable:true})
-    quantity?: number;
+  @Field(() => Date, { nullable: true })
+  createdAt?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
+  @Field(() => Date, { nullable: true })
+  updatedAt?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    updatedAt?: Date | string;
-
-    @Field(() => OrderUpdateOneRequiredWithoutOrderItemsNestedInput, {nullable:true})
-    @Type(() => OrderUpdateOneRequiredWithoutOrderItemsNestedInput)
-    order?: OrderUpdateOneRequiredWithoutOrderItemsNestedInput;
+  @Field(() => OrderUpdateOneRequiredWithoutOrderItemsNestedInput, {
+    nullable: true,
+  })
+  @Type(() => OrderUpdateOneRequiredWithoutOrderItemsNestedInput)
+  order?: OrderUpdateOneRequiredWithoutOrderItemsNestedInput;
 }

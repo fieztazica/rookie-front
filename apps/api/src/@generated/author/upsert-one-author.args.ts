@@ -8,16 +8,18 @@ import { AuthorUpdateInput } from './author-update.input';
 
 @ArgsType()
 export class UpsertOneAuthorArgs {
+  @Field(() => AuthorWhereUniqueInput, { nullable: false })
+  @Type(() => AuthorWhereUniqueInput)
+  where!: Prisma.AtLeast<
+    AuthorWhereUniqueInput,
+    'id' | 'email' | 'phoneNumber'
+  >;
 
-    @Field(() => AuthorWhereUniqueInput, {nullable:false})
-    @Type(() => AuthorWhereUniqueInput)
-    where!: Prisma.AtLeast<AuthorWhereUniqueInput, 'id' | 'email' | 'phoneNumber'>;
+  @Field(() => AuthorCreateInput, { nullable: false })
+  @Type(() => AuthorCreateInput)
+  create!: AuthorCreateInput;
 
-    @Field(() => AuthorCreateInput, {nullable:false})
-    @Type(() => AuthorCreateInput)
-    create!: AuthorCreateInput;
-
-    @Field(() => AuthorUpdateInput, {nullable:false})
-    @Type(() => AuthorUpdateInput)
-    update!: AuthorUpdateInput;
+  @Field(() => AuthorUpdateInput, { nullable: false })
+  @Type(() => AuthorUpdateInput)
+  update!: AuthorUpdateInput;
 }
