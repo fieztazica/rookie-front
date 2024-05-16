@@ -3,11 +3,13 @@
         <div class="font-bold">ROOKIE STORE</div>
         <div class="flex space-x-4">
             {{#if userinfo}}
-            <a>Dashboard</a>
-            <a>Products</a>
-            <a>Categories</a>
-            <a>Customers</a>
-            <a>Orders</a>
+            <a href="/admin">Home</a>
+            <a href="/admin/authors">Authors</a>
+            <a href="/admin/publishers">Publishers</a>
+            <a href="/admin/categories">Categories</a>
+            <a href="/admin/customers">Customers</a>
+            <a href="/admin/products">Products</a>
+            <a href="/admin/orders">Orders</a>
             <p>Hi, {{userinfo.name}}</p>
             <a href="/auth/logout">Logout</a>
             {{else}}
