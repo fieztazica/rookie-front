@@ -12,31 +12,29 @@ import { ProductToPublisherMaxAggregateInput } from './product-to-publisher-max-
 
 @ArgsType()
 export class ProductToPublisherAggregateArgs {
-  @Field(() => ProductToPublisherWhereInput, { nullable: true })
-  @Type(() => ProductToPublisherWhereInput)
-  where?: ProductToPublisherWhereInput;
 
-  @Field(() => [ProductToPublisherOrderByWithRelationInput], { nullable: true })
-  orderBy?: Array<ProductToPublisherOrderByWithRelationInput>;
+    @Field(() => ProductToPublisherWhereInput, {nullable:true})
+    @Type(() => ProductToPublisherWhereInput)
+    where?: ProductToPublisherWhereInput;
 
-  @Field(() => ProductToPublisherWhereUniqueInput, { nullable: true })
-  cursor?: Prisma.AtLeast<
-    ProductToPublisherWhereUniqueInput,
-    'productId_publisherId'
-  >;
+    @Field(() => [ProductToPublisherOrderByWithRelationInput], {nullable:true})
+    orderBy?: Array<ProductToPublisherOrderByWithRelationInput>;
 
-  @Field(() => Int, { nullable: true })
-  take?: number;
+    @Field(() => ProductToPublisherWhereUniqueInput, {nullable:true})
+    cursor?: Prisma.AtLeast<ProductToPublisherWhereUniqueInput, 'productId_publisherId'>;
 
-  @Field(() => Int, { nullable: true })
-  skip?: number;
+    @Field(() => Int, {nullable:true})
+    take?: number;
 
-  @Field(() => ProductToPublisherCountAggregateInput, { nullable: true })
-  _count?: ProductToPublisherCountAggregateInput;
+    @Field(() => Int, {nullable:true})
+    skip?: number;
 
-  @Field(() => ProductToPublisherMinAggregateInput, { nullable: true })
-  _min?: ProductToPublisherMinAggregateInput;
+    @Field(() => ProductToPublisherCountAggregateInput, {nullable:true})
+    _count?: ProductToPublisherCountAggregateInput;
 
-  @Field(() => ProductToPublisherMaxAggregateInput, { nullable: true })
-  _max?: ProductToPublisherMaxAggregateInput;
+    @Field(() => ProductToPublisherMinAggregateInput, {nullable:true})
+    _min?: ProductToPublisherMinAggregateInput;
+
+    @Field(() => ProductToPublisherMaxAggregateInput, {nullable:true})
+    _max?: ProductToPublisherMaxAggregateInput;
 }

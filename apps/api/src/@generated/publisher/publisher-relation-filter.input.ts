@@ -4,9 +4,10 @@ import { PublisherWhereInput } from './publisher-where.input';
 
 @InputType()
 export class PublisherRelationFilter {
-  @Field(() => PublisherWhereInput, { nullable: true })
-  is?: PublisherWhereInput;
 
-  @Field(() => PublisherWhereInput, { nullable: true })
-  isNot?: PublisherWhereInput;
+    @Field(() => PublisherWhereInput, {nullable:true})
+    is?: PublisherWhereInput;
+
+    @Field(() => PublisherWhereInput, {nullable:true})
+    isNot?: PublisherWhereInput;
 }

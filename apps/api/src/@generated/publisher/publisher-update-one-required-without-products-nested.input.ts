@@ -10,25 +10,24 @@ import { PublisherUpdateToOneWithWhereWithoutProductsInput } from './publisher-u
 
 @InputType()
 export class PublisherUpdateOneRequiredWithoutProductsNestedInput {
-  @Field(() => PublisherCreateWithoutProductsInput, { nullable: true })
-  @Type(() => PublisherCreateWithoutProductsInput)
-  create?: PublisherCreateWithoutProductsInput;
 
-  @Field(() => PublisherCreateOrConnectWithoutProductsInput, { nullable: true })
-  @Type(() => PublisherCreateOrConnectWithoutProductsInput)
-  connectOrCreate?: PublisherCreateOrConnectWithoutProductsInput;
+    @Field(() => PublisherCreateWithoutProductsInput, {nullable:true})
+    @Type(() => PublisherCreateWithoutProductsInput)
+    create?: PublisherCreateWithoutProductsInput;
 
-  @Field(() => PublisherUpsertWithoutProductsInput, { nullable: true })
-  @Type(() => PublisherUpsertWithoutProductsInput)
-  upsert?: PublisherUpsertWithoutProductsInput;
+    @Field(() => PublisherCreateOrConnectWithoutProductsInput, {nullable:true})
+    @Type(() => PublisherCreateOrConnectWithoutProductsInput)
+    connectOrCreate?: PublisherCreateOrConnectWithoutProductsInput;
 
-  @Field(() => PublisherWhereUniqueInput, { nullable: true })
-  @Type(() => PublisherWhereUniqueInput)
-  connect?: Prisma.AtLeast<PublisherWhereUniqueInput, 'id' | 'name' | 'email'>;
+    @Field(() => PublisherUpsertWithoutProductsInput, {nullable:true})
+    @Type(() => PublisherUpsertWithoutProductsInput)
+    upsert?: PublisherUpsertWithoutProductsInput;
 
-  @Field(() => PublisherUpdateToOneWithWhereWithoutProductsInput, {
-    nullable: true,
-  })
-  @Type(() => PublisherUpdateToOneWithWhereWithoutProductsInput)
-  update?: PublisherUpdateToOneWithWhereWithoutProductsInput;
+    @Field(() => PublisherWhereUniqueInput, {nullable:true})
+    @Type(() => PublisherWhereUniqueInput)
+    connect?: Prisma.AtLeast<PublisherWhereUniqueInput, 'id' | 'name' | 'email'>;
+
+    @Field(() => PublisherUpdateToOneWithWhereWithoutProductsInput, {nullable:true})
+    @Type(() => PublisherUpdateToOneWithWhereWithoutProductsInput)
+    update?: PublisherUpdateToOneWithWhereWithoutProductsInput;
 }

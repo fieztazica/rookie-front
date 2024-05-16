@@ -13,61 +13,58 @@ import { ProductToPublisherCreateNestedManyWithoutProductInput } from '../produc
 
 @InputType()
 export class ProductCreateWithoutAuthorsInput {
-  @Field(() => String, { nullable: true })
-  id?: string;
 
-  @Field(() => String, { nullable: false })
-  name!: string;
+    @Field(() => String, {nullable:true})
+    id?: string;
 
-  @Field(() => String, { nullable: true })
-  displayName?: string;
+    @Field(() => String, {nullable:false})
+    name!: string;
 
-  @Field(() => String, { nullable: true })
-  description?: string;
+    @Field(() => String, {nullable:true})
+    displayName?: string;
 
-  @Field(() => GraphQLDecimal, { nullable: false })
-  @Type(() => Object)
-  @Transform(transformToDecimal)
-  price!: Decimal;
+    @Field(() => String, {nullable:true})
+    description?: string;
 
-  @Field(() => GraphQLDecimal, { nullable: true })
-  @Type(() => Object)
-  @Transform(transformToDecimal)
-  salePrice?: Decimal;
+    @Field(() => GraphQLDecimal, {nullable:false})
+    @Type(() => Object)
+    @Transform(transformToDecimal)
+    price!: Decimal;
 
-  @Field(() => String, { nullable: true })
-  accountId?: string;
+    @Field(() => GraphQLDecimal, {nullable:true})
+    @Type(() => Object)
+    @Transform(transformToDecimal)
+    salePrice?: Decimal;
 
-  @Field(() => Boolean, { nullable: true })
-  deleted?: boolean;
+    @Field(() => String, {nullable:true})
+    accountId?: string;
 
-  @Field(() => Date, { nullable: true })
-  createdAt?: Date | string;
+    @Field(() => Boolean, {nullable:true})
+    deleted?: boolean;
 
-  @Field(() => Date, { nullable: true })
-  updatedAt?: Date | string;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
 
-  @Field(() => ProductToCategoryCreateNestedManyWithoutProductInput, {
-    nullable: true,
-  })
-  @Type(() => ProductToCategoryCreateNestedManyWithoutProductInput)
-  categories?: ProductToCategoryCreateNestedManyWithoutProductInput;
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
 
-  @Field(() => OrderItemCreateNestedManyWithoutProductInput, { nullable: true })
-  @Type(() => OrderItemCreateNestedManyWithoutProductInput)
-  orderItems?: OrderItemCreateNestedManyWithoutProductInput;
+    @Field(() => ProductToCategoryCreateNestedManyWithoutProductInput, {nullable:true})
+    @Type(() => ProductToCategoryCreateNestedManyWithoutProductInput)
+    categories?: ProductToCategoryCreateNestedManyWithoutProductInput;
 
-  @Field(() => FeedbackCreateNestedManyWithoutProductInput, { nullable: true })
-  @Type(() => FeedbackCreateNestedManyWithoutProductInput)
-  feedbacks?: FeedbackCreateNestedManyWithoutProductInput;
+    @Field(() => OrderItemCreateNestedManyWithoutProductInput, {nullable:true})
+    @Type(() => OrderItemCreateNestedManyWithoutProductInput)
+    orderItems?: OrderItemCreateNestedManyWithoutProductInput;
 
-  @Field(() => ImageCreateNestedManyWithoutProductInput, { nullable: true })
-  @Type(() => ImageCreateNestedManyWithoutProductInput)
-  images?: ImageCreateNestedManyWithoutProductInput;
+    @Field(() => FeedbackCreateNestedManyWithoutProductInput, {nullable:true})
+    @Type(() => FeedbackCreateNestedManyWithoutProductInput)
+    feedbacks?: FeedbackCreateNestedManyWithoutProductInput;
 
-  @Field(() => ProductToPublisherCreateNestedManyWithoutProductInput, {
-    nullable: true,
-  })
-  @Type(() => ProductToPublisherCreateNestedManyWithoutProductInput)
-  publishers?: ProductToPublisherCreateNestedManyWithoutProductInput;
+    @Field(() => ImageCreateNestedManyWithoutProductInput, {nullable:true})
+    @Type(() => ImageCreateNestedManyWithoutProductInput)
+    images?: ImageCreateNestedManyWithoutProductInput;
+
+    @Field(() => ProductToPublisherCreateNestedManyWithoutProductInput, {nullable:true})
+    @Type(() => ProductToPublisherCreateNestedManyWithoutProductInput)
+    publishers?: ProductToPublisherCreateNestedManyWithoutProductInput;
 }

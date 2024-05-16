@@ -6,12 +6,13 @@ import { ProductToAuthorMaxAggregate } from './product-to-author-max-aggregate.o
 
 @ObjectType()
 export class AggregateProductToAuthor {
-  @Field(() => ProductToAuthorCountAggregate, { nullable: true })
-  _count?: ProductToAuthorCountAggregate;
 
-  @Field(() => ProductToAuthorMinAggregate, { nullable: true })
-  _min?: ProductToAuthorMinAggregate;
+    @Field(() => ProductToAuthorCountAggregate, {nullable:true})
+    _count?: ProductToAuthorCountAggregate;
 
-  @Field(() => ProductToAuthorMaxAggregate, { nullable: true })
-  _max?: ProductToAuthorMaxAggregate;
+    @Field(() => ProductToAuthorMinAggregate, {nullable:true})
+    _min?: ProductToAuthorMinAggregate;
+
+    @Field(() => ProductToAuthorMaxAggregate, {nullable:true})
+    _max?: ProductToAuthorMaxAggregate;
 }

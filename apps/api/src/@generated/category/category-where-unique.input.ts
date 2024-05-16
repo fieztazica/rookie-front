@@ -9,37 +9,38 @@ import { Type } from 'class-transformer';
 
 @InputType()
 export class CategoryWhereUniqueInput {
-  @Field(() => String, { nullable: true })
-  id?: string;
 
-  @Field(() => String, { nullable: true })
-  name?: string;
+    @Field(() => String, {nullable:true})
+    id?: string;
 
-  @Field(() => [CategoryWhereInput], { nullable: true })
-  AND?: Array<CategoryWhereInput>;
+    @Field(() => String, {nullable:true})
+    name?: string;
 
-  @Field(() => [CategoryWhereInput], { nullable: true })
-  OR?: Array<CategoryWhereInput>;
+    @Field(() => [CategoryWhereInput], {nullable:true})
+    AND?: Array<CategoryWhereInput>;
 
-  @Field(() => [CategoryWhereInput], { nullable: true })
-  NOT?: Array<CategoryWhereInput>;
+    @Field(() => [CategoryWhereInput], {nullable:true})
+    OR?: Array<CategoryWhereInput>;
 
-  @Field(() => StringFilter, { nullable: true })
-  description?: StringFilter;
+    @Field(() => [CategoryWhereInput], {nullable:true})
+    NOT?: Array<CategoryWhereInput>;
 
-  @Field(() => StringFilter, { nullable: true })
-  displayName?: StringFilter;
+    @Field(() => StringFilter, {nullable:true})
+    description?: StringFilter;
 
-  @Field(() => BoolFilter, { nullable: true })
-  deleted?: BoolFilter;
+    @Field(() => StringFilter, {nullable:true})
+    displayName?: StringFilter;
 
-  @Field(() => DateTimeFilter, { nullable: true })
-  createdAt?: DateTimeFilter;
+    @Field(() => BoolFilter, {nullable:true})
+    deleted?: BoolFilter;
 
-  @Field(() => DateTimeFilter, { nullable: true })
-  updatedAt?: DateTimeFilter;
+    @Field(() => DateTimeFilter, {nullable:true})
+    createdAt?: DateTimeFilter;
 
-  @Field(() => ProductToCategoryListRelationFilter, { nullable: true })
-  @Type(() => ProductToCategoryListRelationFilter)
-  products?: ProductToCategoryListRelationFilter;
+    @Field(() => DateTimeFilter, {nullable:true})
+    updatedAt?: DateTimeFilter;
+
+    @Field(() => ProductToCategoryListRelationFilter, {nullable:true})
+    @Type(() => ProductToCategoryListRelationFilter)
+    products?: ProductToCategoryListRelationFilter;
 }

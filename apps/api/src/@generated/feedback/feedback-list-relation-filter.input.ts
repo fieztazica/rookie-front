@@ -4,12 +4,13 @@ import { FeedbackWhereInput } from './feedback-where.input';
 
 @InputType()
 export class FeedbackListRelationFilter {
-  @Field(() => FeedbackWhereInput, { nullable: true })
-  every?: FeedbackWhereInput;
 
-  @Field(() => FeedbackWhereInput, { nullable: true })
-  some?: FeedbackWhereInput;
+    @Field(() => FeedbackWhereInput, {nullable:true})
+    every?: FeedbackWhereInput;
 
-  @Field(() => FeedbackWhereInput, { nullable: true })
-  none?: FeedbackWhereInput;
+    @Field(() => FeedbackWhereInput, {nullable:true})
+    some?: FeedbackWhereInput;
+
+    @Field(() => FeedbackWhereInput, {nullable:true})
+    none?: FeedbackWhereInput;
 }

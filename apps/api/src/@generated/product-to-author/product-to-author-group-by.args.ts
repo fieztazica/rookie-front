@@ -12,33 +12,32 @@ import { ProductToAuthorMaxAggregateInput } from './product-to-author-max-aggreg
 
 @ArgsType()
 export class ProductToAuthorGroupByArgs {
-  @Field(() => ProductToAuthorWhereInput, { nullable: true })
-  @Type(() => ProductToAuthorWhereInput)
-  where?: ProductToAuthorWhereInput;
 
-  @Field(() => [ProductToAuthorOrderByWithAggregationInput], { nullable: true })
-  orderBy?: Array<ProductToAuthorOrderByWithAggregationInput>;
+    @Field(() => ProductToAuthorWhereInput, {nullable:true})
+    @Type(() => ProductToAuthorWhereInput)
+    where?: ProductToAuthorWhereInput;
 
-  @Field(() => [ProductToAuthorScalarFieldEnum], { nullable: false })
-  by!: Array<keyof typeof ProductToAuthorScalarFieldEnum>;
+    @Field(() => [ProductToAuthorOrderByWithAggregationInput], {nullable:true})
+    orderBy?: Array<ProductToAuthorOrderByWithAggregationInput>;
 
-  @Field(() => ProductToAuthorScalarWhereWithAggregatesInput, {
-    nullable: true,
-  })
-  having?: ProductToAuthorScalarWhereWithAggregatesInput;
+    @Field(() => [ProductToAuthorScalarFieldEnum], {nullable:false})
+    by!: Array<keyof typeof ProductToAuthorScalarFieldEnum>;
 
-  @Field(() => Int, { nullable: true })
-  take?: number;
+    @Field(() => ProductToAuthorScalarWhereWithAggregatesInput, {nullable:true})
+    having?: ProductToAuthorScalarWhereWithAggregatesInput;
 
-  @Field(() => Int, { nullable: true })
-  skip?: number;
+    @Field(() => Int, {nullable:true})
+    take?: number;
 
-  @Field(() => ProductToAuthorCountAggregateInput, { nullable: true })
-  _count?: ProductToAuthorCountAggregateInput;
+    @Field(() => Int, {nullable:true})
+    skip?: number;
 
-  @Field(() => ProductToAuthorMinAggregateInput, { nullable: true })
-  _min?: ProductToAuthorMinAggregateInput;
+    @Field(() => ProductToAuthorCountAggregateInput, {nullable:true})
+    _count?: ProductToAuthorCountAggregateInput;
 
-  @Field(() => ProductToAuthorMaxAggregateInput, { nullable: true })
-  _max?: ProductToAuthorMaxAggregateInput;
+    @Field(() => ProductToAuthorMinAggregateInput, {nullable:true})
+    _min?: ProductToAuthorMinAggregateInput;
+
+    @Field(() => ProductToAuthorMaxAggregateInput, {nullable:true})
+    _max?: ProductToAuthorMaxAggregateInput;
 }

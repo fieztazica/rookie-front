@@ -6,11 +6,12 @@ import { ProductUpdateWithoutPublishersInput } from './product-update-without-pu
 
 @InputType()
 export class ProductUpdateToOneWithWhereWithoutPublishersInput {
-  @Field(() => ProductWhereInput, { nullable: true })
-  @Type(() => ProductWhereInput)
-  where?: ProductWhereInput;
 
-  @Field(() => ProductUpdateWithoutPublishersInput, { nullable: false })
-  @Type(() => ProductUpdateWithoutPublishersInput)
-  data!: ProductUpdateWithoutPublishersInput;
+    @Field(() => ProductWhereInput, {nullable:true})
+    @Type(() => ProductWhereInput)
+    where?: ProductWhereInput;
+
+    @Field(() => ProductUpdateWithoutPublishersInput, {nullable:false})
+    @Type(() => ProductUpdateWithoutPublishersInput)
+    data!: ProductUpdateWithoutPublishersInput;
 }

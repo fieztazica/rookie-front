@@ -8,15 +8,16 @@ import { ImageUpdateInput } from './image-update.input';
 
 @ArgsType()
 export class UpsertOneImageArgs {
-  @Field(() => ImageWhereUniqueInput, { nullable: false })
-  @Type(() => ImageWhereUniqueInput)
-  where!: Prisma.AtLeast<ImageWhereUniqueInput, 'id_productId'>;
 
-  @Field(() => ImageCreateInput, { nullable: false })
-  @Type(() => ImageCreateInput)
-  create!: ImageCreateInput;
+    @Field(() => ImageWhereUniqueInput, {nullable:false})
+    @Type(() => ImageWhereUniqueInput)
+    where!: Prisma.AtLeast<ImageWhereUniqueInput, 'id_productId'>;
 
-  @Field(() => ImageUpdateInput, { nullable: false })
-  @Type(() => ImageUpdateInput)
-  update!: ImageUpdateInput;
+    @Field(() => ImageCreateInput, {nullable:false})
+    @Type(() => ImageCreateInput)
+    create!: ImageCreateInput;
+
+    @Field(() => ImageUpdateInput, {nullable:false})
+    @Type(() => ImageUpdateInput)
+    update!: ImageUpdateInput;
 }

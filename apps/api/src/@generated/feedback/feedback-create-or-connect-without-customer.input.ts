@@ -7,11 +7,12 @@ import { FeedbackCreateWithoutCustomerInput } from './feedback-create-without-cu
 
 @InputType()
 export class FeedbackCreateOrConnectWithoutCustomerInput {
-  @Field(() => FeedbackWhereUniqueInput, { nullable: false })
-  @Type(() => FeedbackWhereUniqueInput)
-  where!: Prisma.AtLeast<FeedbackWhereUniqueInput, 'id'>;
 
-  @Field(() => FeedbackCreateWithoutCustomerInput, { nullable: false })
-  @Type(() => FeedbackCreateWithoutCustomerInput)
-  create!: FeedbackCreateWithoutCustomerInput;
+    @Field(() => FeedbackWhereUniqueInput, {nullable:false})
+    @Type(() => FeedbackWhereUniqueInput)
+    where!: Prisma.AtLeast<FeedbackWhereUniqueInput, 'id'>;
+
+    @Field(() => FeedbackCreateWithoutCustomerInput, {nullable:false})
+    @Type(() => FeedbackCreateWithoutCustomerInput)
+    create!: FeedbackCreateWithoutCustomerInput;
 }

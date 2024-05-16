@@ -10,28 +10,29 @@ import { OrderItemCreateNestedManyWithoutOrderInput } from '../order-item/order-
 
 @InputType()
 export class OrderCreateInput {
-  @Field(() => String, { nullable: true })
-  id?: string;
 
-  @Field(() => GraphQLDecimal, { nullable: false })
-  @Type(() => Object)
-  @Transform(transformToDecimal)
-  total!: Decimal;
+    @Field(() => String, {nullable:true})
+    id?: string;
 
-  @Field(() => Boolean, { nullable: true })
-  deleted?: boolean;
+    @Field(() => GraphQLDecimal, {nullable:false})
+    @Type(() => Object)
+    @Transform(transformToDecimal)
+    total!: Decimal;
 
-  @Field(() => Date, { nullable: true })
-  createdAt?: Date | string;
+    @Field(() => Boolean, {nullable:true})
+    deleted?: boolean;
 
-  @Field(() => Date, { nullable: true })
-  updatedAt?: Date | string;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
 
-  @Field(() => CustomerCreateNestedOneWithoutOrdersInput, { nullable: false })
-  @Type(() => CustomerCreateNestedOneWithoutOrdersInput)
-  customer!: CustomerCreateNestedOneWithoutOrdersInput;
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
 
-  @Field(() => OrderItemCreateNestedManyWithoutOrderInput, { nullable: true })
-  @Type(() => OrderItemCreateNestedManyWithoutOrderInput)
-  orderItems?: OrderItemCreateNestedManyWithoutOrderInput;
+    @Field(() => CustomerCreateNestedOneWithoutOrdersInput, {nullable:false})
+    @Type(() => CustomerCreateNestedOneWithoutOrdersInput)
+    customer!: CustomerCreateNestedOneWithoutOrdersInput;
+
+    @Field(() => OrderItemCreateNestedManyWithoutOrderInput, {nullable:true})
+    @Type(() => OrderItemCreateNestedManyWithoutOrderInput)
+    orderItems?: OrderItemCreateNestedManyWithoutOrderInput;
 }

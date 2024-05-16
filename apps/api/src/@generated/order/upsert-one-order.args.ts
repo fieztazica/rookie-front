@@ -8,15 +8,16 @@ import { OrderUpdateInput } from './order-update.input';
 
 @ArgsType()
 export class UpsertOneOrderArgs {
-  @Field(() => OrderWhereUniqueInput, { nullable: false })
-  @Type(() => OrderWhereUniqueInput)
-  where!: Prisma.AtLeast<OrderWhereUniqueInput, 'id'>;
 
-  @Field(() => OrderCreateInput, { nullable: false })
-  @Type(() => OrderCreateInput)
-  create!: OrderCreateInput;
+    @Field(() => OrderWhereUniqueInput, {nullable:false})
+    @Type(() => OrderWhereUniqueInput)
+    where!: Prisma.AtLeast<OrderWhereUniqueInput, 'id'>;
 
-  @Field(() => OrderUpdateInput, { nullable: false })
-  @Type(() => OrderUpdateInput)
-  update!: OrderUpdateInput;
+    @Field(() => OrderCreateInput, {nullable:false})
+    @Type(() => OrderCreateInput)
+    create!: OrderCreateInput;
+
+    @Field(() => OrderUpdateInput, {nullable:false})
+    @Type(() => OrderUpdateInput)
+    update!: OrderUpdateInput;
 }

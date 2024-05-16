@@ -8,15 +8,16 @@ import { ProductUpdateInput } from './product-update.input';
 
 @ArgsType()
 export class UpsertOneProductArgs {
-  @Field(() => ProductWhereUniqueInput, { nullable: false })
-  @Type(() => ProductWhereUniqueInput)
-  where!: Prisma.AtLeast<ProductWhereUniqueInput, 'id' | 'name'>;
 
-  @Field(() => ProductCreateInput, { nullable: false })
-  @Type(() => ProductCreateInput)
-  create!: ProductCreateInput;
+    @Field(() => ProductWhereUniqueInput, {nullable:false})
+    @Type(() => ProductWhereUniqueInput)
+    where!: Prisma.AtLeast<ProductWhereUniqueInput, 'id' | 'name'>;
 
-  @Field(() => ProductUpdateInput, { nullable: false })
-  @Type(() => ProductUpdateInput)
-  update!: ProductUpdateInput;
+    @Field(() => ProductCreateInput, {nullable:false})
+    @Type(() => ProductCreateInput)
+    create!: ProductCreateInput;
+
+    @Field(() => ProductUpdateInput, {nullable:false})
+    @Type(() => ProductUpdateInput)
+    update!: ProductUpdateInput;
 }

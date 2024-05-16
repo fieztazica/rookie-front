@@ -5,21 +5,22 @@ import { Author } from '../author/author.model';
 
 @ObjectType()
 export class ProductToAuthor {
-  @Field(() => String, { nullable: false })
-  productId!: string;
 
-  @Field(() => String, { nullable: false })
-  authorId!: string;
+    @Field(() => String, {nullable:false})
+    productId!: string;
 
-  @Field(() => Date, { nullable: false })
-  createdAt!: Date;
+    @Field(() => String, {nullable:false})
+    authorId!: string;
 
-  @Field(() => Date, { nullable: false })
-  updatedAt!: Date;
+    @Field(() => Date, {nullable:false})
+    createdAt!: Date;
 
-  @Field(() => Product, { nullable: false })
-  product?: Product;
+    @Field(() => Date, {nullable:false})
+    updatedAt!: Date;
 
-  @Field(() => Author, { nullable: false })
-  author?: Author;
+    @Field(() => Product, {nullable:false})
+    product?: Product;
+
+    @Field(() => Author, {nullable:false})
+    author?: Author;
 }

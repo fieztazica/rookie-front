@@ -7,45 +7,42 @@ import { PublisherCount } from './publisher-count.output';
 /**
  * @@deny('read', deleted)
  */
-@ObjectType({ description: "@@deny('read', deleted)" })
+@ObjectType({description:"@@deny('read', deleted)"})
 export class Publisher {
-  @Field(() => ID, { nullable: false })
-  id!: string;
 
-  @Field(() => String, { nullable: false })
-  name!: string;
+    @Field(() => ID, {nullable:false})
+    id!: string;
 
-  @Field(() => String, { nullable: true })
-  displayName!: string | null;
+    @Field(() => String, {nullable:false})
+    name!: string;
 
-  @Field(() => String, { nullable: false })
-  email!: string;
+    @Field(() => String, {nullable:true})
+    displayName!: string | null;
 
-  @Field(() => String, { nullable: false })
-  phoneNumber!: string;
+    @Field(() => String, {nullable:false})
+    email!: string;
 
-  @Field(() => String, { nullable: false })
-  website!: string;
+    @Field(() => String, {nullable:false})
+    phoneNumber!: string;
 
-  /**
-   * @omit
-   */
-  @Field(() => Boolean, {
-    nullable: false,
-    defaultValue: false,
-    description: '@omit',
-  })
-  deleted!: boolean;
+    @Field(() => String, {nullable:false})
+    website!: string;
 
-  @Field(() => Date, { nullable: false })
-  createdAt!: Date;
+    /**
+     * @omit
+     */
+    @Field(() => Boolean, {nullable:false,defaultValue:false,description:'@omit'})
+    deleted!: boolean;
 
-  @Field(() => Date, { nullable: false })
-  updatedAt!: Date;
+    @Field(() => Date, {nullable:false})
+    createdAt!: Date;
 
-  @Field(() => [ProductToPublisher], { nullable: true })
-  products?: Array<ProductToPublisher>;
+    @Field(() => Date, {nullable:false})
+    updatedAt!: Date;
 
-  @Field(() => PublisherCount, { nullable: false })
-  _count?: PublisherCount;
+    @Field(() => [ProductToPublisher], {nullable:true})
+    products?: Array<ProductToPublisher>;
+
+    @Field(() => PublisherCount, {nullable:false})
+    _count?: PublisherCount;
 }

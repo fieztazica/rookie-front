@@ -7,11 +7,12 @@ import { ProductCreateWithoutPublishersInput } from './product-create-without-pu
 
 @InputType()
 export class ProductCreateOrConnectWithoutPublishersInput {
-  @Field(() => ProductWhereUniqueInput, { nullable: false })
-  @Type(() => ProductWhereUniqueInput)
-  where!: Prisma.AtLeast<ProductWhereUniqueInput, 'id' | 'name'>;
 
-  @Field(() => ProductCreateWithoutPublishersInput, { nullable: false })
-  @Type(() => ProductCreateWithoutPublishersInput)
-  create!: ProductCreateWithoutPublishersInput;
+    @Field(() => ProductWhereUniqueInput, {nullable:false})
+    @Type(() => ProductWhereUniqueInput)
+    where!: Prisma.AtLeast<ProductWhereUniqueInput, 'id' | 'name'>;
+
+    @Field(() => ProductCreateWithoutPublishersInput, {nullable:false})
+    @Type(() => ProductCreateWithoutPublishersInput)
+    create!: ProductCreateWithoutPublishersInput;
 }

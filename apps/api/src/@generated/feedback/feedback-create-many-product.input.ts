@@ -4,27 +4,28 @@ import { Int } from '@nestjs/graphql';
 
 @InputType()
 export class FeedbackCreateManyProductInput {
-  @Field(() => String, { nullable: true })
-  id?: string;
 
-  @Field(() => String, { nullable: false })
-  customerId!: string;
+    @Field(() => String, {nullable:true})
+    id?: string;
 
-  @Field(() => String, { nullable: false })
-  message!: string;
+    @Field(() => String, {nullable:false})
+    customerId!: string;
 
-  @Field(() => Int, { nullable: false })
-  rating!: number;
+    @Field(() => String, {nullable:false})
+    message!: string;
 
-  @Field(() => String, { nullable: true })
-  status?: string;
+    @Field(() => Int, {nullable:false})
+    rating!: number;
 
-  @Field(() => Boolean, { nullable: true })
-  deleted?: boolean;
+    @Field(() => String, {nullable:true})
+    status?: string;
 
-  @Field(() => Date, { nullable: true })
-  createdAt?: Date | string;
+    @Field(() => Boolean, {nullable:true})
+    deleted?: boolean;
 
-  @Field(() => Date, { nullable: true })
-  updatedAt?: Date | string;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
+
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
 }

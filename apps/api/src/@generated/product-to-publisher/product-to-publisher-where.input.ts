@@ -8,31 +8,32 @@ import { PublisherRelationFilter } from '../publisher/publisher-relation-filter.
 
 @InputType()
 export class ProductToPublisherWhereInput {
-  @Field(() => [ProductToPublisherWhereInput], { nullable: true })
-  AND?: Array<ProductToPublisherWhereInput>;
 
-  @Field(() => [ProductToPublisherWhereInput], { nullable: true })
-  OR?: Array<ProductToPublisherWhereInput>;
+    @Field(() => [ProductToPublisherWhereInput], {nullable:true})
+    AND?: Array<ProductToPublisherWhereInput>;
 
-  @Field(() => [ProductToPublisherWhereInput], { nullable: true })
-  NOT?: Array<ProductToPublisherWhereInput>;
+    @Field(() => [ProductToPublisherWhereInput], {nullable:true})
+    OR?: Array<ProductToPublisherWhereInput>;
 
-  @Field(() => StringFilter, { nullable: true })
-  productId?: StringFilter;
+    @Field(() => [ProductToPublisherWhereInput], {nullable:true})
+    NOT?: Array<ProductToPublisherWhereInput>;
 
-  @Field(() => StringFilter, { nullable: true })
-  publisherId?: StringFilter;
+    @Field(() => StringFilter, {nullable:true})
+    productId?: StringFilter;
 
-  @Field(() => DateTimeFilter, { nullable: true })
-  createdAt?: DateTimeFilter;
+    @Field(() => StringFilter, {nullable:true})
+    publisherId?: StringFilter;
 
-  @Field(() => DateTimeFilter, { nullable: true })
-  updatedAt?: DateTimeFilter;
+    @Field(() => DateTimeFilter, {nullable:true})
+    createdAt?: DateTimeFilter;
 
-  @Field(() => ProductRelationFilter, { nullable: true })
-  @Type(() => ProductRelationFilter)
-  product?: ProductRelationFilter;
+    @Field(() => DateTimeFilter, {nullable:true})
+    updatedAt?: DateTimeFilter;
 
-  @Field(() => PublisherRelationFilter, { nullable: true })
-  publisher?: PublisherRelationFilter;
+    @Field(() => ProductRelationFilter, {nullable:true})
+    @Type(() => ProductRelationFilter)
+    product?: ProductRelationFilter;
+
+    @Field(() => PublisherRelationFilter, {nullable:true})
+    publisher?: PublisherRelationFilter;
 }

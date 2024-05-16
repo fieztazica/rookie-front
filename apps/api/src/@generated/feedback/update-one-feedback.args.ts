@@ -7,11 +7,12 @@ import { FeedbackWhereUniqueInput } from './feedback-where-unique.input';
 
 @ArgsType()
 export class UpdateOneFeedbackArgs {
-  @Field(() => FeedbackUpdateInput, { nullable: false })
-  @Type(() => FeedbackUpdateInput)
-  data!: FeedbackUpdateInput;
 
-  @Field(() => FeedbackWhereUniqueInput, { nullable: false })
-  @Type(() => FeedbackWhereUniqueInput)
-  where!: Prisma.AtLeast<FeedbackWhereUniqueInput, 'id'>;
+    @Field(() => FeedbackUpdateInput, {nullable:false})
+    @Type(() => FeedbackUpdateInput)
+    data!: FeedbackUpdateInput;
+
+    @Field(() => FeedbackWhereUniqueInput, {nullable:false})
+    @Type(() => FeedbackWhereUniqueInput)
+    where!: Prisma.AtLeast<FeedbackWhereUniqueInput, 'id'>;
 }

@@ -12,35 +12,32 @@ import { ProductToCategoryMaxAggregateInput } from './product-to-category-max-ag
 
 @ArgsType()
 export class ProductToCategoryGroupByArgs {
-  @Field(() => ProductToCategoryWhereInput, { nullable: true })
-  @Type(() => ProductToCategoryWhereInput)
-  where?: ProductToCategoryWhereInput;
 
-  @Field(() => [ProductToCategoryOrderByWithAggregationInput], {
-    nullable: true,
-  })
-  orderBy?: Array<ProductToCategoryOrderByWithAggregationInput>;
+    @Field(() => ProductToCategoryWhereInput, {nullable:true})
+    @Type(() => ProductToCategoryWhereInput)
+    where?: ProductToCategoryWhereInput;
 
-  @Field(() => [ProductToCategoryScalarFieldEnum], { nullable: false })
-  by!: Array<keyof typeof ProductToCategoryScalarFieldEnum>;
+    @Field(() => [ProductToCategoryOrderByWithAggregationInput], {nullable:true})
+    orderBy?: Array<ProductToCategoryOrderByWithAggregationInput>;
 
-  @Field(() => ProductToCategoryScalarWhereWithAggregatesInput, {
-    nullable: true,
-  })
-  having?: ProductToCategoryScalarWhereWithAggregatesInput;
+    @Field(() => [ProductToCategoryScalarFieldEnum], {nullable:false})
+    by!: Array<keyof typeof ProductToCategoryScalarFieldEnum>;
 
-  @Field(() => Int, { nullable: true })
-  take?: number;
+    @Field(() => ProductToCategoryScalarWhereWithAggregatesInput, {nullable:true})
+    having?: ProductToCategoryScalarWhereWithAggregatesInput;
 
-  @Field(() => Int, { nullable: true })
-  skip?: number;
+    @Field(() => Int, {nullable:true})
+    take?: number;
 
-  @Field(() => ProductToCategoryCountAggregateInput, { nullable: true })
-  _count?: ProductToCategoryCountAggregateInput;
+    @Field(() => Int, {nullable:true})
+    skip?: number;
 
-  @Field(() => ProductToCategoryMinAggregateInput, { nullable: true })
-  _min?: ProductToCategoryMinAggregateInput;
+    @Field(() => ProductToCategoryCountAggregateInput, {nullable:true})
+    _count?: ProductToCategoryCountAggregateInput;
 
-  @Field(() => ProductToCategoryMaxAggregateInput, { nullable: true })
-  _max?: ProductToCategoryMaxAggregateInput;
+    @Field(() => ProductToCategoryMinAggregateInput, {nullable:true})
+    _min?: ProductToCategoryMinAggregateInput;
+
+    @Field(() => ProductToCategoryMaxAggregateInput, {nullable:true})
+    _max?: ProductToCategoryMaxAggregateInput;
 }

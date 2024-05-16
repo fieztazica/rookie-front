@@ -7,15 +7,16 @@ import { CategoryWhereInput } from './category-where.input';
 
 @InputType()
 export class CategoryUpsertWithoutProductsInput {
-  @Field(() => CategoryUpdateWithoutProductsInput, { nullable: false })
-  @Type(() => CategoryUpdateWithoutProductsInput)
-  update!: CategoryUpdateWithoutProductsInput;
 
-  @Field(() => CategoryCreateWithoutProductsInput, { nullable: false })
-  @Type(() => CategoryCreateWithoutProductsInput)
-  create!: CategoryCreateWithoutProductsInput;
+    @Field(() => CategoryUpdateWithoutProductsInput, {nullable:false})
+    @Type(() => CategoryUpdateWithoutProductsInput)
+    update!: CategoryUpdateWithoutProductsInput;
 
-  @Field(() => CategoryWhereInput, { nullable: true })
-  @Type(() => CategoryWhereInput)
-  where?: CategoryWhereInput;
+    @Field(() => CategoryCreateWithoutProductsInput, {nullable:false})
+    @Type(() => CategoryCreateWithoutProductsInput)
+    create!: CategoryCreateWithoutProductsInput;
+
+    @Field(() => CategoryWhereInput, {nullable:true})
+    @Type(() => CategoryWhereInput)
+    where?: CategoryWhereInput;
 }

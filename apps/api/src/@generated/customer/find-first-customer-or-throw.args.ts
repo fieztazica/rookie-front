@@ -10,25 +10,23 @@ import { CustomerScalarFieldEnum } from './customer-scalar-field.enum';
 
 @ArgsType()
 export class FindFirstCustomerOrThrowArgs {
-  @Field(() => CustomerWhereInput, { nullable: true })
-  @Type(() => CustomerWhereInput)
-  where?: CustomerWhereInput;
 
-  @Field(() => [CustomerOrderByWithRelationInput], { nullable: true })
-  orderBy?: Array<CustomerOrderByWithRelationInput>;
+    @Field(() => CustomerWhereInput, {nullable:true})
+    @Type(() => CustomerWhereInput)
+    where?: CustomerWhereInput;
 
-  @Field(() => CustomerWhereUniqueInput, { nullable: true })
-  cursor?: Prisma.AtLeast<
-    CustomerWhereUniqueInput,
-    'id' | 'username' | 'email' | 'phoneNumber'
-  >;
+    @Field(() => [CustomerOrderByWithRelationInput], {nullable:true})
+    orderBy?: Array<CustomerOrderByWithRelationInput>;
 
-  @Field(() => Int, { nullable: true })
-  take?: number;
+    @Field(() => CustomerWhereUniqueInput, {nullable:true})
+    cursor?: Prisma.AtLeast<CustomerWhereUniqueInput, 'id' | 'username' | 'email' | 'phoneNumber'>;
 
-  @Field(() => Int, { nullable: true })
-  skip?: number;
+    @Field(() => Int, {nullable:true})
+    take?: number;
 
-  @Field(() => [CustomerScalarFieldEnum], { nullable: true })
-  distinct?: Array<keyof typeof CustomerScalarFieldEnum>;
+    @Field(() => Int, {nullable:true})
+    skip?: number;
+
+    @Field(() => [CustomerScalarFieldEnum], {nullable:true})
+    distinct?: Array<keyof typeof CustomerScalarFieldEnum>;
 }

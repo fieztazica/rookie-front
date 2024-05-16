@@ -5,7 +5,8 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class DeleteManyProductToPublisherArgs {
-  @Field(() => ProductToPublisherWhereInput, { nullable: true })
-  @Type(() => ProductToPublisherWhereInput)
-  where?: ProductToPublisherWhereInput;
+
+    @Field(() => ProductToPublisherWhereInput, {nullable:true})
+    @Type(() => ProductToPublisherWhereInput)
+    where?: ProductToPublisherWhereInput;
 }

@@ -7,22 +7,23 @@ import { PublisherOrderByWithRelationInput } from '../publisher/publisher-order-
 
 @InputType()
 export class ProductToPublisherOrderByWithRelationInput {
-  @Field(() => SortOrder, { nullable: true })
-  productId?: keyof typeof SortOrder;
 
-  @Field(() => SortOrder, { nullable: true })
-  publisherId?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    productId?: keyof typeof SortOrder;
 
-  @Field(() => SortOrder, { nullable: true })
-  createdAt?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    publisherId?: keyof typeof SortOrder;
 
-  @Field(() => SortOrder, { nullable: true })
-  updatedAt?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    createdAt?: keyof typeof SortOrder;
 
-  @Field(() => ProductOrderByWithRelationInput, { nullable: true })
-  @Type(() => ProductOrderByWithRelationInput)
-  product?: ProductOrderByWithRelationInput;
+    @Field(() => SortOrder, {nullable:true})
+    updatedAt?: keyof typeof SortOrder;
 
-  @Field(() => PublisherOrderByWithRelationInput, { nullable: true })
-  publisher?: PublisherOrderByWithRelationInput;
+    @Field(() => ProductOrderByWithRelationInput, {nullable:true})
+    @Type(() => ProductOrderByWithRelationInput)
+    product?: ProductOrderByWithRelationInput;
+
+    @Field(() => PublisherOrderByWithRelationInput, {nullable:true})
+    publisher?: PublisherOrderByWithRelationInput;
 }

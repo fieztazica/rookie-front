@@ -5,7 +5,8 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class CreateOneImageArgs {
-  @Field(() => ImageCreateInput, { nullable: false })
-  @Type(() => ImageCreateInput)
-  data!: ImageCreateInput;
+
+    @Field(() => ImageCreateInput, {nullable:false})
+    @Type(() => ImageCreateInput)
+    data!: ImageCreateInput;
 }

@@ -7,14 +7,12 @@ import { ProductToCategoryUpdateWithoutProductInput } from './product-to-categor
 
 @InputType()
 export class ProductToCategoryUpdateWithWhereUniqueWithoutProductInput {
-  @Field(() => ProductToCategoryWhereUniqueInput, { nullable: false })
-  @Type(() => ProductToCategoryWhereUniqueInput)
-  where!: Prisma.AtLeast<
-    ProductToCategoryWhereUniqueInput,
-    'productId_categoryId'
-  >;
 
-  @Field(() => ProductToCategoryUpdateWithoutProductInput, { nullable: false })
-  @Type(() => ProductToCategoryUpdateWithoutProductInput)
-  data!: ProductToCategoryUpdateWithoutProductInput;
+    @Field(() => ProductToCategoryWhereUniqueInput, {nullable:false})
+    @Type(() => ProductToCategoryWhereUniqueInput)
+    where!: Prisma.AtLeast<ProductToCategoryWhereUniqueInput, 'productId_categoryId'>;
+
+    @Field(() => ProductToCategoryUpdateWithoutProductInput, {nullable:false})
+    @Type(() => ProductToCategoryUpdateWithoutProductInput)
+    data!: ProductToCategoryUpdateWithoutProductInput;
 }

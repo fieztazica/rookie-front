@@ -7,11 +7,12 @@ import { ImageCreateWithoutProductInput } from './image-create-without-product.i
 
 @InputType()
 export class ImageCreateOrConnectWithoutProductInput {
-  @Field(() => ImageWhereUniqueInput, { nullable: false })
-  @Type(() => ImageWhereUniqueInput)
-  where!: Prisma.AtLeast<ImageWhereUniqueInput, 'id_productId'>;
 
-  @Field(() => ImageCreateWithoutProductInput, { nullable: false })
-  @Type(() => ImageCreateWithoutProductInput)
-  create!: ImageCreateWithoutProductInput;
+    @Field(() => ImageWhereUniqueInput, {nullable:false})
+    @Type(() => ImageWhereUniqueInput)
+    where!: Prisma.AtLeast<ImageWhereUniqueInput, 'id_productId'>;
+
+    @Field(() => ImageCreateWithoutProductInput, {nullable:false})
+    @Type(() => ImageCreateWithoutProductInput)
+    create!: ImageCreateWithoutProductInput;
 }

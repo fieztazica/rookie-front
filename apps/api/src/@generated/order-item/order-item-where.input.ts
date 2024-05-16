@@ -10,42 +10,43 @@ import { ProductRelationFilter } from '../product/product-relation-filter.input'
 
 @InputType()
 export class OrderItemWhereInput {
-  @Field(() => [OrderItemWhereInput], { nullable: true })
-  @Type(() => OrderItemWhereInput)
-  AND?: Array<OrderItemWhereInput>;
 
-  @Field(() => [OrderItemWhereInput], { nullable: true })
-  @Type(() => OrderItemWhereInput)
-  OR?: Array<OrderItemWhereInput>;
+    @Field(() => [OrderItemWhereInput], {nullable:true})
+    @Type(() => OrderItemWhereInput)
+    AND?: Array<OrderItemWhereInput>;
 
-  @Field(() => [OrderItemWhereInput], { nullable: true })
-  @Type(() => OrderItemWhereInput)
-  NOT?: Array<OrderItemWhereInput>;
+    @Field(() => [OrderItemWhereInput], {nullable:true})
+    @Type(() => OrderItemWhereInput)
+    OR?: Array<OrderItemWhereInput>;
 
-  @Field(() => StringFilter, { nullable: true })
-  orderId?: StringFilter;
+    @Field(() => [OrderItemWhereInput], {nullable:true})
+    @Type(() => OrderItemWhereInput)
+    NOT?: Array<OrderItemWhereInput>;
 
-  @Field(() => StringFilter, { nullable: true })
-  productId?: StringFilter;
+    @Field(() => StringFilter, {nullable:true})
+    orderId?: StringFilter;
 
-  @Field(() => DecimalFilter, { nullable: true })
-  @Type(() => DecimalFilter)
-  price?: DecimalFilter;
+    @Field(() => StringFilter, {nullable:true})
+    productId?: StringFilter;
 
-  @Field(() => IntFilter, { nullable: true })
-  quantity?: IntFilter;
+    @Field(() => DecimalFilter, {nullable:true})
+    @Type(() => DecimalFilter)
+    price?: DecimalFilter;
 
-  @Field(() => DateTimeFilter, { nullable: true })
-  createdAt?: DateTimeFilter;
+    @Field(() => IntFilter, {nullable:true})
+    quantity?: IntFilter;
 
-  @Field(() => DateTimeFilter, { nullable: true })
-  updatedAt?: DateTimeFilter;
+    @Field(() => DateTimeFilter, {nullable:true})
+    createdAt?: DateTimeFilter;
 
-  @Field(() => OrderRelationFilter, { nullable: true })
-  @Type(() => OrderRelationFilter)
-  order?: OrderRelationFilter;
+    @Field(() => DateTimeFilter, {nullable:true})
+    updatedAt?: DateTimeFilter;
 
-  @Field(() => ProductRelationFilter, { nullable: true })
-  @Type(() => ProductRelationFilter)
-  product?: ProductRelationFilter;
+    @Field(() => OrderRelationFilter, {nullable:true})
+    @Type(() => OrderRelationFilter)
+    order?: OrderRelationFilter;
+
+    @Field(() => ProductRelationFilter, {nullable:true})
+    @Type(() => ProductRelationFilter)
+    product?: ProductRelationFilter;
 }

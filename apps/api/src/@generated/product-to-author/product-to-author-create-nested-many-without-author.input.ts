@@ -9,23 +9,20 @@ import { ProductToAuthorWhereUniqueInput } from './product-to-author-where-uniqu
 
 @InputType()
 export class ProductToAuthorCreateNestedManyWithoutAuthorInput {
-  @Field(() => [ProductToAuthorCreateWithoutAuthorInput], { nullable: true })
-  @Type(() => ProductToAuthorCreateWithoutAuthorInput)
-  create?: Array<ProductToAuthorCreateWithoutAuthorInput>;
 
-  @Field(() => [ProductToAuthorCreateOrConnectWithoutAuthorInput], {
-    nullable: true,
-  })
-  @Type(() => ProductToAuthorCreateOrConnectWithoutAuthorInput)
-  connectOrCreate?: Array<ProductToAuthorCreateOrConnectWithoutAuthorInput>;
+    @Field(() => [ProductToAuthorCreateWithoutAuthorInput], {nullable:true})
+    @Type(() => ProductToAuthorCreateWithoutAuthorInput)
+    create?: Array<ProductToAuthorCreateWithoutAuthorInput>;
 
-  @Field(() => ProductToAuthorCreateManyAuthorInputEnvelope, { nullable: true })
-  @Type(() => ProductToAuthorCreateManyAuthorInputEnvelope)
-  createMany?: ProductToAuthorCreateManyAuthorInputEnvelope;
+    @Field(() => [ProductToAuthorCreateOrConnectWithoutAuthorInput], {nullable:true})
+    @Type(() => ProductToAuthorCreateOrConnectWithoutAuthorInput)
+    connectOrCreate?: Array<ProductToAuthorCreateOrConnectWithoutAuthorInput>;
 
-  @Field(() => [ProductToAuthorWhereUniqueInput], { nullable: true })
-  @Type(() => ProductToAuthorWhereUniqueInput)
-  connect?: Array<
-    Prisma.AtLeast<ProductToAuthorWhereUniqueInput, 'productId_authorId'>
-  >;
+    @Field(() => ProductToAuthorCreateManyAuthorInputEnvelope, {nullable:true})
+    @Type(() => ProductToAuthorCreateManyAuthorInputEnvelope)
+    createMany?: ProductToAuthorCreateManyAuthorInputEnvelope;
+
+    @Field(() => [ProductToAuthorWhereUniqueInput], {nullable:true})
+    @Type(() => ProductToAuthorWhereUniqueInput)
+    connect?: Array<Prisma.AtLeast<ProductToAuthorWhereUniqueInput, 'productId_authorId'>>;
 }

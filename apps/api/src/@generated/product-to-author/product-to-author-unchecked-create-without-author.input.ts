@@ -3,12 +3,13 @@ import { InputType } from '@nestjs/graphql';
 
 @InputType()
 export class ProductToAuthorUncheckedCreateWithoutAuthorInput {
-  @Field(() => String, { nullable: false })
-  productId!: string;
 
-  @Field(() => Date, { nullable: true })
-  createdAt?: Date | string;
+    @Field(() => String, {nullable:false})
+    productId!: string;
 
-  @Field(() => Date, { nullable: true })
-  updatedAt?: Date | string;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
+
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
 }

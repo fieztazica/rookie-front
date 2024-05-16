@@ -7,11 +7,12 @@ import { OrderItemUpdateWithoutOrderInput } from './order-item-update-without-or
 
 @InputType()
 export class OrderItemUpdateWithWhereUniqueWithoutOrderInput {
-  @Field(() => OrderItemWhereUniqueInput, { nullable: false })
-  @Type(() => OrderItemWhereUniqueInput)
-  where!: Prisma.AtLeast<OrderItemWhereUniqueInput, 'orderId_productId'>;
 
-  @Field(() => OrderItemUpdateWithoutOrderInput, { nullable: false })
-  @Type(() => OrderItemUpdateWithoutOrderInput)
-  data!: OrderItemUpdateWithoutOrderInput;
+    @Field(() => OrderItemWhereUniqueInput, {nullable:false})
+    @Type(() => OrderItemWhereUniqueInput)
+    where!: Prisma.AtLeast<OrderItemWhereUniqueInput, 'orderId_productId'>;
+
+    @Field(() => OrderItemUpdateWithoutOrderInput, {nullable:false})
+    @Type(() => OrderItemUpdateWithoutOrderInput)
+    data!: OrderItemUpdateWithoutOrderInput;
 }

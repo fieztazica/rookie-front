@@ -10,25 +10,24 @@ import { CategoryUpdateToOneWithWhereWithoutProductsInput } from './category-upd
 
 @InputType()
 export class CategoryUpdateOneRequiredWithoutProductsNestedInput {
-  @Field(() => CategoryCreateWithoutProductsInput, { nullable: true })
-  @Type(() => CategoryCreateWithoutProductsInput)
-  create?: CategoryCreateWithoutProductsInput;
 
-  @Field(() => CategoryCreateOrConnectWithoutProductsInput, { nullable: true })
-  @Type(() => CategoryCreateOrConnectWithoutProductsInput)
-  connectOrCreate?: CategoryCreateOrConnectWithoutProductsInput;
+    @Field(() => CategoryCreateWithoutProductsInput, {nullable:true})
+    @Type(() => CategoryCreateWithoutProductsInput)
+    create?: CategoryCreateWithoutProductsInput;
 
-  @Field(() => CategoryUpsertWithoutProductsInput, { nullable: true })
-  @Type(() => CategoryUpsertWithoutProductsInput)
-  upsert?: CategoryUpsertWithoutProductsInput;
+    @Field(() => CategoryCreateOrConnectWithoutProductsInput, {nullable:true})
+    @Type(() => CategoryCreateOrConnectWithoutProductsInput)
+    connectOrCreate?: CategoryCreateOrConnectWithoutProductsInput;
 
-  @Field(() => CategoryWhereUniqueInput, { nullable: true })
-  @Type(() => CategoryWhereUniqueInput)
-  connect?: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name'>;
+    @Field(() => CategoryUpsertWithoutProductsInput, {nullable:true})
+    @Type(() => CategoryUpsertWithoutProductsInput)
+    upsert?: CategoryUpsertWithoutProductsInput;
 
-  @Field(() => CategoryUpdateToOneWithWhereWithoutProductsInput, {
-    nullable: true,
-  })
-  @Type(() => CategoryUpdateToOneWithWhereWithoutProductsInput)
-  update?: CategoryUpdateToOneWithWhereWithoutProductsInput;
+    @Field(() => CategoryWhereUniqueInput, {nullable:true})
+    @Type(() => CategoryWhereUniqueInput)
+    connect?: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name'>;
+
+    @Field(() => CategoryUpdateToOneWithWhereWithoutProductsInput, {nullable:true})
+    @Type(() => CategoryUpdateToOneWithWhereWithoutProductsInput)
+    update?: CategoryUpdateToOneWithWhereWithoutProductsInput;
 }

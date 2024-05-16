@@ -13,53 +13,48 @@ import { OrderScalarWhereInput } from './order-scalar-where.input';
 
 @InputType()
 export class OrderUncheckedUpdateManyWithoutCustomerNestedInput {
-  @Field(() => [OrderCreateWithoutCustomerInput], { nullable: true })
-  @Type(() => OrderCreateWithoutCustomerInput)
-  create?: Array<OrderCreateWithoutCustomerInput>;
 
-  @Field(() => [OrderCreateOrConnectWithoutCustomerInput], { nullable: true })
-  @Type(() => OrderCreateOrConnectWithoutCustomerInput)
-  connectOrCreate?: Array<OrderCreateOrConnectWithoutCustomerInput>;
+    @Field(() => [OrderCreateWithoutCustomerInput], {nullable:true})
+    @Type(() => OrderCreateWithoutCustomerInput)
+    create?: Array<OrderCreateWithoutCustomerInput>;
 
-  @Field(() => [OrderUpsertWithWhereUniqueWithoutCustomerInput], {
-    nullable: true,
-  })
-  @Type(() => OrderUpsertWithWhereUniqueWithoutCustomerInput)
-  upsert?: Array<OrderUpsertWithWhereUniqueWithoutCustomerInput>;
+    @Field(() => [OrderCreateOrConnectWithoutCustomerInput], {nullable:true})
+    @Type(() => OrderCreateOrConnectWithoutCustomerInput)
+    connectOrCreate?: Array<OrderCreateOrConnectWithoutCustomerInput>;
 
-  @Field(() => OrderCreateManyCustomerInputEnvelope, { nullable: true })
-  @Type(() => OrderCreateManyCustomerInputEnvelope)
-  createMany?: OrderCreateManyCustomerInputEnvelope;
+    @Field(() => [OrderUpsertWithWhereUniqueWithoutCustomerInput], {nullable:true})
+    @Type(() => OrderUpsertWithWhereUniqueWithoutCustomerInput)
+    upsert?: Array<OrderUpsertWithWhereUniqueWithoutCustomerInput>;
 
-  @Field(() => [OrderWhereUniqueInput], { nullable: true })
-  @Type(() => OrderWhereUniqueInput)
-  set?: Array<Prisma.AtLeast<OrderWhereUniqueInput, 'id'>>;
+    @Field(() => OrderCreateManyCustomerInputEnvelope, {nullable:true})
+    @Type(() => OrderCreateManyCustomerInputEnvelope)
+    createMany?: OrderCreateManyCustomerInputEnvelope;
 
-  @Field(() => [OrderWhereUniqueInput], { nullable: true })
-  @Type(() => OrderWhereUniqueInput)
-  disconnect?: Array<Prisma.AtLeast<OrderWhereUniqueInput, 'id'>>;
+    @Field(() => [OrderWhereUniqueInput], {nullable:true})
+    @Type(() => OrderWhereUniqueInput)
+    set?: Array<Prisma.AtLeast<OrderWhereUniqueInput, 'id'>>;
 
-  @Field(() => [OrderWhereUniqueInput], { nullable: true })
-  @Type(() => OrderWhereUniqueInput)
-  delete?: Array<Prisma.AtLeast<OrderWhereUniqueInput, 'id'>>;
+    @Field(() => [OrderWhereUniqueInput], {nullable:true})
+    @Type(() => OrderWhereUniqueInput)
+    disconnect?: Array<Prisma.AtLeast<OrderWhereUniqueInput, 'id'>>;
 
-  @Field(() => [OrderWhereUniqueInput], { nullable: true })
-  @Type(() => OrderWhereUniqueInput)
-  connect?: Array<Prisma.AtLeast<OrderWhereUniqueInput, 'id'>>;
+    @Field(() => [OrderWhereUniqueInput], {nullable:true})
+    @Type(() => OrderWhereUniqueInput)
+    delete?: Array<Prisma.AtLeast<OrderWhereUniqueInput, 'id'>>;
 
-  @Field(() => [OrderUpdateWithWhereUniqueWithoutCustomerInput], {
-    nullable: true,
-  })
-  @Type(() => OrderUpdateWithWhereUniqueWithoutCustomerInput)
-  update?: Array<OrderUpdateWithWhereUniqueWithoutCustomerInput>;
+    @Field(() => [OrderWhereUniqueInput], {nullable:true})
+    @Type(() => OrderWhereUniqueInput)
+    connect?: Array<Prisma.AtLeast<OrderWhereUniqueInput, 'id'>>;
 
-  @Field(() => [OrderUpdateManyWithWhereWithoutCustomerInput], {
-    nullable: true,
-  })
-  @Type(() => OrderUpdateManyWithWhereWithoutCustomerInput)
-  updateMany?: Array<OrderUpdateManyWithWhereWithoutCustomerInput>;
+    @Field(() => [OrderUpdateWithWhereUniqueWithoutCustomerInput], {nullable:true})
+    @Type(() => OrderUpdateWithWhereUniqueWithoutCustomerInput)
+    update?: Array<OrderUpdateWithWhereUniqueWithoutCustomerInput>;
 
-  @Field(() => [OrderScalarWhereInput], { nullable: true })
-  @Type(() => OrderScalarWhereInput)
-  deleteMany?: Array<OrderScalarWhereInput>;
+    @Field(() => [OrderUpdateManyWithWhereWithoutCustomerInput], {nullable:true})
+    @Type(() => OrderUpdateManyWithWhereWithoutCustomerInput)
+    updateMany?: Array<OrderUpdateManyWithWhereWithoutCustomerInput>;
+
+    @Field(() => [OrderScalarWhereInput], {nullable:true})
+    @Type(() => OrderScalarWhereInput)
+    deleteMany?: Array<OrderScalarWhereInput>;
 }

@@ -7,11 +7,12 @@ import { PublisherWhereUniqueInput } from './publisher-where-unique.input';
 
 @ArgsType()
 export class UpdateOnePublisherArgs {
-  @Field(() => PublisherUpdateInput, { nullable: false })
-  @Type(() => PublisherUpdateInput)
-  data!: PublisherUpdateInput;
 
-  @Field(() => PublisherWhereUniqueInput, { nullable: false })
-  @Type(() => PublisherWhereUniqueInput)
-  where!: Prisma.AtLeast<PublisherWhereUniqueInput, 'id' | 'name' | 'email'>;
+    @Field(() => PublisherUpdateInput, {nullable:false})
+    @Type(() => PublisherUpdateInput)
+    data!: PublisherUpdateInput;
+
+    @Field(() => PublisherWhereUniqueInput, {nullable:false})
+    @Type(() => PublisherWhereUniqueInput)
+    where!: Prisma.AtLeast<PublisherWhereUniqueInput, 'id' | 'name' | 'email'>;
 }

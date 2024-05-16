@@ -8,15 +8,16 @@ import { FeedbackCreateWithoutProductInput } from './feedback-create-without-pro
 
 @InputType()
 export class FeedbackUpsertWithWhereUniqueWithoutProductInput {
-  @Field(() => FeedbackWhereUniqueInput, { nullable: false })
-  @Type(() => FeedbackWhereUniqueInput)
-  where!: Prisma.AtLeast<FeedbackWhereUniqueInput, 'id'>;
 
-  @Field(() => FeedbackUpdateWithoutProductInput, { nullable: false })
-  @Type(() => FeedbackUpdateWithoutProductInput)
-  update!: FeedbackUpdateWithoutProductInput;
+    @Field(() => FeedbackWhereUniqueInput, {nullable:false})
+    @Type(() => FeedbackWhereUniqueInput)
+    where!: Prisma.AtLeast<FeedbackWhereUniqueInput, 'id'>;
 
-  @Field(() => FeedbackCreateWithoutProductInput, { nullable: false })
-  @Type(() => FeedbackCreateWithoutProductInput)
-  create!: FeedbackCreateWithoutProductInput;
+    @Field(() => FeedbackUpdateWithoutProductInput, {nullable:false})
+    @Type(() => FeedbackUpdateWithoutProductInput)
+    update!: FeedbackUpdateWithoutProductInput;
+
+    @Field(() => FeedbackCreateWithoutProductInput, {nullable:false})
+    @Type(() => FeedbackCreateWithoutProductInput)
+    create!: FeedbackCreateWithoutProductInput;
 }

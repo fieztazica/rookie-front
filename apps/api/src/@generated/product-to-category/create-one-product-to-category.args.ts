@@ -5,7 +5,8 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class CreateOneProductToCategoryArgs {
-  @Field(() => ProductToCategoryCreateInput, { nullable: false })
-  @Type(() => ProductToCategoryCreateInput)
-  data!: ProductToCategoryCreateInput;
+
+    @Field(() => ProductToCategoryCreateInput, {nullable:false})
+    @Type(() => ProductToCategoryCreateInput)
+    data!: ProductToCategoryCreateInput;
 }

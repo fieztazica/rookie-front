@@ -8,15 +8,16 @@ import { FeedbackUpdateInput } from './feedback-update.input';
 
 @ArgsType()
 export class UpsertOneFeedbackArgs {
-  @Field(() => FeedbackWhereUniqueInput, { nullable: false })
-  @Type(() => FeedbackWhereUniqueInput)
-  where!: Prisma.AtLeast<FeedbackWhereUniqueInput, 'id'>;
 
-  @Field(() => FeedbackCreateInput, { nullable: false })
-  @Type(() => FeedbackCreateInput)
-  create!: FeedbackCreateInput;
+    @Field(() => FeedbackWhereUniqueInput, {nullable:false})
+    @Type(() => FeedbackWhereUniqueInput)
+    where!: Prisma.AtLeast<FeedbackWhereUniqueInput, 'id'>;
 
-  @Field(() => FeedbackUpdateInput, { nullable: false })
-  @Type(() => FeedbackUpdateInput)
-  update!: FeedbackUpdateInput;
+    @Field(() => FeedbackCreateInput, {nullable:false})
+    @Type(() => FeedbackCreateInput)
+    create!: FeedbackCreateInput;
+
+    @Field(() => FeedbackUpdateInput, {nullable:false})
+    @Type(() => FeedbackUpdateInput)
+    update!: FeedbackUpdateInput;
 }

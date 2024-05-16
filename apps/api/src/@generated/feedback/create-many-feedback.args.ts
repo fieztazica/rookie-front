@@ -5,10 +5,11 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class CreateManyFeedbackArgs {
-  @Field(() => [FeedbackCreateManyInput], { nullable: false })
-  @Type(() => FeedbackCreateManyInput)
-  data!: Array<FeedbackCreateManyInput>;
 
-  @Field(() => Boolean, { nullable: true })
-  skipDuplicates?: boolean;
+    @Field(() => [FeedbackCreateManyInput], {nullable:false})
+    @Type(() => FeedbackCreateManyInput)
+    data!: Array<FeedbackCreateManyInput>;
+
+    @Field(() => Boolean, {nullable:true})
+    skipDuplicates?: boolean;
 }

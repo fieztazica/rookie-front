@@ -5,11 +5,12 @@ import { Type } from 'class-transformer';
 
 @InputType()
 export class ProductRelationFilter {
-  @Field(() => ProductWhereInput, { nullable: true })
-  @Type(() => ProductWhereInput)
-  is?: ProductWhereInput;
 
-  @Field(() => ProductWhereInput, { nullable: true })
-  @Type(() => ProductWhereInput)
-  isNot?: ProductWhereInput;
+    @Field(() => ProductWhereInput, {nullable:true})
+    @Type(() => ProductWhereInput)
+    is?: ProductWhereInput;
+
+    @Field(() => ProductWhereInput, {nullable:true})
+    @Type(() => ProductWhereInput)
+    isNot?: ProductWhereInput;
 }

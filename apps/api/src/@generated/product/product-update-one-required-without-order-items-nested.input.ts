@@ -10,25 +10,24 @@ import { ProductUpdateToOneWithWhereWithoutOrderItemsInput } from './product-upd
 
 @InputType()
 export class ProductUpdateOneRequiredWithoutOrderItemsNestedInput {
-  @Field(() => ProductCreateWithoutOrderItemsInput, { nullable: true })
-  @Type(() => ProductCreateWithoutOrderItemsInput)
-  create?: ProductCreateWithoutOrderItemsInput;
 
-  @Field(() => ProductCreateOrConnectWithoutOrderItemsInput, { nullable: true })
-  @Type(() => ProductCreateOrConnectWithoutOrderItemsInput)
-  connectOrCreate?: ProductCreateOrConnectWithoutOrderItemsInput;
+    @Field(() => ProductCreateWithoutOrderItemsInput, {nullable:true})
+    @Type(() => ProductCreateWithoutOrderItemsInput)
+    create?: ProductCreateWithoutOrderItemsInput;
 
-  @Field(() => ProductUpsertWithoutOrderItemsInput, { nullable: true })
-  @Type(() => ProductUpsertWithoutOrderItemsInput)
-  upsert?: ProductUpsertWithoutOrderItemsInput;
+    @Field(() => ProductCreateOrConnectWithoutOrderItemsInput, {nullable:true})
+    @Type(() => ProductCreateOrConnectWithoutOrderItemsInput)
+    connectOrCreate?: ProductCreateOrConnectWithoutOrderItemsInput;
 
-  @Field(() => ProductWhereUniqueInput, { nullable: true })
-  @Type(() => ProductWhereUniqueInput)
-  connect?: Prisma.AtLeast<ProductWhereUniqueInput, 'id' | 'name'>;
+    @Field(() => ProductUpsertWithoutOrderItemsInput, {nullable:true})
+    @Type(() => ProductUpsertWithoutOrderItemsInput)
+    upsert?: ProductUpsertWithoutOrderItemsInput;
 
-  @Field(() => ProductUpdateToOneWithWhereWithoutOrderItemsInput, {
-    nullable: true,
-  })
-  @Type(() => ProductUpdateToOneWithWhereWithoutOrderItemsInput)
-  update?: ProductUpdateToOneWithWhereWithoutOrderItemsInput;
+    @Field(() => ProductWhereUniqueInput, {nullable:true})
+    @Type(() => ProductWhereUniqueInput)
+    connect?: Prisma.AtLeast<ProductWhereUniqueInput, 'id' | 'name'>;
+
+    @Field(() => ProductUpdateToOneWithWhereWithoutOrderItemsInput, {nullable:true})
+    @Type(() => ProductUpdateToOneWithWhereWithoutOrderItemsInput)
+    update?: ProductUpdateToOneWithWhereWithoutOrderItemsInput;
 }

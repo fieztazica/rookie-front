@@ -5,10 +5,11 @@ import { Type } from 'class-transformer';
 
 @InputType()
 export class OrderCreateManyCustomerInputEnvelope {
-  @Field(() => [OrderCreateManyCustomerInput], { nullable: false })
-  @Type(() => OrderCreateManyCustomerInput)
-  data!: Array<OrderCreateManyCustomerInput>;
 
-  @Field(() => Boolean, { nullable: true })
-  skipDuplicates?: boolean;
+    @Field(() => [OrderCreateManyCustomerInput], {nullable:false})
+    @Type(() => OrderCreateManyCustomerInput)
+    data!: Array<OrderCreateManyCustomerInput>;
+
+    @Field(() => Boolean, {nullable:true})
+    skipDuplicates?: boolean;
 }

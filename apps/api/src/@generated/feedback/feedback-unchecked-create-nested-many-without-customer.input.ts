@@ -9,21 +9,20 @@ import { FeedbackWhereUniqueInput } from './feedback-where-unique.input';
 
 @InputType()
 export class FeedbackUncheckedCreateNestedManyWithoutCustomerInput {
-  @Field(() => [FeedbackCreateWithoutCustomerInput], { nullable: true })
-  @Type(() => FeedbackCreateWithoutCustomerInput)
-  create?: Array<FeedbackCreateWithoutCustomerInput>;
 
-  @Field(() => [FeedbackCreateOrConnectWithoutCustomerInput], {
-    nullable: true,
-  })
-  @Type(() => FeedbackCreateOrConnectWithoutCustomerInput)
-  connectOrCreate?: Array<FeedbackCreateOrConnectWithoutCustomerInput>;
+    @Field(() => [FeedbackCreateWithoutCustomerInput], {nullable:true})
+    @Type(() => FeedbackCreateWithoutCustomerInput)
+    create?: Array<FeedbackCreateWithoutCustomerInput>;
 
-  @Field(() => FeedbackCreateManyCustomerInputEnvelope, { nullable: true })
-  @Type(() => FeedbackCreateManyCustomerInputEnvelope)
-  createMany?: FeedbackCreateManyCustomerInputEnvelope;
+    @Field(() => [FeedbackCreateOrConnectWithoutCustomerInput], {nullable:true})
+    @Type(() => FeedbackCreateOrConnectWithoutCustomerInput)
+    connectOrCreate?: Array<FeedbackCreateOrConnectWithoutCustomerInput>;
 
-  @Field(() => [FeedbackWhereUniqueInput], { nullable: true })
-  @Type(() => FeedbackWhereUniqueInput)
-  connect?: Array<Prisma.AtLeast<FeedbackWhereUniqueInput, 'id'>>;
+    @Field(() => FeedbackCreateManyCustomerInputEnvelope, {nullable:true})
+    @Type(() => FeedbackCreateManyCustomerInputEnvelope)
+    createMany?: FeedbackCreateManyCustomerInputEnvelope;
+
+    @Field(() => [FeedbackWhereUniqueInput], {nullable:true})
+    @Type(() => FeedbackWhereUniqueInput)
+    connect?: Array<Prisma.AtLeast<FeedbackWhereUniqueInput, 'id'>>;
 }

@@ -6,24 +6,25 @@ import { ProductToPublisherMaxAggregate } from './product-to-publisher-max-aggre
 
 @ObjectType()
 export class ProductToPublisherGroupBy {
-  @Field(() => String, { nullable: false })
-  productId!: string;
 
-  @Field(() => String, { nullable: false })
-  publisherId!: string;
+    @Field(() => String, {nullable:false})
+    productId!: string;
 
-  @Field(() => Date, { nullable: false })
-  createdAt!: Date | string;
+    @Field(() => String, {nullable:false})
+    publisherId!: string;
 
-  @Field(() => Date, { nullable: false })
-  updatedAt!: Date | string;
+    @Field(() => Date, {nullable:false})
+    createdAt!: Date | string;
 
-  @Field(() => ProductToPublisherCountAggregate, { nullable: true })
-  _count?: ProductToPublisherCountAggregate;
+    @Field(() => Date, {nullable:false})
+    updatedAt!: Date | string;
 
-  @Field(() => ProductToPublisherMinAggregate, { nullable: true })
-  _min?: ProductToPublisherMinAggregate;
+    @Field(() => ProductToPublisherCountAggregate, {nullable:true})
+    _count?: ProductToPublisherCountAggregate;
 
-  @Field(() => ProductToPublisherMaxAggregate, { nullable: true })
-  _max?: ProductToPublisherMaxAggregate;
+    @Field(() => ProductToPublisherMinAggregate, {nullable:true})
+    _min?: ProductToPublisherMinAggregate;
+
+    @Field(() => ProductToPublisherMaxAggregate, {nullable:true})
+    _max?: ProductToPublisherMaxAggregate;
 }

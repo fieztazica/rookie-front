@@ -6,11 +6,12 @@ import { OrderWhereInput } from './order-where.input';
 
 @ArgsType()
 export class UpdateManyOrderArgs {
-  @Field(() => OrderUpdateManyMutationInput, { nullable: false })
-  @Type(() => OrderUpdateManyMutationInput)
-  data!: OrderUpdateManyMutationInput;
 
-  @Field(() => OrderWhereInput, { nullable: true })
-  @Type(() => OrderWhereInput)
-  where?: OrderWhereInput;
+    @Field(() => OrderUpdateManyMutationInput, {nullable:false})
+    @Type(() => OrderUpdateManyMutationInput)
+    data!: OrderUpdateManyMutationInput;
+
+    @Field(() => OrderWhereInput, {nullable:true})
+    @Type(() => OrderWhereInput)
+    where?: OrderWhereInput;
 }

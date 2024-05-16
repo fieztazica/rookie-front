@@ -6,11 +6,12 @@ import { ProductWhereInput } from './product-where.input';
 
 @ArgsType()
 export class UpdateManyProductArgs {
-  @Field(() => ProductUpdateManyMutationInput, { nullable: false })
-  @Type(() => ProductUpdateManyMutationInput)
-  data!: ProductUpdateManyMutationInput;
 
-  @Field(() => ProductWhereInput, { nullable: true })
-  @Type(() => ProductWhereInput)
-  where?: ProductWhereInput;
+    @Field(() => ProductUpdateManyMutationInput, {nullable:false})
+    @Type(() => ProductUpdateManyMutationInput)
+    data!: ProductUpdateManyMutationInput;
+
+    @Field(() => ProductWhereInput, {nullable:true})
+    @Type(() => ProductWhereInput)
+    where?: ProductWhereInput;
 }

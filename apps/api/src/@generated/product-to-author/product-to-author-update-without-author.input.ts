@@ -5,15 +5,14 @@ import { Type } from 'class-transformer';
 
 @InputType()
 export class ProductToAuthorUpdateWithoutAuthorInput {
-  @Field(() => Date, { nullable: true })
-  createdAt?: Date | string;
 
-  @Field(() => Date, { nullable: true })
-  updatedAt?: Date | string;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
 
-  @Field(() => ProductUpdateOneRequiredWithoutAuthorsNestedInput, {
-    nullable: true,
-  })
-  @Type(() => ProductUpdateOneRequiredWithoutAuthorsNestedInput)
-  product?: ProductUpdateOneRequiredWithoutAuthorsNestedInput;
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
+
+    @Field(() => ProductUpdateOneRequiredWithoutAuthorsNestedInput, {nullable:true})
+    @Type(() => ProductUpdateOneRequiredWithoutAuthorsNestedInput)
+    product?: ProductUpdateOneRequiredWithoutAuthorsNestedInput;
 }

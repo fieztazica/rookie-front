@@ -9,19 +9,20 @@ import { OrderWhereUniqueInput } from './order-where-unique.input';
 
 @InputType()
 export class OrderCreateNestedManyWithoutCustomerInput {
-  @Field(() => [OrderCreateWithoutCustomerInput], { nullable: true })
-  @Type(() => OrderCreateWithoutCustomerInput)
-  create?: Array<OrderCreateWithoutCustomerInput>;
 
-  @Field(() => [OrderCreateOrConnectWithoutCustomerInput], { nullable: true })
-  @Type(() => OrderCreateOrConnectWithoutCustomerInput)
-  connectOrCreate?: Array<OrderCreateOrConnectWithoutCustomerInput>;
+    @Field(() => [OrderCreateWithoutCustomerInput], {nullable:true})
+    @Type(() => OrderCreateWithoutCustomerInput)
+    create?: Array<OrderCreateWithoutCustomerInput>;
 
-  @Field(() => OrderCreateManyCustomerInputEnvelope, { nullable: true })
-  @Type(() => OrderCreateManyCustomerInputEnvelope)
-  createMany?: OrderCreateManyCustomerInputEnvelope;
+    @Field(() => [OrderCreateOrConnectWithoutCustomerInput], {nullable:true})
+    @Type(() => OrderCreateOrConnectWithoutCustomerInput)
+    connectOrCreate?: Array<OrderCreateOrConnectWithoutCustomerInput>;
 
-  @Field(() => [OrderWhereUniqueInput], { nullable: true })
-  @Type(() => OrderWhereUniqueInput)
-  connect?: Array<Prisma.AtLeast<OrderWhereUniqueInput, 'id'>>;
+    @Field(() => OrderCreateManyCustomerInputEnvelope, {nullable:true})
+    @Type(() => OrderCreateManyCustomerInputEnvelope)
+    createMany?: OrderCreateManyCustomerInputEnvelope;
+
+    @Field(() => [OrderWhereUniqueInput], {nullable:true})
+    @Type(() => OrderWhereUniqueInput)
+    connect?: Array<Prisma.AtLeast<OrderWhereUniqueInput, 'id'>>;
 }

@@ -7,11 +7,12 @@ import { ImageWhereUniqueInput } from './image-where-unique.input';
 
 @ArgsType()
 export class UpdateOneImageArgs {
-  @Field(() => ImageUpdateInput, { nullable: false })
-  @Type(() => ImageUpdateInput)
-  data!: ImageUpdateInput;
 
-  @Field(() => ImageWhereUniqueInput, { nullable: false })
-  @Type(() => ImageWhereUniqueInput)
-  where!: Prisma.AtLeast<ImageWhereUniqueInput, 'id_productId'>;
+    @Field(() => ImageUpdateInput, {nullable:false})
+    @Type(() => ImageUpdateInput)
+    data!: ImageUpdateInput;
+
+    @Field(() => ImageWhereUniqueInput, {nullable:false})
+    @Type(() => ImageWhereUniqueInput)
+    where!: Prisma.AtLeast<ImageWhereUniqueInput, 'id_productId'>;
 }

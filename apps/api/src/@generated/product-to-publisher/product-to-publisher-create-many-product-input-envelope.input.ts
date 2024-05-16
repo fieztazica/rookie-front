@@ -5,10 +5,11 @@ import { Type } from 'class-transformer';
 
 @InputType()
 export class ProductToPublisherCreateManyProductInputEnvelope {
-  @Field(() => [ProductToPublisherCreateManyProductInput], { nullable: false })
-  @Type(() => ProductToPublisherCreateManyProductInput)
-  data!: Array<ProductToPublisherCreateManyProductInput>;
 
-  @Field(() => Boolean, { nullable: true })
-  skipDuplicates?: boolean;
+    @Field(() => [ProductToPublisherCreateManyProductInput], {nullable:false})
+    @Type(() => ProductToPublisherCreateManyProductInput)
+    data!: Array<ProductToPublisherCreateManyProductInput>;
+
+    @Field(() => Boolean, {nullable:true})
+    skipDuplicates?: boolean;
 }

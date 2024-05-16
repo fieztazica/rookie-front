@@ -3,15 +3,16 @@ import { ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
 export class ProductToAuthorMaxAggregate {
-  @Field(() => String, { nullable: true })
-  productId?: string;
 
-  @Field(() => String, { nullable: true })
-  authorId?: string;
+    @Field(() => String, {nullable:true})
+    productId?: string;
 
-  @Field(() => Date, { nullable: true })
-  createdAt?: Date | string;
+    @Field(() => String, {nullable:true})
+    authorId?: string;
 
-  @Field(() => Date, { nullable: true })
-  updatedAt?: Date | string;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
+
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
 }

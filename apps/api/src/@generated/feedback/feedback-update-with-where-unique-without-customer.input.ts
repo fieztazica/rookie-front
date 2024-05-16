@@ -7,11 +7,12 @@ import { FeedbackUpdateWithoutCustomerInput } from './feedback-update-without-cu
 
 @InputType()
 export class FeedbackUpdateWithWhereUniqueWithoutCustomerInput {
-  @Field(() => FeedbackWhereUniqueInput, { nullable: false })
-  @Type(() => FeedbackWhereUniqueInput)
-  where!: Prisma.AtLeast<FeedbackWhereUniqueInput, 'id'>;
 
-  @Field(() => FeedbackUpdateWithoutCustomerInput, { nullable: false })
-  @Type(() => FeedbackUpdateWithoutCustomerInput)
-  data!: FeedbackUpdateWithoutCustomerInput;
+    @Field(() => FeedbackWhereUniqueInput, {nullable:false})
+    @Type(() => FeedbackWhereUniqueInput)
+    where!: Prisma.AtLeast<FeedbackWhereUniqueInput, 'id'>;
+
+    @Field(() => FeedbackUpdateWithoutCustomerInput, {nullable:false})
+    @Type(() => FeedbackUpdateWithoutCustomerInput)
+    data!: FeedbackUpdateWithoutCustomerInput;
 }

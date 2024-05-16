@@ -5,10 +5,11 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class CreateManyImageArgs {
-  @Field(() => [ImageCreateManyInput], { nullable: false })
-  @Type(() => ImageCreateManyInput)
-  data!: Array<ImageCreateManyInput>;
 
-  @Field(() => Boolean, { nullable: true })
-  skipDuplicates?: boolean;
+    @Field(() => [ImageCreateManyInput], {nullable:false})
+    @Type(() => ImageCreateManyInput)
+    data!: Array<ImageCreateManyInput>;
+
+    @Field(() => Boolean, {nullable:true})
+    skipDuplicates?: boolean;
 }

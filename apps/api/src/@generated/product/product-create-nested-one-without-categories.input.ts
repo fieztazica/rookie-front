@@ -8,15 +8,16 @@ import { ProductWhereUniqueInput } from './product-where-unique.input';
 
 @InputType()
 export class ProductCreateNestedOneWithoutCategoriesInput {
-  @Field(() => ProductCreateWithoutCategoriesInput, { nullable: true })
-  @Type(() => ProductCreateWithoutCategoriesInput)
-  create?: ProductCreateWithoutCategoriesInput;
 
-  @Field(() => ProductCreateOrConnectWithoutCategoriesInput, { nullable: true })
-  @Type(() => ProductCreateOrConnectWithoutCategoriesInput)
-  connectOrCreate?: ProductCreateOrConnectWithoutCategoriesInput;
+    @Field(() => ProductCreateWithoutCategoriesInput, {nullable:true})
+    @Type(() => ProductCreateWithoutCategoriesInput)
+    create?: ProductCreateWithoutCategoriesInput;
 
-  @Field(() => ProductWhereUniqueInput, { nullable: true })
-  @Type(() => ProductWhereUniqueInput)
-  connect?: Prisma.AtLeast<ProductWhereUniqueInput, 'id' | 'name'>;
+    @Field(() => ProductCreateOrConnectWithoutCategoriesInput, {nullable:true})
+    @Type(() => ProductCreateOrConnectWithoutCategoriesInput)
+    connectOrCreate?: ProductCreateOrConnectWithoutCategoriesInput;
+
+    @Field(() => ProductWhereUniqueInput, {nullable:true})
+    @Type(() => ProductWhereUniqueInput)
+    connect?: Prisma.AtLeast<ProductWhereUniqueInput, 'id' | 'name'>;
 }

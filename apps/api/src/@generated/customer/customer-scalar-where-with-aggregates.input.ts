@@ -7,48 +7,49 @@ import { DateTimeWithAggregatesFilter } from '../prisma/date-time-with-aggregate
 
 @InputType()
 export class CustomerScalarWhereWithAggregatesInput {
-  @Field(() => [CustomerScalarWhereWithAggregatesInput], { nullable: true })
-  AND?: Array<CustomerScalarWhereWithAggregatesInput>;
 
-  @Field(() => [CustomerScalarWhereWithAggregatesInput], { nullable: true })
-  OR?: Array<CustomerScalarWhereWithAggregatesInput>;
+    @Field(() => [CustomerScalarWhereWithAggregatesInput], {nullable:true})
+    AND?: Array<CustomerScalarWhereWithAggregatesInput>;
 
-  @Field(() => [CustomerScalarWhereWithAggregatesInput], { nullable: true })
-  NOT?: Array<CustomerScalarWhereWithAggregatesInput>;
+    @Field(() => [CustomerScalarWhereWithAggregatesInput], {nullable:true})
+    OR?: Array<CustomerScalarWhereWithAggregatesInput>;
 
-  @Field(() => StringWithAggregatesFilter, { nullable: true })
-  id?: StringWithAggregatesFilter;
+    @Field(() => [CustomerScalarWhereWithAggregatesInput], {nullable:true})
+    NOT?: Array<CustomerScalarWhereWithAggregatesInput>;
 
-  @Field(() => StringWithAggregatesFilter, { nullable: true })
-  username?: StringWithAggregatesFilter;
+    @Field(() => StringWithAggregatesFilter, {nullable:true})
+    id?: StringWithAggregatesFilter;
 
-  @Field(() => StringWithAggregatesFilter, { nullable: true })
-  email?: StringWithAggregatesFilter;
+    @Field(() => StringWithAggregatesFilter, {nullable:true})
+    username?: StringWithAggregatesFilter;
 
-  @Field(() => StringWithAggregatesFilter, { nullable: true })
-  phoneNumber?: StringWithAggregatesFilter;
+    @Field(() => StringWithAggregatesFilter, {nullable:true})
+    email?: StringWithAggregatesFilter;
 
-  @Field(() => StringWithAggregatesFilter, { nullable: true })
-  firstName?: StringWithAggregatesFilter;
+    @Field(() => StringWithAggregatesFilter, {nullable:true})
+    phoneNumber?: StringWithAggregatesFilter;
 
-  @Field(() => StringWithAggregatesFilter, { nullable: true })
-  lastName?: StringWithAggregatesFilter;
+    @Field(() => StringWithAggregatesFilter, {nullable:true})
+    firstName?: StringWithAggregatesFilter;
 
-  @Field(() => StringWithAggregatesFilter, { nullable: true })
-  displayName?: StringWithAggregatesFilter;
+    @Field(() => StringWithAggregatesFilter, {nullable:true})
+    lastName?: StringWithAggregatesFilter;
 
-  @Field(() => EnumGenderWithAggregatesFilter, { nullable: true })
-  gender?: EnumGenderWithAggregatesFilter;
+    @Field(() => StringWithAggregatesFilter, {nullable:true})
+    displayName?: StringWithAggregatesFilter;
 
-  @Field(() => StringWithAggregatesFilter, { nullable: true })
-  accountId?: StringWithAggregatesFilter;
+    @Field(() => EnumGenderWithAggregatesFilter, {nullable:true})
+    gender?: EnumGenderWithAggregatesFilter;
 
-  @Field(() => BoolWithAggregatesFilter, { nullable: true })
-  deleted?: BoolWithAggregatesFilter;
+    @Field(() => StringWithAggregatesFilter, {nullable:true})
+    accountId?: StringWithAggregatesFilter;
 
-  @Field(() => DateTimeWithAggregatesFilter, { nullable: true })
-  createdAt?: DateTimeWithAggregatesFilter;
+    @Field(() => BoolWithAggregatesFilter, {nullable:true})
+    deleted?: BoolWithAggregatesFilter;
 
-  @Field(() => DateTimeWithAggregatesFilter, { nullable: true })
-  updatedAt?: DateTimeWithAggregatesFilter;
+    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
+    createdAt?: DateTimeWithAggregatesFilter;
+
+    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
+    updatedAt?: DateTimeWithAggregatesFilter;
 }

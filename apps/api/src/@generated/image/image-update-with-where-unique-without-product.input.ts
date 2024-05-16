@@ -7,11 +7,12 @@ import { ImageUpdateWithoutProductInput } from './image-update-without-product.i
 
 @InputType()
 export class ImageUpdateWithWhereUniqueWithoutProductInput {
-  @Field(() => ImageWhereUniqueInput, { nullable: false })
-  @Type(() => ImageWhereUniqueInput)
-  where!: Prisma.AtLeast<ImageWhereUniqueInput, 'id_productId'>;
 
-  @Field(() => ImageUpdateWithoutProductInput, { nullable: false })
-  @Type(() => ImageUpdateWithoutProductInput)
-  data!: ImageUpdateWithoutProductInput;
+    @Field(() => ImageWhereUniqueInput, {nullable:false})
+    @Type(() => ImageWhereUniqueInput)
+    where!: Prisma.AtLeast<ImageWhereUniqueInput, 'id_productId'>;
+
+    @Field(() => ImageUpdateWithoutProductInput, {nullable:false})
+    @Type(() => ImageUpdateWithoutProductInput)
+    data!: ImageUpdateWithoutProductInput;
 }

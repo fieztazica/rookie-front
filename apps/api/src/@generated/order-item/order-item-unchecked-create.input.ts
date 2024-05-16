@@ -9,23 +9,24 @@ import { Int } from '@nestjs/graphql';
 
 @InputType()
 export class OrderItemUncheckedCreateInput {
-  @Field(() => String, { nullable: false })
-  orderId!: string;
 
-  @Field(() => String, { nullable: false })
-  productId!: string;
+    @Field(() => String, {nullable:false})
+    orderId!: string;
 
-  @Field(() => GraphQLDecimal, { nullable: false })
-  @Type(() => Object)
-  @Transform(transformToDecimal)
-  price!: Decimal;
+    @Field(() => String, {nullable:false})
+    productId!: string;
 
-  @Field(() => Int, { nullable: false })
-  quantity!: number;
+    @Field(() => GraphQLDecimal, {nullable:false})
+    @Type(() => Object)
+    @Transform(transformToDecimal)
+    price!: Decimal;
 
-  @Field(() => Date, { nullable: true })
-  createdAt?: Date | string;
+    @Field(() => Int, {nullable:false})
+    quantity!: number;
 
-  @Field(() => Date, { nullable: true })
-  updatedAt?: Date | string;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
+
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
 }

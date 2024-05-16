@@ -7,11 +7,12 @@ import { OrderCreateWithoutCustomerInput } from './order-create-without-customer
 
 @InputType()
 export class OrderCreateOrConnectWithoutCustomerInput {
-  @Field(() => OrderWhereUniqueInput, { nullable: false })
-  @Type(() => OrderWhereUniqueInput)
-  where!: Prisma.AtLeast<OrderWhereUniqueInput, 'id'>;
 
-  @Field(() => OrderCreateWithoutCustomerInput, { nullable: false })
-  @Type(() => OrderCreateWithoutCustomerInput)
-  create!: OrderCreateWithoutCustomerInput;
+    @Field(() => OrderWhereUniqueInput, {nullable:false})
+    @Type(() => OrderWhereUniqueInput)
+    where!: Prisma.AtLeast<OrderWhereUniqueInput, 'id'>;
+
+    @Field(() => OrderCreateWithoutCustomerInput, {nullable:false})
+    @Type(() => OrderCreateWithoutCustomerInput)
+    create!: OrderCreateWithoutCustomerInput;
 }

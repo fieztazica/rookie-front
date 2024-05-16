@@ -5,10 +5,11 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class CreateManyProductToAuthorArgs {
-  @Field(() => [ProductToAuthorCreateManyInput], { nullable: false })
-  @Type(() => ProductToAuthorCreateManyInput)
-  data!: Array<ProductToAuthorCreateManyInput>;
 
-  @Field(() => Boolean, { nullable: true })
-  skipDuplicates?: boolean;
+    @Field(() => [ProductToAuthorCreateManyInput], {nullable:false})
+    @Type(() => ProductToAuthorCreateManyInput)
+    data!: Array<ProductToAuthorCreateManyInput>;
+
+    @Field(() => Boolean, {nullable:true})
+    skipDuplicates?: boolean;
 }

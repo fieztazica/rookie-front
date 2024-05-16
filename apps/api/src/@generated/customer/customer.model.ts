@@ -9,57 +9,54 @@ import { CustomerCount } from './customer-count.output';
 /**
  * @@deny('read', deleted)
  */
-@ObjectType({ description: "@@deny('read', deleted)" })
+@ObjectType({description:"@@deny('read', deleted)"})
 export class Customer {
-  @Field(() => ID, { nullable: false })
-  id!: string;
 
-  @Field(() => String, { nullable: false })
-  username!: string;
+    @Field(() => ID, {nullable:false})
+    id!: string;
 
-  @Field(() => String, { nullable: false })
-  email!: string;
+    @Field(() => String, {nullable:false})
+    username!: string;
 
-  @Field(() => String, { nullable: false })
-  phoneNumber!: string;
+    @Field(() => String, {nullable:false})
+    email!: string;
 
-  @Field(() => String, { nullable: false })
-  firstName!: string;
+    @Field(() => String, {nullable:false})
+    phoneNumber!: string;
 
-  @Field(() => String, { nullable: false })
-  lastName!: string;
+    @Field(() => String, {nullable:false})
+    firstName!: string;
 
-  @Field(() => String, { nullable: true })
-  displayName!: string | null;
+    @Field(() => String, {nullable:false})
+    lastName!: string;
 
-  @Field(() => Gender, { nullable: true, defaultValue: 'UNDEFINED' })
-  gender!: keyof typeof Gender | null;
+    @Field(() => String, {nullable:true})
+    displayName!: string | null;
 
-  @Field(() => String, { nullable: true })
-  accountId!: string | null;
+    @Field(() => Gender, {nullable:true,defaultValue:'UNDEFINED'})
+    gender!: keyof typeof Gender | null;
 
-  /**
-   * @omit
-   */
-  @Field(() => Boolean, {
-    nullable: false,
-    defaultValue: false,
-    description: '@omit',
-  })
-  deleted!: boolean;
+    @Field(() => String, {nullable:true})
+    accountId!: string | null;
 
-  @Field(() => Date, { nullable: false })
-  createdAt!: Date;
+    /**
+     * @omit
+     */
+    @Field(() => Boolean, {nullable:false,defaultValue:false,description:'@omit'})
+    deleted!: boolean;
 
-  @Field(() => Date, { nullable: false })
-  updatedAt!: Date;
+    @Field(() => Date, {nullable:false})
+    createdAt!: Date;
 
-  @Field(() => [Order], { nullable: true })
-  orders?: Array<Order>;
+    @Field(() => Date, {nullable:false})
+    updatedAt!: Date;
 
-  @Field(() => [Feedback], { nullable: true })
-  feedback?: Array<Feedback>;
+    @Field(() => [Order], {nullable:true})
+    orders?: Array<Order>;
 
-  @Field(() => CustomerCount, { nullable: false })
-  _count?: CustomerCount;
+    @Field(() => [Feedback], {nullable:true})
+    feedback?: Array<Feedback>;
+
+    @Field(() => CustomerCount, {nullable:false})
+    _count?: CustomerCount;
 }

@@ -13,53 +13,48 @@ import { ImageScalarWhereInput } from './image-scalar-where.input';
 
 @InputType()
 export class ImageUpdateManyWithoutProductNestedInput {
-  @Field(() => [ImageCreateWithoutProductInput], { nullable: true })
-  @Type(() => ImageCreateWithoutProductInput)
-  create?: Array<ImageCreateWithoutProductInput>;
 
-  @Field(() => [ImageCreateOrConnectWithoutProductInput], { nullable: true })
-  @Type(() => ImageCreateOrConnectWithoutProductInput)
-  connectOrCreate?: Array<ImageCreateOrConnectWithoutProductInput>;
+    @Field(() => [ImageCreateWithoutProductInput], {nullable:true})
+    @Type(() => ImageCreateWithoutProductInput)
+    create?: Array<ImageCreateWithoutProductInput>;
 
-  @Field(() => [ImageUpsertWithWhereUniqueWithoutProductInput], {
-    nullable: true,
-  })
-  @Type(() => ImageUpsertWithWhereUniqueWithoutProductInput)
-  upsert?: Array<ImageUpsertWithWhereUniqueWithoutProductInput>;
+    @Field(() => [ImageCreateOrConnectWithoutProductInput], {nullable:true})
+    @Type(() => ImageCreateOrConnectWithoutProductInput)
+    connectOrCreate?: Array<ImageCreateOrConnectWithoutProductInput>;
 
-  @Field(() => ImageCreateManyProductInputEnvelope, { nullable: true })
-  @Type(() => ImageCreateManyProductInputEnvelope)
-  createMany?: ImageCreateManyProductInputEnvelope;
+    @Field(() => [ImageUpsertWithWhereUniqueWithoutProductInput], {nullable:true})
+    @Type(() => ImageUpsertWithWhereUniqueWithoutProductInput)
+    upsert?: Array<ImageUpsertWithWhereUniqueWithoutProductInput>;
 
-  @Field(() => [ImageWhereUniqueInput], { nullable: true })
-  @Type(() => ImageWhereUniqueInput)
-  set?: Array<Prisma.AtLeast<ImageWhereUniqueInput, 'id_productId'>>;
+    @Field(() => ImageCreateManyProductInputEnvelope, {nullable:true})
+    @Type(() => ImageCreateManyProductInputEnvelope)
+    createMany?: ImageCreateManyProductInputEnvelope;
 
-  @Field(() => [ImageWhereUniqueInput], { nullable: true })
-  @Type(() => ImageWhereUniqueInput)
-  disconnect?: Array<Prisma.AtLeast<ImageWhereUniqueInput, 'id_productId'>>;
+    @Field(() => [ImageWhereUniqueInput], {nullable:true})
+    @Type(() => ImageWhereUniqueInput)
+    set?: Array<Prisma.AtLeast<ImageWhereUniqueInput, 'id_productId'>>;
 
-  @Field(() => [ImageWhereUniqueInput], { nullable: true })
-  @Type(() => ImageWhereUniqueInput)
-  delete?: Array<Prisma.AtLeast<ImageWhereUniqueInput, 'id_productId'>>;
+    @Field(() => [ImageWhereUniqueInput], {nullable:true})
+    @Type(() => ImageWhereUniqueInput)
+    disconnect?: Array<Prisma.AtLeast<ImageWhereUniqueInput, 'id_productId'>>;
 
-  @Field(() => [ImageWhereUniqueInput], { nullable: true })
-  @Type(() => ImageWhereUniqueInput)
-  connect?: Array<Prisma.AtLeast<ImageWhereUniqueInput, 'id_productId'>>;
+    @Field(() => [ImageWhereUniqueInput], {nullable:true})
+    @Type(() => ImageWhereUniqueInput)
+    delete?: Array<Prisma.AtLeast<ImageWhereUniqueInput, 'id_productId'>>;
 
-  @Field(() => [ImageUpdateWithWhereUniqueWithoutProductInput], {
-    nullable: true,
-  })
-  @Type(() => ImageUpdateWithWhereUniqueWithoutProductInput)
-  update?: Array<ImageUpdateWithWhereUniqueWithoutProductInput>;
+    @Field(() => [ImageWhereUniqueInput], {nullable:true})
+    @Type(() => ImageWhereUniqueInput)
+    connect?: Array<Prisma.AtLeast<ImageWhereUniqueInput, 'id_productId'>>;
 
-  @Field(() => [ImageUpdateManyWithWhereWithoutProductInput], {
-    nullable: true,
-  })
-  @Type(() => ImageUpdateManyWithWhereWithoutProductInput)
-  updateMany?: Array<ImageUpdateManyWithWhereWithoutProductInput>;
+    @Field(() => [ImageUpdateWithWhereUniqueWithoutProductInput], {nullable:true})
+    @Type(() => ImageUpdateWithWhereUniqueWithoutProductInput)
+    update?: Array<ImageUpdateWithWhereUniqueWithoutProductInput>;
 
-  @Field(() => [ImageScalarWhereInput], { nullable: true })
-  @Type(() => ImageScalarWhereInput)
-  deleteMany?: Array<ImageScalarWhereInput>;
+    @Field(() => [ImageUpdateManyWithWhereWithoutProductInput], {nullable:true})
+    @Type(() => ImageUpdateManyWithWhereWithoutProductInput)
+    updateMany?: Array<ImageUpdateManyWithWhereWithoutProductInput>;
+
+    @Field(() => [ImageScalarWhereInput], {nullable:true})
+    @Type(() => ImageScalarWhereInput)
+    deleteMany?: Array<ImageScalarWhereInput>;
 }

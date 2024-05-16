@@ -9,42 +9,43 @@ import { ImageMaxAggregate } from './image-max-aggregate.output';
 
 @ObjectType()
 export class ImageGroupBy {
-  @Field(() => Int, { nullable: false })
-  id!: number;
 
-  @Field(() => String, { nullable: false })
-  productId!: string;
+    @Field(() => Int, {nullable:false})
+    id!: number;
 
-  @Field(() => String, { nullable: false })
-  url!: string;
+    @Field(() => String, {nullable:false})
+    productId!: string;
 
-  @Field(() => String, { nullable: true })
-  alt?: string;
+    @Field(() => String, {nullable:false})
+    url!: string;
 
-  @Field(() => Boolean, { nullable: false })
-  isThumbnail!: boolean;
+    @Field(() => String, {nullable:true})
+    alt?: string;
 
-  @Field(() => Boolean, { nullable: false })
-  deleted!: boolean;
+    @Field(() => Boolean, {nullable:false})
+    isThumbnail!: boolean;
 
-  @Field(() => Date, { nullable: false })
-  createdAt!: Date | string;
+    @Field(() => Boolean, {nullable:false})
+    deleted!: boolean;
 
-  @Field(() => Date, { nullable: false })
-  updatedAt!: Date | string;
+    @Field(() => Date, {nullable:false})
+    createdAt!: Date | string;
 
-  @Field(() => ImageCountAggregate, { nullable: true })
-  _count?: ImageCountAggregate;
+    @Field(() => Date, {nullable:false})
+    updatedAt!: Date | string;
 
-  @Field(() => ImageAvgAggregate, { nullable: true })
-  _avg?: ImageAvgAggregate;
+    @Field(() => ImageCountAggregate, {nullable:true})
+    _count?: ImageCountAggregate;
 
-  @Field(() => ImageSumAggregate, { nullable: true })
-  _sum?: ImageSumAggregate;
+    @Field(() => ImageAvgAggregate, {nullable:true})
+    _avg?: ImageAvgAggregate;
 
-  @Field(() => ImageMinAggregate, { nullable: true })
-  _min?: ImageMinAggregate;
+    @Field(() => ImageSumAggregate, {nullable:true})
+    _sum?: ImageSumAggregate;
 
-  @Field(() => ImageMaxAggregate, { nullable: true })
-  _max?: ImageMaxAggregate;
+    @Field(() => ImageMinAggregate, {nullable:true})
+    _min?: ImageMinAggregate;
+
+    @Field(() => ImageMaxAggregate, {nullable:true})
+    _max?: ImageMaxAggregate;
 }

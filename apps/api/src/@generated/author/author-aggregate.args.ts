@@ -12,31 +12,29 @@ import { AuthorMaxAggregateInput } from './author-max-aggregate.input';
 
 @ArgsType()
 export class AuthorAggregateArgs {
-  @Field(() => AuthorWhereInput, { nullable: true })
-  @Type(() => AuthorWhereInput)
-  where?: AuthorWhereInput;
 
-  @Field(() => [AuthorOrderByWithRelationInput], { nullable: true })
-  orderBy?: Array<AuthorOrderByWithRelationInput>;
+    @Field(() => AuthorWhereInput, {nullable:true})
+    @Type(() => AuthorWhereInput)
+    where?: AuthorWhereInput;
 
-  @Field(() => AuthorWhereUniqueInput, { nullable: true })
-  cursor?: Prisma.AtLeast<
-    AuthorWhereUniqueInput,
-    'id' | 'email' | 'phoneNumber'
-  >;
+    @Field(() => [AuthorOrderByWithRelationInput], {nullable:true})
+    orderBy?: Array<AuthorOrderByWithRelationInput>;
 
-  @Field(() => Int, { nullable: true })
-  take?: number;
+    @Field(() => AuthorWhereUniqueInput, {nullable:true})
+    cursor?: Prisma.AtLeast<AuthorWhereUniqueInput, 'id' | 'email' | 'phoneNumber'>;
 
-  @Field(() => Int, { nullable: true })
-  skip?: number;
+    @Field(() => Int, {nullable:true})
+    take?: number;
 
-  @Field(() => AuthorCountAggregateInput, { nullable: true })
-  _count?: AuthorCountAggregateInput;
+    @Field(() => Int, {nullable:true})
+    skip?: number;
 
-  @Field(() => AuthorMinAggregateInput, { nullable: true })
-  _min?: AuthorMinAggregateInput;
+    @Field(() => AuthorCountAggregateInput, {nullable:true})
+    _count?: AuthorCountAggregateInput;
 
-  @Field(() => AuthorMaxAggregateInput, { nullable: true })
-  _max?: AuthorMaxAggregateInput;
+    @Field(() => AuthorMinAggregateInput, {nullable:true})
+    _min?: AuthorMinAggregateInput;
+
+    @Field(() => AuthorMaxAggregateInput, {nullable:true})
+    _max?: AuthorMaxAggregateInput;
 }

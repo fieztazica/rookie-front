@@ -7,11 +7,12 @@ import { ProductWhereUniqueInput } from './product-where-unique.input';
 
 @ArgsType()
 export class UpdateOneProductArgs {
-  @Field(() => ProductUpdateInput, { nullable: false })
-  @Type(() => ProductUpdateInput)
-  data!: ProductUpdateInput;
 
-  @Field(() => ProductWhereUniqueInput, { nullable: false })
-  @Type(() => ProductWhereUniqueInput)
-  where!: Prisma.AtLeast<ProductWhereUniqueInput, 'id' | 'name'>;
+    @Field(() => ProductUpdateInput, {nullable:false})
+    @Type(() => ProductUpdateInput)
+    data!: ProductUpdateInput;
+
+    @Field(() => ProductWhereUniqueInput, {nullable:false})
+    @Type(() => ProductWhereUniqueInput)
+    where!: Prisma.AtLeast<ProductWhereUniqueInput, 'id' | 'name'>;
 }

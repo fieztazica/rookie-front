@@ -7,11 +7,12 @@ import { ProductToAuthorCreateWithoutProductInput } from './product-to-author-cr
 
 @InputType()
 export class ProductToAuthorCreateOrConnectWithoutProductInput {
-  @Field(() => ProductToAuthorWhereUniqueInput, { nullable: false })
-  @Type(() => ProductToAuthorWhereUniqueInput)
-  where!: Prisma.AtLeast<ProductToAuthorWhereUniqueInput, 'productId_authorId'>;
 
-  @Field(() => ProductToAuthorCreateWithoutProductInput, { nullable: false })
-  @Type(() => ProductToAuthorCreateWithoutProductInput)
-  create!: ProductToAuthorCreateWithoutProductInput;
+    @Field(() => ProductToAuthorWhereUniqueInput, {nullable:false})
+    @Type(() => ProductToAuthorWhereUniqueInput)
+    where!: Prisma.AtLeast<ProductToAuthorWhereUniqueInput, 'productId_authorId'>;
+
+    @Field(() => ProductToAuthorCreateWithoutProductInput, {nullable:false})
+    @Type(() => ProductToAuthorCreateWithoutProductInput)
+    create!: ProductToAuthorCreateWithoutProductInput;
 }

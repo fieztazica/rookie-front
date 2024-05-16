@@ -3,6 +3,7 @@ import { InputType } from '@nestjs/graphql';
 
 @InputType()
 export class FeedbackAvgAggregateInput {
-  @Field(() => Boolean, { nullable: true })
-  rating?: true;
+
+    @Field(() => Boolean, {nullable:true})
+    rating?: true;
 }

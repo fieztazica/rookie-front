@@ -5,21 +5,22 @@ import { Publisher } from '../publisher/publisher.model';
 
 @ObjectType()
 export class ProductToPublisher {
-  @Field(() => String, { nullable: false })
-  productId!: string;
 
-  @Field(() => String, { nullable: false })
-  publisherId!: string;
+    @Field(() => String, {nullable:false})
+    productId!: string;
 
-  @Field(() => Date, { nullable: false })
-  createdAt!: Date;
+    @Field(() => String, {nullable:false})
+    publisherId!: string;
 
-  @Field(() => Date, { nullable: false })
-  updatedAt!: Date;
+    @Field(() => Date, {nullable:false})
+    createdAt!: Date;
 
-  @Field(() => Product, { nullable: false })
-  product?: Product;
+    @Field(() => Date, {nullable:false})
+    updatedAt!: Date;
 
-  @Field(() => Publisher, { nullable: false })
-  publisher?: Publisher;
+    @Field(() => Product, {nullable:false})
+    product?: Product;
+
+    @Field(() => Publisher, {nullable:false})
+    publisher?: Publisher;
 }

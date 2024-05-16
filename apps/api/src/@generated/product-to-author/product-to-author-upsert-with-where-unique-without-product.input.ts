@@ -8,15 +8,16 @@ import { ProductToAuthorCreateWithoutProductInput } from './product-to-author-cr
 
 @InputType()
 export class ProductToAuthorUpsertWithWhereUniqueWithoutProductInput {
-  @Field(() => ProductToAuthorWhereUniqueInput, { nullable: false })
-  @Type(() => ProductToAuthorWhereUniqueInput)
-  where!: Prisma.AtLeast<ProductToAuthorWhereUniqueInput, 'productId_authorId'>;
 
-  @Field(() => ProductToAuthorUpdateWithoutProductInput, { nullable: false })
-  @Type(() => ProductToAuthorUpdateWithoutProductInput)
-  update!: ProductToAuthorUpdateWithoutProductInput;
+    @Field(() => ProductToAuthorWhereUniqueInput, {nullable:false})
+    @Type(() => ProductToAuthorWhereUniqueInput)
+    where!: Prisma.AtLeast<ProductToAuthorWhereUniqueInput, 'productId_authorId'>;
 
-  @Field(() => ProductToAuthorCreateWithoutProductInput, { nullable: false })
-  @Type(() => ProductToAuthorCreateWithoutProductInput)
-  create!: ProductToAuthorCreateWithoutProductInput;
+    @Field(() => ProductToAuthorUpdateWithoutProductInput, {nullable:false})
+    @Type(() => ProductToAuthorUpdateWithoutProductInput)
+    update!: ProductToAuthorUpdateWithoutProductInput;
+
+    @Field(() => ProductToAuthorCreateWithoutProductInput, {nullable:false})
+    @Type(() => ProductToAuthorCreateWithoutProductInput)
+    create!: ProductToAuthorCreateWithoutProductInput;
 }

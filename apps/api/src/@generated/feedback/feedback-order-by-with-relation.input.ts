@@ -8,38 +8,39 @@ import { ProductOrderByWithRelationInput } from '../product/product-order-by-wit
 
 @InputType()
 export class FeedbackOrderByWithRelationInput {
-  @Field(() => SortOrder, { nullable: true })
-  id?: keyof typeof SortOrder;
 
-  @Field(() => SortOrder, { nullable: true })
-  customerId?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    id?: keyof typeof SortOrder;
 
-  @Field(() => SortOrder, { nullable: true })
-  productId?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    customerId?: keyof typeof SortOrder;
 
-  @Field(() => SortOrder, { nullable: true })
-  message?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    productId?: keyof typeof SortOrder;
 
-  @Field(() => SortOrder, { nullable: true })
-  rating?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    message?: keyof typeof SortOrder;
 
-  @Field(() => SortOrderInput, { nullable: true })
-  status?: SortOrderInput;
+    @Field(() => SortOrder, {nullable:true})
+    rating?: keyof typeof SortOrder;
 
-  @Field(() => SortOrder, { nullable: true })
-  deleted?: keyof typeof SortOrder;
+    @Field(() => SortOrderInput, {nullable:true})
+    status?: SortOrderInput;
 
-  @Field(() => SortOrder, { nullable: true })
-  createdAt?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    deleted?: keyof typeof SortOrder;
 
-  @Field(() => SortOrder, { nullable: true })
-  updatedAt?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    createdAt?: keyof typeof SortOrder;
 
-  @Field(() => CustomerOrderByWithRelationInput, { nullable: true })
-  @Type(() => CustomerOrderByWithRelationInput)
-  customer?: CustomerOrderByWithRelationInput;
+    @Field(() => SortOrder, {nullable:true})
+    updatedAt?: keyof typeof SortOrder;
 
-  @Field(() => ProductOrderByWithRelationInput, { nullable: true })
-  @Type(() => ProductOrderByWithRelationInput)
-  product?: ProductOrderByWithRelationInput;
+    @Field(() => CustomerOrderByWithRelationInput, {nullable:true})
+    @Type(() => CustomerOrderByWithRelationInput)
+    customer?: CustomerOrderByWithRelationInput;
+
+    @Field(() => ProductOrderByWithRelationInput, {nullable:true})
+    @Type(() => ProductOrderByWithRelationInput)
+    product?: ProductOrderByWithRelationInput;
 }

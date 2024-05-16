@@ -10,25 +10,24 @@ import { ProductUpdateToOneWithWhereWithoutCategoriesInput } from './product-upd
 
 @InputType()
 export class ProductUpdateOneRequiredWithoutCategoriesNestedInput {
-  @Field(() => ProductCreateWithoutCategoriesInput, { nullable: true })
-  @Type(() => ProductCreateWithoutCategoriesInput)
-  create?: ProductCreateWithoutCategoriesInput;
 
-  @Field(() => ProductCreateOrConnectWithoutCategoriesInput, { nullable: true })
-  @Type(() => ProductCreateOrConnectWithoutCategoriesInput)
-  connectOrCreate?: ProductCreateOrConnectWithoutCategoriesInput;
+    @Field(() => ProductCreateWithoutCategoriesInput, {nullable:true})
+    @Type(() => ProductCreateWithoutCategoriesInput)
+    create?: ProductCreateWithoutCategoriesInput;
 
-  @Field(() => ProductUpsertWithoutCategoriesInput, { nullable: true })
-  @Type(() => ProductUpsertWithoutCategoriesInput)
-  upsert?: ProductUpsertWithoutCategoriesInput;
+    @Field(() => ProductCreateOrConnectWithoutCategoriesInput, {nullable:true})
+    @Type(() => ProductCreateOrConnectWithoutCategoriesInput)
+    connectOrCreate?: ProductCreateOrConnectWithoutCategoriesInput;
 
-  @Field(() => ProductWhereUniqueInput, { nullable: true })
-  @Type(() => ProductWhereUniqueInput)
-  connect?: Prisma.AtLeast<ProductWhereUniqueInput, 'id' | 'name'>;
+    @Field(() => ProductUpsertWithoutCategoriesInput, {nullable:true})
+    @Type(() => ProductUpsertWithoutCategoriesInput)
+    upsert?: ProductUpsertWithoutCategoriesInput;
 
-  @Field(() => ProductUpdateToOneWithWhereWithoutCategoriesInput, {
-    nullable: true,
-  })
-  @Type(() => ProductUpdateToOneWithWhereWithoutCategoriesInput)
-  update?: ProductUpdateToOneWithWhereWithoutCategoriesInput;
+    @Field(() => ProductWhereUniqueInput, {nullable:true})
+    @Type(() => ProductWhereUniqueInput)
+    connect?: Prisma.AtLeast<ProductWhereUniqueInput, 'id' | 'name'>;
+
+    @Field(() => ProductUpdateToOneWithWhereWithoutCategoriesInput, {nullable:true})
+    @Type(() => ProductUpdateToOneWithWhereWithoutCategoriesInput)
+    update?: ProductUpdateToOneWithWhereWithoutCategoriesInput;
 }

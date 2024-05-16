@@ -7,32 +7,33 @@ import { ProductCreateNestedOneWithoutFeedbacksInput } from '../product/product-
 
 @InputType()
 export class FeedbackCreateInput {
-  @Field(() => String, { nullable: true })
-  id?: string;
 
-  @Field(() => String, { nullable: false })
-  message!: string;
+    @Field(() => String, {nullable:true})
+    id?: string;
 
-  @Field(() => Int, { nullable: false })
-  rating!: number;
+    @Field(() => String, {nullable:false})
+    message!: string;
 
-  @Field(() => String, { nullable: true })
-  status?: string;
+    @Field(() => Int, {nullable:false})
+    rating!: number;
 
-  @Field(() => Boolean, { nullable: true })
-  deleted?: boolean;
+    @Field(() => String, {nullable:true})
+    status?: string;
 
-  @Field(() => Date, { nullable: true })
-  createdAt?: Date | string;
+    @Field(() => Boolean, {nullable:true})
+    deleted?: boolean;
 
-  @Field(() => Date, { nullable: true })
-  updatedAt?: Date | string;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
 
-  @Field(() => CustomerCreateNestedOneWithoutFeedbackInput, { nullable: false })
-  @Type(() => CustomerCreateNestedOneWithoutFeedbackInput)
-  customer!: CustomerCreateNestedOneWithoutFeedbackInput;
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
 
-  @Field(() => ProductCreateNestedOneWithoutFeedbacksInput, { nullable: false })
-  @Type(() => ProductCreateNestedOneWithoutFeedbacksInput)
-  product!: ProductCreateNestedOneWithoutFeedbacksInput;
+    @Field(() => CustomerCreateNestedOneWithoutFeedbackInput, {nullable:false})
+    @Type(() => CustomerCreateNestedOneWithoutFeedbackInput)
+    customer!: CustomerCreateNestedOneWithoutFeedbackInput;
+
+    @Field(() => ProductCreateNestedOneWithoutFeedbacksInput, {nullable:false})
+    @Type(() => ProductCreateNestedOneWithoutFeedbacksInput)
+    product!: ProductCreateNestedOneWithoutFeedbacksInput;
 }

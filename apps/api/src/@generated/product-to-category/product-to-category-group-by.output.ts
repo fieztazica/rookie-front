@@ -6,24 +6,25 @@ import { ProductToCategoryMaxAggregate } from './product-to-category-max-aggrega
 
 @ObjectType()
 export class ProductToCategoryGroupBy {
-  @Field(() => String, { nullable: false })
-  productId!: string;
 
-  @Field(() => String, { nullable: false })
-  categoryId!: string;
+    @Field(() => String, {nullable:false})
+    productId!: string;
 
-  @Field(() => Date, { nullable: false })
-  createdAt!: Date | string;
+    @Field(() => String, {nullable:false})
+    categoryId!: string;
 
-  @Field(() => Date, { nullable: false })
-  updatedAt!: Date | string;
+    @Field(() => Date, {nullable:false})
+    createdAt!: Date | string;
 
-  @Field(() => ProductToCategoryCountAggregate, { nullable: true })
-  _count?: ProductToCategoryCountAggregate;
+    @Field(() => Date, {nullable:false})
+    updatedAt!: Date | string;
 
-  @Field(() => ProductToCategoryMinAggregate, { nullable: true })
-  _min?: ProductToCategoryMinAggregate;
+    @Field(() => ProductToCategoryCountAggregate, {nullable:true})
+    _count?: ProductToCategoryCountAggregate;
 
-  @Field(() => ProductToCategoryMaxAggregate, { nullable: true })
-  _max?: ProductToCategoryMaxAggregate;
+    @Field(() => ProductToCategoryMinAggregate, {nullable:true})
+    _min?: ProductToCategoryMinAggregate;
+
+    @Field(() => ProductToCategoryMaxAggregate, {nullable:true})
+    _max?: ProductToCategoryMaxAggregate;
 }

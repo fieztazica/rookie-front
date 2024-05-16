@@ -10,28 +10,24 @@ import { CustomerUpdateToOneWithWhereWithoutFeedbackInput } from './customer-upd
 
 @InputType()
 export class CustomerUpdateOneRequiredWithoutFeedbackNestedInput {
-  @Field(() => CustomerCreateWithoutFeedbackInput, { nullable: true })
-  @Type(() => CustomerCreateWithoutFeedbackInput)
-  create?: CustomerCreateWithoutFeedbackInput;
 
-  @Field(() => CustomerCreateOrConnectWithoutFeedbackInput, { nullable: true })
-  @Type(() => CustomerCreateOrConnectWithoutFeedbackInput)
-  connectOrCreate?: CustomerCreateOrConnectWithoutFeedbackInput;
+    @Field(() => CustomerCreateWithoutFeedbackInput, {nullable:true})
+    @Type(() => CustomerCreateWithoutFeedbackInput)
+    create?: CustomerCreateWithoutFeedbackInput;
 
-  @Field(() => CustomerUpsertWithoutFeedbackInput, { nullable: true })
-  @Type(() => CustomerUpsertWithoutFeedbackInput)
-  upsert?: CustomerUpsertWithoutFeedbackInput;
+    @Field(() => CustomerCreateOrConnectWithoutFeedbackInput, {nullable:true})
+    @Type(() => CustomerCreateOrConnectWithoutFeedbackInput)
+    connectOrCreate?: CustomerCreateOrConnectWithoutFeedbackInput;
 
-  @Field(() => CustomerWhereUniqueInput, { nullable: true })
-  @Type(() => CustomerWhereUniqueInput)
-  connect?: Prisma.AtLeast<
-    CustomerWhereUniqueInput,
-    'id' | 'username' | 'email' | 'phoneNumber'
-  >;
+    @Field(() => CustomerUpsertWithoutFeedbackInput, {nullable:true})
+    @Type(() => CustomerUpsertWithoutFeedbackInput)
+    upsert?: CustomerUpsertWithoutFeedbackInput;
 
-  @Field(() => CustomerUpdateToOneWithWhereWithoutFeedbackInput, {
-    nullable: true,
-  })
-  @Type(() => CustomerUpdateToOneWithWhereWithoutFeedbackInput)
-  update?: CustomerUpdateToOneWithWhereWithoutFeedbackInput;
+    @Field(() => CustomerWhereUniqueInput, {nullable:true})
+    @Type(() => CustomerWhereUniqueInput)
+    connect?: Prisma.AtLeast<CustomerWhereUniqueInput, 'id' | 'username' | 'email' | 'phoneNumber'>;
+
+    @Field(() => CustomerUpdateToOneWithWhereWithoutFeedbackInput, {nullable:true})
+    @Type(() => CustomerUpdateToOneWithWhereWithoutFeedbackInput)
+    update?: CustomerUpdateToOneWithWhereWithoutFeedbackInput;
 }

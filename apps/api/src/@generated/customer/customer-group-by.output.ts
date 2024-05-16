@@ -7,48 +7,49 @@ import { CustomerMaxAggregate } from './customer-max-aggregate.output';
 
 @ObjectType()
 export class CustomerGroupBy {
-  @Field(() => String, { nullable: false })
-  id!: string;
 
-  @Field(() => String, { nullable: false })
-  username!: string;
+    @Field(() => String, {nullable:false})
+    id!: string;
 
-  @Field(() => String, { nullable: false })
-  email!: string;
+    @Field(() => String, {nullable:false})
+    username!: string;
 
-  @Field(() => String, { nullable: false })
-  phoneNumber!: string;
+    @Field(() => String, {nullable:false})
+    email!: string;
 
-  @Field(() => String, { nullable: false })
-  firstName!: string;
+    @Field(() => String, {nullable:false})
+    phoneNumber!: string;
 
-  @Field(() => String, { nullable: false })
-  lastName!: string;
+    @Field(() => String, {nullable:false})
+    firstName!: string;
 
-  @Field(() => String, { nullable: true })
-  displayName?: string;
+    @Field(() => String, {nullable:false})
+    lastName!: string;
 
-  @Field(() => Gender, { nullable: true })
-  gender?: keyof typeof Gender;
+    @Field(() => String, {nullable:true})
+    displayName?: string;
 
-  @Field(() => String, { nullable: true })
-  accountId?: string;
+    @Field(() => Gender, {nullable:true})
+    gender?: keyof typeof Gender;
 
-  @Field(() => Boolean, { nullable: false })
-  deleted!: boolean;
+    @Field(() => String, {nullable:true})
+    accountId?: string;
 
-  @Field(() => Date, { nullable: false })
-  createdAt!: Date | string;
+    @Field(() => Boolean, {nullable:false})
+    deleted!: boolean;
 
-  @Field(() => Date, { nullable: false })
-  updatedAt!: Date | string;
+    @Field(() => Date, {nullable:false})
+    createdAt!: Date | string;
 
-  @Field(() => CustomerCountAggregate, { nullable: true })
-  _count?: CustomerCountAggregate;
+    @Field(() => Date, {nullable:false})
+    updatedAt!: Date | string;
 
-  @Field(() => CustomerMinAggregate, { nullable: true })
-  _min?: CustomerMinAggregate;
+    @Field(() => CustomerCountAggregate, {nullable:true})
+    _count?: CustomerCountAggregate;
 
-  @Field(() => CustomerMaxAggregate, { nullable: true })
-  _max?: CustomerMaxAggregate;
+    @Field(() => CustomerMinAggregate, {nullable:true})
+    _min?: CustomerMinAggregate;
+
+    @Field(() => CustomerMaxAggregate, {nullable:true})
+    _max?: CustomerMaxAggregate;
 }

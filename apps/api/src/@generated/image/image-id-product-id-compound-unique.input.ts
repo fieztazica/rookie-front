@@ -4,9 +4,10 @@ import { Int } from '@nestjs/graphql';
 
 @InputType()
 export class ImageIdProductIdCompoundUniqueInput {
-  @Field(() => Int, { nullable: false })
-  id!: number;
 
-  @Field(() => String, { nullable: false })
-  productId!: string;
+    @Field(() => Int, {nullable:false})
+    id!: number;
+
+    @Field(() => String, {nullable:false})
+    productId!: string;
 }

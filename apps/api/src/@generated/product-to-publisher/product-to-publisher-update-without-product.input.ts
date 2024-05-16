@@ -4,14 +4,13 @@ import { PublisherUpdateOneRequiredWithoutProductsNestedInput } from '../publish
 
 @InputType()
 export class ProductToPublisherUpdateWithoutProductInput {
-  @Field(() => Date, { nullable: true })
-  createdAt?: Date | string;
 
-  @Field(() => Date, { nullable: true })
-  updatedAt?: Date | string;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
 
-  @Field(() => PublisherUpdateOneRequiredWithoutProductsNestedInput, {
-    nullable: true,
-  })
-  publisher?: PublisherUpdateOneRequiredWithoutProductsNestedInput;
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
+
+    @Field(() => PublisherUpdateOneRequiredWithoutProductsNestedInput, {nullable:true})
+    publisher?: PublisherUpdateOneRequiredWithoutProductsNestedInput;
 }

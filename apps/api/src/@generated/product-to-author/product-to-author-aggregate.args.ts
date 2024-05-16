@@ -12,31 +12,29 @@ import { ProductToAuthorMaxAggregateInput } from './product-to-author-max-aggreg
 
 @ArgsType()
 export class ProductToAuthorAggregateArgs {
-  @Field(() => ProductToAuthorWhereInput, { nullable: true })
-  @Type(() => ProductToAuthorWhereInput)
-  where?: ProductToAuthorWhereInput;
 
-  @Field(() => [ProductToAuthorOrderByWithRelationInput], { nullable: true })
-  orderBy?: Array<ProductToAuthorOrderByWithRelationInput>;
+    @Field(() => ProductToAuthorWhereInput, {nullable:true})
+    @Type(() => ProductToAuthorWhereInput)
+    where?: ProductToAuthorWhereInput;
 
-  @Field(() => ProductToAuthorWhereUniqueInput, { nullable: true })
-  cursor?: Prisma.AtLeast<
-    ProductToAuthorWhereUniqueInput,
-    'productId_authorId'
-  >;
+    @Field(() => [ProductToAuthorOrderByWithRelationInput], {nullable:true})
+    orderBy?: Array<ProductToAuthorOrderByWithRelationInput>;
 
-  @Field(() => Int, { nullable: true })
-  take?: number;
+    @Field(() => ProductToAuthorWhereUniqueInput, {nullable:true})
+    cursor?: Prisma.AtLeast<ProductToAuthorWhereUniqueInput, 'productId_authorId'>;
 
-  @Field(() => Int, { nullable: true })
-  skip?: number;
+    @Field(() => Int, {nullable:true})
+    take?: number;
 
-  @Field(() => ProductToAuthorCountAggregateInput, { nullable: true })
-  _count?: ProductToAuthorCountAggregateInput;
+    @Field(() => Int, {nullable:true})
+    skip?: number;
 
-  @Field(() => ProductToAuthorMinAggregateInput, { nullable: true })
-  _min?: ProductToAuthorMinAggregateInput;
+    @Field(() => ProductToAuthorCountAggregateInput, {nullable:true})
+    _count?: ProductToAuthorCountAggregateInput;
 
-  @Field(() => ProductToAuthorMaxAggregateInput, { nullable: true })
-  _max?: ProductToAuthorMaxAggregateInput;
+    @Field(() => ProductToAuthorMinAggregateInput, {nullable:true})
+    _min?: ProductToAuthorMinAggregateInput;
+
+    @Field(() => ProductToAuthorMaxAggregateInput, {nullable:true})
+    _max?: ProductToAuthorMaxAggregateInput;
 }

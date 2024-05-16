@@ -7,11 +7,12 @@ import { ProductToAuthorUpdateWithoutAuthorInput } from './product-to-author-upd
 
 @InputType()
 export class ProductToAuthorUpdateWithWhereUniqueWithoutAuthorInput {
-  @Field(() => ProductToAuthorWhereUniqueInput, { nullable: false })
-  @Type(() => ProductToAuthorWhereUniqueInput)
-  where!: Prisma.AtLeast<ProductToAuthorWhereUniqueInput, 'productId_authorId'>;
 
-  @Field(() => ProductToAuthorUpdateWithoutAuthorInput, { nullable: false })
-  @Type(() => ProductToAuthorUpdateWithoutAuthorInput)
-  data!: ProductToAuthorUpdateWithoutAuthorInput;
+    @Field(() => ProductToAuthorWhereUniqueInput, {nullable:false})
+    @Type(() => ProductToAuthorWhereUniqueInput)
+    where!: Prisma.AtLeast<ProductToAuthorWhereUniqueInput, 'productId_authorId'>;
+
+    @Field(() => ProductToAuthorUpdateWithoutAuthorInput, {nullable:false})
+    @Type(() => ProductToAuthorUpdateWithoutAuthorInput)
+    data!: ProductToAuthorUpdateWithoutAuthorInput;
 }

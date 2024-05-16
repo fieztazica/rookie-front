@@ -12,28 +12,29 @@ import { CategoryMaxAggregateInput } from './category-max-aggregate.input';
 
 @ArgsType()
 export class CategoryAggregateArgs {
-  @Field(() => CategoryWhereInput, { nullable: true })
-  @Type(() => CategoryWhereInput)
-  where?: CategoryWhereInput;
 
-  @Field(() => [CategoryOrderByWithRelationInput], { nullable: true })
-  orderBy?: Array<CategoryOrderByWithRelationInput>;
+    @Field(() => CategoryWhereInput, {nullable:true})
+    @Type(() => CategoryWhereInput)
+    where?: CategoryWhereInput;
 
-  @Field(() => CategoryWhereUniqueInput, { nullable: true })
-  cursor?: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name'>;
+    @Field(() => [CategoryOrderByWithRelationInput], {nullable:true})
+    orderBy?: Array<CategoryOrderByWithRelationInput>;
 
-  @Field(() => Int, { nullable: true })
-  take?: number;
+    @Field(() => CategoryWhereUniqueInput, {nullable:true})
+    cursor?: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name'>;
 
-  @Field(() => Int, { nullable: true })
-  skip?: number;
+    @Field(() => Int, {nullable:true})
+    take?: number;
 
-  @Field(() => CategoryCountAggregateInput, { nullable: true })
-  _count?: CategoryCountAggregateInput;
+    @Field(() => Int, {nullable:true})
+    skip?: number;
 
-  @Field(() => CategoryMinAggregateInput, { nullable: true })
-  _min?: CategoryMinAggregateInput;
+    @Field(() => CategoryCountAggregateInput, {nullable:true})
+    _count?: CategoryCountAggregateInput;
 
-  @Field(() => CategoryMaxAggregateInput, { nullable: true })
-  _max?: CategoryMaxAggregateInput;
+    @Field(() => CategoryMinAggregateInput, {nullable:true})
+    _min?: CategoryMinAggregateInput;
+
+    @Field(() => CategoryMaxAggregateInput, {nullable:true})
+    _max?: CategoryMaxAggregateInput;
 }

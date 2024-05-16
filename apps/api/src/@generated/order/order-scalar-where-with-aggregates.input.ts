@@ -8,34 +8,35 @@ import { DateTimeWithAggregatesFilter } from '../prisma/date-time-with-aggregate
 
 @InputType()
 export class OrderScalarWhereWithAggregatesInput {
-  @Field(() => [OrderScalarWhereWithAggregatesInput], { nullable: true })
-  @Type(() => OrderScalarWhereWithAggregatesInput)
-  AND?: Array<OrderScalarWhereWithAggregatesInput>;
 
-  @Field(() => [OrderScalarWhereWithAggregatesInput], { nullable: true })
-  @Type(() => OrderScalarWhereWithAggregatesInput)
-  OR?: Array<OrderScalarWhereWithAggregatesInput>;
+    @Field(() => [OrderScalarWhereWithAggregatesInput], {nullable:true})
+    @Type(() => OrderScalarWhereWithAggregatesInput)
+    AND?: Array<OrderScalarWhereWithAggregatesInput>;
 
-  @Field(() => [OrderScalarWhereWithAggregatesInput], { nullable: true })
-  @Type(() => OrderScalarWhereWithAggregatesInput)
-  NOT?: Array<OrderScalarWhereWithAggregatesInput>;
+    @Field(() => [OrderScalarWhereWithAggregatesInput], {nullable:true})
+    @Type(() => OrderScalarWhereWithAggregatesInput)
+    OR?: Array<OrderScalarWhereWithAggregatesInput>;
 
-  @Field(() => StringWithAggregatesFilter, { nullable: true })
-  id?: StringWithAggregatesFilter;
+    @Field(() => [OrderScalarWhereWithAggregatesInput], {nullable:true})
+    @Type(() => OrderScalarWhereWithAggregatesInput)
+    NOT?: Array<OrderScalarWhereWithAggregatesInput>;
 
-  @Field(() => StringWithAggregatesFilter, { nullable: true })
-  customerId?: StringWithAggregatesFilter;
+    @Field(() => StringWithAggregatesFilter, {nullable:true})
+    id?: StringWithAggregatesFilter;
 
-  @Field(() => DecimalWithAggregatesFilter, { nullable: true })
-  @Type(() => DecimalWithAggregatesFilter)
-  total?: DecimalWithAggregatesFilter;
+    @Field(() => StringWithAggregatesFilter, {nullable:true})
+    customerId?: StringWithAggregatesFilter;
 
-  @Field(() => BoolWithAggregatesFilter, { nullable: true })
-  deleted?: BoolWithAggregatesFilter;
+    @Field(() => DecimalWithAggregatesFilter, {nullable:true})
+    @Type(() => DecimalWithAggregatesFilter)
+    total?: DecimalWithAggregatesFilter;
 
-  @Field(() => DateTimeWithAggregatesFilter, { nullable: true })
-  createdAt?: DateTimeWithAggregatesFilter;
+    @Field(() => BoolWithAggregatesFilter, {nullable:true})
+    deleted?: BoolWithAggregatesFilter;
 
-  @Field(() => DateTimeWithAggregatesFilter, { nullable: true })
-  updatedAt?: DateTimeWithAggregatesFilter;
+    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
+    createdAt?: DateTimeWithAggregatesFilter;
+
+    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
+    updatedAt?: DateTimeWithAggregatesFilter;
 }

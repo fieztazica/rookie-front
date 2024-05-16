@@ -8,18 +8,16 @@ import { CustomerUpdateInput } from './customer-update.input';
 
 @ArgsType()
 export class UpsertOneCustomerArgs {
-  @Field(() => CustomerWhereUniqueInput, { nullable: false })
-  @Type(() => CustomerWhereUniqueInput)
-  where!: Prisma.AtLeast<
-    CustomerWhereUniqueInput,
-    'id' | 'username' | 'email' | 'phoneNumber'
-  >;
 
-  @Field(() => CustomerCreateInput, { nullable: false })
-  @Type(() => CustomerCreateInput)
-  create!: CustomerCreateInput;
+    @Field(() => CustomerWhereUniqueInput, {nullable:false})
+    @Type(() => CustomerWhereUniqueInput)
+    where!: Prisma.AtLeast<CustomerWhereUniqueInput, 'id' | 'username' | 'email' | 'phoneNumber'>;
 
-  @Field(() => CustomerUpdateInput, { nullable: false })
-  @Type(() => CustomerUpdateInput)
-  update!: CustomerUpdateInput;
+    @Field(() => CustomerCreateInput, {nullable:false})
+    @Type(() => CustomerCreateInput)
+    create!: CustomerCreateInput;
+
+    @Field(() => CustomerUpdateInput, {nullable:false})
+    @Type(() => CustomerUpdateInput)
+    update!: CustomerUpdateInput;
 }

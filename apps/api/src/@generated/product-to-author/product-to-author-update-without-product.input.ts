@@ -4,14 +4,13 @@ import { AuthorUpdateOneRequiredWithoutProductsNestedInput } from '../author/aut
 
 @InputType()
 export class ProductToAuthorUpdateWithoutProductInput {
-  @Field(() => Date, { nullable: true })
-  createdAt?: Date | string;
 
-  @Field(() => Date, { nullable: true })
-  updatedAt?: Date | string;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
 
-  @Field(() => AuthorUpdateOneRequiredWithoutProductsNestedInput, {
-    nullable: true,
-  })
-  author?: AuthorUpdateOneRequiredWithoutProductsNestedInput;
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
+
+    @Field(() => AuthorUpdateOneRequiredWithoutProductsNestedInput, {nullable:true})
+    author?: AuthorUpdateOneRequiredWithoutProductsNestedInput;
 }

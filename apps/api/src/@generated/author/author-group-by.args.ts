@@ -12,31 +12,32 @@ import { AuthorMaxAggregateInput } from './author-max-aggregate.input';
 
 @ArgsType()
 export class AuthorGroupByArgs {
-  @Field(() => AuthorWhereInput, { nullable: true })
-  @Type(() => AuthorWhereInput)
-  where?: AuthorWhereInput;
 
-  @Field(() => [AuthorOrderByWithAggregationInput], { nullable: true })
-  orderBy?: Array<AuthorOrderByWithAggregationInput>;
+    @Field(() => AuthorWhereInput, {nullable:true})
+    @Type(() => AuthorWhereInput)
+    where?: AuthorWhereInput;
 
-  @Field(() => [AuthorScalarFieldEnum], { nullable: false })
-  by!: Array<keyof typeof AuthorScalarFieldEnum>;
+    @Field(() => [AuthorOrderByWithAggregationInput], {nullable:true})
+    orderBy?: Array<AuthorOrderByWithAggregationInput>;
 
-  @Field(() => AuthorScalarWhereWithAggregatesInput, { nullable: true })
-  having?: AuthorScalarWhereWithAggregatesInput;
+    @Field(() => [AuthorScalarFieldEnum], {nullable:false})
+    by!: Array<keyof typeof AuthorScalarFieldEnum>;
 
-  @Field(() => Int, { nullable: true })
-  take?: number;
+    @Field(() => AuthorScalarWhereWithAggregatesInput, {nullable:true})
+    having?: AuthorScalarWhereWithAggregatesInput;
 
-  @Field(() => Int, { nullable: true })
-  skip?: number;
+    @Field(() => Int, {nullable:true})
+    take?: number;
 
-  @Field(() => AuthorCountAggregateInput, { nullable: true })
-  _count?: AuthorCountAggregateInput;
+    @Field(() => Int, {nullable:true})
+    skip?: number;
 
-  @Field(() => AuthorMinAggregateInput, { nullable: true })
-  _min?: AuthorMinAggregateInput;
+    @Field(() => AuthorCountAggregateInput, {nullable:true})
+    _count?: AuthorCountAggregateInput;
 
-  @Field(() => AuthorMaxAggregateInput, { nullable: true })
-  _max?: AuthorMaxAggregateInput;
+    @Field(() => AuthorMinAggregateInput, {nullable:true})
+    _min?: AuthorMinAggregateInput;
+
+    @Field(() => AuthorMaxAggregateInput, {nullable:true})
+    _max?: AuthorMaxAggregateInput;
 }

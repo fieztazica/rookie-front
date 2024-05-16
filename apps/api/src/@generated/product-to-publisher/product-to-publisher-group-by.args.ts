@@ -12,35 +12,32 @@ import { ProductToPublisherMaxAggregateInput } from './product-to-publisher-max-
 
 @ArgsType()
 export class ProductToPublisherGroupByArgs {
-  @Field(() => ProductToPublisherWhereInput, { nullable: true })
-  @Type(() => ProductToPublisherWhereInput)
-  where?: ProductToPublisherWhereInput;
 
-  @Field(() => [ProductToPublisherOrderByWithAggregationInput], {
-    nullable: true,
-  })
-  orderBy?: Array<ProductToPublisherOrderByWithAggregationInput>;
+    @Field(() => ProductToPublisherWhereInput, {nullable:true})
+    @Type(() => ProductToPublisherWhereInput)
+    where?: ProductToPublisherWhereInput;
 
-  @Field(() => [ProductToPublisherScalarFieldEnum], { nullable: false })
-  by!: Array<keyof typeof ProductToPublisherScalarFieldEnum>;
+    @Field(() => [ProductToPublisherOrderByWithAggregationInput], {nullable:true})
+    orderBy?: Array<ProductToPublisherOrderByWithAggregationInput>;
 
-  @Field(() => ProductToPublisherScalarWhereWithAggregatesInput, {
-    nullable: true,
-  })
-  having?: ProductToPublisherScalarWhereWithAggregatesInput;
+    @Field(() => [ProductToPublisherScalarFieldEnum], {nullable:false})
+    by!: Array<keyof typeof ProductToPublisherScalarFieldEnum>;
 
-  @Field(() => Int, { nullable: true })
-  take?: number;
+    @Field(() => ProductToPublisherScalarWhereWithAggregatesInput, {nullable:true})
+    having?: ProductToPublisherScalarWhereWithAggregatesInput;
 
-  @Field(() => Int, { nullable: true })
-  skip?: number;
+    @Field(() => Int, {nullable:true})
+    take?: number;
 
-  @Field(() => ProductToPublisherCountAggregateInput, { nullable: true })
-  _count?: ProductToPublisherCountAggregateInput;
+    @Field(() => Int, {nullable:true})
+    skip?: number;
 
-  @Field(() => ProductToPublisherMinAggregateInput, { nullable: true })
-  _min?: ProductToPublisherMinAggregateInput;
+    @Field(() => ProductToPublisherCountAggregateInput, {nullable:true})
+    _count?: ProductToPublisherCountAggregateInput;
 
-  @Field(() => ProductToPublisherMaxAggregateInput, { nullable: true })
-  _max?: ProductToPublisherMaxAggregateInput;
+    @Field(() => ProductToPublisherMinAggregateInput, {nullable:true})
+    _min?: ProductToPublisherMinAggregateInput;
+
+    @Field(() => ProductToPublisherMaxAggregateInput, {nullable:true})
+    _max?: ProductToPublisherMaxAggregateInput;
 }

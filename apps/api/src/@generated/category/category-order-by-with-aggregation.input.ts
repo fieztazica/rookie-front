@@ -8,33 +8,34 @@ import { CategoryMinOrderByAggregateInput } from './category-min-order-by-aggreg
 
 @InputType()
 export class CategoryOrderByWithAggregationInput {
-  @Field(() => SortOrder, { nullable: true })
-  id?: keyof typeof SortOrder;
 
-  @Field(() => SortOrder, { nullable: true })
-  name?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    id?: keyof typeof SortOrder;
 
-  @Field(() => SortOrderInput, { nullable: true })
-  description?: SortOrderInput;
+    @Field(() => SortOrder, {nullable:true})
+    name?: keyof typeof SortOrder;
 
-  @Field(() => SortOrderInput, { nullable: true })
-  displayName?: SortOrderInput;
+    @Field(() => SortOrderInput, {nullable:true})
+    description?: SortOrderInput;
 
-  @Field(() => SortOrder, { nullable: true })
-  deleted?: keyof typeof SortOrder;
+    @Field(() => SortOrderInput, {nullable:true})
+    displayName?: SortOrderInput;
 
-  @Field(() => SortOrder, { nullable: true })
-  createdAt?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    deleted?: keyof typeof SortOrder;
 
-  @Field(() => SortOrder, { nullable: true })
-  updatedAt?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    createdAt?: keyof typeof SortOrder;
 
-  @Field(() => CategoryCountOrderByAggregateInput, { nullable: true })
-  _count?: CategoryCountOrderByAggregateInput;
+    @Field(() => SortOrder, {nullable:true})
+    updatedAt?: keyof typeof SortOrder;
 
-  @Field(() => CategoryMaxOrderByAggregateInput, { nullable: true })
-  _max?: CategoryMaxOrderByAggregateInput;
+    @Field(() => CategoryCountOrderByAggregateInput, {nullable:true})
+    _count?: CategoryCountOrderByAggregateInput;
 
-  @Field(() => CategoryMinOrderByAggregateInput, { nullable: true })
-  _min?: CategoryMinOrderByAggregateInput;
+    @Field(() => CategoryMaxOrderByAggregateInput, {nullable:true})
+    _max?: CategoryMaxOrderByAggregateInput;
+
+    @Field(() => CategoryMinOrderByAggregateInput, {nullable:true})
+    _min?: CategoryMinOrderByAggregateInput;
 }

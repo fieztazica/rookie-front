@@ -4,6 +4,7 @@ import { Int } from '@nestjs/graphql';
 
 @ObjectType()
 export class PublisherCount {
-  @Field(() => Int, { nullable: false })
-  products?: number;
+
+    @Field(() => Int, {nullable:false})
+    products?: number;
 }

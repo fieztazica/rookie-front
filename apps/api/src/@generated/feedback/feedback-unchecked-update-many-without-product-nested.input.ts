@@ -13,53 +13,48 @@ import { FeedbackScalarWhereInput } from './feedback-scalar-where.input';
 
 @InputType()
 export class FeedbackUncheckedUpdateManyWithoutProductNestedInput {
-  @Field(() => [FeedbackCreateWithoutProductInput], { nullable: true })
-  @Type(() => FeedbackCreateWithoutProductInput)
-  create?: Array<FeedbackCreateWithoutProductInput>;
 
-  @Field(() => [FeedbackCreateOrConnectWithoutProductInput], { nullable: true })
-  @Type(() => FeedbackCreateOrConnectWithoutProductInput)
-  connectOrCreate?: Array<FeedbackCreateOrConnectWithoutProductInput>;
+    @Field(() => [FeedbackCreateWithoutProductInput], {nullable:true})
+    @Type(() => FeedbackCreateWithoutProductInput)
+    create?: Array<FeedbackCreateWithoutProductInput>;
 
-  @Field(() => [FeedbackUpsertWithWhereUniqueWithoutProductInput], {
-    nullable: true,
-  })
-  @Type(() => FeedbackUpsertWithWhereUniqueWithoutProductInput)
-  upsert?: Array<FeedbackUpsertWithWhereUniqueWithoutProductInput>;
+    @Field(() => [FeedbackCreateOrConnectWithoutProductInput], {nullable:true})
+    @Type(() => FeedbackCreateOrConnectWithoutProductInput)
+    connectOrCreate?: Array<FeedbackCreateOrConnectWithoutProductInput>;
 
-  @Field(() => FeedbackCreateManyProductInputEnvelope, { nullable: true })
-  @Type(() => FeedbackCreateManyProductInputEnvelope)
-  createMany?: FeedbackCreateManyProductInputEnvelope;
+    @Field(() => [FeedbackUpsertWithWhereUniqueWithoutProductInput], {nullable:true})
+    @Type(() => FeedbackUpsertWithWhereUniqueWithoutProductInput)
+    upsert?: Array<FeedbackUpsertWithWhereUniqueWithoutProductInput>;
 
-  @Field(() => [FeedbackWhereUniqueInput], { nullable: true })
-  @Type(() => FeedbackWhereUniqueInput)
-  set?: Array<Prisma.AtLeast<FeedbackWhereUniqueInput, 'id'>>;
+    @Field(() => FeedbackCreateManyProductInputEnvelope, {nullable:true})
+    @Type(() => FeedbackCreateManyProductInputEnvelope)
+    createMany?: FeedbackCreateManyProductInputEnvelope;
 
-  @Field(() => [FeedbackWhereUniqueInput], { nullable: true })
-  @Type(() => FeedbackWhereUniqueInput)
-  disconnect?: Array<Prisma.AtLeast<FeedbackWhereUniqueInput, 'id'>>;
+    @Field(() => [FeedbackWhereUniqueInput], {nullable:true})
+    @Type(() => FeedbackWhereUniqueInput)
+    set?: Array<Prisma.AtLeast<FeedbackWhereUniqueInput, 'id'>>;
 
-  @Field(() => [FeedbackWhereUniqueInput], { nullable: true })
-  @Type(() => FeedbackWhereUniqueInput)
-  delete?: Array<Prisma.AtLeast<FeedbackWhereUniqueInput, 'id'>>;
+    @Field(() => [FeedbackWhereUniqueInput], {nullable:true})
+    @Type(() => FeedbackWhereUniqueInput)
+    disconnect?: Array<Prisma.AtLeast<FeedbackWhereUniqueInput, 'id'>>;
 
-  @Field(() => [FeedbackWhereUniqueInput], { nullable: true })
-  @Type(() => FeedbackWhereUniqueInput)
-  connect?: Array<Prisma.AtLeast<FeedbackWhereUniqueInput, 'id'>>;
+    @Field(() => [FeedbackWhereUniqueInput], {nullable:true})
+    @Type(() => FeedbackWhereUniqueInput)
+    delete?: Array<Prisma.AtLeast<FeedbackWhereUniqueInput, 'id'>>;
 
-  @Field(() => [FeedbackUpdateWithWhereUniqueWithoutProductInput], {
-    nullable: true,
-  })
-  @Type(() => FeedbackUpdateWithWhereUniqueWithoutProductInput)
-  update?: Array<FeedbackUpdateWithWhereUniqueWithoutProductInput>;
+    @Field(() => [FeedbackWhereUniqueInput], {nullable:true})
+    @Type(() => FeedbackWhereUniqueInput)
+    connect?: Array<Prisma.AtLeast<FeedbackWhereUniqueInput, 'id'>>;
 
-  @Field(() => [FeedbackUpdateManyWithWhereWithoutProductInput], {
-    nullable: true,
-  })
-  @Type(() => FeedbackUpdateManyWithWhereWithoutProductInput)
-  updateMany?: Array<FeedbackUpdateManyWithWhereWithoutProductInput>;
+    @Field(() => [FeedbackUpdateWithWhereUniqueWithoutProductInput], {nullable:true})
+    @Type(() => FeedbackUpdateWithWhereUniqueWithoutProductInput)
+    update?: Array<FeedbackUpdateWithWhereUniqueWithoutProductInput>;
 
-  @Field(() => [FeedbackScalarWhereInput], { nullable: true })
-  @Type(() => FeedbackScalarWhereInput)
-  deleteMany?: Array<FeedbackScalarWhereInput>;
+    @Field(() => [FeedbackUpdateManyWithWhereWithoutProductInput], {nullable:true})
+    @Type(() => FeedbackUpdateManyWithWhereWithoutProductInput)
+    updateMany?: Array<FeedbackUpdateManyWithWhereWithoutProductInput>;
+
+    @Field(() => [FeedbackScalarWhereInput], {nullable:true})
+    @Type(() => FeedbackScalarWhereInput)
+    deleteMany?: Array<FeedbackScalarWhereInput>;
 }

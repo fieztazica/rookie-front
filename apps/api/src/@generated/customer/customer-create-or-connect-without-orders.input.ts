@@ -7,14 +7,12 @@ import { CustomerCreateWithoutOrdersInput } from './customer-create-without-orde
 
 @InputType()
 export class CustomerCreateOrConnectWithoutOrdersInput {
-  @Field(() => CustomerWhereUniqueInput, { nullable: false })
-  @Type(() => CustomerWhereUniqueInput)
-  where!: Prisma.AtLeast<
-    CustomerWhereUniqueInput,
-    'id' | 'username' | 'email' | 'phoneNumber'
-  >;
 
-  @Field(() => CustomerCreateWithoutOrdersInput, { nullable: false })
-  @Type(() => CustomerCreateWithoutOrdersInput)
-  create!: CustomerCreateWithoutOrdersInput;
+    @Field(() => CustomerWhereUniqueInput, {nullable:false})
+    @Type(() => CustomerWhereUniqueInput)
+    where!: Prisma.AtLeast<CustomerWhereUniqueInput, 'id' | 'username' | 'email' | 'phoneNumber'>;
+
+    @Field(() => CustomerCreateWithoutOrdersInput, {nullable:false})
+    @Type(() => CustomerCreateWithoutOrdersInput)
+    create!: CustomerCreateWithoutOrdersInput;
 }

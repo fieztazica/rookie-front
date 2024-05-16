@@ -8,18 +8,19 @@ import { ProductMaxAggregate } from './product-max-aggregate.output';
 
 @ObjectType()
 export class AggregateProduct {
-  @Field(() => ProductCountAggregate, { nullable: true })
-  _count?: ProductCountAggregate;
 
-  @Field(() => ProductAvgAggregate, { nullable: true })
-  _avg?: ProductAvgAggregate;
+    @Field(() => ProductCountAggregate, {nullable:true})
+    _count?: ProductCountAggregate;
 
-  @Field(() => ProductSumAggregate, { nullable: true })
-  _sum?: ProductSumAggregate;
+    @Field(() => ProductAvgAggregate, {nullable:true})
+    _avg?: ProductAvgAggregate;
 
-  @Field(() => ProductMinAggregate, { nullable: true })
-  _min?: ProductMinAggregate;
+    @Field(() => ProductSumAggregate, {nullable:true})
+    _sum?: ProductSumAggregate;
 
-  @Field(() => ProductMaxAggregate, { nullable: true })
-  _max?: ProductMaxAggregate;
+    @Field(() => ProductMinAggregate, {nullable:true})
+    _min?: ProductMinAggregate;
+
+    @Field(() => ProductMaxAggregate, {nullable:true})
+    _max?: ProductMaxAggregate;
 }

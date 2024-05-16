@@ -6,20 +6,17 @@ import { PublisherCreateNestedOneWithoutProductsInput } from '../publisher/publi
 
 @InputType()
 export class ProductToPublisherCreateInput {
-  @Field(() => Date, { nullable: true })
-  createdAt?: Date | string;
 
-  @Field(() => Date, { nullable: true })
-  updatedAt?: Date | string;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
 
-  @Field(() => ProductCreateNestedOneWithoutPublishersInput, {
-    nullable: false,
-  })
-  @Type(() => ProductCreateNestedOneWithoutPublishersInput)
-  product!: ProductCreateNestedOneWithoutPublishersInput;
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
 
-  @Field(() => PublisherCreateNestedOneWithoutProductsInput, {
-    nullable: false,
-  })
-  publisher!: PublisherCreateNestedOneWithoutProductsInput;
+    @Field(() => ProductCreateNestedOneWithoutPublishersInput, {nullable:false})
+    @Type(() => ProductCreateNestedOneWithoutPublishersInput)
+    product!: ProductCreateNestedOneWithoutPublishersInput;
+
+    @Field(() => PublisherCreateNestedOneWithoutProductsInput, {nullable:false})
+    publisher!: PublisherCreateNestedOneWithoutProductsInput;
 }

@@ -9,26 +9,25 @@ import { CustomerUpdateOneRequiredWithoutOrdersNestedInput } from '../customer/c
 
 @InputType()
 export class OrderUpdateWithoutOrderItemsInput {
-  @Field(() => String, { nullable: true })
-  id?: string;
 
-  @Field(() => GraphQLDecimal, { nullable: true })
-  @Type(() => Object)
-  @Transform(transformToDecimal)
-  total?: Decimal;
+    @Field(() => String, {nullable:true})
+    id?: string;
 
-  @Field(() => Boolean, { nullable: true })
-  deleted?: boolean;
+    @Field(() => GraphQLDecimal, {nullable:true})
+    @Type(() => Object)
+    @Transform(transformToDecimal)
+    total?: Decimal;
 
-  @Field(() => Date, { nullable: true })
-  createdAt?: Date | string;
+    @Field(() => Boolean, {nullable:true})
+    deleted?: boolean;
 
-  @Field(() => Date, { nullable: true })
-  updatedAt?: Date | string;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
 
-  @Field(() => CustomerUpdateOneRequiredWithoutOrdersNestedInput, {
-    nullable: true,
-  })
-  @Type(() => CustomerUpdateOneRequiredWithoutOrdersNestedInput)
-  customer?: CustomerUpdateOneRequiredWithoutOrdersNestedInput;
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
+
+    @Field(() => CustomerUpdateOneRequiredWithoutOrdersNestedInput, {nullable:true})
+    @Type(() => CustomerUpdateOneRequiredWithoutOrdersNestedInput)
+    customer?: CustomerUpdateOneRequiredWithoutOrdersNestedInput;
 }

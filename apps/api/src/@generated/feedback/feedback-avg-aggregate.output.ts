@@ -4,6 +4,7 @@ import { Float } from '@nestjs/graphql';
 
 @ObjectType()
 export class FeedbackAvgAggregate {
-  @Field(() => Float, { nullable: true })
-  rating?: number;
+
+    @Field(() => Float, {nullable:true})
+    rating?: number;
 }

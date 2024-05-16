@@ -6,9 +6,10 @@ import { Float } from '@nestjs/graphql';
 
 @ObjectType()
 export class OrderItemAvgAggregate {
-  @Field(() => GraphQLDecimal, { nullable: true })
-  price?: Decimal;
 
-  @Field(() => Float, { nullable: true })
-  quantity?: number;
+    @Field(() => GraphQLDecimal, {nullable:true})
+    price?: Decimal;
+
+    @Field(() => Float, {nullable:true})
+    quantity?: number;
 }

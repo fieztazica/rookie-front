@@ -6,12 +6,13 @@ import { CategoryMaxAggregate } from './category-max-aggregate.output';
 
 @ObjectType()
 export class AggregateCategory {
-  @Field(() => CategoryCountAggregate, { nullable: true })
-  _count?: CategoryCountAggregate;
 
-  @Field(() => CategoryMinAggregate, { nullable: true })
-  _min?: CategoryMinAggregate;
+    @Field(() => CategoryCountAggregate, {nullable:true})
+    _count?: CategoryCountAggregate;
 
-  @Field(() => CategoryMaxAggregate, { nullable: true })
-  _max?: CategoryMaxAggregate;
+    @Field(() => CategoryMinAggregate, {nullable:true})
+    _min?: CategoryMinAggregate;
+
+    @Field(() => CategoryMaxAggregate, {nullable:true})
+    _max?: CategoryMaxAggregate;
 }

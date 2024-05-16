@@ -5,7 +5,8 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class CreateOneFeedbackArgs {
-  @Field(() => FeedbackCreateInput, { nullable: false })
-  @Type(() => FeedbackCreateInput)
-  data!: FeedbackCreateInput;
+
+    @Field(() => FeedbackCreateInput, {nullable:false})
+    @Type(() => FeedbackCreateInput)
+    data!: FeedbackCreateInput;
 }

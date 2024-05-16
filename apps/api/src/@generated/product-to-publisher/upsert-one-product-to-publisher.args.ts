@@ -8,18 +8,16 @@ import { ProductToPublisherUpdateInput } from './product-to-publisher-update.inp
 
 @ArgsType()
 export class UpsertOneProductToPublisherArgs {
-  @Field(() => ProductToPublisherWhereUniqueInput, { nullable: false })
-  @Type(() => ProductToPublisherWhereUniqueInput)
-  where!: Prisma.AtLeast<
-    ProductToPublisherWhereUniqueInput,
-    'productId_publisherId'
-  >;
 
-  @Field(() => ProductToPublisherCreateInput, { nullable: false })
-  @Type(() => ProductToPublisherCreateInput)
-  create!: ProductToPublisherCreateInput;
+    @Field(() => ProductToPublisherWhereUniqueInput, {nullable:false})
+    @Type(() => ProductToPublisherWhereUniqueInput)
+    where!: Prisma.AtLeast<ProductToPublisherWhereUniqueInput, 'productId_publisherId'>;
 
-  @Field(() => ProductToPublisherUpdateInput, { nullable: false })
-  @Type(() => ProductToPublisherUpdateInput)
-  update!: ProductToPublisherUpdateInput;
+    @Field(() => ProductToPublisherCreateInput, {nullable:false})
+    @Type(() => ProductToPublisherCreateInput)
+    create!: ProductToPublisherCreateInput;
+
+    @Field(() => ProductToPublisherUpdateInput, {nullable:false})
+    @Type(() => ProductToPublisherUpdateInput)
+    update!: ProductToPublisherUpdateInput;
 }

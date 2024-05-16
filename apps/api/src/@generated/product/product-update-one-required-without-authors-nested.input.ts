@@ -10,25 +10,24 @@ import { ProductUpdateToOneWithWhereWithoutAuthorsInput } from './product-update
 
 @InputType()
 export class ProductUpdateOneRequiredWithoutAuthorsNestedInput {
-  @Field(() => ProductCreateWithoutAuthorsInput, { nullable: true })
-  @Type(() => ProductCreateWithoutAuthorsInput)
-  create?: ProductCreateWithoutAuthorsInput;
 
-  @Field(() => ProductCreateOrConnectWithoutAuthorsInput, { nullable: true })
-  @Type(() => ProductCreateOrConnectWithoutAuthorsInput)
-  connectOrCreate?: ProductCreateOrConnectWithoutAuthorsInput;
+    @Field(() => ProductCreateWithoutAuthorsInput, {nullable:true})
+    @Type(() => ProductCreateWithoutAuthorsInput)
+    create?: ProductCreateWithoutAuthorsInput;
 
-  @Field(() => ProductUpsertWithoutAuthorsInput, { nullable: true })
-  @Type(() => ProductUpsertWithoutAuthorsInput)
-  upsert?: ProductUpsertWithoutAuthorsInput;
+    @Field(() => ProductCreateOrConnectWithoutAuthorsInput, {nullable:true})
+    @Type(() => ProductCreateOrConnectWithoutAuthorsInput)
+    connectOrCreate?: ProductCreateOrConnectWithoutAuthorsInput;
 
-  @Field(() => ProductWhereUniqueInput, { nullable: true })
-  @Type(() => ProductWhereUniqueInput)
-  connect?: Prisma.AtLeast<ProductWhereUniqueInput, 'id' | 'name'>;
+    @Field(() => ProductUpsertWithoutAuthorsInput, {nullable:true})
+    @Type(() => ProductUpsertWithoutAuthorsInput)
+    upsert?: ProductUpsertWithoutAuthorsInput;
 
-  @Field(() => ProductUpdateToOneWithWhereWithoutAuthorsInput, {
-    nullable: true,
-  })
-  @Type(() => ProductUpdateToOneWithWhereWithoutAuthorsInput)
-  update?: ProductUpdateToOneWithWhereWithoutAuthorsInput;
+    @Field(() => ProductWhereUniqueInput, {nullable:true})
+    @Type(() => ProductWhereUniqueInput)
+    connect?: Prisma.AtLeast<ProductWhereUniqueInput, 'id' | 'name'>;
+
+    @Field(() => ProductUpdateToOneWithWhereWithoutAuthorsInput, {nullable:true})
+    @Type(() => ProductUpdateToOneWithWhereWithoutAuthorsInput)
+    update?: ProductUpdateToOneWithWhereWithoutAuthorsInput;
 }

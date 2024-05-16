@@ -6,11 +6,12 @@ import { PublisherWhereInput } from './publisher-where.input';
 
 @ArgsType()
 export class UpdateManyPublisherArgs {
-  @Field(() => PublisherUpdateManyMutationInput, { nullable: false })
-  @Type(() => PublisherUpdateManyMutationInput)
-  data!: PublisherUpdateManyMutationInput;
 
-  @Field(() => PublisherWhereInput, { nullable: true })
-  @Type(() => PublisherWhereInput)
-  where?: PublisherWhereInput;
+    @Field(() => PublisherUpdateManyMutationInput, {nullable:false})
+    @Type(() => PublisherUpdateManyMutationInput)
+    data!: PublisherUpdateManyMutationInput;
+
+    @Field(() => PublisherWhereInput, {nullable:true})
+    @Type(() => PublisherWhereInput)
+    where?: PublisherWhereInput;
 }

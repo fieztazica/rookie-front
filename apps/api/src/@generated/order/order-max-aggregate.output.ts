@@ -5,21 +5,22 @@ import { GraphQLDecimal } from 'prisma-graphql-type-decimal';
 
 @ObjectType()
 export class OrderMaxAggregate {
-  @Field(() => String, { nullable: true })
-  id?: string;
 
-  @Field(() => String, { nullable: true })
-  customerId?: string;
+    @Field(() => String, {nullable:true})
+    id?: string;
 
-  @Field(() => GraphQLDecimal, { nullable: true })
-  total?: Decimal;
+    @Field(() => String, {nullable:true})
+    customerId?: string;
 
-  @Field(() => Boolean, { nullable: true })
-  deleted?: boolean;
+    @Field(() => GraphQLDecimal, {nullable:true})
+    total?: Decimal;
 
-  @Field(() => Date, { nullable: true })
-  createdAt?: Date | string;
+    @Field(() => Boolean, {nullable:true})
+    deleted?: boolean;
 
-  @Field(() => Date, { nullable: true })
-  updatedAt?: Date | string;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
+
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
 }

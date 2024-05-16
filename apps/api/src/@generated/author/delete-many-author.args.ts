@@ -5,7 +5,8 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class DeleteManyAuthorArgs {
-  @Field(() => AuthorWhereInput, { nullable: true })
-  @Type(() => AuthorWhereInput)
-  where?: AuthorWhereInput;
+
+    @Field(() => AuthorWhereInput, {nullable:true})
+    @Type(() => AuthorWhereInput)
+    where?: AuthorWhereInput;
 }

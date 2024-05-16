@@ -4,12 +4,13 @@ import { AuthorCreateNestedOneWithoutProductsInput } from '../author/author-crea
 
 @InputType()
 export class ProductToAuthorCreateWithoutProductInput {
-  @Field(() => Date, { nullable: true })
-  createdAt?: Date | string;
 
-  @Field(() => Date, { nullable: true })
-  updatedAt?: Date | string;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
 
-  @Field(() => AuthorCreateNestedOneWithoutProductsInput, { nullable: false })
-  author!: AuthorCreateNestedOneWithoutProductsInput;
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
+
+    @Field(() => AuthorCreateNestedOneWithoutProductsInput, {nullable:false})
+    author!: AuthorCreateNestedOneWithoutProductsInput;
 }

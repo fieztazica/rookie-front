@@ -8,15 +8,16 @@ import { OrderItemCreateWithoutOrderInput } from './order-item-create-without-or
 
 @InputType()
 export class OrderItemUpsertWithWhereUniqueWithoutOrderInput {
-  @Field(() => OrderItemWhereUniqueInput, { nullable: false })
-  @Type(() => OrderItemWhereUniqueInput)
-  where!: Prisma.AtLeast<OrderItemWhereUniqueInput, 'orderId_productId'>;
 
-  @Field(() => OrderItemUpdateWithoutOrderInput, { nullable: false })
-  @Type(() => OrderItemUpdateWithoutOrderInput)
-  update!: OrderItemUpdateWithoutOrderInput;
+    @Field(() => OrderItemWhereUniqueInput, {nullable:false})
+    @Type(() => OrderItemWhereUniqueInput)
+    where!: Prisma.AtLeast<OrderItemWhereUniqueInput, 'orderId_productId'>;
 
-  @Field(() => OrderItemCreateWithoutOrderInput, { nullable: false })
-  @Type(() => OrderItemCreateWithoutOrderInput)
-  create!: OrderItemCreateWithoutOrderInput;
+    @Field(() => OrderItemUpdateWithoutOrderInput, {nullable:false})
+    @Type(() => OrderItemUpdateWithoutOrderInput)
+    update!: OrderItemUpdateWithoutOrderInput;
+
+    @Field(() => OrderItemCreateWithoutOrderInput, {nullable:false})
+    @Type(() => OrderItemCreateWithoutOrderInput)
+    create!: OrderItemCreateWithoutOrderInput;
 }

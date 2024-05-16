@@ -8,18 +8,19 @@ import { OrderItemMaxAggregate } from './order-item-max-aggregate.output';
 
 @ObjectType()
 export class AggregateOrderItem {
-  @Field(() => OrderItemCountAggregate, { nullable: true })
-  _count?: OrderItemCountAggregate;
 
-  @Field(() => OrderItemAvgAggregate, { nullable: true })
-  _avg?: OrderItemAvgAggregate;
+    @Field(() => OrderItemCountAggregate, {nullable:true})
+    _count?: OrderItemCountAggregate;
 
-  @Field(() => OrderItemSumAggregate, { nullable: true })
-  _sum?: OrderItemSumAggregate;
+    @Field(() => OrderItemAvgAggregate, {nullable:true})
+    _avg?: OrderItemAvgAggregate;
 
-  @Field(() => OrderItemMinAggregate, { nullable: true })
-  _min?: OrderItemMinAggregate;
+    @Field(() => OrderItemSumAggregate, {nullable:true})
+    _sum?: OrderItemSumAggregate;
 
-  @Field(() => OrderItemMaxAggregate, { nullable: true })
-  _max?: OrderItemMaxAggregate;
+    @Field(() => OrderItemMinAggregate, {nullable:true})
+    _min?: OrderItemMinAggregate;
+
+    @Field(() => OrderItemMaxAggregate, {nullable:true})
+    _max?: OrderItemMaxAggregate;
 }

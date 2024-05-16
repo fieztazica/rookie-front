@@ -14,37 +14,38 @@ import { FeedbackMaxAggregateInput } from './feedback-max-aggregate.input';
 
 @ArgsType()
 export class FeedbackGroupByArgs {
-  @Field(() => FeedbackWhereInput, { nullable: true })
-  @Type(() => FeedbackWhereInput)
-  where?: FeedbackWhereInput;
 
-  @Field(() => [FeedbackOrderByWithAggregationInput], { nullable: true })
-  orderBy?: Array<FeedbackOrderByWithAggregationInput>;
+    @Field(() => FeedbackWhereInput, {nullable:true})
+    @Type(() => FeedbackWhereInput)
+    where?: FeedbackWhereInput;
 
-  @Field(() => [FeedbackScalarFieldEnum], { nullable: false })
-  by!: Array<keyof typeof FeedbackScalarFieldEnum>;
+    @Field(() => [FeedbackOrderByWithAggregationInput], {nullable:true})
+    orderBy?: Array<FeedbackOrderByWithAggregationInput>;
 
-  @Field(() => FeedbackScalarWhereWithAggregatesInput, { nullable: true })
-  having?: FeedbackScalarWhereWithAggregatesInput;
+    @Field(() => [FeedbackScalarFieldEnum], {nullable:false})
+    by!: Array<keyof typeof FeedbackScalarFieldEnum>;
 
-  @Field(() => Int, { nullable: true })
-  take?: number;
+    @Field(() => FeedbackScalarWhereWithAggregatesInput, {nullable:true})
+    having?: FeedbackScalarWhereWithAggregatesInput;
 
-  @Field(() => Int, { nullable: true })
-  skip?: number;
+    @Field(() => Int, {nullable:true})
+    take?: number;
 
-  @Field(() => FeedbackCountAggregateInput, { nullable: true })
-  _count?: FeedbackCountAggregateInput;
+    @Field(() => Int, {nullable:true})
+    skip?: number;
 
-  @Field(() => FeedbackAvgAggregateInput, { nullable: true })
-  _avg?: FeedbackAvgAggregateInput;
+    @Field(() => FeedbackCountAggregateInput, {nullable:true})
+    _count?: FeedbackCountAggregateInput;
 
-  @Field(() => FeedbackSumAggregateInput, { nullable: true })
-  _sum?: FeedbackSumAggregateInput;
+    @Field(() => FeedbackAvgAggregateInput, {nullable:true})
+    _avg?: FeedbackAvgAggregateInput;
 
-  @Field(() => FeedbackMinAggregateInput, { nullable: true })
-  _min?: FeedbackMinAggregateInput;
+    @Field(() => FeedbackSumAggregateInput, {nullable:true})
+    _sum?: FeedbackSumAggregateInput;
 
-  @Field(() => FeedbackMaxAggregateInput, { nullable: true })
-  _max?: FeedbackMaxAggregateInput;
+    @Field(() => FeedbackMinAggregateInput, {nullable:true})
+    _min?: FeedbackMinAggregateInput;
+
+    @Field(() => FeedbackMaxAggregateInput, {nullable:true})
+    _max?: FeedbackMaxAggregateInput;
 }

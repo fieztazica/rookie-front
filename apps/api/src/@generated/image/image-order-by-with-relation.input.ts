@@ -7,31 +7,32 @@ import { Type } from 'class-transformer';
 
 @InputType()
 export class ImageOrderByWithRelationInput {
-  @Field(() => SortOrder, { nullable: true })
-  id?: keyof typeof SortOrder;
 
-  @Field(() => SortOrder, { nullable: true })
-  productId?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    id?: keyof typeof SortOrder;
 
-  @Field(() => SortOrder, { nullable: true })
-  url?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    productId?: keyof typeof SortOrder;
 
-  @Field(() => SortOrderInput, { nullable: true })
-  alt?: SortOrderInput;
+    @Field(() => SortOrder, {nullable:true})
+    url?: keyof typeof SortOrder;
 
-  @Field(() => SortOrder, { nullable: true })
-  isThumbnail?: keyof typeof SortOrder;
+    @Field(() => SortOrderInput, {nullable:true})
+    alt?: SortOrderInput;
 
-  @Field(() => SortOrder, { nullable: true })
-  deleted?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    isThumbnail?: keyof typeof SortOrder;
 
-  @Field(() => SortOrder, { nullable: true })
-  createdAt?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    deleted?: keyof typeof SortOrder;
 
-  @Field(() => SortOrder, { nullable: true })
-  updatedAt?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    createdAt?: keyof typeof SortOrder;
 
-  @Field(() => ProductOrderByWithRelationInput, { nullable: true })
-  @Type(() => ProductOrderByWithRelationInput)
-  product?: ProductOrderByWithRelationInput;
+    @Field(() => SortOrder, {nullable:true})
+    updatedAt?: keyof typeof SortOrder;
+
+    @Field(() => ProductOrderByWithRelationInput, {nullable:true})
+    @Type(() => ProductOrderByWithRelationInput)
+    product?: ProductOrderByWithRelationInput;
 }

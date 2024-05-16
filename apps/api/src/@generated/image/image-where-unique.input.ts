@@ -11,43 +11,44 @@ import { Type } from 'class-transformer';
 
 @InputType()
 export class ImageWhereUniqueInput {
-  @Field(() => ImageIdProductIdCompoundUniqueInput, { nullable: true })
-  id_productId?: ImageIdProductIdCompoundUniqueInput;
 
-  @Field(() => [ImageWhereInput], { nullable: true })
-  AND?: Array<ImageWhereInput>;
+    @Field(() => ImageIdProductIdCompoundUniqueInput, {nullable:true})
+    id_productId?: ImageIdProductIdCompoundUniqueInput;
 
-  @Field(() => [ImageWhereInput], { nullable: true })
-  OR?: Array<ImageWhereInput>;
+    @Field(() => [ImageWhereInput], {nullable:true})
+    AND?: Array<ImageWhereInput>;
 
-  @Field(() => [ImageWhereInput], { nullable: true })
-  NOT?: Array<ImageWhereInput>;
+    @Field(() => [ImageWhereInput], {nullable:true})
+    OR?: Array<ImageWhereInput>;
 
-  @Field(() => IntFilter, { nullable: true })
-  id?: IntFilter;
+    @Field(() => [ImageWhereInput], {nullable:true})
+    NOT?: Array<ImageWhereInput>;
 
-  @Field(() => StringFilter, { nullable: true })
-  productId?: StringFilter;
+    @Field(() => IntFilter, {nullable:true})
+    id?: IntFilter;
 
-  @Field(() => StringFilter, { nullable: true })
-  url?: StringFilter;
+    @Field(() => StringFilter, {nullable:true})
+    productId?: StringFilter;
 
-  @Field(() => StringFilter, { nullable: true })
-  alt?: StringFilter;
+    @Field(() => StringFilter, {nullable:true})
+    url?: StringFilter;
 
-  @Field(() => BoolFilter, { nullable: true })
-  isThumbnail?: BoolFilter;
+    @Field(() => StringFilter, {nullable:true})
+    alt?: StringFilter;
 
-  @Field(() => BoolFilter, { nullable: true })
-  deleted?: BoolFilter;
+    @Field(() => BoolFilter, {nullable:true})
+    isThumbnail?: BoolFilter;
 
-  @Field(() => DateTimeFilter, { nullable: true })
-  createdAt?: DateTimeFilter;
+    @Field(() => BoolFilter, {nullable:true})
+    deleted?: BoolFilter;
 
-  @Field(() => DateTimeFilter, { nullable: true })
-  updatedAt?: DateTimeFilter;
+    @Field(() => DateTimeFilter, {nullable:true})
+    createdAt?: DateTimeFilter;
 
-  @Field(() => ProductRelationFilter, { nullable: true })
-  @Type(() => ProductRelationFilter)
-  product?: ProductRelationFilter;
+    @Field(() => DateTimeFilter, {nullable:true})
+    updatedAt?: DateTimeFilter;
+
+    @Field(() => ProductRelationFilter, {nullable:true})
+    @Type(() => ProductRelationFilter)
+    product?: ProductRelationFilter;
 }

@@ -6,11 +6,12 @@ import { ProductUpdateWithoutImagesInput } from './product-update-without-images
 
 @InputType()
 export class ProductUpdateToOneWithWhereWithoutImagesInput {
-  @Field(() => ProductWhereInput, { nullable: true })
-  @Type(() => ProductWhereInput)
-  where?: ProductWhereInput;
 
-  @Field(() => ProductUpdateWithoutImagesInput, { nullable: false })
-  @Type(() => ProductUpdateWithoutImagesInput)
-  data!: ProductUpdateWithoutImagesInput;
+    @Field(() => ProductWhereInput, {nullable:true})
+    @Type(() => ProductWhereInput)
+    where?: ProductWhereInput;
+
+    @Field(() => ProductUpdateWithoutImagesInput, {nullable:false})
+    @Type(() => ProductUpdateWithoutImagesInput)
+    data!: ProductUpdateWithoutImagesInput;
 }

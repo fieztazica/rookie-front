@@ -14,44 +14,45 @@ import { ProductMaxAggregateInput } from './product-max-aggregate.input';
 
 @ArgsType()
 export class ProductGroupByArgs {
-  @Field(() => ProductWhereInput, { nullable: true })
-  @Type(() => ProductWhereInput)
-  where?: ProductWhereInput;
 
-  @Field(() => [ProductOrderByWithAggregationInput], { nullable: true })
-  @Type(() => ProductOrderByWithAggregationInput)
-  orderBy?: Array<ProductOrderByWithAggregationInput>;
+    @Field(() => ProductWhereInput, {nullable:true})
+    @Type(() => ProductWhereInput)
+    where?: ProductWhereInput;
 
-  @Field(() => [ProductScalarFieldEnum], { nullable: false })
-  by!: Array<keyof typeof ProductScalarFieldEnum>;
+    @Field(() => [ProductOrderByWithAggregationInput], {nullable:true})
+    @Type(() => ProductOrderByWithAggregationInput)
+    orderBy?: Array<ProductOrderByWithAggregationInput>;
 
-  @Field(() => ProductScalarWhereWithAggregatesInput, { nullable: true })
-  @Type(() => ProductScalarWhereWithAggregatesInput)
-  having?: ProductScalarWhereWithAggregatesInput;
+    @Field(() => [ProductScalarFieldEnum], {nullable:false})
+    by!: Array<keyof typeof ProductScalarFieldEnum>;
 
-  @Field(() => Int, { nullable: true })
-  take?: number;
+    @Field(() => ProductScalarWhereWithAggregatesInput, {nullable:true})
+    @Type(() => ProductScalarWhereWithAggregatesInput)
+    having?: ProductScalarWhereWithAggregatesInput;
 
-  @Field(() => Int, { nullable: true })
-  skip?: number;
+    @Field(() => Int, {nullable:true})
+    take?: number;
 
-  @Field(() => ProductCountAggregateInput, { nullable: true })
-  @Type(() => ProductCountAggregateInput)
-  _count?: ProductCountAggregateInput;
+    @Field(() => Int, {nullable:true})
+    skip?: number;
 
-  @Field(() => ProductAvgAggregateInput, { nullable: true })
-  @Type(() => ProductAvgAggregateInput)
-  _avg?: ProductAvgAggregateInput;
+    @Field(() => ProductCountAggregateInput, {nullable:true})
+    @Type(() => ProductCountAggregateInput)
+    _count?: ProductCountAggregateInput;
 
-  @Field(() => ProductSumAggregateInput, { nullable: true })
-  @Type(() => ProductSumAggregateInput)
-  _sum?: ProductSumAggregateInput;
+    @Field(() => ProductAvgAggregateInput, {nullable:true})
+    @Type(() => ProductAvgAggregateInput)
+    _avg?: ProductAvgAggregateInput;
 
-  @Field(() => ProductMinAggregateInput, { nullable: true })
-  @Type(() => ProductMinAggregateInput)
-  _min?: ProductMinAggregateInput;
+    @Field(() => ProductSumAggregateInput, {nullable:true})
+    @Type(() => ProductSumAggregateInput)
+    _sum?: ProductSumAggregateInput;
 
-  @Field(() => ProductMaxAggregateInput, { nullable: true })
-  @Type(() => ProductMaxAggregateInput)
-  _max?: ProductMaxAggregateInput;
+    @Field(() => ProductMinAggregateInput, {nullable:true})
+    @Type(() => ProductMinAggregateInput)
+    _min?: ProductMinAggregateInput;
+
+    @Field(() => ProductMaxAggregateInput, {nullable:true})
+    @Type(() => ProductMaxAggregateInput)
+    _max?: ProductMaxAggregateInput;
 }

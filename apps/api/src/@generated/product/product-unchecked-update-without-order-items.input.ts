@@ -13,67 +13,58 @@ import { ProductToAuthorUncheckedUpdateManyWithoutProductNestedInput } from '../
 
 @InputType()
 export class ProductUncheckedUpdateWithoutOrderItemsInput {
-  @Field(() => String, { nullable: true })
-  id?: string;
 
-  @Field(() => String, { nullable: true })
-  name?: string;
+    @Field(() => String, {nullable:true})
+    id?: string;
 
-  @Field(() => String, { nullable: true })
-  displayName?: string;
+    @Field(() => String, {nullable:true})
+    name?: string;
 
-  @Field(() => String, { nullable: true })
-  description?: string;
+    @Field(() => String, {nullable:true})
+    displayName?: string;
 
-  @Field(() => GraphQLDecimal, { nullable: true })
-  @Type(() => Object)
-  @Transform(transformToDecimal)
-  price?: Decimal;
+    @Field(() => String, {nullable:true})
+    description?: string;
 
-  @Field(() => GraphQLDecimal, { nullable: true })
-  @Type(() => Object)
-  @Transform(transformToDecimal)
-  salePrice?: Decimal;
+    @Field(() => GraphQLDecimal, {nullable:true})
+    @Type(() => Object)
+    @Transform(transformToDecimal)
+    price?: Decimal;
 
-  @Field(() => String, { nullable: true })
-  accountId?: string;
+    @Field(() => GraphQLDecimal, {nullable:true})
+    @Type(() => Object)
+    @Transform(transformToDecimal)
+    salePrice?: Decimal;
 
-  @Field(() => Boolean, { nullable: true })
-  deleted?: boolean;
+    @Field(() => String, {nullable:true})
+    accountId?: string;
 
-  @Field(() => Date, { nullable: true })
-  createdAt?: Date | string;
+    @Field(() => Boolean, {nullable:true})
+    deleted?: boolean;
 
-  @Field(() => Date, { nullable: true })
-  updatedAt?: Date | string;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
 
-  @Field(() => ProductToCategoryUncheckedUpdateManyWithoutProductNestedInput, {
-    nullable: true,
-  })
-  @Type(() => ProductToCategoryUncheckedUpdateManyWithoutProductNestedInput)
-  categories?: ProductToCategoryUncheckedUpdateManyWithoutProductNestedInput;
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
 
-  @Field(() => FeedbackUncheckedUpdateManyWithoutProductNestedInput, {
-    nullable: true,
-  })
-  @Type(() => FeedbackUncheckedUpdateManyWithoutProductNestedInput)
-  feedbacks?: FeedbackUncheckedUpdateManyWithoutProductNestedInput;
+    @Field(() => ProductToCategoryUncheckedUpdateManyWithoutProductNestedInput, {nullable:true})
+    @Type(() => ProductToCategoryUncheckedUpdateManyWithoutProductNestedInput)
+    categories?: ProductToCategoryUncheckedUpdateManyWithoutProductNestedInput;
 
-  @Field(() => ImageUncheckedUpdateManyWithoutProductNestedInput, {
-    nullable: true,
-  })
-  @Type(() => ImageUncheckedUpdateManyWithoutProductNestedInput)
-  images?: ImageUncheckedUpdateManyWithoutProductNestedInput;
+    @Field(() => FeedbackUncheckedUpdateManyWithoutProductNestedInput, {nullable:true})
+    @Type(() => FeedbackUncheckedUpdateManyWithoutProductNestedInput)
+    feedbacks?: FeedbackUncheckedUpdateManyWithoutProductNestedInput;
 
-  @Field(() => ProductToPublisherUncheckedUpdateManyWithoutProductNestedInput, {
-    nullable: true,
-  })
-  @Type(() => ProductToPublisherUncheckedUpdateManyWithoutProductNestedInput)
-  publishers?: ProductToPublisherUncheckedUpdateManyWithoutProductNestedInput;
+    @Field(() => ImageUncheckedUpdateManyWithoutProductNestedInput, {nullable:true})
+    @Type(() => ImageUncheckedUpdateManyWithoutProductNestedInput)
+    images?: ImageUncheckedUpdateManyWithoutProductNestedInput;
 
-  @Field(() => ProductToAuthorUncheckedUpdateManyWithoutProductNestedInput, {
-    nullable: true,
-  })
-  @Type(() => ProductToAuthorUncheckedUpdateManyWithoutProductNestedInput)
-  authors?: ProductToAuthorUncheckedUpdateManyWithoutProductNestedInput;
+    @Field(() => ProductToPublisherUncheckedUpdateManyWithoutProductNestedInput, {nullable:true})
+    @Type(() => ProductToPublisherUncheckedUpdateManyWithoutProductNestedInput)
+    publishers?: ProductToPublisherUncheckedUpdateManyWithoutProductNestedInput;
+
+    @Field(() => ProductToAuthorUncheckedUpdateManyWithoutProductNestedInput, {nullable:true})
+    @Type(() => ProductToAuthorUncheckedUpdateManyWithoutProductNestedInput)
+    authors?: ProductToAuthorUncheckedUpdateManyWithoutProductNestedInput;
 }

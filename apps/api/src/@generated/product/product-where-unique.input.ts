@@ -15,71 +15,72 @@ import { ProductToAuthorListRelationFilter } from '../product-to-author/product-
 
 @InputType()
 export class ProductWhereUniqueInput {
-  @Field(() => String, { nullable: true })
-  id?: string;
 
-  @Field(() => String, { nullable: true })
-  name?: string;
+    @Field(() => String, {nullable:true})
+    id?: string;
 
-  @Field(() => [ProductWhereInput], { nullable: true })
-  @Type(() => ProductWhereInput)
-  AND?: Array<ProductWhereInput>;
+    @Field(() => String, {nullable:true})
+    name?: string;
 
-  @Field(() => [ProductWhereInput], { nullable: true })
-  @Type(() => ProductWhereInput)
-  OR?: Array<ProductWhereInput>;
+    @Field(() => [ProductWhereInput], {nullable:true})
+    @Type(() => ProductWhereInput)
+    AND?: Array<ProductWhereInput>;
 
-  @Field(() => [ProductWhereInput], { nullable: true })
-  @Type(() => ProductWhereInput)
-  NOT?: Array<ProductWhereInput>;
+    @Field(() => [ProductWhereInput], {nullable:true})
+    @Type(() => ProductWhereInput)
+    OR?: Array<ProductWhereInput>;
 
-  @Field(() => StringFilter, { nullable: true })
-  displayName?: StringFilter;
+    @Field(() => [ProductWhereInput], {nullable:true})
+    @Type(() => ProductWhereInput)
+    NOT?: Array<ProductWhereInput>;
 
-  @Field(() => StringFilter, { nullable: true })
-  description?: StringFilter;
+    @Field(() => StringFilter, {nullable:true})
+    displayName?: StringFilter;
 
-  @Field(() => DecimalFilter, { nullable: true })
-  @Type(() => DecimalFilter)
-  price?: DecimalFilter;
+    @Field(() => StringFilter, {nullable:true})
+    description?: StringFilter;
 
-  @Field(() => DecimalFilter, { nullable: true })
-  @Type(() => DecimalFilter)
-  salePrice?: DecimalFilter;
+    @Field(() => DecimalFilter, {nullable:true})
+    @Type(() => DecimalFilter)
+    price?: DecimalFilter;
 
-  @Field(() => StringFilter, { nullable: true })
-  accountId?: StringFilter;
+    @Field(() => DecimalFilter, {nullable:true})
+    @Type(() => DecimalFilter)
+    salePrice?: DecimalFilter;
 
-  @Field(() => BoolFilter, { nullable: true })
-  deleted?: BoolFilter;
+    @Field(() => StringFilter, {nullable:true})
+    accountId?: StringFilter;
 
-  @Field(() => DateTimeFilter, { nullable: true })
-  createdAt?: DateTimeFilter;
+    @Field(() => BoolFilter, {nullable:true})
+    deleted?: BoolFilter;
 
-  @Field(() => DateTimeFilter, { nullable: true })
-  updatedAt?: DateTimeFilter;
+    @Field(() => DateTimeFilter, {nullable:true})
+    createdAt?: DateTimeFilter;
 
-  @Field(() => ProductToCategoryListRelationFilter, { nullable: true })
-  @Type(() => ProductToCategoryListRelationFilter)
-  categories?: ProductToCategoryListRelationFilter;
+    @Field(() => DateTimeFilter, {nullable:true})
+    updatedAt?: DateTimeFilter;
 
-  @Field(() => OrderItemListRelationFilter, { nullable: true })
-  @Type(() => OrderItemListRelationFilter)
-  orderItems?: OrderItemListRelationFilter;
+    @Field(() => ProductToCategoryListRelationFilter, {nullable:true})
+    @Type(() => ProductToCategoryListRelationFilter)
+    categories?: ProductToCategoryListRelationFilter;
 
-  @Field(() => FeedbackListRelationFilter, { nullable: true })
-  @Type(() => FeedbackListRelationFilter)
-  feedbacks?: FeedbackListRelationFilter;
+    @Field(() => OrderItemListRelationFilter, {nullable:true})
+    @Type(() => OrderItemListRelationFilter)
+    orderItems?: OrderItemListRelationFilter;
 
-  @Field(() => ImageListRelationFilter, { nullable: true })
-  @Type(() => ImageListRelationFilter)
-  images?: ImageListRelationFilter;
+    @Field(() => FeedbackListRelationFilter, {nullable:true})
+    @Type(() => FeedbackListRelationFilter)
+    feedbacks?: FeedbackListRelationFilter;
 
-  @Field(() => ProductToPublisherListRelationFilter, { nullable: true })
-  @Type(() => ProductToPublisherListRelationFilter)
-  publishers?: ProductToPublisherListRelationFilter;
+    @Field(() => ImageListRelationFilter, {nullable:true})
+    @Type(() => ImageListRelationFilter)
+    images?: ImageListRelationFilter;
 
-  @Field(() => ProductToAuthorListRelationFilter, { nullable: true })
-  @Type(() => ProductToAuthorListRelationFilter)
-  authors?: ProductToAuthorListRelationFilter;
+    @Field(() => ProductToPublisherListRelationFilter, {nullable:true})
+    @Type(() => ProductToPublisherListRelationFilter)
+    publishers?: ProductToPublisherListRelationFilter;
+
+    @Field(() => ProductToAuthorListRelationFilter, {nullable:true})
+    @Type(() => ProductToAuthorListRelationFilter)
+    authors?: ProductToAuthorListRelationFilter;
 }

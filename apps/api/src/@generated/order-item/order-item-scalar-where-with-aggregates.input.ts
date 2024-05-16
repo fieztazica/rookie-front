@@ -8,34 +8,35 @@ import { DateTimeWithAggregatesFilter } from '../prisma/date-time-with-aggregate
 
 @InputType()
 export class OrderItemScalarWhereWithAggregatesInput {
-  @Field(() => [OrderItemScalarWhereWithAggregatesInput], { nullable: true })
-  @Type(() => OrderItemScalarWhereWithAggregatesInput)
-  AND?: Array<OrderItemScalarWhereWithAggregatesInput>;
 
-  @Field(() => [OrderItemScalarWhereWithAggregatesInput], { nullable: true })
-  @Type(() => OrderItemScalarWhereWithAggregatesInput)
-  OR?: Array<OrderItemScalarWhereWithAggregatesInput>;
+    @Field(() => [OrderItemScalarWhereWithAggregatesInput], {nullable:true})
+    @Type(() => OrderItemScalarWhereWithAggregatesInput)
+    AND?: Array<OrderItemScalarWhereWithAggregatesInput>;
 
-  @Field(() => [OrderItemScalarWhereWithAggregatesInput], { nullable: true })
-  @Type(() => OrderItemScalarWhereWithAggregatesInput)
-  NOT?: Array<OrderItemScalarWhereWithAggregatesInput>;
+    @Field(() => [OrderItemScalarWhereWithAggregatesInput], {nullable:true})
+    @Type(() => OrderItemScalarWhereWithAggregatesInput)
+    OR?: Array<OrderItemScalarWhereWithAggregatesInput>;
 
-  @Field(() => StringWithAggregatesFilter, { nullable: true })
-  orderId?: StringWithAggregatesFilter;
+    @Field(() => [OrderItemScalarWhereWithAggregatesInput], {nullable:true})
+    @Type(() => OrderItemScalarWhereWithAggregatesInput)
+    NOT?: Array<OrderItemScalarWhereWithAggregatesInput>;
 
-  @Field(() => StringWithAggregatesFilter, { nullable: true })
-  productId?: StringWithAggregatesFilter;
+    @Field(() => StringWithAggregatesFilter, {nullable:true})
+    orderId?: StringWithAggregatesFilter;
 
-  @Field(() => DecimalWithAggregatesFilter, { nullable: true })
-  @Type(() => DecimalWithAggregatesFilter)
-  price?: DecimalWithAggregatesFilter;
+    @Field(() => StringWithAggregatesFilter, {nullable:true})
+    productId?: StringWithAggregatesFilter;
 
-  @Field(() => IntWithAggregatesFilter, { nullable: true })
-  quantity?: IntWithAggregatesFilter;
+    @Field(() => DecimalWithAggregatesFilter, {nullable:true})
+    @Type(() => DecimalWithAggregatesFilter)
+    price?: DecimalWithAggregatesFilter;
 
-  @Field(() => DateTimeWithAggregatesFilter, { nullable: true })
-  createdAt?: DateTimeWithAggregatesFilter;
+    @Field(() => IntWithAggregatesFilter, {nullable:true})
+    quantity?: IntWithAggregatesFilter;
 
-  @Field(() => DateTimeWithAggregatesFilter, { nullable: true })
-  updatedAt?: DateTimeWithAggregatesFilter;
+    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
+    createdAt?: DateTimeWithAggregatesFilter;
+
+    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
+    updatedAt?: DateTimeWithAggregatesFilter;
 }

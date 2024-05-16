@@ -3,30 +3,31 @@ import { InputType } from '@nestjs/graphql';
 
 @InputType()
 export class ImageCountAggregateInput {
-  @Field(() => Boolean, { nullable: true })
-  id?: true;
 
-  @Field(() => Boolean, { nullable: true })
-  productId?: true;
+    @Field(() => Boolean, {nullable:true})
+    id?: true;
 
-  @Field(() => Boolean, { nullable: true })
-  url?: true;
+    @Field(() => Boolean, {nullable:true})
+    productId?: true;
 
-  @Field(() => Boolean, { nullable: true })
-  alt?: true;
+    @Field(() => Boolean, {nullable:true})
+    url?: true;
 
-  @Field(() => Boolean, { nullable: true })
-  isThumbnail?: true;
+    @Field(() => Boolean, {nullable:true})
+    alt?: true;
 
-  @Field(() => Boolean, { nullable: true })
-  deleted?: true;
+    @Field(() => Boolean, {nullable:true})
+    isThumbnail?: true;
 
-  @Field(() => Boolean, { nullable: true })
-  createdAt?: true;
+    @Field(() => Boolean, {nullable:true})
+    deleted?: true;
 
-  @Field(() => Boolean, { nullable: true })
-  updatedAt?: true;
+    @Field(() => Boolean, {nullable:true})
+    createdAt?: true;
 
-  @Field(() => Boolean, { nullable: true })
-  _all?: true;
+    @Field(() => Boolean, {nullable:true})
+    updatedAt?: true;
+
+    @Field(() => Boolean, {nullable:true})
+    _all?: true;
 }

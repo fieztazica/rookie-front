@@ -7,14 +7,12 @@ import { ProductToCategoryCreateWithoutCategoryInput } from './product-to-catego
 
 @InputType()
 export class ProductToCategoryCreateOrConnectWithoutCategoryInput {
-  @Field(() => ProductToCategoryWhereUniqueInput, { nullable: false })
-  @Type(() => ProductToCategoryWhereUniqueInput)
-  where!: Prisma.AtLeast<
-    ProductToCategoryWhereUniqueInput,
-    'productId_categoryId'
-  >;
 
-  @Field(() => ProductToCategoryCreateWithoutCategoryInput, { nullable: false })
-  @Type(() => ProductToCategoryCreateWithoutCategoryInput)
-  create!: ProductToCategoryCreateWithoutCategoryInput;
+    @Field(() => ProductToCategoryWhereUniqueInput, {nullable:false})
+    @Type(() => ProductToCategoryWhereUniqueInput)
+    where!: Prisma.AtLeast<ProductToCategoryWhereUniqueInput, 'productId_categoryId'>;
+
+    @Field(() => ProductToCategoryCreateWithoutCategoryInput, {nullable:false})
+    @Type(() => ProductToCategoryCreateWithoutCategoryInput)
+    create!: ProductToCategoryCreateWithoutCategoryInput;
 }

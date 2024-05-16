@@ -6,11 +6,12 @@ import { ProductToAuthorUpdateManyMutationInput } from './product-to-author-upda
 
 @InputType()
 export class ProductToAuthorUpdateManyWithWhereWithoutAuthorInput {
-  @Field(() => ProductToAuthorScalarWhereInput, { nullable: false })
-  @Type(() => ProductToAuthorScalarWhereInput)
-  where!: ProductToAuthorScalarWhereInput;
 
-  @Field(() => ProductToAuthorUpdateManyMutationInput, { nullable: false })
-  @Type(() => ProductToAuthorUpdateManyMutationInput)
-  data!: ProductToAuthorUpdateManyMutationInput;
+    @Field(() => ProductToAuthorScalarWhereInput, {nullable:false})
+    @Type(() => ProductToAuthorScalarWhereInput)
+    where!: ProductToAuthorScalarWhereInput;
+
+    @Field(() => ProductToAuthorUpdateManyMutationInput, {nullable:false})
+    @Type(() => ProductToAuthorUpdateManyMutationInput)
+    data!: ProductToAuthorUpdateManyMutationInput;
 }

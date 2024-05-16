@@ -7,15 +7,16 @@ import { ProductWhereInput } from './product-where.input';
 
 @InputType()
 export class ProductUpsertWithoutImagesInput {
-  @Field(() => ProductUpdateWithoutImagesInput, { nullable: false })
-  @Type(() => ProductUpdateWithoutImagesInput)
-  update!: ProductUpdateWithoutImagesInput;
 
-  @Field(() => ProductCreateWithoutImagesInput, { nullable: false })
-  @Type(() => ProductCreateWithoutImagesInput)
-  create!: ProductCreateWithoutImagesInput;
+    @Field(() => ProductUpdateWithoutImagesInput, {nullable:false})
+    @Type(() => ProductUpdateWithoutImagesInput)
+    update!: ProductUpdateWithoutImagesInput;
 
-  @Field(() => ProductWhereInput, { nullable: true })
-  @Type(() => ProductWhereInput)
-  where?: ProductWhereInput;
+    @Field(() => ProductCreateWithoutImagesInput, {nullable:false})
+    @Type(() => ProductCreateWithoutImagesInput)
+    create!: ProductCreateWithoutImagesInput;
+
+    @Field(() => ProductWhereInput, {nullable:true})
+    @Type(() => ProductWhereInput)
+    where?: ProductWhereInput;
 }

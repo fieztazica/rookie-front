@@ -6,11 +6,12 @@ import { ProductUpdateWithoutFeedbacksInput } from './product-update-without-fee
 
 @InputType()
 export class ProductUpdateToOneWithWhereWithoutFeedbacksInput {
-  @Field(() => ProductWhereInput, { nullable: true })
-  @Type(() => ProductWhereInput)
-  where?: ProductWhereInput;
 
-  @Field(() => ProductUpdateWithoutFeedbacksInput, { nullable: false })
-  @Type(() => ProductUpdateWithoutFeedbacksInput)
-  data!: ProductUpdateWithoutFeedbacksInput;
+    @Field(() => ProductWhereInput, {nullable:true})
+    @Type(() => ProductWhereInput)
+    where?: ProductWhereInput;
+
+    @Field(() => ProductUpdateWithoutFeedbacksInput, {nullable:false})
+    @Type(() => ProductUpdateWithoutFeedbacksInput)
+    data!: ProductUpdateWithoutFeedbacksInput;
 }

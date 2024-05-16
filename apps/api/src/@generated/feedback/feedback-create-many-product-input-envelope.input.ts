@@ -5,10 +5,11 @@ import { Type } from 'class-transformer';
 
 @InputType()
 export class FeedbackCreateManyProductInputEnvelope {
-  @Field(() => [FeedbackCreateManyProductInput], { nullable: false })
-  @Type(() => FeedbackCreateManyProductInput)
-  data!: Array<FeedbackCreateManyProductInput>;
 
-  @Field(() => Boolean, { nullable: true })
-  skipDuplicates?: boolean;
+    @Field(() => [FeedbackCreateManyProductInput], {nullable:false})
+    @Type(() => FeedbackCreateManyProductInput)
+    data!: Array<FeedbackCreateManyProductInput>;
+
+    @Field(() => Boolean, {nullable:true})
+    skipDuplicates?: boolean;
 }

@@ -6,7 +6,8 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class FindUniquePublisherOrThrowArgs {
-  @Field(() => PublisherWhereUniqueInput, { nullable: false })
-  @Type(() => PublisherWhereUniqueInput)
-  where!: Prisma.AtLeast<PublisherWhereUniqueInput, 'id' | 'name' | 'email'>;
+
+    @Field(() => PublisherWhereUniqueInput, {nullable:false})
+    @Type(() => PublisherWhereUniqueInput)
+    where!: Prisma.AtLeast<PublisherWhereUniqueInput, 'id' | 'name' | 'email'>;
 }

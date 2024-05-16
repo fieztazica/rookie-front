@@ -6,11 +6,12 @@ import { AuthorWhereInput } from './author-where.input';
 
 @ArgsType()
 export class UpdateManyAuthorArgs {
-  @Field(() => AuthorUpdateManyMutationInput, { nullable: false })
-  @Type(() => AuthorUpdateManyMutationInput)
-  data!: AuthorUpdateManyMutationInput;
 
-  @Field(() => AuthorWhereInput, { nullable: true })
-  @Type(() => AuthorWhereInput)
-  where?: AuthorWhereInput;
+    @Field(() => AuthorUpdateManyMutationInput, {nullable:false})
+    @Type(() => AuthorUpdateManyMutationInput)
+    data!: AuthorUpdateManyMutationInput;
+
+    @Field(() => AuthorWhereInput, {nullable:true})
+    @Type(() => AuthorWhereInput)
+    where?: AuthorWhereInput;
 }

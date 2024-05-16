@@ -5,7 +5,8 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class DeleteManyFeedbackArgs {
-  @Field(() => FeedbackWhereInput, { nullable: true })
-  @Type(() => FeedbackWhereInput)
-  where?: FeedbackWhereInput;
+
+    @Field(() => FeedbackWhereInput, {nullable:true})
+    @Type(() => FeedbackWhereInput)
+    where?: FeedbackWhereInput;
 }

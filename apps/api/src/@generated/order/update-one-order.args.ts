@@ -7,11 +7,12 @@ import { OrderWhereUniqueInput } from './order-where-unique.input';
 
 @ArgsType()
 export class UpdateOneOrderArgs {
-  @Field(() => OrderUpdateInput, { nullable: false })
-  @Type(() => OrderUpdateInput)
-  data!: OrderUpdateInput;
 
-  @Field(() => OrderWhereUniqueInput, { nullable: false })
-  @Type(() => OrderWhereUniqueInput)
-  where!: Prisma.AtLeast<OrderWhereUniqueInput, 'id'>;
+    @Field(() => OrderUpdateInput, {nullable:false})
+    @Type(() => OrderUpdateInput)
+    data!: OrderUpdateInput;
+
+    @Field(() => OrderWhereUniqueInput, {nullable:false})
+    @Type(() => OrderWhereUniqueInput)
+    where!: Prisma.AtLeast<OrderWhereUniqueInput, 'id'>;
 }

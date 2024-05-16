@@ -14,44 +14,45 @@ import { OrderItemMaxAggregateInput } from './order-item-max-aggregate.input';
 
 @ArgsType()
 export class OrderItemGroupByArgs {
-  @Field(() => OrderItemWhereInput, { nullable: true })
-  @Type(() => OrderItemWhereInput)
-  where?: OrderItemWhereInput;
 
-  @Field(() => [OrderItemOrderByWithAggregationInput], { nullable: true })
-  @Type(() => OrderItemOrderByWithAggregationInput)
-  orderBy?: Array<OrderItemOrderByWithAggregationInput>;
+    @Field(() => OrderItemWhereInput, {nullable:true})
+    @Type(() => OrderItemWhereInput)
+    where?: OrderItemWhereInput;
 
-  @Field(() => [OrderItemScalarFieldEnum], { nullable: false })
-  by!: Array<keyof typeof OrderItemScalarFieldEnum>;
+    @Field(() => [OrderItemOrderByWithAggregationInput], {nullable:true})
+    @Type(() => OrderItemOrderByWithAggregationInput)
+    orderBy?: Array<OrderItemOrderByWithAggregationInput>;
 
-  @Field(() => OrderItemScalarWhereWithAggregatesInput, { nullable: true })
-  @Type(() => OrderItemScalarWhereWithAggregatesInput)
-  having?: OrderItemScalarWhereWithAggregatesInput;
+    @Field(() => [OrderItemScalarFieldEnum], {nullable:false})
+    by!: Array<keyof typeof OrderItemScalarFieldEnum>;
 
-  @Field(() => Int, { nullable: true })
-  take?: number;
+    @Field(() => OrderItemScalarWhereWithAggregatesInput, {nullable:true})
+    @Type(() => OrderItemScalarWhereWithAggregatesInput)
+    having?: OrderItemScalarWhereWithAggregatesInput;
 
-  @Field(() => Int, { nullable: true })
-  skip?: number;
+    @Field(() => Int, {nullable:true})
+    take?: number;
 
-  @Field(() => OrderItemCountAggregateInput, { nullable: true })
-  @Type(() => OrderItemCountAggregateInput)
-  _count?: OrderItemCountAggregateInput;
+    @Field(() => Int, {nullable:true})
+    skip?: number;
 
-  @Field(() => OrderItemAvgAggregateInput, { nullable: true })
-  @Type(() => OrderItemAvgAggregateInput)
-  _avg?: OrderItemAvgAggregateInput;
+    @Field(() => OrderItemCountAggregateInput, {nullable:true})
+    @Type(() => OrderItemCountAggregateInput)
+    _count?: OrderItemCountAggregateInput;
 
-  @Field(() => OrderItemSumAggregateInput, { nullable: true })
-  @Type(() => OrderItemSumAggregateInput)
-  _sum?: OrderItemSumAggregateInput;
+    @Field(() => OrderItemAvgAggregateInput, {nullable:true})
+    @Type(() => OrderItemAvgAggregateInput)
+    _avg?: OrderItemAvgAggregateInput;
 
-  @Field(() => OrderItemMinAggregateInput, { nullable: true })
-  @Type(() => OrderItemMinAggregateInput)
-  _min?: OrderItemMinAggregateInput;
+    @Field(() => OrderItemSumAggregateInput, {nullable:true})
+    @Type(() => OrderItemSumAggregateInput)
+    _sum?: OrderItemSumAggregateInput;
 
-  @Field(() => OrderItemMaxAggregateInput, { nullable: true })
-  @Type(() => OrderItemMaxAggregateInput)
-  _max?: OrderItemMaxAggregateInput;
+    @Field(() => OrderItemMinAggregateInput, {nullable:true})
+    @Type(() => OrderItemMinAggregateInput)
+    _min?: OrderItemMinAggregateInput;
+
+    @Field(() => OrderItemMaxAggregateInput, {nullable:true})
+    @Type(() => OrderItemMaxAggregateInput)
+    _max?: OrderItemMaxAggregateInput;
 }

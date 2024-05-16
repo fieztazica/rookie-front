@@ -7,39 +7,36 @@ import { CategoryCount } from './category-count.output';
 /**
  * @@deny('read', deleted)
  */
-@ObjectType({ description: "@@deny('read', deleted)" })
+@ObjectType({description:"@@deny('read', deleted)"})
 export class Category {
-  @Field(() => ID, { nullable: false })
-  id!: string;
 
-  @Field(() => String, { nullable: false })
-  name!: string;
+    @Field(() => ID, {nullable:false})
+    id!: string;
 
-  @Field(() => String, { nullable: true })
-  description!: string | null;
+    @Field(() => String, {nullable:false})
+    name!: string;
 
-  @Field(() => String, { nullable: true })
-  displayName!: string | null;
+    @Field(() => String, {nullable:true})
+    description!: string | null;
 
-  /**
-   * @omit
-   */
-  @Field(() => Boolean, {
-    nullable: false,
-    defaultValue: false,
-    description: '@omit',
-  })
-  deleted!: boolean;
+    @Field(() => String, {nullable:true})
+    displayName!: string | null;
 
-  @Field(() => Date, { nullable: false })
-  createdAt!: Date;
+    /**
+     * @omit
+     */
+    @Field(() => Boolean, {nullable:false,defaultValue:false,description:'@omit'})
+    deleted!: boolean;
 
-  @Field(() => Date, { nullable: false })
-  updatedAt!: Date;
+    @Field(() => Date, {nullable:false})
+    createdAt!: Date;
 
-  @Field(() => [ProductToCategory], { nullable: true })
-  products?: Array<ProductToCategory>;
+    @Field(() => Date, {nullable:false})
+    updatedAt!: Date;
 
-  @Field(() => CategoryCount, { nullable: false })
-  _count?: CategoryCount;
+    @Field(() => [ProductToCategory], {nullable:true})
+    products?: Array<ProductToCategory>;
+
+    @Field(() => CategoryCount, {nullable:false})
+    _count?: CategoryCount;
 }

@@ -4,12 +4,13 @@ import { CategoryCreateNestedOneWithoutProductsInput } from '../category/categor
 
 @InputType()
 export class ProductToCategoryCreateWithoutProductInput {
-  @Field(() => Date, { nullable: true })
-  createdAt?: Date | string;
 
-  @Field(() => Date, { nullable: true })
-  updatedAt?: Date | string;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
 
-  @Field(() => CategoryCreateNestedOneWithoutProductsInput, { nullable: false })
-  category!: CategoryCreateNestedOneWithoutProductsInput;
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
+
+    @Field(() => CategoryCreateNestedOneWithoutProductsInput, {nullable:false})
+    category!: CategoryCreateNestedOneWithoutProductsInput;
 }

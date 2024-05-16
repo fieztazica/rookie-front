@@ -12,31 +12,29 @@ import { ProductToCategoryMaxAggregateInput } from './product-to-category-max-ag
 
 @ArgsType()
 export class ProductToCategoryAggregateArgs {
-  @Field(() => ProductToCategoryWhereInput, { nullable: true })
-  @Type(() => ProductToCategoryWhereInput)
-  where?: ProductToCategoryWhereInput;
 
-  @Field(() => [ProductToCategoryOrderByWithRelationInput], { nullable: true })
-  orderBy?: Array<ProductToCategoryOrderByWithRelationInput>;
+    @Field(() => ProductToCategoryWhereInput, {nullable:true})
+    @Type(() => ProductToCategoryWhereInput)
+    where?: ProductToCategoryWhereInput;
 
-  @Field(() => ProductToCategoryWhereUniqueInput, { nullable: true })
-  cursor?: Prisma.AtLeast<
-    ProductToCategoryWhereUniqueInput,
-    'productId_categoryId'
-  >;
+    @Field(() => [ProductToCategoryOrderByWithRelationInput], {nullable:true})
+    orderBy?: Array<ProductToCategoryOrderByWithRelationInput>;
 
-  @Field(() => Int, { nullable: true })
-  take?: number;
+    @Field(() => ProductToCategoryWhereUniqueInput, {nullable:true})
+    cursor?: Prisma.AtLeast<ProductToCategoryWhereUniqueInput, 'productId_categoryId'>;
 
-  @Field(() => Int, { nullable: true })
-  skip?: number;
+    @Field(() => Int, {nullable:true})
+    take?: number;
 
-  @Field(() => ProductToCategoryCountAggregateInput, { nullable: true })
-  _count?: ProductToCategoryCountAggregateInput;
+    @Field(() => Int, {nullable:true})
+    skip?: number;
 
-  @Field(() => ProductToCategoryMinAggregateInput, { nullable: true })
-  _min?: ProductToCategoryMinAggregateInput;
+    @Field(() => ProductToCategoryCountAggregateInput, {nullable:true})
+    _count?: ProductToCategoryCountAggregateInput;
 
-  @Field(() => ProductToCategoryMaxAggregateInput, { nullable: true })
-  _max?: ProductToCategoryMaxAggregateInput;
+    @Field(() => ProductToCategoryMinAggregateInput, {nullable:true})
+    _min?: ProductToCategoryMinAggregateInput;
+
+    @Field(() => ProductToCategoryMaxAggregateInput, {nullable:true})
+    _max?: ProductToCategoryMaxAggregateInput;
 }

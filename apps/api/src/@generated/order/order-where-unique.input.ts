@@ -11,42 +11,43 @@ import { OrderItemListRelationFilter } from '../order-item/order-item-list-relat
 
 @InputType()
 export class OrderWhereUniqueInput {
-  @Field(() => String, { nullable: true })
-  id?: string;
 
-  @Field(() => [OrderWhereInput], { nullable: true })
-  @Type(() => OrderWhereInput)
-  AND?: Array<OrderWhereInput>;
+    @Field(() => String, {nullable:true})
+    id?: string;
 
-  @Field(() => [OrderWhereInput], { nullable: true })
-  @Type(() => OrderWhereInput)
-  OR?: Array<OrderWhereInput>;
+    @Field(() => [OrderWhereInput], {nullable:true})
+    @Type(() => OrderWhereInput)
+    AND?: Array<OrderWhereInput>;
 
-  @Field(() => [OrderWhereInput], { nullable: true })
-  @Type(() => OrderWhereInput)
-  NOT?: Array<OrderWhereInput>;
+    @Field(() => [OrderWhereInput], {nullable:true})
+    @Type(() => OrderWhereInput)
+    OR?: Array<OrderWhereInput>;
 
-  @Field(() => StringFilter, { nullable: true })
-  customerId?: StringFilter;
+    @Field(() => [OrderWhereInput], {nullable:true})
+    @Type(() => OrderWhereInput)
+    NOT?: Array<OrderWhereInput>;
 
-  @Field(() => DecimalFilter, { nullable: true })
-  @Type(() => DecimalFilter)
-  total?: DecimalFilter;
+    @Field(() => StringFilter, {nullable:true})
+    customerId?: StringFilter;
 
-  @Field(() => BoolFilter, { nullable: true })
-  deleted?: BoolFilter;
+    @Field(() => DecimalFilter, {nullable:true})
+    @Type(() => DecimalFilter)
+    total?: DecimalFilter;
 
-  @Field(() => DateTimeFilter, { nullable: true })
-  createdAt?: DateTimeFilter;
+    @Field(() => BoolFilter, {nullable:true})
+    deleted?: BoolFilter;
 
-  @Field(() => DateTimeFilter, { nullable: true })
-  updatedAt?: DateTimeFilter;
+    @Field(() => DateTimeFilter, {nullable:true})
+    createdAt?: DateTimeFilter;
 
-  @Field(() => CustomerRelationFilter, { nullable: true })
-  @Type(() => CustomerRelationFilter)
-  customer?: CustomerRelationFilter;
+    @Field(() => DateTimeFilter, {nullable:true})
+    updatedAt?: DateTimeFilter;
 
-  @Field(() => OrderItemListRelationFilter, { nullable: true })
-  @Type(() => OrderItemListRelationFilter)
-  orderItems?: OrderItemListRelationFilter;
+    @Field(() => CustomerRelationFilter, {nullable:true})
+    @Type(() => CustomerRelationFilter)
+    customer?: CustomerRelationFilter;
+
+    @Field(() => OrderItemListRelationFilter, {nullable:true})
+    @Type(() => OrderItemListRelationFilter)
+    orderItems?: OrderItemListRelationFilter;
 }

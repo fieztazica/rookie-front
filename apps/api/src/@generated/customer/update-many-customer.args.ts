@@ -6,11 +6,12 @@ import { CustomerWhereInput } from './customer-where.input';
 
 @ArgsType()
 export class UpdateManyCustomerArgs {
-  @Field(() => CustomerUpdateManyMutationInput, { nullable: false })
-  @Type(() => CustomerUpdateManyMutationInput)
-  data!: CustomerUpdateManyMutationInput;
 
-  @Field(() => CustomerWhereInput, { nullable: true })
-  @Type(() => CustomerWhereInput)
-  where?: CustomerWhereInput;
+    @Field(() => CustomerUpdateManyMutationInput, {nullable:false})
+    @Type(() => CustomerUpdateManyMutationInput)
+    data!: CustomerUpdateManyMutationInput;
+
+    @Field(() => CustomerWhereInput, {nullable:true})
+    @Type(() => CustomerWhereInput)
+    where?: CustomerWhereInput;
 }

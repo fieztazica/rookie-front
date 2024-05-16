@@ -12,31 +12,32 @@ import { CustomerMaxAggregateInput } from './customer-max-aggregate.input';
 
 @ArgsType()
 export class CustomerGroupByArgs {
-  @Field(() => CustomerWhereInput, { nullable: true })
-  @Type(() => CustomerWhereInput)
-  where?: CustomerWhereInput;
 
-  @Field(() => [CustomerOrderByWithAggregationInput], { nullable: true })
-  orderBy?: Array<CustomerOrderByWithAggregationInput>;
+    @Field(() => CustomerWhereInput, {nullable:true})
+    @Type(() => CustomerWhereInput)
+    where?: CustomerWhereInput;
 
-  @Field(() => [CustomerScalarFieldEnum], { nullable: false })
-  by!: Array<keyof typeof CustomerScalarFieldEnum>;
+    @Field(() => [CustomerOrderByWithAggregationInput], {nullable:true})
+    orderBy?: Array<CustomerOrderByWithAggregationInput>;
 
-  @Field(() => CustomerScalarWhereWithAggregatesInput, { nullable: true })
-  having?: CustomerScalarWhereWithAggregatesInput;
+    @Field(() => [CustomerScalarFieldEnum], {nullable:false})
+    by!: Array<keyof typeof CustomerScalarFieldEnum>;
 
-  @Field(() => Int, { nullable: true })
-  take?: number;
+    @Field(() => CustomerScalarWhereWithAggregatesInput, {nullable:true})
+    having?: CustomerScalarWhereWithAggregatesInput;
 
-  @Field(() => Int, { nullable: true })
-  skip?: number;
+    @Field(() => Int, {nullable:true})
+    take?: number;
 
-  @Field(() => CustomerCountAggregateInput, { nullable: true })
-  _count?: CustomerCountAggregateInput;
+    @Field(() => Int, {nullable:true})
+    skip?: number;
 
-  @Field(() => CustomerMinAggregateInput, { nullable: true })
-  _min?: CustomerMinAggregateInput;
+    @Field(() => CustomerCountAggregateInput, {nullable:true})
+    _count?: CustomerCountAggregateInput;
 
-  @Field(() => CustomerMaxAggregateInput, { nullable: true })
-  _max?: CustomerMaxAggregateInput;
+    @Field(() => CustomerMinAggregateInput, {nullable:true})
+    _min?: CustomerMinAggregateInput;
+
+    @Field(() => CustomerMaxAggregateInput, {nullable:true})
+    _max?: CustomerMaxAggregateInput;
 }

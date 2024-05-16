@@ -6,11 +6,12 @@ import { ImageUpdateManyMutationInput } from './image-update-many-mutation.input
 
 @InputType()
 export class ImageUpdateManyWithWhereWithoutProductInput {
-  @Field(() => ImageScalarWhereInput, { nullable: false })
-  @Type(() => ImageScalarWhereInput)
-  where!: ImageScalarWhereInput;
 
-  @Field(() => ImageUpdateManyMutationInput, { nullable: false })
-  @Type(() => ImageUpdateManyMutationInput)
-  data!: ImageUpdateManyMutationInput;
+    @Field(() => ImageScalarWhereInput, {nullable:false})
+    @Type(() => ImageScalarWhereInput)
+    where!: ImageScalarWhereInput;
+
+    @Field(() => ImageUpdateManyMutationInput, {nullable:false})
+    @Type(() => ImageUpdateManyMutationInput)
+    data!: ImageUpdateManyMutationInput;
 }

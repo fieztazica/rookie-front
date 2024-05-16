@@ -13,67 +13,48 @@ import { ProductToPublisherScalarWhereInput } from './product-to-publisher-scala
 
 @InputType()
 export class ProductToPublisherUpdateManyWithoutProductNestedInput {
-  @Field(() => [ProductToPublisherCreateWithoutProductInput], {
-    nullable: true,
-  })
-  @Type(() => ProductToPublisherCreateWithoutProductInput)
-  create?: Array<ProductToPublisherCreateWithoutProductInput>;
 
-  @Field(() => [ProductToPublisherCreateOrConnectWithoutProductInput], {
-    nullable: true,
-  })
-  @Type(() => ProductToPublisherCreateOrConnectWithoutProductInput)
-  connectOrCreate?: Array<ProductToPublisherCreateOrConnectWithoutProductInput>;
+    @Field(() => [ProductToPublisherCreateWithoutProductInput], {nullable:true})
+    @Type(() => ProductToPublisherCreateWithoutProductInput)
+    create?: Array<ProductToPublisherCreateWithoutProductInput>;
 
-  @Field(() => [ProductToPublisherUpsertWithWhereUniqueWithoutProductInput], {
-    nullable: true,
-  })
-  @Type(() => ProductToPublisherUpsertWithWhereUniqueWithoutProductInput)
-  upsert?: Array<ProductToPublisherUpsertWithWhereUniqueWithoutProductInput>;
+    @Field(() => [ProductToPublisherCreateOrConnectWithoutProductInput], {nullable:true})
+    @Type(() => ProductToPublisherCreateOrConnectWithoutProductInput)
+    connectOrCreate?: Array<ProductToPublisherCreateOrConnectWithoutProductInput>;
 
-  @Field(() => ProductToPublisherCreateManyProductInputEnvelope, {
-    nullable: true,
-  })
-  @Type(() => ProductToPublisherCreateManyProductInputEnvelope)
-  createMany?: ProductToPublisherCreateManyProductInputEnvelope;
+    @Field(() => [ProductToPublisherUpsertWithWhereUniqueWithoutProductInput], {nullable:true})
+    @Type(() => ProductToPublisherUpsertWithWhereUniqueWithoutProductInput)
+    upsert?: Array<ProductToPublisherUpsertWithWhereUniqueWithoutProductInput>;
 
-  @Field(() => [ProductToPublisherWhereUniqueInput], { nullable: true })
-  @Type(() => ProductToPublisherWhereUniqueInput)
-  set?: Array<
-    Prisma.AtLeast<ProductToPublisherWhereUniqueInput, 'productId_publisherId'>
-  >;
+    @Field(() => ProductToPublisherCreateManyProductInputEnvelope, {nullable:true})
+    @Type(() => ProductToPublisherCreateManyProductInputEnvelope)
+    createMany?: ProductToPublisherCreateManyProductInputEnvelope;
 
-  @Field(() => [ProductToPublisherWhereUniqueInput], { nullable: true })
-  @Type(() => ProductToPublisherWhereUniqueInput)
-  disconnect?: Array<
-    Prisma.AtLeast<ProductToPublisherWhereUniqueInput, 'productId_publisherId'>
-  >;
+    @Field(() => [ProductToPublisherWhereUniqueInput], {nullable:true})
+    @Type(() => ProductToPublisherWhereUniqueInput)
+    set?: Array<Prisma.AtLeast<ProductToPublisherWhereUniqueInput, 'productId_publisherId'>>;
 
-  @Field(() => [ProductToPublisherWhereUniqueInput], { nullable: true })
-  @Type(() => ProductToPublisherWhereUniqueInput)
-  delete?: Array<
-    Prisma.AtLeast<ProductToPublisherWhereUniqueInput, 'productId_publisherId'>
-  >;
+    @Field(() => [ProductToPublisherWhereUniqueInput], {nullable:true})
+    @Type(() => ProductToPublisherWhereUniqueInput)
+    disconnect?: Array<Prisma.AtLeast<ProductToPublisherWhereUniqueInput, 'productId_publisherId'>>;
 
-  @Field(() => [ProductToPublisherWhereUniqueInput], { nullable: true })
-  @Type(() => ProductToPublisherWhereUniqueInput)
-  connect?: Array<
-    Prisma.AtLeast<ProductToPublisherWhereUniqueInput, 'productId_publisherId'>
-  >;
+    @Field(() => [ProductToPublisherWhereUniqueInput], {nullable:true})
+    @Type(() => ProductToPublisherWhereUniqueInput)
+    delete?: Array<Prisma.AtLeast<ProductToPublisherWhereUniqueInput, 'productId_publisherId'>>;
 
-  @Field(() => [ProductToPublisherUpdateWithWhereUniqueWithoutProductInput], {
-    nullable: true,
-  })
-  @Type(() => ProductToPublisherUpdateWithWhereUniqueWithoutProductInput)
-  update?: Array<ProductToPublisherUpdateWithWhereUniqueWithoutProductInput>;
+    @Field(() => [ProductToPublisherWhereUniqueInput], {nullable:true})
+    @Type(() => ProductToPublisherWhereUniqueInput)
+    connect?: Array<Prisma.AtLeast<ProductToPublisherWhereUniqueInput, 'productId_publisherId'>>;
 
-  @Field(() => [ProductToPublisherUpdateManyWithWhereWithoutProductInput], {
-    nullable: true,
-  })
-  @Type(() => ProductToPublisherUpdateManyWithWhereWithoutProductInput)
-  updateMany?: Array<ProductToPublisherUpdateManyWithWhereWithoutProductInput>;
+    @Field(() => [ProductToPublisherUpdateWithWhereUniqueWithoutProductInput], {nullable:true})
+    @Type(() => ProductToPublisherUpdateWithWhereUniqueWithoutProductInput)
+    update?: Array<ProductToPublisherUpdateWithWhereUniqueWithoutProductInput>;
 
-  @Field(() => [ProductToPublisherScalarWhereInput], { nullable: true })
-  @Type(() => ProductToPublisherScalarWhereInput)
-  deleteMany?: Array<ProductToPublisherScalarWhereInput>;
+    @Field(() => [ProductToPublisherUpdateManyWithWhereWithoutProductInput], {nullable:true})
+    @Type(() => ProductToPublisherUpdateManyWithWhereWithoutProductInput)
+    updateMany?: Array<ProductToPublisherUpdateManyWithWhereWithoutProductInput>;
+
+    @Field(() => [ProductToPublisherScalarWhereInput], {nullable:true})
+    @Type(() => ProductToPublisherScalarWhereInput)
+    deleteMany?: Array<ProductToPublisherScalarWhereInput>;
 }

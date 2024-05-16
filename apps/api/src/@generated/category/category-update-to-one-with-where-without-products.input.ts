@@ -6,11 +6,12 @@ import { CategoryUpdateWithoutProductsInput } from './category-update-without-pr
 
 @InputType()
 export class CategoryUpdateToOneWithWhereWithoutProductsInput {
-  @Field(() => CategoryWhereInput, { nullable: true })
-  @Type(() => CategoryWhereInput)
-  where?: CategoryWhereInput;
 
-  @Field(() => CategoryUpdateWithoutProductsInput, { nullable: false })
-  @Type(() => CategoryUpdateWithoutProductsInput)
-  data!: CategoryUpdateWithoutProductsInput;
+    @Field(() => CategoryWhereInput, {nullable:true})
+    @Type(() => CategoryWhereInput)
+    where?: CategoryWhereInput;
+
+    @Field(() => CategoryUpdateWithoutProductsInput, {nullable:false})
+    @Type(() => CategoryUpdateWithoutProductsInput)
+    data!: CategoryUpdateWithoutProductsInput;
 }

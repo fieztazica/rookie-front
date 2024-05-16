@@ -5,7 +5,8 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class CreateOneProductArgs {
-  @Field(() => ProductCreateInput, { nullable: false })
-  @Type(() => ProductCreateInput)
-  data!: ProductCreateInput;
+
+    @Field(() => ProductCreateInput, {nullable:false})
+    @Type(() => ProductCreateInput)
+    data!: ProductCreateInput;
 }

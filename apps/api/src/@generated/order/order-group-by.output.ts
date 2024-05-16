@@ -10,36 +10,37 @@ import { OrderMaxAggregate } from './order-max-aggregate.output';
 
 @ObjectType()
 export class OrderGroupBy {
-  @Field(() => String, { nullable: false })
-  id!: string;
 
-  @Field(() => String, { nullable: false })
-  customerId!: string;
+    @Field(() => String, {nullable:false})
+    id!: string;
 
-  @Field(() => GraphQLDecimal, { nullable: false })
-  total!: Decimal;
+    @Field(() => String, {nullable:false})
+    customerId!: string;
 
-  @Field(() => Boolean, { nullable: false })
-  deleted!: boolean;
+    @Field(() => GraphQLDecimal, {nullable:false})
+    total!: Decimal;
 
-  @Field(() => Date, { nullable: false })
-  createdAt!: Date | string;
+    @Field(() => Boolean, {nullable:false})
+    deleted!: boolean;
 
-  @Field(() => Date, { nullable: false })
-  updatedAt!: Date | string;
+    @Field(() => Date, {nullable:false})
+    createdAt!: Date | string;
 
-  @Field(() => OrderCountAggregate, { nullable: true })
-  _count?: OrderCountAggregate;
+    @Field(() => Date, {nullable:false})
+    updatedAt!: Date | string;
 
-  @Field(() => OrderAvgAggregate, { nullable: true })
-  _avg?: OrderAvgAggregate;
+    @Field(() => OrderCountAggregate, {nullable:true})
+    _count?: OrderCountAggregate;
 
-  @Field(() => OrderSumAggregate, { nullable: true })
-  _sum?: OrderSumAggregate;
+    @Field(() => OrderAvgAggregate, {nullable:true})
+    _avg?: OrderAvgAggregate;
 
-  @Field(() => OrderMinAggregate, { nullable: true })
-  _min?: OrderMinAggregate;
+    @Field(() => OrderSumAggregate, {nullable:true})
+    _sum?: OrderSumAggregate;
 
-  @Field(() => OrderMaxAggregate, { nullable: true })
-  _max?: OrderMaxAggregate;
+    @Field(() => OrderMinAggregate, {nullable:true})
+    _min?: OrderMinAggregate;
+
+    @Field(() => OrderMaxAggregate, {nullable:true})
+    _max?: OrderMaxAggregate;
 }

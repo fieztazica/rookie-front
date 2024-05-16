@@ -14,41 +14,42 @@ import { OrderItemMaxAggregateInput } from './order-item-max-aggregate.input';
 
 @ArgsType()
 export class OrderItemAggregateArgs {
-  @Field(() => OrderItemWhereInput, { nullable: true })
-  @Type(() => OrderItemWhereInput)
-  where?: OrderItemWhereInput;
 
-  @Field(() => [OrderItemOrderByWithRelationInput], { nullable: true })
-  @Type(() => OrderItemOrderByWithRelationInput)
-  orderBy?: Array<OrderItemOrderByWithRelationInput>;
+    @Field(() => OrderItemWhereInput, {nullable:true})
+    @Type(() => OrderItemWhereInput)
+    where?: OrderItemWhereInput;
 
-  @Field(() => OrderItemWhereUniqueInput, { nullable: true })
-  @Type(() => OrderItemWhereUniqueInput)
-  cursor?: Prisma.AtLeast<OrderItemWhereUniqueInput, 'orderId_productId'>;
+    @Field(() => [OrderItemOrderByWithRelationInput], {nullable:true})
+    @Type(() => OrderItemOrderByWithRelationInput)
+    orderBy?: Array<OrderItemOrderByWithRelationInput>;
 
-  @Field(() => Int, { nullable: true })
-  take?: number;
+    @Field(() => OrderItemWhereUniqueInput, {nullable:true})
+    @Type(() => OrderItemWhereUniqueInput)
+    cursor?: Prisma.AtLeast<OrderItemWhereUniqueInput, 'orderId_productId'>;
 
-  @Field(() => Int, { nullable: true })
-  skip?: number;
+    @Field(() => Int, {nullable:true})
+    take?: number;
 
-  @Field(() => OrderItemCountAggregateInput, { nullable: true })
-  @Type(() => OrderItemCountAggregateInput)
-  _count?: OrderItemCountAggregateInput;
+    @Field(() => Int, {nullable:true})
+    skip?: number;
 
-  @Field(() => OrderItemAvgAggregateInput, { nullable: true })
-  @Type(() => OrderItemAvgAggregateInput)
-  _avg?: OrderItemAvgAggregateInput;
+    @Field(() => OrderItemCountAggregateInput, {nullable:true})
+    @Type(() => OrderItemCountAggregateInput)
+    _count?: OrderItemCountAggregateInput;
 
-  @Field(() => OrderItemSumAggregateInput, { nullable: true })
-  @Type(() => OrderItemSumAggregateInput)
-  _sum?: OrderItemSumAggregateInput;
+    @Field(() => OrderItemAvgAggregateInput, {nullable:true})
+    @Type(() => OrderItemAvgAggregateInput)
+    _avg?: OrderItemAvgAggregateInput;
 
-  @Field(() => OrderItemMinAggregateInput, { nullable: true })
-  @Type(() => OrderItemMinAggregateInput)
-  _min?: OrderItemMinAggregateInput;
+    @Field(() => OrderItemSumAggregateInput, {nullable:true})
+    @Type(() => OrderItemSumAggregateInput)
+    _sum?: OrderItemSumAggregateInput;
 
-  @Field(() => OrderItemMaxAggregateInput, { nullable: true })
-  @Type(() => OrderItemMaxAggregateInput)
-  _max?: OrderItemMaxAggregateInput;
+    @Field(() => OrderItemMinAggregateInput, {nullable:true})
+    @Type(() => OrderItemMinAggregateInput)
+    _min?: OrderItemMinAggregateInput;
+
+    @Field(() => OrderItemMaxAggregateInput, {nullable:true})
+    @Type(() => OrderItemMaxAggregateInput)
+    _max?: OrderItemMaxAggregateInput;
 }

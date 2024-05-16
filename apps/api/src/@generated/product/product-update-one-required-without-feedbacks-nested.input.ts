@@ -10,25 +10,24 @@ import { ProductUpdateToOneWithWhereWithoutFeedbacksInput } from './product-upda
 
 @InputType()
 export class ProductUpdateOneRequiredWithoutFeedbacksNestedInput {
-  @Field(() => ProductCreateWithoutFeedbacksInput, { nullable: true })
-  @Type(() => ProductCreateWithoutFeedbacksInput)
-  create?: ProductCreateWithoutFeedbacksInput;
 
-  @Field(() => ProductCreateOrConnectWithoutFeedbacksInput, { nullable: true })
-  @Type(() => ProductCreateOrConnectWithoutFeedbacksInput)
-  connectOrCreate?: ProductCreateOrConnectWithoutFeedbacksInput;
+    @Field(() => ProductCreateWithoutFeedbacksInput, {nullable:true})
+    @Type(() => ProductCreateWithoutFeedbacksInput)
+    create?: ProductCreateWithoutFeedbacksInput;
 
-  @Field(() => ProductUpsertWithoutFeedbacksInput, { nullable: true })
-  @Type(() => ProductUpsertWithoutFeedbacksInput)
-  upsert?: ProductUpsertWithoutFeedbacksInput;
+    @Field(() => ProductCreateOrConnectWithoutFeedbacksInput, {nullable:true})
+    @Type(() => ProductCreateOrConnectWithoutFeedbacksInput)
+    connectOrCreate?: ProductCreateOrConnectWithoutFeedbacksInput;
 
-  @Field(() => ProductWhereUniqueInput, { nullable: true })
-  @Type(() => ProductWhereUniqueInput)
-  connect?: Prisma.AtLeast<ProductWhereUniqueInput, 'id' | 'name'>;
+    @Field(() => ProductUpsertWithoutFeedbacksInput, {nullable:true})
+    @Type(() => ProductUpsertWithoutFeedbacksInput)
+    upsert?: ProductUpsertWithoutFeedbacksInput;
 
-  @Field(() => ProductUpdateToOneWithWhereWithoutFeedbacksInput, {
-    nullable: true,
-  })
-  @Type(() => ProductUpdateToOneWithWhereWithoutFeedbacksInput)
-  update?: ProductUpdateToOneWithWhereWithoutFeedbacksInput;
+    @Field(() => ProductWhereUniqueInput, {nullable:true})
+    @Type(() => ProductWhereUniqueInput)
+    connect?: Prisma.AtLeast<ProductWhereUniqueInput, 'id' | 'name'>;
+
+    @Field(() => ProductUpdateToOneWithWhereWithoutFeedbacksInput, {nullable:true})
+    @Type(() => ProductUpdateToOneWithWhereWithoutFeedbacksInput)
+    update?: ProductUpdateToOneWithWhereWithoutFeedbacksInput;
 }

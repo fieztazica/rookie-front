@@ -5,7 +5,8 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class CreateOneProductToAuthorArgs {
-  @Field(() => ProductToAuthorCreateInput, { nullable: false })
-  @Type(() => ProductToAuthorCreateInput)
-  data!: ProductToAuthorCreateInput;
+
+    @Field(() => ProductToAuthorCreateInput, {nullable:false})
+    @Type(() => ProductToAuthorCreateInput)
+    data!: ProductToAuthorCreateInput;
 }

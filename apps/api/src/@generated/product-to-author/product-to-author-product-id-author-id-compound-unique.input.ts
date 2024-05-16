@@ -3,9 +3,10 @@ import { InputType } from '@nestjs/graphql';
 
 @InputType()
 export class ProductToAuthorProductIdAuthorIdCompoundUniqueInput {
-  @Field(() => String, { nullable: false })
-  productId!: string;
 
-  @Field(() => String, { nullable: false })
-  authorId!: string;
+    @Field(() => String, {nullable:false})
+    productId!: string;
+
+    @Field(() => String, {nullable:false})
+    authorId!: string;
 }

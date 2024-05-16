@@ -7,14 +7,12 @@ import { CustomerWhereUniqueInput } from './customer-where-unique.input';
 
 @ArgsType()
 export class UpdateOneCustomerArgs {
-  @Field(() => CustomerUpdateInput, { nullable: false })
-  @Type(() => CustomerUpdateInput)
-  data!: CustomerUpdateInput;
 
-  @Field(() => CustomerWhereUniqueInput, { nullable: false })
-  @Type(() => CustomerWhereUniqueInput)
-  where!: Prisma.AtLeast<
-    CustomerWhereUniqueInput,
-    'id' | 'username' | 'email' | 'phoneNumber'
-  >;
+    @Field(() => CustomerUpdateInput, {nullable:false})
+    @Type(() => CustomerUpdateInput)
+    data!: CustomerUpdateInput;
+
+    @Field(() => CustomerWhereUniqueInput, {nullable:false})
+    @Type(() => CustomerWhereUniqueInput)
+    where!: Prisma.AtLeast<CustomerWhereUniqueInput, 'id' | 'username' | 'email' | 'phoneNumber'>;
 }

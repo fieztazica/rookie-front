@@ -6,10 +6,8 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class FindUniqueProductToPublisherArgs {
-  @Field(() => ProductToPublisherWhereUniqueInput, { nullable: false })
-  @Type(() => ProductToPublisherWhereUniqueInput)
-  where!: Prisma.AtLeast<
-    ProductToPublisherWhereUniqueInput,
-    'productId_publisherId'
-  >;
+
+    @Field(() => ProductToPublisherWhereUniqueInput, {nullable:false})
+    @Type(() => ProductToPublisherWhereUniqueInput)
+    where!: Prisma.AtLeast<ProductToPublisherWhereUniqueInput, 'productId_publisherId'>;
 }

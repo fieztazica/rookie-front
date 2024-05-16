@@ -6,11 +6,12 @@ import { ImageWhereInput } from './image-where.input';
 
 @ArgsType()
 export class UpdateManyImageArgs {
-  @Field(() => ImageUpdateManyMutationInput, { nullable: false })
-  @Type(() => ImageUpdateManyMutationInput)
-  data!: ImageUpdateManyMutationInput;
 
-  @Field(() => ImageWhereInput, { nullable: true })
-  @Type(() => ImageWhereInput)
-  where?: ImageWhereInput;
+    @Field(() => ImageUpdateManyMutationInput, {nullable:false})
+    @Type(() => ImageUpdateManyMutationInput)
+    data!: ImageUpdateManyMutationInput;
+
+    @Field(() => ImageWhereInput, {nullable:true})
+    @Type(() => ImageWhereInput)
+    where?: ImageWhereInput;
 }

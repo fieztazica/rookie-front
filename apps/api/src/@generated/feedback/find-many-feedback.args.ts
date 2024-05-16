@@ -10,22 +10,23 @@ import { FeedbackScalarFieldEnum } from './feedback-scalar-field.enum';
 
 @ArgsType()
 export class FindManyFeedbackArgs {
-  @Field(() => FeedbackWhereInput, { nullable: true })
-  @Type(() => FeedbackWhereInput)
-  where?: FeedbackWhereInput;
 
-  @Field(() => [FeedbackOrderByWithRelationInput], { nullable: true })
-  orderBy?: Array<FeedbackOrderByWithRelationInput>;
+    @Field(() => FeedbackWhereInput, {nullable:true})
+    @Type(() => FeedbackWhereInput)
+    where?: FeedbackWhereInput;
 
-  @Field(() => FeedbackWhereUniqueInput, { nullable: true })
-  cursor?: Prisma.AtLeast<FeedbackWhereUniqueInput, 'id'>;
+    @Field(() => [FeedbackOrderByWithRelationInput], {nullable:true})
+    orderBy?: Array<FeedbackOrderByWithRelationInput>;
 
-  @Field(() => Int, { nullable: true })
-  take?: number;
+    @Field(() => FeedbackWhereUniqueInput, {nullable:true})
+    cursor?: Prisma.AtLeast<FeedbackWhereUniqueInput, 'id'>;
 
-  @Field(() => Int, { nullable: true })
-  skip?: number;
+    @Field(() => Int, {nullable:true})
+    take?: number;
 
-  @Field(() => [FeedbackScalarFieldEnum], { nullable: true })
-  distinct?: Array<keyof typeof FeedbackScalarFieldEnum>;
+    @Field(() => Int, {nullable:true})
+    skip?: number;
+
+    @Field(() => [FeedbackScalarFieldEnum], {nullable:true})
+    distinct?: Array<keyof typeof FeedbackScalarFieldEnum>;
 }

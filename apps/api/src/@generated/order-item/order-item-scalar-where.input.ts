@@ -8,34 +8,35 @@ import { DateTimeFilter } from '../prisma/date-time-filter.input';
 
 @InputType()
 export class OrderItemScalarWhereInput {
-  @Field(() => [OrderItemScalarWhereInput], { nullable: true })
-  @Type(() => OrderItemScalarWhereInput)
-  AND?: Array<OrderItemScalarWhereInput>;
 
-  @Field(() => [OrderItemScalarWhereInput], { nullable: true })
-  @Type(() => OrderItemScalarWhereInput)
-  OR?: Array<OrderItemScalarWhereInput>;
+    @Field(() => [OrderItemScalarWhereInput], {nullable:true})
+    @Type(() => OrderItemScalarWhereInput)
+    AND?: Array<OrderItemScalarWhereInput>;
 
-  @Field(() => [OrderItemScalarWhereInput], { nullable: true })
-  @Type(() => OrderItemScalarWhereInput)
-  NOT?: Array<OrderItemScalarWhereInput>;
+    @Field(() => [OrderItemScalarWhereInput], {nullable:true})
+    @Type(() => OrderItemScalarWhereInput)
+    OR?: Array<OrderItemScalarWhereInput>;
 
-  @Field(() => StringFilter, { nullable: true })
-  orderId?: StringFilter;
+    @Field(() => [OrderItemScalarWhereInput], {nullable:true})
+    @Type(() => OrderItemScalarWhereInput)
+    NOT?: Array<OrderItemScalarWhereInput>;
 
-  @Field(() => StringFilter, { nullable: true })
-  productId?: StringFilter;
+    @Field(() => StringFilter, {nullable:true})
+    orderId?: StringFilter;
 
-  @Field(() => DecimalFilter, { nullable: true })
-  @Type(() => DecimalFilter)
-  price?: DecimalFilter;
+    @Field(() => StringFilter, {nullable:true})
+    productId?: StringFilter;
 
-  @Field(() => IntFilter, { nullable: true })
-  quantity?: IntFilter;
+    @Field(() => DecimalFilter, {nullable:true})
+    @Type(() => DecimalFilter)
+    price?: DecimalFilter;
 
-  @Field(() => DateTimeFilter, { nullable: true })
-  createdAt?: DateTimeFilter;
+    @Field(() => IntFilter, {nullable:true})
+    quantity?: IntFilter;
 
-  @Field(() => DateTimeFilter, { nullable: true })
-  updatedAt?: DateTimeFilter;
+    @Field(() => DateTimeFilter, {nullable:true})
+    createdAt?: DateTimeFilter;
+
+    @Field(() => DateTimeFilter, {nullable:true})
+    updatedAt?: DateTimeFilter;
 }

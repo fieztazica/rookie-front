@@ -9,45 +9,46 @@ import { FeedbackMaxAggregate } from './feedback-max-aggregate.output';
 
 @ObjectType()
 export class FeedbackGroupBy {
-  @Field(() => String, { nullable: false })
-  id!: string;
 
-  @Field(() => String, { nullable: false })
-  customerId!: string;
+    @Field(() => String, {nullable:false})
+    id!: string;
 
-  @Field(() => String, { nullable: false })
-  productId!: string;
+    @Field(() => String, {nullable:false})
+    customerId!: string;
 
-  @Field(() => String, { nullable: false })
-  message!: string;
+    @Field(() => String, {nullable:false})
+    productId!: string;
 
-  @Field(() => Int, { nullable: false })
-  rating!: number;
+    @Field(() => String, {nullable:false})
+    message!: string;
 
-  @Field(() => String, { nullable: true })
-  status?: string;
+    @Field(() => Int, {nullable:false})
+    rating!: number;
 
-  @Field(() => Boolean, { nullable: false })
-  deleted!: boolean;
+    @Field(() => String, {nullable:true})
+    status?: string;
 
-  @Field(() => Date, { nullable: false })
-  createdAt!: Date | string;
+    @Field(() => Boolean, {nullable:false})
+    deleted!: boolean;
 
-  @Field(() => Date, { nullable: false })
-  updatedAt!: Date | string;
+    @Field(() => Date, {nullable:false})
+    createdAt!: Date | string;
 
-  @Field(() => FeedbackCountAggregate, { nullable: true })
-  _count?: FeedbackCountAggregate;
+    @Field(() => Date, {nullable:false})
+    updatedAt!: Date | string;
 
-  @Field(() => FeedbackAvgAggregate, { nullable: true })
-  _avg?: FeedbackAvgAggregate;
+    @Field(() => FeedbackCountAggregate, {nullable:true})
+    _count?: FeedbackCountAggregate;
 
-  @Field(() => FeedbackSumAggregate, { nullable: true })
-  _sum?: FeedbackSumAggregate;
+    @Field(() => FeedbackAvgAggregate, {nullable:true})
+    _avg?: FeedbackAvgAggregate;
 
-  @Field(() => FeedbackMinAggregate, { nullable: true })
-  _min?: FeedbackMinAggregate;
+    @Field(() => FeedbackSumAggregate, {nullable:true})
+    _sum?: FeedbackSumAggregate;
 
-  @Field(() => FeedbackMaxAggregate, { nullable: true })
-  _max?: FeedbackMaxAggregate;
+    @Field(() => FeedbackMinAggregate, {nullable:true})
+    _min?: FeedbackMinAggregate;
+
+    @Field(() => FeedbackMaxAggregate, {nullable:true})
+    _max?: FeedbackMaxAggregate;
 }

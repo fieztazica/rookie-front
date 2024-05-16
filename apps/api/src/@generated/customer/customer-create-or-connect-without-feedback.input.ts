@@ -7,14 +7,12 @@ import { CustomerCreateWithoutFeedbackInput } from './customer-create-without-fe
 
 @InputType()
 export class CustomerCreateOrConnectWithoutFeedbackInput {
-  @Field(() => CustomerWhereUniqueInput, { nullable: false })
-  @Type(() => CustomerWhereUniqueInput)
-  where!: Prisma.AtLeast<
-    CustomerWhereUniqueInput,
-    'id' | 'username' | 'email' | 'phoneNumber'
-  >;
 
-  @Field(() => CustomerCreateWithoutFeedbackInput, { nullable: false })
-  @Type(() => CustomerCreateWithoutFeedbackInput)
-  create!: CustomerCreateWithoutFeedbackInput;
+    @Field(() => CustomerWhereUniqueInput, {nullable:false})
+    @Type(() => CustomerWhereUniqueInput)
+    where!: Prisma.AtLeast<CustomerWhereUniqueInput, 'id' | 'username' | 'email' | 'phoneNumber'>;
+
+    @Field(() => CustomerCreateWithoutFeedbackInput, {nullable:false})
+    @Type(() => CustomerCreateWithoutFeedbackInput)
+    create!: CustomerCreateWithoutFeedbackInput;
 }

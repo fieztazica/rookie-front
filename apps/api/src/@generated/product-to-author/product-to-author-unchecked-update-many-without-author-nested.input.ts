@@ -13,63 +13,48 @@ import { ProductToAuthorScalarWhereInput } from './product-to-author-scalar-wher
 
 @InputType()
 export class ProductToAuthorUncheckedUpdateManyWithoutAuthorNestedInput {
-  @Field(() => [ProductToAuthorCreateWithoutAuthorInput], { nullable: true })
-  @Type(() => ProductToAuthorCreateWithoutAuthorInput)
-  create?: Array<ProductToAuthorCreateWithoutAuthorInput>;
 
-  @Field(() => [ProductToAuthorCreateOrConnectWithoutAuthorInput], {
-    nullable: true,
-  })
-  @Type(() => ProductToAuthorCreateOrConnectWithoutAuthorInput)
-  connectOrCreate?: Array<ProductToAuthorCreateOrConnectWithoutAuthorInput>;
+    @Field(() => [ProductToAuthorCreateWithoutAuthorInput], {nullable:true})
+    @Type(() => ProductToAuthorCreateWithoutAuthorInput)
+    create?: Array<ProductToAuthorCreateWithoutAuthorInput>;
 
-  @Field(() => [ProductToAuthorUpsertWithWhereUniqueWithoutAuthorInput], {
-    nullable: true,
-  })
-  @Type(() => ProductToAuthorUpsertWithWhereUniqueWithoutAuthorInput)
-  upsert?: Array<ProductToAuthorUpsertWithWhereUniqueWithoutAuthorInput>;
+    @Field(() => [ProductToAuthorCreateOrConnectWithoutAuthorInput], {nullable:true})
+    @Type(() => ProductToAuthorCreateOrConnectWithoutAuthorInput)
+    connectOrCreate?: Array<ProductToAuthorCreateOrConnectWithoutAuthorInput>;
 
-  @Field(() => ProductToAuthorCreateManyAuthorInputEnvelope, { nullable: true })
-  @Type(() => ProductToAuthorCreateManyAuthorInputEnvelope)
-  createMany?: ProductToAuthorCreateManyAuthorInputEnvelope;
+    @Field(() => [ProductToAuthorUpsertWithWhereUniqueWithoutAuthorInput], {nullable:true})
+    @Type(() => ProductToAuthorUpsertWithWhereUniqueWithoutAuthorInput)
+    upsert?: Array<ProductToAuthorUpsertWithWhereUniqueWithoutAuthorInput>;
 
-  @Field(() => [ProductToAuthorWhereUniqueInput], { nullable: true })
-  @Type(() => ProductToAuthorWhereUniqueInput)
-  set?: Array<
-    Prisma.AtLeast<ProductToAuthorWhereUniqueInput, 'productId_authorId'>
-  >;
+    @Field(() => ProductToAuthorCreateManyAuthorInputEnvelope, {nullable:true})
+    @Type(() => ProductToAuthorCreateManyAuthorInputEnvelope)
+    createMany?: ProductToAuthorCreateManyAuthorInputEnvelope;
 
-  @Field(() => [ProductToAuthorWhereUniqueInput], { nullable: true })
-  @Type(() => ProductToAuthorWhereUniqueInput)
-  disconnect?: Array<
-    Prisma.AtLeast<ProductToAuthorWhereUniqueInput, 'productId_authorId'>
-  >;
+    @Field(() => [ProductToAuthorWhereUniqueInput], {nullable:true})
+    @Type(() => ProductToAuthorWhereUniqueInput)
+    set?: Array<Prisma.AtLeast<ProductToAuthorWhereUniqueInput, 'productId_authorId'>>;
 
-  @Field(() => [ProductToAuthorWhereUniqueInput], { nullable: true })
-  @Type(() => ProductToAuthorWhereUniqueInput)
-  delete?: Array<
-    Prisma.AtLeast<ProductToAuthorWhereUniqueInput, 'productId_authorId'>
-  >;
+    @Field(() => [ProductToAuthorWhereUniqueInput], {nullable:true})
+    @Type(() => ProductToAuthorWhereUniqueInput)
+    disconnect?: Array<Prisma.AtLeast<ProductToAuthorWhereUniqueInput, 'productId_authorId'>>;
 
-  @Field(() => [ProductToAuthorWhereUniqueInput], { nullable: true })
-  @Type(() => ProductToAuthorWhereUniqueInput)
-  connect?: Array<
-    Prisma.AtLeast<ProductToAuthorWhereUniqueInput, 'productId_authorId'>
-  >;
+    @Field(() => [ProductToAuthorWhereUniqueInput], {nullable:true})
+    @Type(() => ProductToAuthorWhereUniqueInput)
+    delete?: Array<Prisma.AtLeast<ProductToAuthorWhereUniqueInput, 'productId_authorId'>>;
 
-  @Field(() => [ProductToAuthorUpdateWithWhereUniqueWithoutAuthorInput], {
-    nullable: true,
-  })
-  @Type(() => ProductToAuthorUpdateWithWhereUniqueWithoutAuthorInput)
-  update?: Array<ProductToAuthorUpdateWithWhereUniqueWithoutAuthorInput>;
+    @Field(() => [ProductToAuthorWhereUniqueInput], {nullable:true})
+    @Type(() => ProductToAuthorWhereUniqueInput)
+    connect?: Array<Prisma.AtLeast<ProductToAuthorWhereUniqueInput, 'productId_authorId'>>;
 
-  @Field(() => [ProductToAuthorUpdateManyWithWhereWithoutAuthorInput], {
-    nullable: true,
-  })
-  @Type(() => ProductToAuthorUpdateManyWithWhereWithoutAuthorInput)
-  updateMany?: Array<ProductToAuthorUpdateManyWithWhereWithoutAuthorInput>;
+    @Field(() => [ProductToAuthorUpdateWithWhereUniqueWithoutAuthorInput], {nullable:true})
+    @Type(() => ProductToAuthorUpdateWithWhereUniqueWithoutAuthorInput)
+    update?: Array<ProductToAuthorUpdateWithWhereUniqueWithoutAuthorInput>;
 
-  @Field(() => [ProductToAuthorScalarWhereInput], { nullable: true })
-  @Type(() => ProductToAuthorScalarWhereInput)
-  deleteMany?: Array<ProductToAuthorScalarWhereInput>;
+    @Field(() => [ProductToAuthorUpdateManyWithWhereWithoutAuthorInput], {nullable:true})
+    @Type(() => ProductToAuthorUpdateManyWithWhereWithoutAuthorInput)
+    updateMany?: Array<ProductToAuthorUpdateManyWithWhereWithoutAuthorInput>;
+
+    @Field(() => [ProductToAuthorScalarWhereInput], {nullable:true})
+    @Type(() => ProductToAuthorScalarWhereInput)
+    deleteMany?: Array<ProductToAuthorScalarWhereInput>;
 }

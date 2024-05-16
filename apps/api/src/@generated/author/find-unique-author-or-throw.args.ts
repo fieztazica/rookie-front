@@ -6,10 +6,8 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class FindUniqueAuthorOrThrowArgs {
-  @Field(() => AuthorWhereUniqueInput, { nullable: false })
-  @Type(() => AuthorWhereUniqueInput)
-  where!: Prisma.AtLeast<
-    AuthorWhereUniqueInput,
-    'id' | 'email' | 'phoneNumber'
-  >;
+
+    @Field(() => AuthorWhereUniqueInput, {nullable:false})
+    @Type(() => AuthorWhereUniqueInput)
+    where!: Prisma.AtLeast<AuthorWhereUniqueInput, 'id' | 'email' | 'phoneNumber'>;
 }

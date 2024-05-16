@@ -6,12 +6,13 @@ import { ProductToPublisherMaxAggregate } from './product-to-publisher-max-aggre
 
 @ObjectType()
 export class AggregateProductToPublisher {
-  @Field(() => ProductToPublisherCountAggregate, { nullable: true })
-  _count?: ProductToPublisherCountAggregate;
 
-  @Field(() => ProductToPublisherMinAggregate, { nullable: true })
-  _min?: ProductToPublisherMinAggregate;
+    @Field(() => ProductToPublisherCountAggregate, {nullable:true})
+    _count?: ProductToPublisherCountAggregate;
 
-  @Field(() => ProductToPublisherMaxAggregate, { nullable: true })
-  _max?: ProductToPublisherMaxAggregate;
+    @Field(() => ProductToPublisherMinAggregate, {nullable:true})
+    _min?: ProductToPublisherMinAggregate;
+
+    @Field(() => ProductToPublisherMaxAggregate, {nullable:true})
+    _max?: ProductToPublisherMaxAggregate;
 }

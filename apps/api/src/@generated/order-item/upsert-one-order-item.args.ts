@@ -8,15 +8,16 @@ import { OrderItemUpdateInput } from './order-item-update.input';
 
 @ArgsType()
 export class UpsertOneOrderItemArgs {
-  @Field(() => OrderItemWhereUniqueInput, { nullable: false })
-  @Type(() => OrderItemWhereUniqueInput)
-  where!: Prisma.AtLeast<OrderItemWhereUniqueInput, 'orderId_productId'>;
 
-  @Field(() => OrderItemCreateInput, { nullable: false })
-  @Type(() => OrderItemCreateInput)
-  create!: OrderItemCreateInput;
+    @Field(() => OrderItemWhereUniqueInput, {nullable:false})
+    @Type(() => OrderItemWhereUniqueInput)
+    where!: Prisma.AtLeast<OrderItemWhereUniqueInput, 'orderId_productId'>;
 
-  @Field(() => OrderItemUpdateInput, { nullable: false })
-  @Type(() => OrderItemUpdateInput)
-  update!: OrderItemUpdateInput;
+    @Field(() => OrderItemCreateInput, {nullable:false})
+    @Type(() => OrderItemCreateInput)
+    create!: OrderItemCreateInput;
+
+    @Field(() => OrderItemUpdateInput, {nullable:false})
+    @Type(() => OrderItemUpdateInput)
+    update!: OrderItemUpdateInput;
 }

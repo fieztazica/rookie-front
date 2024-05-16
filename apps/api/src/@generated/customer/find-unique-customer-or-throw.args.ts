@@ -6,10 +6,8 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class FindUniqueCustomerOrThrowArgs {
-  @Field(() => CustomerWhereUniqueInput, { nullable: false })
-  @Type(() => CustomerWhereUniqueInput)
-  where!: Prisma.AtLeast<
-    CustomerWhereUniqueInput,
-    'id' | 'username' | 'email' | 'phoneNumber'
-  >;
+
+    @Field(() => CustomerWhereUniqueInput, {nullable:false})
+    @Type(() => CustomerWhereUniqueInput)
+    where!: Prisma.AtLeast<CustomerWhereUniqueInput, 'id' | 'username' | 'email' | 'phoneNumber'>;
 }

@@ -10,39 +10,36 @@ import { OrderCount } from './order-count.output';
 /**
  * @@deny('read', deleted)
  */
-@ObjectType({ description: "@@deny('read', deleted)" })
+@ObjectType({description:"@@deny('read', deleted)"})
 export class Order {
-  @Field(() => ID, { nullable: false })
-  id!: string;
 
-  @Field(() => String, { nullable: false })
-  customerId!: string;
+    @Field(() => ID, {nullable:false})
+    id!: string;
 
-  @Field(() => GraphQLDecimal, { nullable: false })
-  total!: Decimal;
+    @Field(() => String, {nullable:false})
+    customerId!: string;
 
-  /**
-   * @omit
-   */
-  @Field(() => Boolean, {
-    nullable: false,
-    defaultValue: false,
-    description: '@omit',
-  })
-  deleted!: boolean;
+    @Field(() => GraphQLDecimal, {nullable:false})
+    total!: Decimal;
 
-  @Field(() => Date, { nullable: false })
-  createdAt!: Date;
+    /**
+     * @omit
+     */
+    @Field(() => Boolean, {nullable:false,defaultValue:false,description:'@omit'})
+    deleted!: boolean;
 
-  @Field(() => Date, { nullable: false })
-  updatedAt!: Date;
+    @Field(() => Date, {nullable:false})
+    createdAt!: Date;
 
-  @Field(() => Customer, { nullable: false })
-  customer?: Customer;
+    @Field(() => Date, {nullable:false})
+    updatedAt!: Date;
 
-  @Field(() => [OrderItem], { nullable: true })
-  orderItems?: Array<OrderItem>;
+    @Field(() => Customer, {nullable:false})
+    customer?: Customer;
 
-  @Field(() => OrderCount, { nullable: false })
-  _count?: OrderCount;
+    @Field(() => [OrderItem], {nullable:true})
+    orderItems?: Array<OrderItem>;
+
+    @Field(() => OrderCount, {nullable:false})
+    _count?: OrderCount;
 }

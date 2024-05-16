@@ -9,27 +9,20 @@ import { ProductToPublisherWhereUniqueInput } from './product-to-publisher-where
 
 @InputType()
 export class ProductToPublisherCreateNestedManyWithoutPublisherInput {
-  @Field(() => [ProductToPublisherCreateWithoutPublisherInput], {
-    nullable: true,
-  })
-  @Type(() => ProductToPublisherCreateWithoutPublisherInput)
-  create?: Array<ProductToPublisherCreateWithoutPublisherInput>;
 
-  @Field(() => [ProductToPublisherCreateOrConnectWithoutPublisherInput], {
-    nullable: true,
-  })
-  @Type(() => ProductToPublisherCreateOrConnectWithoutPublisherInput)
-  connectOrCreate?: Array<ProductToPublisherCreateOrConnectWithoutPublisherInput>;
+    @Field(() => [ProductToPublisherCreateWithoutPublisherInput], {nullable:true})
+    @Type(() => ProductToPublisherCreateWithoutPublisherInput)
+    create?: Array<ProductToPublisherCreateWithoutPublisherInput>;
 
-  @Field(() => ProductToPublisherCreateManyPublisherInputEnvelope, {
-    nullable: true,
-  })
-  @Type(() => ProductToPublisherCreateManyPublisherInputEnvelope)
-  createMany?: ProductToPublisherCreateManyPublisherInputEnvelope;
+    @Field(() => [ProductToPublisherCreateOrConnectWithoutPublisherInput], {nullable:true})
+    @Type(() => ProductToPublisherCreateOrConnectWithoutPublisherInput)
+    connectOrCreate?: Array<ProductToPublisherCreateOrConnectWithoutPublisherInput>;
 
-  @Field(() => [ProductToPublisherWhereUniqueInput], { nullable: true })
-  @Type(() => ProductToPublisherWhereUniqueInput)
-  connect?: Array<
-    Prisma.AtLeast<ProductToPublisherWhereUniqueInput, 'productId_publisherId'>
-  >;
+    @Field(() => ProductToPublisherCreateManyPublisherInputEnvelope, {nullable:true})
+    @Type(() => ProductToPublisherCreateManyPublisherInputEnvelope)
+    createMany?: ProductToPublisherCreateManyPublisherInputEnvelope;
+
+    @Field(() => [ProductToPublisherWhereUniqueInput], {nullable:true})
+    @Type(() => ProductToPublisherWhereUniqueInput)
+    connect?: Array<Prisma.AtLeast<ProductToPublisherWhereUniqueInput, 'productId_publisherId'>>;
 }
