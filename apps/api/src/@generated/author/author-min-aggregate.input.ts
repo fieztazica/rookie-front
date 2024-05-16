@@ -8,7 +8,10 @@ export class AuthorMinAggregateInput {
     id?: true;
 
     @Field(() => Boolean, {nullable:true})
-    name?: true;
+    firstName?: true;
+
+    @Field(() => Boolean, {nullable:true})
+    lastName?: true;
 
     @Field(() => Boolean, {nullable:true})
     displayName?: true;
@@ -18,6 +21,9 @@ export class AuthorMinAggregateInput {
 
     @Field(() => Boolean, {nullable:true})
     phoneNumber?: true;
+
+    @Field(() => Boolean, {nullable:true})
+    description?: true;
 
     @Field(() => Boolean, {nullable:true})
     deleted?: true;

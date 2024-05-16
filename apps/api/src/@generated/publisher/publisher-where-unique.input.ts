@@ -48,5 +48,5 @@ export class PublisherWhereUniqueInput {
 
     @Field(() => ProductToPublisherListRelationFilter, {nullable:true})
     @Type(() => ProductToPublisherListRelationFilter)
-    productToPublishers?: ProductToPublisherListRelationFilter;
+    products?: ProductToPublisherListRelationFilter;
 }

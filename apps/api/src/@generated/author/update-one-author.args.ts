@@ -14,5 +14,5 @@ export class UpdateOneAuthorArgs {
 
     @Field(() => AuthorWhereUniqueInput, {nullable:false})
     @Type(() => AuthorWhereUniqueInput)
-    where!: Prisma.AtLeast<AuthorWhereUniqueInput, 'id' | 'name' | 'email'>;
+    where!: Prisma.AtLeast<AuthorWhereUniqueInput, 'id' | 'email' | 'phoneNumber'>;
 }

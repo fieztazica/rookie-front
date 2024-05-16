@@ -9,7 +9,10 @@ export class AuthorMaxOrderByAggregateInput {
     id?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    name?: keyof typeof SortOrder;
+    firstName?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    lastName?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
     displayName?: keyof typeof SortOrder;
@@ -19,6 +22,9 @@ export class AuthorMaxOrderByAggregateInput {
 
     @Field(() => SortOrder, {nullable:true})
     phoneNumber?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    description?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
     deleted?: keyof typeof SortOrder;

@@ -13,7 +13,10 @@ export class AuthorOrderByWithAggregationInput {
     id?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    name?: keyof typeof SortOrder;
+    firstName?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    lastName?: keyof typeof SortOrder;
 
     @Field(() => SortOrderInput, {nullable:true})
     displayName?: SortOrderInput;
@@ -23,6 +26,9 @@ export class AuthorOrderByWithAggregationInput {
 
     @Field(() => SortOrder, {nullable:true})
     phoneNumber?: keyof typeof SortOrder;
+
+    @Field(() => SortOrderInput, {nullable:true})
+    description?: SortOrderInput;
 
     @Field(() => SortOrder, {nullable:true})
     deleted?: keyof typeof SortOrder;

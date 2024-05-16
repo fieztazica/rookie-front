@@ -1,8 +1,8 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { ProductUpdateOneRequiredWithoutProductToAuthorsNestedInput } from '../product/product-update-one-required-without-product-to-authors-nested.input';
+import { ProductUpdateOneRequiredWithoutAuthorsNestedInput } from '../product/product-update-one-required-without-authors-nested.input';
 import { Type } from 'class-transformer';
-import { AuthorUpdateOneRequiredWithoutProductToAuthorsNestedInput } from '../author/author-update-one-required-without-product-to-authors-nested.input';
+import { AuthorUpdateOneRequiredWithoutProductsNestedInput } from '../author/author-update-one-required-without-products-nested.input';
 
 @InputType()
 export class ProductToAuthorUpdateInput {
@@ -13,10 +13,10 @@ export class ProductToAuthorUpdateInput {
     @Field(() => Date, {nullable:true})
     updatedAt?: Date | string;
 
-    @Field(() => ProductUpdateOneRequiredWithoutProductToAuthorsNestedInput, {nullable:true})
-    @Type(() => ProductUpdateOneRequiredWithoutProductToAuthorsNestedInput)
-    product?: ProductUpdateOneRequiredWithoutProductToAuthorsNestedInput;
+    @Field(() => ProductUpdateOneRequiredWithoutAuthorsNestedInput, {nullable:true})
+    @Type(() => ProductUpdateOneRequiredWithoutAuthorsNestedInput)
+    product?: ProductUpdateOneRequiredWithoutAuthorsNestedInput;
 
-    @Field(() => AuthorUpdateOneRequiredWithoutProductToAuthorsNestedInput, {nullable:true})
-    author?: AuthorUpdateOneRequiredWithoutProductToAuthorsNestedInput;
+    @Field(() => AuthorUpdateOneRequiredWithoutProductsNestedInput, {nullable:true})
+    author?: AuthorUpdateOneRequiredWithoutProductsNestedInput;
 }

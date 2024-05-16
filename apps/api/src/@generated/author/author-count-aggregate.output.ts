@@ -9,7 +9,10 @@ export class AuthorCountAggregate {
     id!: number;
 
     @Field(() => Int, {nullable:false})
-    name!: number;
+    firstName!: number;
+
+    @Field(() => Int, {nullable:false})
+    lastName!: number;
 
     @Field(() => Int, {nullable:false})
     displayName!: number;
@@ -19,6 +22,9 @@ export class AuthorCountAggregate {
 
     @Field(() => Int, {nullable:false})
     phoneNumber!: number;
+
+    @Field(() => Int, {nullable:false})
+    description!: number;
 
     @Field(() => Int, {nullable:false})
     deleted!: number;

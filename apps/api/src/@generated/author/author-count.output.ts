@@ -6,5 +6,5 @@ import { Int } from '@nestjs/graphql';
 export class AuthorCount {
 
     @Field(() => Int, {nullable:false})
-    productToAuthors?: number;
+    products?: number;
 }

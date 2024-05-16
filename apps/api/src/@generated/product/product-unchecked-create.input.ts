@@ -67,9 +67,9 @@ export class ProductUncheckedCreateInput {
 
     @Field(() => ProductToPublisherUncheckedCreateNestedManyWithoutProductInput, {nullable:true})
     @Type(() => ProductToPublisherUncheckedCreateNestedManyWithoutProductInput)
-    productToPublishers?: ProductToPublisherUncheckedCreateNestedManyWithoutProductInput;
+    publishers?: ProductToPublisherUncheckedCreateNestedManyWithoutProductInput;
 
     @Field(() => ProductToAuthorUncheckedCreateNestedManyWithoutProductInput, {nullable:true})
     @Type(() => ProductToAuthorUncheckedCreateNestedManyWithoutProductInput)
-    productToAuthors?: ProductToAuthorUncheckedCreateNestedManyWithoutProductInput;
+    authors?: ProductToAuthorUncheckedCreateNestedManyWithoutProductInput;
 }

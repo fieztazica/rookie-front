@@ -25,7 +25,7 @@ export class AuthorUpdateOneRequiredWithoutProductToAuthorsNestedInput {
 
     @Field(() => AuthorWhereUniqueInput, {nullable:true})
     @Type(() => AuthorWhereUniqueInput)
-    connect?: Prisma.AtLeast<AuthorWhereUniqueInput, 'id' | 'name' | 'email'>;
+    connect?: Prisma.AtLeast<AuthorWhereUniqueInput, 'id' | 'email' | 'phoneNumber'>;
 
     @Field(() => AuthorUpdateToOneWithWhereWithoutProductToAuthorsInput, {nullable:true})
     @Type(() => AuthorUpdateToOneWithWhereWithoutProductToAuthorsInput)

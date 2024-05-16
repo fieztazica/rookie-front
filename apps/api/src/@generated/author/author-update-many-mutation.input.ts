@@ -8,7 +8,10 @@ export class AuthorUpdateManyMutationInput {
     id?: string;
 
     @Field(() => String, {nullable:true})
-    name?: string;
+    firstName?: string;
+
+    @Field(() => String, {nullable:true})
+    lastName?: string;
 
     @Field(() => String, {nullable:true})
     displayName?: string;
@@ -18,6 +21,9 @@ export class AuthorUpdateManyMutationInput {
 
     @Field(() => String, {nullable:true})
     phoneNumber?: string;
+
+    @Field(() => String, {nullable:true})
+    description?: string;
 
     @Field(() => Boolean, {nullable:true})
     deleted?: boolean;

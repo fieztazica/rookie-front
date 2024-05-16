@@ -67,9 +67,9 @@ export class ProductCreateInput {
 
     @Field(() => ProductToPublisherCreateNestedManyWithoutProductInput, {nullable:true})
     @Type(() => ProductToPublisherCreateNestedManyWithoutProductInput)
-    productToPublishers?: ProductToPublisherCreateNestedManyWithoutProductInput;
+    publishers?: ProductToPublisherCreateNestedManyWithoutProductInput;
 
     @Field(() => ProductToAuthorCreateNestedManyWithoutProductInput, {nullable:true})
     @Type(() => ProductToAuthorCreateNestedManyWithoutProductInput)
-    productToAuthors?: ProductToAuthorCreateNestedManyWithoutProductInput;
+    authors?: ProductToAuthorCreateNestedManyWithoutProductInput;
 }

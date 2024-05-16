@@ -41,7 +41,7 @@ export class Publisher {
     updatedAt!: Date;
 
     @Field(() => [ProductToPublisher], {nullable:true})
-    productToPublishers?: Array<ProductToPublisher>;
+    products?: Array<ProductToPublisher>;
 
     @Field(() => PublisherCount, {nullable:false})
     _count?: PublisherCount;

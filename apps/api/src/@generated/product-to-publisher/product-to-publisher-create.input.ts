@@ -1,8 +1,8 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { ProductCreateNestedOneWithoutProductToPublishersInput } from '../product/product-create-nested-one-without-product-to-publishers.input';
+import { ProductCreateNestedOneWithoutPublishersInput } from '../product/product-create-nested-one-without-publishers.input';
 import { Type } from 'class-transformer';
-import { PublisherCreateNestedOneWithoutProductToPublishersInput } from '../publisher/publisher-create-nested-one-without-product-to-publishers.input';
+import { PublisherCreateNestedOneWithoutProductsInput } from '../publisher/publisher-create-nested-one-without-products.input';
 
 @InputType()
 export class ProductToPublisherCreateInput {
@@ -13,10 +13,10 @@ export class ProductToPublisherCreateInput {
     @Field(() => Date, {nullable:true})
     updatedAt?: Date | string;
 
-    @Field(() => ProductCreateNestedOneWithoutProductToPublishersInput, {nullable:false})
-    @Type(() => ProductCreateNestedOneWithoutProductToPublishersInput)
-    product!: ProductCreateNestedOneWithoutProductToPublishersInput;
+    @Field(() => ProductCreateNestedOneWithoutPublishersInput, {nullable:false})
+    @Type(() => ProductCreateNestedOneWithoutPublishersInput)
+    product!: ProductCreateNestedOneWithoutPublishersInput;
 
-    @Field(() => PublisherCreateNestedOneWithoutProductToPublishersInput, {nullable:false})
-    publisher!: PublisherCreateNestedOneWithoutProductToPublishersInput;
+    @Field(() => PublisherCreateNestedOneWithoutProductsInput, {nullable:false})
+    publisher!: PublisherCreateNestedOneWithoutProductsInput;
 }

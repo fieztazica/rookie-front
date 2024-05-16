@@ -37,5 +37,5 @@ export class PublisherOrderByWithRelationInput {
 
     @Field(() => ProductToPublisherOrderByRelationAggregateInput, {nullable:true})
     @Type(() => ProductToPublisherOrderByRelationAggregateInput)
-    productToPublishers?: ProductToPublisherOrderByRelationAggregateInput;
+    products?: ProductToPublisherOrderByRelationAggregateInput;
 }

@@ -19,7 +19,7 @@ export class FindManyAuthorArgs {
     orderBy?: Array<AuthorOrderByWithRelationInput>;
 
     @Field(() => AuthorWhereUniqueInput, {nullable:true})
-    cursor?: Prisma.AtLeast<AuthorWhereUniqueInput, 'id' | 'name' | 'email'>;
+    cursor?: Prisma.AtLeast<AuthorWhereUniqueInput, 'id' | 'email' | 'phoneNumber'>;
 
     @Field(() => Int, {nullable:true})
     take?: number;

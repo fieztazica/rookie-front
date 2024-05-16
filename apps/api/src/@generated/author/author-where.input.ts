@@ -22,7 +22,10 @@ export class AuthorWhereInput {
     id?: StringFilter;
 
     @Field(() => StringFilter, {nullable:true})
-    name?: StringFilter;
+    firstName?: StringFilter;
+
+    @Field(() => StringFilter, {nullable:true})
+    lastName?: StringFilter;
 
     @Field(() => StringFilter, {nullable:true})
     displayName?: StringFilter;
@@ -32,6 +35,9 @@ export class AuthorWhereInput {
 
     @Field(() => StringFilter, {nullable:true})
     phoneNumber?: StringFilter;
+
+    @Field(() => StringFilter, {nullable:true})
+    description?: StringFilter;
 
     @Field(() => BoolFilter, {nullable:true})
     deleted?: BoolFilter;
@@ -44,5 +50,5 @@ export class AuthorWhereInput {
 
     @Field(() => ProductToAuthorListRelationFilter, {nullable:true})
     @Type(() => ProductToAuthorListRelationFilter)
-    productToAuthors?: ProductToAuthorListRelationFilter;
+    products?: ProductToAuthorListRelationFilter;
 }

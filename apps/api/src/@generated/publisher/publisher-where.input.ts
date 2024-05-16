@@ -47,5 +47,5 @@ export class PublisherWhereInput {
 
     @Field(() => ProductToPublisherListRelationFilter, {nullable:true})
     @Type(() => ProductToPublisherListRelationFilter)
-    productToPublishers?: ProductToPublisherListRelationFilter;
+    products?: ProductToPublisherListRelationFilter;
 }

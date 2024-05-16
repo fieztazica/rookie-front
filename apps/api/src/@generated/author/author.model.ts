@@ -14,7 +14,10 @@ export class Author {
     id!: string;
 
     @Field(() => String, {nullable:false})
-    name!: string;
+    firstName!: string;
+
+    @Field(() => String, {nullable:false})
+    lastName!: string;
 
     @Field(() => String, {nullable:true})
     displayName!: string | null;
@@ -24,6 +27,9 @@ export class Author {
 
     @Field(() => String, {nullable:false})
     phoneNumber!: string;
+
+    @Field(() => String, {nullable:true})
+    description!: string | null;
 
     /**
      * @omit
@@ -38,7 +44,7 @@ export class Author {
     updatedAt!: Date;
 
     @Field(() => [ProductToAuthor], {nullable:true})
-    productToAuthors?: Array<ProductToAuthor>;
+    products?: Array<ProductToAuthor>;
 
     @Field(() => AuthorCount, {nullable:false})
     _count?: AuthorCount;

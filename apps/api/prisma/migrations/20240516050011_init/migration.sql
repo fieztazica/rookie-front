@@ -22,10 +22,12 @@ CREATE TABLE "customers" (
 -- CreateTable
 CREATE TABLE "authors" (
     "author_id" TEXT NOT NULL,
-    "name" VARCHAR(64) NOT NULL,
+    "firstName" VARCHAR(255) NOT NULL,
+    "lastName" VARCHAR(255) NOT NULL,
     "displayName" VARCHAR(255),
     "email" VARCHAR(255) NOT NULL,
     "phoneNumber" VARCHAR(24) NOT NULL,
+    "description" TEXT,
     "deleted" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -40,7 +42,7 @@ CREATE TABLE "publishers" (
     "displayName" VARCHAR(255),
     "email" VARCHAR(255) NOT NULL,
     "phoneNumber" VARCHAR(24) NOT NULL,
-    "website" VARCHAR(24) NOT NULL,
+    "website" TEXT NOT NULL,
     "deleted" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -73,7 +75,7 @@ CREATE TABLE "products" (
     "product_id" TEXT NOT NULL,
     "name" VARCHAR(255) NOT NULL,
     "displayName" VARCHAR(255),
-    "description" VARCHAR(255),
+    "description" TEXT,
     "price" DECIMAL NOT NULL,
     "salePrice" DECIMAL,
     "account_id" TEXT,
@@ -170,10 +172,10 @@ CREATE UNIQUE INDEX "customers_email_key" ON "customers"("email");
 CREATE UNIQUE INDEX "customers_phoneNumber_key" ON "customers"("phoneNumber");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "authors_name_key" ON "authors"("name");
+CREATE UNIQUE INDEX "authors_email_key" ON "authors"("email");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "authors_email_key" ON "authors"("email");
+CREATE UNIQUE INDEX "authors_phoneNumber_key" ON "authors"("phoneNumber");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "publishers_name_key" ON "publishers"("name");

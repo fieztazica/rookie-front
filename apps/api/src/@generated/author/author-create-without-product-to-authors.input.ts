@@ -8,7 +8,10 @@ export class AuthorCreateWithoutProductToAuthorsInput {
     id?: string;
 
     @Field(() => String, {nullable:false})
-    name!: string;
+    firstName!: string;
+
+    @Field(() => String, {nullable:false})
+    lastName!: string;
 
     @Field(() => String, {nullable:true})
     displayName?: string;
@@ -18,6 +21,9 @@ export class AuthorCreateWithoutProductToAuthorsInput {
 
     @Field(() => String, {nullable:false})
     phoneNumber!: string;
+
+    @Field(() => String, {nullable:true})
+    description?: string;
 
     @Field(() => Boolean, {nullable:true})
     deleted?: boolean;

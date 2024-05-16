@@ -62,9 +62,9 @@ export class ProductUpdateWithoutOrderItemsInput {
 
     @Field(() => ProductToPublisherUpdateManyWithoutProductNestedInput, {nullable:true})
     @Type(() => ProductToPublisherUpdateManyWithoutProductNestedInput)
-    productToPublishers?: ProductToPublisherUpdateManyWithoutProductNestedInput;
+    publishers?: ProductToPublisherUpdateManyWithoutProductNestedInput;
 
     @Field(() => ProductToAuthorUpdateManyWithoutProductNestedInput, {nullable:true})
     @Type(() => ProductToAuthorUpdateManyWithoutProductNestedInput)
-    productToAuthors?: ProductToAuthorUpdateManyWithoutProductNestedInput;
+    authors?: ProductToAuthorUpdateManyWithoutProductNestedInput;
 }

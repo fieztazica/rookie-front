@@ -1,6 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { PublisherUpdateOneRequiredWithoutProductToPublishersNestedInput } from '../publisher/publisher-update-one-required-without-product-to-publishers-nested.input';
+import { PublisherUpdateOneRequiredWithoutProductsNestedInput } from '../publisher/publisher-update-one-required-without-products-nested.input';
 
 @InputType()
 export class ProductToPublisherUpdateWithoutProductInput {
@@ -11,6 +11,6 @@ export class ProductToPublisherUpdateWithoutProductInput {
     @Field(() => Date, {nullable:true})
     updatedAt?: Date | string;
 
-    @Field(() => PublisherUpdateOneRequiredWithoutProductToPublishersNestedInput, {nullable:true})
-    publisher?: PublisherUpdateOneRequiredWithoutProductToPublishersNestedInput;
+    @Field(() => PublisherUpdateOneRequiredWithoutProductsNestedInput, {nullable:true})
+    publisher?: PublisherUpdateOneRequiredWithoutProductsNestedInput;
 }

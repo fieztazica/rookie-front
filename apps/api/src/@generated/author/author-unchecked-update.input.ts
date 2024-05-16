@@ -10,7 +10,10 @@ export class AuthorUncheckedUpdateInput {
     id?: string;
 
     @Field(() => String, {nullable:true})
-    name?: string;
+    firstName?: string;
+
+    @Field(() => String, {nullable:true})
+    lastName?: string;
 
     @Field(() => String, {nullable:true})
     displayName?: string;
@@ -20,6 +23,9 @@ export class AuthorUncheckedUpdateInput {
 
     @Field(() => String, {nullable:true})
     phoneNumber?: string;
+
+    @Field(() => String, {nullable:true})
+    description?: string;
 
     @Field(() => Boolean, {nullable:true})
     deleted?: boolean;
@@ -32,5 +38,5 @@ export class AuthorUncheckedUpdateInput {
 
     @Field(() => ProductToAuthorUncheckedUpdateManyWithoutAuthorNestedInput, {nullable:true})
     @Type(() => ProductToAuthorUncheckedUpdateManyWithoutAuthorNestedInput)
-    productToAuthors?: ProductToAuthorUncheckedUpdateManyWithoutAuthorNestedInput;
+    products?: ProductToAuthorUncheckedUpdateManyWithoutAuthorNestedInput;
 }

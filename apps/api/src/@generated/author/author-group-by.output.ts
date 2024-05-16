@@ -11,7 +11,10 @@ export class AuthorGroupBy {
     id!: string;
 
     @Field(() => String, {nullable:false})
-    name!: string;
+    firstName!: string;
+
+    @Field(() => String, {nullable:false})
+    lastName!: string;
 
     @Field(() => String, {nullable:true})
     displayName?: string;
@@ -21,6 +24,9 @@ export class AuthorGroupBy {
 
     @Field(() => String, {nullable:false})
     phoneNumber!: string;
+
+    @Field(() => String, {nullable:true})
+    description?: string;
 
     @Field(() => Boolean, {nullable:false})
     deleted!: boolean;

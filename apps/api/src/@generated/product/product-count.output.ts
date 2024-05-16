@@ -18,8 +18,8 @@ export class ProductCount {
     images?: number;
 
     @Field(() => Int, {nullable:false})
-    productToPublishers?: number;
+    publishers?: number;
 
     @Field(() => Int, {nullable:false})
-    productToAuthors?: number;
+    authors?: number;
 }

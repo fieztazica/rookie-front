@@ -35,5 +35,5 @@ export class PublisherUncheckedCreateInput {
 
     @Field(() => ProductToPublisherUncheckedCreateNestedManyWithoutPublisherInput, {nullable:true})
     @Type(() => ProductToPublisherUncheckedCreateNestedManyWithoutPublisherInput)
-    productToPublishers?: ProductToPublisherUncheckedCreateNestedManyWithoutPublisherInput;
+    products?: ProductToPublisherUncheckedCreateNestedManyWithoutPublisherInput;
 }

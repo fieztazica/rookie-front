@@ -14,10 +14,10 @@ export class AuthorWhereUniqueInput {
     id?: string;
 
     @Field(() => String, {nullable:true})
-    name?: string;
+    email?: string;
 
     @Field(() => String, {nullable:true})
-    email?: string;
+    phoneNumber?: string;
 
     @Field(() => [AuthorWhereInput], {nullable:true})
     AND?: Array<AuthorWhereInput>;
@@ -29,10 +29,16 @@ export class AuthorWhereUniqueInput {
     NOT?: Array<AuthorWhereInput>;
 
     @Field(() => StringFilter, {nullable:true})
+    firstName?: StringFilter;
+
+    @Field(() => StringFilter, {nullable:true})
+    lastName?: StringFilter;
+
+    @Field(() => StringFilter, {nullable:true})
     displayName?: StringFilter;
 
     @Field(() => StringFilter, {nullable:true})
-    phoneNumber?: StringFilter;
+    description?: StringFilter;
 
     @Field(() => BoolFilter, {nullable:true})
     deleted?: BoolFilter;
@@ -45,5 +51,5 @@ export class AuthorWhereUniqueInput {
 
     @Field(() => ProductToAuthorListRelationFilter, {nullable:true})
     @Type(() => ProductToAuthorListRelationFilter)
-    productToAuthors?: ProductToAuthorListRelationFilter;
+    products?: ProductToAuthorListRelationFilter;
 }

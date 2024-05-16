@@ -62,9 +62,9 @@ export class ProductUncheckedUpdateWithoutCategoriesInput {
 
     @Field(() => ProductToPublisherUncheckedUpdateManyWithoutProductNestedInput, {nullable:true})
     @Type(() => ProductToPublisherUncheckedUpdateManyWithoutProductNestedInput)
-    productToPublishers?: ProductToPublisherUncheckedUpdateManyWithoutProductNestedInput;
+    publishers?: ProductToPublisherUncheckedUpdateManyWithoutProductNestedInput;
 
     @Field(() => ProductToAuthorUncheckedUpdateManyWithoutProductNestedInput, {nullable:true})
     @Type(() => ProductToAuthorUncheckedUpdateManyWithoutProductNestedInput)
-    productToAuthors?: ProductToAuthorUncheckedUpdateManyWithoutProductNestedInput;
+    authors?: ProductToAuthorUncheckedUpdateManyWithoutProductNestedInput;
 }

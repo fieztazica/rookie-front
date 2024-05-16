@@ -63,10 +63,10 @@ export class Product {
     images?: Array<Image>;
 
     @Field(() => [ProductToPublisher], {nullable:true})
-    productToPublishers?: Array<ProductToPublisher>;
+    publishers?: Array<ProductToPublisher>;
 
     @Field(() => [ProductToAuthor], {nullable:true})
-    productToAuthors?: Array<ProductToAuthor>;
+    authors?: Array<ProductToAuthor>;
 
     @Field(() => ProductCount, {nullable:false})
     _count?: ProductCount;

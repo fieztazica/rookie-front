@@ -35,5 +35,5 @@ export class PublisherUncheckedUpdateInput {
 
     @Field(() => ProductToPublisherUncheckedUpdateManyWithoutPublisherNestedInput, {nullable:true})
     @Type(() => ProductToPublisherUncheckedUpdateManyWithoutPublisherNestedInput)
-    productToPublishers?: ProductToPublisherUncheckedUpdateManyWithoutPublisherNestedInput;
+    products?: ProductToPublisherUncheckedUpdateManyWithoutPublisherNestedInput;
 }

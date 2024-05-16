@@ -62,9 +62,9 @@ export class ProductOrderByWithRelationInput {
 
     @Field(() => ProductToPublisherOrderByRelationAggregateInput, {nullable:true})
     @Type(() => ProductToPublisherOrderByRelationAggregateInput)
-    productToPublishers?: ProductToPublisherOrderByRelationAggregateInput;
+    publishers?: ProductToPublisherOrderByRelationAggregateInput;
 
     @Field(() => ProductToAuthorOrderByRelationAggregateInput, {nullable:true})
     @Type(() => ProductToAuthorOrderByRelationAggregateInput)
-    productToAuthors?: ProductToAuthorOrderByRelationAggregateInput;
+    authors?: ProductToAuthorOrderByRelationAggregateInput;
 }
