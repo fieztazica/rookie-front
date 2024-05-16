@@ -4,16 +4,14 @@ import { NestFactory, Reflector } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import compression from 'compression';
+import RedisStore from 'connect-redis';
+import session from 'express-session';
 import hbs from 'hbs';
 import helmet from 'helmet';
-import { join } from 'path';
-import { AppModule } from './app.module';
-import { REDIS } from './redis/redis.constants';
-import session from 'express-session';
 import passport from 'passport';
-import RedisStore from 'connect-redis';
-import { createClient, RedisClientType } from 'redis';
-import { RedisModule } from './redis/redis.module';
+import { join } from 'path';
+import { createClient } from 'redis';
+import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -24,7 +22,6 @@ async function bootstrap() {
     .on('error', (err) => console.log('Redis Client Error', err))
     .connect();
   const sessionSecret: string = configService.get('sessionSecret');
-  console.log(sessionSecret)
 
   app.enableShutdownHooks();
   app.enableCors();
@@ -49,10 +46,10 @@ async function bootstrap() {
   app.use(passport.initialize());
   app.use(passport.session());
 
-  app.useStaticAssets(join(__dirname, '..', 'public'));
-  app.setBaseViewsDir(join(__dirname, '..', 'views'));
+  app.useStaticAssets(join(process.cwd(), 'public'));
+  app.setBaseViewsDir(join(process.cwd(), 'views'));
   app.setViewEngine('hbs');
-  hbs.registerPartials(join(__dirname, '..', 'views', 'partials'));
+  hbs.registerPartials(join(process.cwd(), 'views', 'partials'));
 
   app.setLocal('title', 'Rookie Store');
 
