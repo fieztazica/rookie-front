@@ -14,21 +14,26 @@ export class ProductsService {
   }
 
   findAll() {
-    return this.prisma.product.findMany();
+    return this.prisma.product.findMany({ where: { deleted: false } });
   }
 
   findOne(id: string) {
-    return this.prisma.product.findUnique({ where: { id } });
+    return this.prisma.product.findUnique({ where: { id, deleted: false } });
   }
 
   update(id: string, updateProductInput: UpdateProductInput) {
     return this.prisma.product.update({
-      where: { id },
+      where: { id, deleted: false },
       data: updateProductInput,
     });
   }
 
   remove(id: string) {
-    return this.prisma.product.delete({ where: { id } });
+    return this.prisma.product.update({
+      where: { id, deleted: false },
+      data: {
+        deleted: true,
+      },
+    });
   }
 }

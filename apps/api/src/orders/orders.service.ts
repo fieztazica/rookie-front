@@ -14,21 +14,26 @@ export class OrdersService {
   }
 
   findAll() {
-    return this.prisma.order.findMany();
+    return this.prisma.order.findMany({ where: { deleted: false } });
   }
 
   findOne(id: string) {
-    return this.prisma.order.findUnique({ where: { id } });
+    return this.prisma.order.findUnique({ where: { id, deleted: false } });
   }
 
   update(id: string, updateOrderInput: UpdateOrderInput) {
     return this.prisma.order.update({
-      where: { id },
+      where: { id, deleted: false },
       data: updateOrderInput,
     });
   }
 
   remove(id: string) {
-    return this.prisma.order.delete({ where: { id } });
+    return this.prisma.order.update({
+      where: { id, deleted: false },
+      data: {
+        deleted: true,
+      },
+    });
   }
 }

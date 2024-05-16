@@ -14,21 +14,26 @@ export class FeedbacksService {
   }
 
   findAll() {
-    return this.prisma.feedback.findMany();
+    return this.prisma.feedback.findMany({ where: { deleted: false } });
   }
 
   findOne(id: string) {
-    return this.prisma.feedback.findUnique({ where: { id } });
+    return this.prisma.feedback.findUnique({ where: { id, deleted: false } });
   }
 
   update(id: string, updateFeedbackInput: UpdateFeedbackInput) {
     return this.prisma.feedback.update({
-      where: { id },
+      where: { id, deleted: false },
       data: updateFeedbackInput,
     });
   }
 
   remove(id: string) {
-    return this.prisma.feedback.delete({ where: { id } });
+    return this.prisma.feedback.update({
+      where: { id, deleted: false },
+      data: {
+        deleted: true,
+      },
+    });
   }
 }

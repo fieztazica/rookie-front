@@ -14,21 +14,30 @@ export class CategoriesService {
   }
 
   findAll() {
-    return this.prisma.category.findMany();
+    return this.prisma.category.findMany({
+      where: {
+        deleted: false,
+      },
+    });
   }
 
   findOne(id: string) {
-    return this.prisma.category.findUnique({ where: { id } });
+    return this.prisma.category.findUnique({ where: { id, deleted: false } });
   }
 
   update(id: string, updateCategoryInput: UpdateCategoryInput) {
     return this.prisma.category.update({
-      where: { id },
+      where: { id, deleted: false },
       data: updateCategoryInput,
     });
   }
 
   remove(id: string) {
-    return this.prisma.category.delete({ where: { id } });
+    return this.prisma.category.update({
+      where: { id, deleted: false },
+      data: {
+        deleted: true,
+      },
+    });
   }
 }
