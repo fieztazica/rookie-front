@@ -6,12 +6,14 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import compression from 'compression';
 import RedisStore from 'connect-redis';
 import session from 'express-session';
-import hbs from 'hbs';
+// import * as hbs from 'hbs';
 import helmet from 'helmet';
 import passport from 'passport';
 import { join } from 'path';
 import { createClient } from 'redis';
 import { AppModule } from './app.module';
+import { ExpressHandlebars } from 'express-handlebars';
+import { helpers } from './common/config/handlebarsHelpers';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -48,9 +50,16 @@ async function bootstrap() {
 
   app.useStaticAssets(join(process.cwd(), 'public'));
   app.setBaseViewsDir(join(process.cwd(), 'views'));
-  app.setViewEngine('hbs');
-  hbs.registerPartials(join(process.cwd(), 'views', 'partials'));
 
+  const hbs = new ExpressHandlebars({
+    extname: '.hbs',
+    defaultLayout: 'main',
+    layoutsDir: join(process.cwd(), 'views', 'layouts'),
+    helpers,
+  });
+
+  app.engine('.hbs', hbs.engine);
+  app.setViewEngine('.hbs');
   app.setLocal('title', 'Rookie Store');
 
   app.useGlobalPipes(

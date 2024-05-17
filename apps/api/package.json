@@ -22,7 +22,7 @@
         "zenstack": "zenstack",
         "prisma": "prisma",
         "generate": "zenstack generate && prisma generate",
-        "tw-gen": "npx tailwindcss -i ./assets/tailwind.css -o ./public/main.css"
+        "tw-gen": "npx tailwindcss -i ./assets/css/tailwind.css -o ./public/css/main.css"
     },
     "dependencies": {
         "@apollo/server": "^4.10.4",
@@ -42,11 +42,15 @@
         "class-validator": "^0.14.1",
         "compression": "^1.7.4",
         "connect-redis": "^7.1.1",
+        "dayjs": "^1.11.11",
+        "express-handlebars": "^7.1.2",
         "express-session": "^1.18.0",
         "graphql": "^16.8.1",
+        "handlebars": "^4.7.8",
         "hbs": "^4.2.0",
         "helmet": "^7.1.0",
         "jwks-rsa": "^3.1.0",
+        "lodash": "^4.17.21",
         "openid-client": "^5.6.5",
         "passport": "^0.7.0",
         "passport-jwt": "^4.0.1",
