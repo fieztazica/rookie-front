@@ -1,0 +1,10 @@
+@generated/
+build/
+dist/
+node_modules/
+*.d.ts
+.turbo
+*.tsbuildinfo
+*.yaml
+components/ui/
+~*
