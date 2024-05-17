@@ -7,4 +7,5 @@ node_modules/
 *.tsbuildinfo
 *.yaml
 packages/ui/src/components/ui/
+turbo/
 ~*
