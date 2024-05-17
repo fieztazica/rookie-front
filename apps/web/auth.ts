@@ -54,10 +54,10 @@ declare module 'next-auth/jwt' {
 }
 
 declare module 'next-auth' {
-    /**
-     * Returned by `auth`, `useSession`, `getSession` and received as a prop on the `SessionProvider` React Context
-     */
-    interface Session {
-      access_token?: string;
-    }
+  /**
+   * Returned by `auth`, `useSession`, `getSession` and received as a prop on the `SessionProvider` React Context
+   */
+  interface Session {
+    access_token?: string;
   }
+}

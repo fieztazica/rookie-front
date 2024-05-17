@@ -15,7 +15,7 @@ export default async function Page(): Promise<JSX.Element> {
 
   return (
     <main className="flex flex-col items-center justify-between min-h-screen p-24">
-    <Link href="/api/auth/signout">Sign out</Link>
+      <Link href="/api/auth/signout">Sign out</Link>
       Hi, {session.user?.name}!
     </main>
   );

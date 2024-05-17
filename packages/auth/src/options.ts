@@ -1,6 +1,6 @@
-import { AuthOptions, DefaultSession } from "next-auth";
-import { JWT } from "next-auth/jwt";
-import Auth0Provider from "next-auth/providers/auth0";
+import { AuthOptions, DefaultSession } from 'next-auth';
+import { JWT } from 'next-auth/jwt';
+import Auth0Provider from 'next-auth/providers/auth0';
 
 const authOptions: AuthOptions = {
   // Configure one or more authentication providers
@@ -33,13 +33,13 @@ const authOptions: AuthOptions = {
     },
   },
   session: {
-    strategy: "jwt",
+    strategy: 'jwt',
   },
 };
 
 export default authOptions;
 
-declare module "next-auth" {
+declare module 'next-auth' {
   /**
    * Returned by `auth`, `useSession`, `getSession` and received as a prop on the `SessionProvider` React Context
    */
@@ -53,11 +53,11 @@ declare module "next-auth" {
        * with the new ones defined above. To keep the default session user properties,
        * you need to add them back into the newly declared interface.
        */
-    } & DefaultSession["user"];
+    } & DefaultSession['user'];
   }
 }
 
-declare module "next-auth/jwt" {
+declare module 'next-auth/jwt' {
   /** Returned by the `jwt` callback and `auth`, when using JWT sessions */
   interface JWT {
     /** OpenID ID Token */
