@@ -5,6 +5,7 @@ import { GraphQLDecimal } from 'prisma-graphql-type-decimal';
 import { transformToDecimal } from 'prisma-graphql-type-decimal';
 import { Transform } from 'class-transformer';
 import { Type } from 'class-transformer';
+import { Int } from '@nestjs/graphql';
 
 @InputType()
 export class ProductUncheckedUpdateManyInput {
@@ -33,6 +34,9 @@ export class ProductUncheckedUpdateManyInput {
 
     @Field(() => String, {nullable:true})
     accountId?: string;
+
+    @Field(() => Int, {nullable:true})
+    storeQuantity?: number;
 
     @Field(() => Boolean, {nullable:true})
     deleted?: boolean;

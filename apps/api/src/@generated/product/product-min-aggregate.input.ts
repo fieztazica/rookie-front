@@ -26,6 +26,9 @@ export class ProductMinAggregateInput {
     accountId?: true;
 
     @Field(() => Boolean, {nullable:true})
+    storeQuantity?: true;
+
+    @Field(() => Boolean, {nullable:true})
     deleted?: true;
 
     @Field(() => Boolean, {nullable:true})

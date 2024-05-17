@@ -107,23 +107,24 @@ model ProductToPublisher {
 
 /// @@deny('read', deleted)
 model Product {
-  id          String               @id() @default(cuid()) @map("product_id")
-  name        String               @unique() @db.VarChar(255)
-  displayName String?              @db.VarChar(255)
-  description String?              @db.Text()
-  price       Decimal              @db.Decimal()
-  salePrice   Decimal?             @db.Decimal()
-  accountId   String?              @map("account_id")
-  categories  ProductToCategory[]
-  orderItems  OrderItem[]
-  feedbacks   Feedback[]
-  images      Image[]
-  publishers  ProductToPublisher[]
-  authors     ProductToAuthor[]
+  id            String               @id() @default(cuid()) @map("product_id")
+  name          String               @unique() @db.VarChar(255)
+  displayName   String?              @db.VarChar(255)
+  description   String?              @db.Text()
+  price         Decimal              @db.Decimal()
+  salePrice     Decimal?             @db.Decimal()
+  accountId     String?              @map("account_id")
+  storeQuantity Int                  @default(0)
+  categories    ProductToCategory[]
+  orderItems    OrderItem[]
+  feedbacks     Feedback[]
+  images        Image[]
+  publishers    ProductToPublisher[]
+  authors       ProductToAuthor[]
   /// @omit
-  deleted     Boolean              @default(false)
-  createdAt   DateTime             @default(now())
-  updatedAt   DateTime             @updatedAt()
+  deleted       Boolean              @default(false)
+  createdAt     DateTime             @default(now())
+  updatedAt     DateTime             @updatedAt()
 
   @@map("products")
 }

@@ -27,6 +27,9 @@ export class ProductMaxOrderByAggregateInput {
     accountId?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
+    storeQuantity?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
     deleted?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})

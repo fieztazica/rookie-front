@@ -79,6 +79,7 @@ CREATE TABLE "products" (
     "price" DECIMAL NOT NULL,
     "salePrice" DECIMAL,
     "account_id" TEXT,
+    "storeQuantity" INTEGER NOT NULL DEFAULT 0,
     "deleted" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,

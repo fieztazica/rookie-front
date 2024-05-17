@@ -5,6 +5,7 @@ import { GraphQLDecimal } from 'prisma-graphql-type-decimal';
 import { transformToDecimal } from 'prisma-graphql-type-decimal';
 import { Transform } from 'class-transformer';
 import { Type } from 'class-transformer';
+import { Int } from '@nestjs/graphql';
 import { ProductToCategoryUpdateManyWithoutProductNestedInput } from '../product-to-category/product-to-category-update-many-without-product-nested.input';
 import { OrderItemUpdateManyWithoutProductNestedInput } from '../order-item/order-item-update-many-without-product-nested.input';
 import { FeedbackUpdateManyWithoutProductNestedInput } from '../feedback/feedback-update-many-without-product-nested.input';
@@ -39,6 +40,9 @@ export class ProductUpdateInput {
 
     @Field(() => String, {nullable:true})
     accountId?: string;
+
+    @Field(() => Int, {nullable:true})
+    storeQuantity?: number;
 
     @Field(() => Boolean, {nullable:true})
     deleted?: boolean;

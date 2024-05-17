@@ -27,6 +27,9 @@ export class ProductCountAggregate {
     accountId!: number;
 
     @Field(() => Int, {nullable:false})
+    storeQuantity!: number;
+
+    @Field(() => Int, {nullable:false})
     deleted!: number;
 
     @Field(() => Int, {nullable:false})

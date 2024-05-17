@@ -3,6 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { Type } from 'class-transformer';
 import { StringFilter } from '../prisma/string-filter.input';
 import { DecimalFilter } from '../prisma/decimal-filter.input';
+import { IntFilter } from '../prisma/int-filter.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { ProductToCategoryListRelationFilter } from '../product-to-category/product-to-category-list-relation-filter.input';
@@ -49,6 +50,9 @@ export class ProductWhereInput {
 
     @Field(() => StringFilter, {nullable:true})
     accountId?: StringFilter;
+
+    @Field(() => IntFilter, {nullable:true})
+    storeQuantity?: IntFilter;
 
     @Field(() => BoolFilter, {nullable:true})
     deleted?: BoolFilter;

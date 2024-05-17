@@ -9,4 +9,7 @@ export class ProductSumAggregateInput {
 
     @Field(() => Boolean, {nullable:true})
     salePrice?: true;
+
+    @Field(() => Boolean, {nullable:true})
+    storeQuantity?: true;
 }
