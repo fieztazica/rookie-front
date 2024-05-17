@@ -1,26 +1,43 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { CreateAuthorInput } from './dto/create-author.input';
 import { UpdateAuthorInput } from './dto/update-author.input';
+import { ENHANCED_PRISMA } from '@zenstackhq/server/nestjs';
+import { PrismaService } from 'src/common/database/prisma.service';
 
 @Injectable()
 export class AuthorsService {
+  constructor(
+    @Inject(ENHANCED_PRISMA) private readonly prisma: PrismaService,
+  ) {}
   create(createAuthorInput: CreateAuthorInput) {
-    return 'This action adds a new author';
+    return this.prisma.author.create({ data: createAuthorInput });
   }
 
   findAll() {
-    return `This action returns all authors`;
+    return this.prisma.author.findMany({
+      where: {
+        deleted: false,
+      },
+    });
   }
 
   findOne(id: string) {
-    return `This action returns a #${id} author`;
+    return this.prisma.author.findUnique({ where: { id, deleted: false } });
   }
 
   update(id: string, updateAuthorInput: UpdateAuthorInput) {
-    return `This action updates a #${id} author`;
+    return this.prisma.author.update({
+      where: { id, deleted: false },
+      data: updateAuthorInput,
+    });
   }
 
   remove(id: string) {
-    return `This action removes a #${id} author`;
+    return this.prisma.author.update({
+      where: { id, deleted: false },
+      data: {
+        deleted: true,
+      },
+    });
   }
 }
