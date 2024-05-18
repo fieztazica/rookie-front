@@ -24,6 +24,7 @@
         "generate": "zenstack generate && prisma generate",
         "tw-gen": "npx tailwindcss -i ./assets/css/tailwind.css -o ./public/css/main.css",
         "js:obf": "npx javascript-obfuscator ./assets/js --output ./public/js",
+        "assets:gen": "pnpm run js:obf && pnpm run tw-gen",
         "assets:watch": "pnpm run js:obf && pnpm run tw-gen --watch"
     },
     "dependencies": {
