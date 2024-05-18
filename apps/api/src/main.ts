@@ -12,8 +12,8 @@ import passport from 'passport';
 import { join } from 'path';
 import { createClient } from 'redis';
 import { AppModule } from './app.module';
-import { ExpressHandlebars } from 'express-handlebars';
-import { helpers } from './common/config/handlebarsHelpers';
+import { expressHandleBars } from './common/config/expressHandleBars';
+import { expressSessionOptions } from './common/config/expressSessionOptions';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -36,13 +36,7 @@ async function bootstrap() {
         client: redisClient,
       }), // where session will be stored
       secret: sessionSecret, // to sign session id
-      resave: false, // will default to false in near future: https://github.com/expressjs/session#resave
-      saveUninitialized: false, // will default to false in near future: https://github.com/expressjs/session#saveuninitialized
-      rolling: true, // keep session alive
-      cookie: {
-        maxAge: 30 * 60 * 1000, // session expires in 1hr, refreshed by `rolling: true` option.
-        httpOnly: true, // so that cookie can't be accessed via client-side script
-      },
+      ...expressSessionOptions,
     }),
   );
   app.use(passport.initialize());
@@ -51,14 +45,7 @@ async function bootstrap() {
   app.useStaticAssets(join(process.cwd(), 'public'));
   app.setBaseViewsDir(join(process.cwd(), 'views'));
 
-  const hbs = new ExpressHandlebars({
-    extname: '.hbs',
-    defaultLayout: 'main',
-    layoutsDir: join(process.cwd(), 'views', 'layouts'),
-    helpers,
-  });
-
-  app.engine('.hbs', hbs.engine);
+  app.engine('.hbs', expressHandleBars.engine);
   app.setViewEngine('.hbs');
   app.setLocal('title', 'Rookie Store');
 

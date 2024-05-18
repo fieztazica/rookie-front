@@ -19,10 +19,25 @@ import { ProductsModule } from './products/products.module';
 import { RedisModule } from './redis/redis.module';
 import { AuthorsModule } from './authors/authors.module';
 import { PublishersModule } from './publishers/publishers.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
+
+const serveStaticFactory = {
+  useFactory: () => {
+    const jqueryPath = join(process.cwd(), 'node_modules', 'jquery', 'dist');
+    return [
+      {
+        rootPath: jqueryPath,
+        serveRoot: '/jquery/',
+      },
+    ];
+  },
+};
 
 @Global()
 @Module({
   imports: [
+    ServeStaticModule.forRootAsync(serveStaticFactory),
     PrismaModule,
     CustomersModule,
     FeedbacksModule,

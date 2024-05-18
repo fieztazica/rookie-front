@@ -34,6 +34,15 @@ export const helpers = {
     }
     return new Handlebars.SafeString(value);
   },
+  getEntityActionUrl(entityId: string, resourceName: string, action: string) {
+    entityId = Handlebars.escapeExpression(entityId);
+    resourceName = Handlebars.escapeExpression(resourceName);
+    action = Handlebars.escapeExpression(action);
+
+    return new Handlebars.SafeString(
+      `/admin/${resourceName}/${entityId}/${action}`,
+    );
+  },
   year: function () {
     return new Date().getFullYear();
   },
