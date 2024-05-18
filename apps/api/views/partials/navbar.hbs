@@ -1,9 +1,12 @@
 <nav class="w-full bg-slate-200">
     <div class="flex justify-between px-8 py-4">
-        <div class="font-bold">ROOKIE STORE</div>
+        <a href="/admin">
+            <div class="font-bold">
+                ROOKIE STORE
+            </div>
+        </a>
         <div class="flex space-x-4">
             {{#if userinfo}}
-            <a href="/admin">Home</a>
             <a href="/admin/authors">Authors</a>
             <a href="/admin/publishers">Publishers</a>
             <a href="/admin/categories">Categories</a>

@@ -20,18 +20,19 @@
                     <tbody class="table-row-group">
                         {{#each data}}
                         <tr class="table-row">
-                        {{#each ../uniqueKeys}}
-                        {{!-- {{#ifCond this.key "!=" "id"}} --}}
-                        <td class="table-cell border px-6 py-4">{{renderCellData (lookup .. this.key) this.key ../../resourceName}}</td>
-                        {{!-- {{/ifCond}} --}}
-                        {{/each}}
-                        <td class="table-cell border px-6 py-4">
-                            <span class="flex space-x-2">
-                                <a href="/admin/{{../resourceName}}/{{this.id}}">View</a>
-                                <a href="/admin/{{../resourceName}}/{{this.id}}/edit">Edit</a>
-                                <a href="/admin/{{../resourceName}}/{{this.id}}/delete">Delete</a>
-                            </span>
-                        </td>
+                            {{#each ../uniqueKeys}}
+                            {{!-- {{#ifCond this.key "!=" "id"}} --}}
+                            <td class="table-cell border px-6 py-4">{{renderCellData (lookup .. this.key) this.key
+                                ../../resourceName}}</td>
+                            {{!-- {{/ifCond}} --}}
+                            {{/each}}
+                            <td class="table-cell border px-6 py-4">
+                                <span class="flex space-x-2">
+                                    <a href="/admin/{{../resourceName}}/{{this.id}}">View</a>
+                                    <a href="/admin/{{../resourceName}}/{{this.id}}/edit">Edit</a>
+                                    {{> deleteButton url=(getEntityActionUrl this.id ../resourceName 'delete')}}
+                                </span>
+                            </td>
                         </tr>
                         {{/each}}
                     </tbody>

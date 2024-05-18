@@ -24,12 +24,16 @@ type GetUniqueKeysReturns = {
   titleCase: string;
 };
 
-type ListViewRes = {
+type MainLayoutRes = {
+  errorMessage?: string;
+  userinfo?: unknown;
+};
+
+type ListViewRes = MainLayoutRes & {
   uniqueKeys: GetUniqueKeysReturns[];
   heading: string;
   resourceName: string;
   data: unknown[];
-  userinfo?: unknown;
 };
 
 type Service =
@@ -38,7 +42,8 @@ type Service =
   | CustomersService
   | OrdersService
   | ProductsService
-  | PublishersService;
+  | PublishersService
+  | FeedbacksService;
 
 @Injectable()
 export class AdminService {
@@ -55,27 +60,15 @@ export class AdminService {
   beautifyEntities(entities: unknown[]) {
     entities.forEach((record) => {
       Object.keys(record).forEach((prop) => {
+        if (!['id', 'username', 'name'].includes(prop)) {
+          delete record[prop];
+          return;
+        }
+        if (!record[prop]) {
+          record[prop] = 'null';
+        }
         if (record['firstName'] && record['lastName']) {
           record['name'] = `${record['firstName']} ${record['lastName']}`;
-        }
-        if (
-          [
-            'description',
-            'accountId',
-            'updatedAt',
-            'createdAt',
-            'displayName',
-            'phoneNumber',
-            'salePrice',
-            'firstName',
-            'lastName',
-            'website',
-            'gender',
-          ].includes(prop)
-        ) {
-          delete record[prop];
-        } else if (!record[prop]) {
-          record[prop] = 'null';
         }
       });
       if (record['price']) {
@@ -98,27 +91,40 @@ export class AdminService {
     }));
   }
 
-  async listRes(@Req() request, entityName: string): Promise<ListViewRes> {
-    const entityService = this[`${entityName}Service`] as Service;
+  getServiceFromEntityName(entityName: string): Service {
+    return this[`${entityName}Service`] as Service;
+  }
+
+  async listRes(
+    @Req() request,
+    entityName: string,
+  ): Promise<ListViewRes | MainLayoutRes> {
+    const entityService = this.getServiceFromEntityName(entityName);
 
     let entityRecords;
+    let errorMessage = '';
     try {
       entityRecords = await entityService.findAll();
       this.beautifyEntities(entityRecords);
     } catch (error) {
-      console.error(`Failed to fetch ${entityName} records:`, error);
-      throw new Error(`Failed to fetch ${entityName} records`);
+      errorMessage = `Failed to fetch ${entityName} records`;
+      console.error(`${errorMessage}:`, error);
+      return {
+        errorMessage,
+        userinfo: request.user?.userinfo,
+      };
     }
 
     let uniqueKeys;
     try {
       uniqueKeys = this.getUniqueKeys(entityRecords);
     } catch (error) {
-      console.error(
-        `Failed to get unique keys for ${entityName} records:`,
-        error,
-      );
-      throw new Error(`Failed to get unique keys for ${entityName} records`);
+      errorMessage = `Failed to get unique keys for ${entityName} records`;
+      console.error(`${errorMessage}:`, error);
+      return {
+        errorMessage,
+        userinfo: request.user?.userinfo,
+      };
     }
 
     return {

@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post, Render, Req } from '@nestjs/common';
+import { Controller, Get, Param, Post, Render, Req, Res } from '@nestjs/common';
 import { RedirectAuth } from 'src/auth/decorator/redirectAuth.decorator';
 import { AuthorsService } from 'src/authors/authors.service';
 import { CategoriesService } from 'src/categories/categories.service';
@@ -35,7 +35,21 @@ export class AdminController {
 
   @Post(':entity/:id/delete')
   @RedirectAuth()
-  async delete() {}
+  async delete(@Req() req, @Res() res, @Param('entity') entity: string) {
+    const service = this.adminService.getServiceFromEntityName(entity);
+    try {
+      const deleted = await service.remove(req.params.id);
+      if (!deleted) {
+        return {
+          errorMessage: 'Failed to delete record',
+        };
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      return res.redirect(`/admin/${entity}`);
+    }
+  }
 
   @Post(':entity/:id/edit')
   @RedirectAuth()
@@ -67,7 +81,7 @@ export class AdminController {
   @RedirectAuth()
   @Render('create')
   async createPage(@Req() req, @Param('entity') entity: string) {}
-  /////
+
   @Get(':entity')
   @RedirectAuth()
   @Render('list')

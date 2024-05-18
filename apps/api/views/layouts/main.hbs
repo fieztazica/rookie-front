@@ -6,9 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{{title}}}</title>
     <link href="/css/main.css" rel="stylesheet">
+    <script src="/jquery/jquery.js"></script>
+    <script src="/js/index.js"></script>
+    <script src="/js/actions.js"></script>
 </head>
 
 <body class="min-h-screen relative">
+    {{#if errorMessage}}
+    <div class="bg-red-500 text-white px-4 py-2">
+        {{errorMessage}}
+    </div>
+    {{/if}}
     <header>
         {{>navbar}}
     </header>
