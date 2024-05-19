@@ -1,4 +1,13 @@
-import { Controller, Get, Param, Post, Render, Req, Res } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Param,
+  Post,
+  Query,
+  Render,
+  Req,
+  Res,
+} from '@nestjs/common';
 import { RedirectAuth } from 'src/auth/decorator/redirectAuth.decorator';
 import { AuthorsService } from 'src/authors/authors.service';
 import { CategoriesService } from 'src/categories/categories.service';
@@ -35,12 +44,18 @@ export class AdminController {
 
   @Post(':entity/:id/delete')
   @RedirectAuth()
-  async delete(@Req() req, @Res() res, @Param('entity') entity: string) {
+  async delete(
+    @Req() req,
+    @Res() res,
+    @Param('entity') entity: string,
+    @Param('id') entityId: string,
+  ) {
     const service = this.adminService.getServiceFromEntityName(entity);
     try {
-      const deleted = await service.remove(req.params.id);
+      const deleted = await service.remove(entityId);
       if (!deleted) {
         return {
+          userinfo: req?.user?.userinfo,
           errorMessage: 'Failed to delete record',
         };
       }
@@ -49,6 +64,25 @@ export class AdminController {
     } finally {
       return res.redirect(`/admin/${entity}`);
     }
+  }
+
+  @Get(':entity/:id/delete')
+  @RedirectAuth()
+  @Render('deleteConfirm')
+  async deleteConfirm(
+    @Req() req,
+    @Res() res,
+    @Param('entity') entity: string,
+    @Param('id') entityId: string,
+    @Query('from') from: string,
+  ) {
+    if (!from || from == 'list') from = '';
+    return {
+      resourceName: entity,
+      entityId,
+      from,
+      userinfo: req?.user?.userinfo,
+    };
   }
 
   @Post(':entity/:id/edit')
