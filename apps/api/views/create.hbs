@@ -1,0 +1,22 @@
+<div class="container mx-auto py-4">
+    <div class="mb-4">
+        <h2 class="text-xl font-bold">{{heading}}</h2>
+    </div>
+    <div>
+        <form>
+            {{#each fields}}
+            <div class="mb-4">
+                <label for="{{this.key}}" class="block mb-2 text-sm font-medium">{{this.title}}</label>
+                {{getElementByType this.key this.type 'px-2 py-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500
+                block w-80
+                sm:text-sm border-gray-300 rounded-md border-2'}}
+            </div>
+            {{/each}}
+            <div>
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Create
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

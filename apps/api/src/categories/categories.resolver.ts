@@ -1,7 +1,7 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { CategoriesService } from './categories.service';
 import { Category } from './entities/category.entity';
-import { CategoryCreateInput } from './dto/create-category.input';
+import { CreateCategoryInput } from './dto/create-category.input';
 import { UpdateCategoryInput } from './dto/update-category.input';
 
 @Resolver(() => Category)
@@ -10,7 +10,7 @@ export class CategoriesResolver {
 
   @Mutation(() => Category)
   createCategory(
-    @Args('createCategoryInput') createCategoryInput: CategoryCreateInput,
+    @Args('createCategoryInput') createCategoryInput: CreateCategoryInput,
   ) {
     console.log(createCategoryInput);
     return this.categoriesService.create(createCategoryInput);

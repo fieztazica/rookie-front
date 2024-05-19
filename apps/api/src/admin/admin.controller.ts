@@ -16,7 +16,7 @@ import { FeedbacksService } from 'src/feedbacks/feedbacks.service';
 import { OrdersService } from 'src/orders/orders.service';
 import { ProductsService } from 'src/products/products.service';
 import { PublishersService } from 'src/publishers/publishers.service';
-import { AdminService } from './admin.service';
+import { AdminService, EntityNames } from './admin.service';
 
 @Controller('admin')
 export class AdminController {
@@ -47,7 +47,7 @@ export class AdminController {
   async delete(
     @Req() req,
     @Res() res,
-    @Param('entity') entity: string,
+    @Param('entity') entity: EntityNames,
     @Param('id') entityId: string,
   ) {
     const service = this.adminService.getServiceFromEntityName(entity);
@@ -72,7 +72,7 @@ export class AdminController {
   async deleteConfirm(
     @Req() req,
     @Res() res,
-    @Param('entity') entity: string,
+    @Param('entity') entity: EntityNames,
     @Param('id') entityId: string,
     @Query('from') from: string,
   ) {
@@ -89,21 +89,12 @@ export class AdminController {
   @RedirectAuth()
   async editPost() {}
 
-  @Get(':entity:id/edit')
+  @Get(':entity/:id/edit')
   @RedirectAuth()
   @Render('create')
   async editPage(
     @Req() req,
-    @Param('entity') entity: string,
-    @Param('id') id: string,
-  ) {}
-
-  @Get(':entity/:id')
-  @RedirectAuth()
-  @Render('detail')
-  async detailPage(
-    @Req() req,
-    @Param('entity') entity: string,
+    @Param('entity') entity: EntityNames,
     @Param('id') id: string,
   ) {}
 
@@ -114,12 +105,23 @@ export class AdminController {
   @Get(':entity/create')
   @RedirectAuth()
   @Render('create')
-  async createPage(@Req() req, @Param('entity') entity: string) {}
+  async createPage(@Req() req, @Param('entity') entity: EntityNames) {
+    return this.adminService.dynamicCreateForm(req, entity);
+  }
+
+  @Get(':entity/:id')
+  @RedirectAuth()
+  @Render('detail')
+  async detailPage(
+    @Req() req,
+    @Param('entity') entity: EntityNames,
+    @Param('id') id: string,
+  ) {}
 
   @Get(':entity')
   @RedirectAuth()
   @Render('list')
-  listPage(@Req() request, @Param('entity') entityName) {
+  listPage(@Req() request, @Param('entity') entityName: EntityNames) {
     return this.adminService.listRes(request, entityName);
   }
 }

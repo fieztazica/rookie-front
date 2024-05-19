@@ -1,17 +1,22 @@
 import { Injectable, Req } from '@nestjs/common';
-import { AuthorsService } from 'src/authors/authors.service';
-import { CategoriesService } from 'src/categories/categories.service';
-import { CustomersService } from 'src/customers/customers.service';
-import { FeedbacksService } from 'src/feedbacks/feedbacks.service';
-import { OrdersService } from 'src/orders/orders.service';
-import { ProductsService } from 'src/products/products.service';
-import { PublishersService } from 'src/publishers/publishers.service';
 import dayjs from 'dayjs';
 import calendar from 'dayjs/plugin/calendar';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
-import { convertCamelCaseToTitleCase } from 'src/common/utils';
-import * as _ from 'lodash';
+import { AuthorsService } from 'src/authors/authors.service';
+import { DEFAULT_AUTHOR_CREATE_INPUT } from 'src/authors/dto/create-author.input';
+import { CategoriesService } from 'src/categories/categories.service';
+import { DEFAULT_CATEGORY_CREATE_INPUT } from 'src/categories/dto/create-category.input';
+import {
+  convertCamelCaseToTitleCase,
+  getUniqueKeysFromTArray,
+} from 'src/common/utils';
+import { CustomersService } from 'src/customers/customers.service';
+import { FeedbacksService } from 'src/feedbacks/feedbacks.service';
+import { OrdersService } from 'src/orders/orders.service';
+import { ProductsService } from 'src/products/products.service';
+import { DEFAULT_PUBLISHER_CREATE_INPUT } from 'src/publishers/dto/create-publisher.input';
+import { PublishersService } from 'src/publishers/publishers.service';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -36,6 +41,12 @@ type ListViewRes = MainLayoutRes & {
   data: unknown[];
 };
 
+type DynamicCreateFormRes = MainLayoutRes & {
+  fields: unknown[];
+  heading: string;
+  resourceName: string;
+};
+
 type Service =
   | AuthorsService
   | CategoriesService
@@ -44,6 +55,21 @@ type Service =
   | ProductsService
   | PublishersService
   | FeedbacksService;
+
+export type EntityNames =
+  | 'authors'
+  | 'categories'
+  | 'customers'
+  | 'orders'
+  | 'products'
+  | 'publishers'
+  | 'feedbacks';
+
+type DefaultCreateInputType = {
+  authors: ReturnType<typeof DEFAULT_AUTHOR_CREATE_INPUT>;
+  publishers: ReturnType<typeof DEFAULT_PUBLISHER_CREATE_INPUT>;
+  categories: ReturnType<typeof DEFAULT_CATEGORY_CREATE_INPUT>;
+};
 
 @Injectable()
 export class AdminService {
@@ -85,19 +111,53 @@ export class AdminService {
 
   // https://stackoverflow.com/questions/44002447/building-dynamic-table-with-handlebars
   getUniqueKeys<T>(data: T[]): GetUniqueKeysReturns[] {
-    return _.uniq(_.flatMap(data, (obj) => Object.keys(obj))).map((key) => ({
+    return getUniqueKeysFromTArray(data).map((key) => ({
       key,
       titleCase: convertCamelCaseToTitleCase(key),
     }));
   }
 
-  getServiceFromEntityName(entityName: string): Service {
+  getServiceFromEntityName(entityName: EntityNames): Service {
     return this[`${entityName}Service`] as Service;
+  }
+
+  getDefaultCreateInput(entityName: EntityNames) {
+    const defaultCreateInputs: DefaultCreateInputType = {
+      authors: DEFAULT_AUTHOR_CREATE_INPUT(),
+      publishers: DEFAULT_PUBLISHER_CREATE_INPUT(),
+      categories: DEFAULT_CATEGORY_CREATE_INPUT(),
+    };
+
+    return defaultCreateInputs[entityName];
+  }
+
+  dynamicCreateForm(
+    @Req() req,
+    entityName: EntityNames,
+  ): DynamicCreateFormRes | MainLayoutRes {
+    const defaultCreateInput = this.getDefaultCreateInput(entityName);
+    if (!defaultCreateInput) {
+      return {
+        errorMessage: 'Invalid entity name',
+        userinfo: req?.user?.userinfo,
+      };
+    }
+    const fields = Object.keys(defaultCreateInput).map((key) => ({
+      key: key,
+      type: typeof defaultCreateInput[key], ///////////
+      title: convertCamelCaseToTitleCase(key),
+    }));
+    return {
+      fields,
+      heading: `Create ${convertCamelCaseToTitleCase(entityName)}`,
+      resourceName: entityName,
+      userinfo: req?.user?.userinfo,
+    };
   }
 
   async listRes(
     @Req() request,
-    entityName: string,
+    entityName: EntityNames,
   ): Promise<ListViewRes | MainLayoutRes> {
     const entityService = this.getServiceFromEntityName(entityName);
 

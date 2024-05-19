@@ -1,1 +1,3 @@
-export { FeedbackCreateInput as CreateFeedbackInput } from '../../@generated/feedback/feedback-create.input';
+import { FeedbackCreateInput } from '../../@generated/feedback/feedback-create.input';
+
+export { FeedbackCreateInput as CreateFeedbackInput };

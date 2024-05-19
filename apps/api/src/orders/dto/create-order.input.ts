@@ -1,1 +1,3 @@
-export { OrderCreateInput as CreateOrderInput } from '../../@generated/order/order-create.input';
+import { OrderCreateInput } from '../../@generated/order/order-create.input';
+
+export { OrderCreateInput as CreateOrderInput };
