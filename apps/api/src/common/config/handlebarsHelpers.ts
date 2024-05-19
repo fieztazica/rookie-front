@@ -43,6 +43,30 @@ export const helpers = {
       `/admin/${resourceName}/${entityId}/${action}`,
     );
   },
+  getElementByType: function (key: string, type: string, className: string) {
+    key = Handlebars.escapeExpression(key);
+    type = Handlebars.escapeExpression(type);
+    className = Handlebars.escapeExpression(className);
+
+    let htmlElement = 'input';
+    let htmlElementType = type;
+
+    switch (type) {
+      case 'string':
+        if (key == 'description') {
+          htmlElement = 'textarea';
+        }
+        if (key == 'email') {
+          htmlElementType = 'email';
+        }
+        break;
+      default:
+        break; ///////
+    }
+    return new Handlebars.SafeString(
+      `<${htmlElement} class="${className}" type="${htmlElementType}" name="${key}" id="${key}" data-key="${key}"></${htmlElement}>`,
+    );
+  },
   year: function () {
     return new Date().getFullYear();
   },
