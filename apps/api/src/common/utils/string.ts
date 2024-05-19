@@ -11,5 +11,5 @@ export function convertPluralToSingular(text: string) {
   if (result.endsWith('s')) {
     result = result.slice(0, -1);
   }
-  return result;
+  return result ;
 }
