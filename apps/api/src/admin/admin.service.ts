@@ -1,4 +1,4 @@
-import { Injectable, Req } from '@nestjs/common';
+import { Injectable, Req, Res } from '@nestjs/common';
 import dayjs from 'dayjs';
 import calendar from 'dayjs/plugin/calendar';
 import timezone from 'dayjs/plugin/timezone';
@@ -152,6 +152,15 @@ export class AdminService {
     return defaultCreateInputs[entityName];
   }
 
+  getFieldsFromObj<T>(obj: T) {
+    return Object.keys(obj).map((key) => ({
+      key: key,
+      type: typeof obj[key],
+      title: convertCamelCaseToTitleCase(key),
+      value: obj[key],
+    }));
+  }
+
   dynamicCreateForm(
     @Req() req,
     entityName: EntityNames,
@@ -163,11 +172,7 @@ export class AdminService {
         userinfo: req?.user?.userinfo,
       };
     }
-    const fields = Object.keys(defaultCreateInput).map((key) => ({
-      key: key,
-      type: typeof defaultCreateInput[key], ///////////
-      title: convertCamelCaseToTitleCase(key),
-    }));
+    const fields = this.getFieldsFromObj(defaultCreateInput);
     return {
       fields,
       heading: `Create ${convertCamelCaseToTitleCase(entityName)}`,
@@ -193,6 +198,7 @@ export class AdminService {
       return {
         errorMessage,
         userinfo: request.user?.userinfo,
+        resourceName: entityName,
       };
     }
 
@@ -218,16 +224,33 @@ export class AdminService {
   }
 
   async createEntity(
-    @Req() request,
+    @Req() req,
+    @Res() res,
     entityName: EntityNames,
     createInput: CreateInputType,
   ) {
-    const entityService = this.getServiceFromEntityName(entityName);
+    const fields = this.getFieldsFromObj(createInput);
     try {
+      const entityService = this.getServiceFromEntityName(entityName);
       const created = await entityService.create(createInput);
-      return created;
+      if (!created) {
+        return {
+          fields,
+          resourceName: entityName,
+          userinfo: req?.user?.userinfo,
+          errorMessage: `Failed to create record`,
+        };
+      }
+      res.redirect(`/admin/${entityName}/${created.id}`);
+      return;
     } catch (error) {
       console.error(error);
+      return {
+        fields,
+        resourceName: entityName,
+        userinfo: req?.user?.userinfo,
+        errorMessage: `Failed to create record: ${error.message}`,
+      };
     }
   }
 

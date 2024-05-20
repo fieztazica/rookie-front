@@ -1,0 +1,12 @@
+- const className = 'px-2 py-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-80 sm:text-sm border-gray-300 rounded-md border-2'
+
+case field.type
+    when 'string'
+        if field.key == 'description'
+            textarea(class=className name=field.key id=field.key data-key=field.key value=field.value)
+        else if field.key == 'email'
+            input(type='email' class=className name=field.key id=field.key data-key=field.key value=field.value)
+        else
+            input(type='text' class=className name=field.key id=field.key data-key=field.key value=field.value)
+    default
+        input(class=className name=field.key id=field.key data-key=field.key value=field.value)

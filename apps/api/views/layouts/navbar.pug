@@ -1,0 +1,16 @@
+nav.w-full.bg-slate-200
+  .flex.justify-between.px-8.py-4
+    a(href="/admin")
+      .font-bold ROOKIE STORE
+    .flex.space-x-4
+      if userinfo
+        a(href="/admin/authors") Authors
+        a(href="/admin/publishers") Publishers
+        a(href="/admin/categories") Categories
+        a(href="/admin/customers") Customers
+        a(href="/admin/products") Products
+        a(href="/admin/orders") Orders
+        p Hi, #{userinfo.name}
+        a(href="/auth/logout") Logout
+      else
+        a(href="/auth/login") Login

@@ -1,0 +1,12 @@
+extends layouts/main
+
+block content
+    main.container.mx-auto.py-8
+        .mb-4
+            span Are you sure that you want to delete record
+            span.font-semibold #{entityId}
+            |  out of #{resourceName}?
+        .flex.items-center.space-x-2
+            form(action=`/admin/${resourceName}/${entityId}/delete` method="POST")
+                button.bg-red-500.text-white.px-4.py-2.rounded-md(type="submit") Delete
+            a(href=`/admin/${resourceName}/${from}`) Cancel

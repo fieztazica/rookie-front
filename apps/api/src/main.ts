@@ -6,13 +6,11 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import compression from 'compression';
 import RedisStore from 'connect-redis';
 import session from 'express-session';
-// import * as hbs from 'hbs';
 import helmet from 'helmet';
 import passport from 'passport';
 import { join } from 'path';
 import { createClient } from 'redis';
 import { AppModule } from './app.module';
-import { expressHandleBars } from './common/config/expressHandleBars';
 import { expressSessionOptions } from './common/config/expressSessionOptions';
 
 async function bootstrap() {
@@ -45,8 +43,7 @@ async function bootstrap() {
   app.useStaticAssets(join(process.cwd(), 'public'));
   app.setBaseViewsDir(join(process.cwd(), 'views'));
 
-  app.engine('.hbs', expressHandleBars.engine);
-  app.setViewEngine('.hbs');
+  app.setViewEngine('pug');
   app.setLocal('title', 'Rookie Store');
 
   app.useGlobalPipes(

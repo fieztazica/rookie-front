@@ -1,0 +1,14 @@
+extends layouts/main
+
+block content
+    main.container.mx-auto
+        .py-8
+            table
+                each value, key in data
+                    tr
+                        include mixins/utils
+                        td.text-lg.font-semibold.px-2.py-1= titleCase(key)
+                        td.text-md.px-2.py-1= value
+            .flex.space-x-2.mt-2
+                a(href=`/admin/${resourceName}/${data.id}/edit`) Edit
+                a(href=`/admin/${resourceName}`) Back

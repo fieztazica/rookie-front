@@ -1,0 +1,25 @@
+extends layouts/main
+
+block content
+    main.container.mx-auto.py-8.flex.flex-col
+        .flex.justify-between
+            h1.text-xl.font-bold #{heading}
+            a(href=`/admin/${resourceName}/create`) Create
+        div(class="overflow-x-auto sm:-mx-6 lg:-mx-8")
+            div(class="inline-block min-w-full py-2 sm:px-6 lg:px-8")
+                .overflow-hidden
+                    if data && data.length
+                        table.table.table-auto.min-w-full.text-center
+                            thead.table-header-group
+                                tr.table-row
+                                    each key in uniqueKeys
+                                        th(scope="col" class="table-cell border px-6 py-4")= key.titleCase
+                                    th(scope="col" class="table-cell border px-6.py-4") Actions
+                            tbody#list-entity.table-row-group
+                                each row in data
+                                    tr.table-row(id=`row-${resourceName}-${row.id}`)
+                                        each uniqueKey in uniqueKeys
+                                            include components/listValueTd
+                                        include components/listActionsTd
+                    else
+                        p No records

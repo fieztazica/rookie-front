@@ -101,21 +101,14 @@ export class AdminController {
 
   @Post(':entity/create')
   @RedirectAuth()
+  @Render('create')
   async createPost(
     @Req() req,
     @Res() res,
     @Body() body,
     @Param('entity') entity: EntityNames,
   ) {
-    console.log(body);
-    const created = await this.adminService.createEntity(req, entity, body);
-    if (!created) {
-      return {
-        userinfo: req?.user?.userinfo,
-        errorMessage: 'Failed to create record',
-      };
-    }
-    res.redirect(`/admin/${entity}/${created.id}`);
+    return await this.adminService.createEntity(req, res, entity, body);
   }
 
   @Get(':entity/create')

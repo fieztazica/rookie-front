@@ -1,0 +1,15 @@
+extends layouts/main
+
+block content
+    main.container.mx-auto.py-4
+        .mb-4
+            h2.text-xl.font-bold #{heading}
+        div
+            form(action=`/admin/${resourceName}/create` method="POST")
+                if fields
+                    each field in fields
+                        .mb-4
+                            label(for=field.key class="block mb-2 text-sm font-medium") #{field.title}
+                            include components/createInputField
+                    div
+                        button(type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded") Create
