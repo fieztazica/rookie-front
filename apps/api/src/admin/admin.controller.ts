@@ -1,4 +1,5 @@
 import {
+  Body,
   Controller,
   Get,
   Param,
@@ -91,7 +92,7 @@ export class AdminController {
 
   @Get(':entity/:id/edit')
   @RedirectAuth()
-  @Render('create')
+  @Render('edit')
   async editPage(
     @Req() req,
     @Param('entity') entity: EntityNames,
@@ -100,7 +101,22 @@ export class AdminController {
 
   @Post(':entity/create')
   @RedirectAuth()
-  async createPost() {}
+  async createPost(
+    @Req() req,
+    @Res() res,
+    @Body() body,
+    @Param('entity') entity: EntityNames,
+  ) {
+    console.log(body);
+    const created = await this.adminService.createEntity(req, entity, body);
+    if (!created) {
+      return {
+        userinfo: req?.user?.userinfo,
+        errorMessage: 'Failed to create record',
+      };
+    }
+    res.redirect(`/admin/${entity}/${created.id}`);
+  }
 
   @Get(':entity/create')
   @RedirectAuth()
@@ -116,7 +132,21 @@ export class AdminController {
     @Req() req,
     @Param('entity') entity: EntityNames,
     @Param('id') id: string,
-  ) {}
+  ) {
+    const data = await this.adminService.getEntityDetails(req, entity, id);
+    if (!data) {
+      return {
+        userinfo: req?.user?.userinfo,
+        errorMessage: 'Failed to fetch record',
+      };
+    }
+    return {
+      userinfo: req?.user?.userinfo,
+      resourceName: entity,
+      entityId: id,
+      data,
+    };
+  }
 
   @Get(':entity')
   @RedirectAuth()

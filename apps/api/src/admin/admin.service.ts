@@ -4,18 +4,31 @@ import calendar from 'dayjs/plugin/calendar';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
 import { AuthorsService } from 'src/authors/authors.service';
-import { DEFAULT_AUTHOR_CREATE_INPUT } from 'src/authors/dto/create-author.input';
+import {
+  CreateAuthorInput,
+  DEFAULT_AUTHOR_CREATE_INPUT,
+} from 'src/authors/dto/create-author.input';
 import { CategoriesService } from 'src/categories/categories.service';
-import { DEFAULT_CATEGORY_CREATE_INPUT } from 'src/categories/dto/create-category.input';
+import {
+  CreateCategoryInput,
+  DEFAULT_CATEGORY_CREATE_INPUT,
+} from 'src/categories/dto/create-category.input';
 import {
   convertCamelCaseToTitleCase,
   getUniqueKeysFromTArray,
 } from 'src/common/utils';
 import { CustomersService } from 'src/customers/customers.service';
+import { CreateCustomerInput } from 'src/customers/dto/create-customer.input';
+import { CreateFeedbackInput } from 'src/feedbacks/dto/create-feedback.input';
 import { FeedbacksService } from 'src/feedbacks/feedbacks.service';
+import { CreateOrderInput } from 'src/orders/dto/create-order.input';
 import { OrdersService } from 'src/orders/orders.service';
+import { CreateProductInput } from 'src/products/dto/create-product.input';
 import { ProductsService } from 'src/products/products.service';
-import { DEFAULT_PUBLISHER_CREATE_INPUT } from 'src/publishers/dto/create-publisher.input';
+import {
+  CreatePublisherInput,
+  DEFAULT_PUBLISHER_CREATE_INPUT,
+} from 'src/publishers/dto/create-publisher.input';
 import { PublishersService } from 'src/publishers/publishers.service';
 
 dayjs.extend(utc);
@@ -55,6 +68,14 @@ type Service =
   | ProductsService
   | PublishersService
   | FeedbacksService;
+
+type CreateInputType = CreateAuthorInput &
+  CreateCategoryInput &
+  CreatePublisherInput &
+  CreateProductInput &
+  CreateCustomerInput &
+  CreateFeedbackInput &
+  CreateOrderInput;
 
 export type EntityNames =
   | 'authors'
@@ -194,5 +215,35 @@ export class AdminService {
       data: entityRecords,
       userinfo: request.user?.userinfo,
     };
+  }
+
+  async createEntity(
+    @Req() request,
+    entityName: EntityNames,
+    createInput: CreateInputType,
+  ) {
+    const entityService = this.getServiceFromEntityName(entityName);
+    try {
+      const created = await entityService.create(createInput);
+      return created;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async getEntityDetails(@Req() request, entityName: EntityNames, id: string) {
+    const entityService = this.getServiceFromEntityName(entityName);
+    try {
+      const entity = await entityService.findOne(id);
+
+      return Object.fromEntries(
+        Object.entries(entity).map(([key, value]) => [
+          key,
+          !value ? 'null' : `${value}`,
+        ]),
+      );
+    } catch (error) {
+      console.error(error);
+    }
   }
 }

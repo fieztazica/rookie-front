@@ -1,0 +1,16 @@
+<div class="container mx-auto">
+    <div class="py-8">
+        <table>
+            {{#each data}}
+            <tr>
+                <td class="text-lg font-semibold px-2 py-1">{{titleCase @key}}</div>
+                <td class="text-md px-2 py-1">{{this}}</div>
+            </tr>
+            {{/each}}
+        </table>
+        <div class="flex space-x-2 mt-2">
+            <a href="/admin/{{resourceName}}/{{data.id}}/edit">Edit</a>
+            <a href="/admin/{{resourceName}}">Back</a>
+        </div>
+    </div>
+</div>

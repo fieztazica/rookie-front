@@ -1,4 +1,5 @@
 import Handlebars from 'handlebars';
+import { convertCamelCaseToTitleCase } from '../utils';
 
 export const helpers = {
   link: function (text: string, url: string) {
@@ -16,6 +17,10 @@ export const helpers = {
     return new Handlebars.SafeString(
       `<a href="mailto:${email}" title="${email}">${text}</a>`,
     );
+  },
+  titleCase: function (text: string) {
+    text = Handlebars.escapeExpression(text);
+    return new Handlebars.SafeString(convertCamelCaseToTitleCase(text));
   },
   renderCellData: function (value: string, key: string, resourceName: string) {
     key = Handlebars.escapeExpression(key);
@@ -43,7 +48,11 @@ export const helpers = {
       `/admin/${resourceName}/${entityId}/${action}`,
     );
   },
-  getElementByType: function (key: string, type: string, className: string) {
+  getInputElementByType: function (
+    key: string,
+    type: string,
+    className: string,
+  ) {
     key = Handlebars.escapeExpression(key);
     type = Handlebars.escapeExpression(type);
     className = Handlebars.escapeExpression(className);
@@ -61,7 +70,7 @@ export const helpers = {
         }
         break;
       default:
-        break; ///////
+        break;
     }
     return new Handlebars.SafeString(
       `<${htmlElement} class="${className}" type="${htmlElementType}" name="${key}" id="${key}" data-key="${key}"></${htmlElement}>`,
