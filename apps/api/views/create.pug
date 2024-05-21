@@ -11,5 +11,6 @@ block content
                         .mb-4
                             label(for=field.key class="block mb-2 text-sm font-medium") #{field.title}
                             include components/createInputField
-                    div
+                    div.flex.space-x-4.items-center
                         button(type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded") Create
+                        a(href=`/admin/${resourceName}`) Cancel
