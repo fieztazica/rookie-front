@@ -1,6 +1,7 @@
 import { auth } from '@/auth';
 import { SignIn } from '@/components/sign-in';
 import Link from 'next/link';
+import {} from '@repo/db'
 
 export default async function Page(): Promise<JSX.Element> {
   const session = await auth();
