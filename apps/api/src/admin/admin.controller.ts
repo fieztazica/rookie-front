@@ -164,6 +164,12 @@ export class AdminController {
     @Query('perPage') perPage: number = 10,
     @Query('successMessage') successMessage: string,
   ) {
-    return this.adminService.listRes(request, entityName, page, perPage, successMessage);
+    return this.adminService.listRes(
+      request,
+      entityName,
+      page,
+      perPage,
+      successMessage,
+    );
   }
 }
