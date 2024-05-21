@@ -40,20 +40,27 @@ export type MainLayoutRes = {
   userinfo?: unknown;
 };
 
-export type ListViewRes = MainLayoutRes & {
+export type ResourcePageRes = MainLayoutRes & {
+  resourceName: string;
+};
+
+export type ListViewRes = ResourcePageRes & {
   uniqueKeys: GetUniqueKeysReturns[];
   heading: string;
-  resourceName: string;
   data: unknown[];
   meta: {
     [key: string]: any;
   };
 };
 
-export type DynamicCreateFormRes = MainLayoutRes & {
+export type DynamicCreateFormRes = ResourcePageRes & {
   fields: unknown[];
   heading: string;
-  resourceName: string;
+};
+
+export type DetailPage = ResourcePageRes & {
+  entityId: string;
+  data: unknown;
 };
 
 export type Service =

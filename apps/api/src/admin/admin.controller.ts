@@ -18,7 +18,7 @@ import { OrdersService } from 'src/orders/orders.service';
 import { ProductsService } from 'src/products/products.service';
 import { PublishersService } from 'src/publishers/publishers.service';
 import { AdminService } from './admin.service';
-import { EntityNames } from './admin.type';
+import { DetailPage, EntityNames, MainLayoutRes } from './admin.type';
 
 @Controller('admin')
 export class AdminController {
@@ -95,7 +95,7 @@ export class AdminController {
     @Param('entity') entity: EntityNames,
     @Param('id') id: string,
     @Query('successMessage') successMessage: string,
-  ) {
+  ): Promise<DetailPage | MainLayoutRes> {
     const data = await this.adminService.getEntityDetails(req, entity, id);
     if (!data) {
       return {
@@ -104,6 +104,7 @@ export class AdminController {
       };
     }
     return {
+      entityId: id,
       data,
       resourceName: entity,
       userinfo: req?.user?.userinfo,
@@ -138,7 +139,7 @@ export class AdminController {
     @Param('entity') entity: EntityNames,
     @Param('id') id: string,
     @Query('successMessage') successMessage: string,
-  ) {
+  ): Promise<DetailPage | MainLayoutRes> {
     const data = await this.adminService.getEntityDetails(req, entity, id);
     if (!data) {
       return {

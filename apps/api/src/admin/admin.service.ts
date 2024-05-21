@@ -255,17 +255,15 @@ export class AdminService {
     }
   }
 
-  async getEntityDetails(@Req() request, entityName: EntityNames, id: string) {
+  async getEntityDetails(
+    @Req() request,
+    entityName: EntityNames,
+    id: string,
+  ): Promise<ReturnType<Service['findOne']>> {
     const entityService = this.getServiceFromEntityName(entityName);
     try {
       const entity = await entityService.findOne(id);
-
-      return Object.fromEntries(
-        Object.entries(entity).map(([key, value]) => [
-          key,
-          !value ? 'null' : `${value}`,
-        ]),
-      );
+      return entity;
     } catch (error) {
       console.error(error);
     }
