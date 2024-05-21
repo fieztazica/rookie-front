@@ -17,7 +17,8 @@ import { FeedbacksService } from 'src/feedbacks/feedbacks.service';
 import { OrdersService } from 'src/orders/orders.service';
 import { ProductsService } from 'src/products/products.service';
 import { PublishersService } from 'src/publishers/publishers.service';
-import { AdminService, EntityNames } from './admin.service';
+import { AdminService } from './admin.service';
+import { EntityNames } from './admin.type';
 
 @Controller('admin')
 export class AdminController {

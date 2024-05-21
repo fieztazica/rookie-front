@@ -4,10 +4,10 @@
 case type
     when 'string'
         if key == 'description'
-            textarea(class=className name=key id=key data-key=key value=value)
+            textarea(class=className name=key id=key data-key=key value=value)= value
         else if key == 'email'
             input(type='email' class=className name=key id=key data-key=key value=value)
-        else if key == 'id'
+        else if ['id', 'createdAt', 'updatedAt', 'deleted'].includes(key)
             input(readonly class=className name=key id=key data-key=key value=value)
         else
             input(type='text' class=className name=key id=key data-key=key value=value)
