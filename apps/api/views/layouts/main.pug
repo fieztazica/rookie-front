@@ -13,12 +13,12 @@ html
             div(id="errorMessage").flex.items-center.justify-between.bg-red-500.text-white.px-4.py-2
                 p.
                     #{errorMessage}
-                span(id="closeErrorMessage").cursor-pointer Close
+                span(id="closeErrorMessage").cursor-pointer.text-sm Close
         if successMessage
             div(id="successMessage").flex.items-center.justify-between.bg-green-500.text-white.px-4.py-2
                 p.
                     #{successMessage}
-                span(id="closeSuccessMessage").cursor-pointer Close
+                span(id="closeSuccessMessage").cursor-pointer.text-sm Close
         header
             include navbar.pug
         block content
