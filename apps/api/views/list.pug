@@ -5,7 +5,8 @@ block content
         .flex.justify-between
             div.flex.space-x-2.items-center
                 h1.text-xl.font-bold #{heading}
-                span #{meta.total} entries in total
+                if data && data.length
+                    span Showing #{data.length}/#{meta.total} entries in total
             a(href=`/admin/${resourceName}/create`) Create
         div(class="overflow-x-auto sm:-mx-6 lg:-mx-8")
             div(class="inline-block min-w-full py-2 sm:px-6 lg:px-8")
@@ -31,5 +32,5 @@ block content
                     a(class=meta.next ? "" : "pointer-events-none opacity-25" href=`?page=${meta.next}&perPage=${meta.perPage}`) Next
                 div(class="flex items-center space-x-2")
                     span= `Per Page: `
-                    each val in [1, 5, 10]
+                    each val in [1, 5, 10, 15, 20, 25]
                         a(href=`?page=${meta.currentPage}&perPage=${val}` class= meta.perPage == val ? "underline" : "") #{val}
