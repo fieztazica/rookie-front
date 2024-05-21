@@ -50,21 +50,9 @@ export class AdminController {
     @Res() res,
     @Param('entity') entity: EntityNames,
     @Param('id') entityId: string,
+    @Query('from') from: string,
   ) {
-    const service = this.adminService.getServiceFromEntityName(entity);
-    try {
-      const deleted = await service.remove(entityId);
-      if (!deleted) {
-        return {
-          userinfo: req?.user?.userinfo,
-          errorMessage: 'Failed to delete record',
-        };
-      }
-    } catch (error) {
-      console.error(error);
-    } finally {
-      return res.redirect(`/admin/${entity}`);
-    }
+    return this.adminService.deleteEntity(req, res, entity, entityId, from);
   }
 
   @Get(':entity/:id/delete')
@@ -88,7 +76,15 @@ export class AdminController {
 
   @Post(':entity/:id/edit')
   @RedirectAuth()
-  async editPost() {}
+  async editPost(
+    @Req() req,
+    @Res() res,
+    @Body() body,
+    @Param('entity') entity: EntityNames,
+    @Param('id') id: string,
+  ) {
+    return this.adminService.editEntity(req, res, body, entity, id);
+  }
 
   @Get(':entity/:id/edit')
   @RedirectAuth()
@@ -97,7 +93,22 @@ export class AdminController {
     @Req() req,
     @Param('entity') entity: EntityNames,
     @Param('id') id: string,
-  ) {}
+    @Query('successMessage') successMessage: string,
+  ) {
+    const data = await this.adminService.getEntityDetails(req, entity, id);
+    if (!data) {
+      return {
+        userinfo: req?.user?.userinfo,
+        errorMessage: 'Failed to fetch record',
+      };
+    }
+    return {
+      data,
+      resourceName: entity,
+      userinfo: req?.user?.userinfo,
+      successMessage: successMessage ? decodeURIComponent(successMessage) : '',
+    };
+  }
 
   @Post(':entity/create')
   @RedirectAuth()
@@ -125,6 +136,7 @@ export class AdminController {
     @Req() req,
     @Param('entity') entity: EntityNames,
     @Param('id') id: string,
+    @Query('successMessage') successMessage: string,
   ) {
     const data = await this.adminService.getEntityDetails(req, entity, id);
     if (!data) {
@@ -138,6 +150,7 @@ export class AdminController {
       resourceName: entity,
       entityId: id,
       data,
+      successMessage: successMessage ? decodeURIComponent(successMessage) : '',
     };
   }
 
@@ -149,7 +162,8 @@ export class AdminController {
     @Param('entity') entityName: EntityNames,
     @Query('page') page: number = 1,
     @Query('perPage') perPage: number = 10,
+    @Query('successMessage') successMessage: string,
   ) {
-    return this.adminService.listRes(request, entityName, page, perPage);
+    return this.adminService.listRes(request, entityName, page, perPage, successMessage);
   }
 }

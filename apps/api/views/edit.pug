@@ -3,15 +3,17 @@ extends layouts/main
 block content
     main.container.mx-auto
         .py-8
-            if data
-                table
+            form(action=`/admin/${resourceName}/${data.id}/edit` method="POST")
+                if data
+                    table
                         each value, key in data
                             tr
                                 include mixins/utils
                                 td.text-lg.font-semibold.px-2.py-1= titleCase(key)
-                                td.text-md.px-2.py-1= value
-                .flex.space-x-2.mt-2
-                    a(href=`/admin/${resourceName}/${data.id}/edit`) Edit
-                    a(href=`/admin/${resourceName}`) Back
-            else
-                p No data
+                                td.text-md.px-2.py-1
+                                    include components/editInputField
+                    .flex.space-x-4.mt-2.items-center
+                        input(class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type='submit' value="Save" role="button")
+                        a(href=`/admin/${resourceName}`) Back
+                else
+                    p No data

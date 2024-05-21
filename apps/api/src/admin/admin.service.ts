@@ -8,27 +8,34 @@ import {
   CreateAuthorInput,
   DEFAULT_AUTHOR_CREATE_INPUT,
 } from 'src/authors/dto/create-author.input';
+import { UpdateAuthorInput } from 'src/authors/dto/update-author.input';
 import { CategoriesService } from 'src/categories/categories.service';
 import {
   CreateCategoryInput,
   DEFAULT_CATEGORY_CREATE_INPUT,
 } from 'src/categories/dto/create-category.input';
+import { UpdateCategoryInput } from 'src/categories/dto/update-category.input';
 import {
   convertCamelCaseToTitleCase,
   getUniqueKeysFromTArray,
 } from 'src/common/utils';
 import { CustomersService } from 'src/customers/customers.service';
 import { CreateCustomerInput } from 'src/customers/dto/create-customer.input';
+import { UpdateCustomerInput } from 'src/customers/dto/update-customer.input';
 import { CreateFeedbackInput } from 'src/feedbacks/dto/create-feedback.input';
+import { UpdateFeedbackInput } from 'src/feedbacks/dto/update-feedback.input';
 import { FeedbacksService } from 'src/feedbacks/feedbacks.service';
 import { CreateOrderInput } from 'src/orders/dto/create-order.input';
+import { UpdateOrderInput } from 'src/orders/dto/update-order.input';
 import { OrdersService } from 'src/orders/orders.service';
 import { CreateProductInput } from 'src/products/dto/create-product.input';
+import { UpdateProductInput } from 'src/products/dto/update-product.input';
 import { ProductsService } from 'src/products/products.service';
 import {
   CreatePublisherInput,
   DEFAULT_PUBLISHER_CREATE_INPUT,
 } from 'src/publishers/dto/create-publisher.input';
+import { UpdatePublisherInput } from 'src/publishers/dto/update-publisher.input';
 import { PublishersService } from 'src/publishers/publishers.service';
 
 dayjs.extend(utc);
@@ -43,6 +50,7 @@ type GetUniqueKeysReturns = {
 };
 
 type MainLayoutRes = {
+  successMessage?: string;
   errorMessage?: string;
   userinfo?: unknown;
 };
@@ -79,6 +87,14 @@ type CreateInputType = CreateAuthorInput &
   CreateCustomerInput &
   CreateFeedbackInput &
   CreateOrderInput;
+
+type UpdateInputType = UpdateAuthorInput &
+  UpdateCategoryInput &
+  UpdatePublisherInput &
+  UpdateProductInput &
+  UpdateCustomerInput &
+  UpdateFeedbackInput &
+  UpdateOrderInput;
 
 export type EntityNames =
   | 'authors'
@@ -189,6 +205,7 @@ export class AdminService {
     entityName: EntityNames,
     page: number,
     perPage: number,
+    successMessage: string,
   ): Promise<ListViewRes | MainLayoutRes> {
     const entityService = this.getServiceFromEntityName(entityName);
 
@@ -231,6 +248,7 @@ export class AdminService {
       data: entityRecords,
       meta: paginatedRes.meta,
       userinfo: request.user?.userinfo,
+      successMessage: successMessage ? decodeURIComponent(successMessage) : '',
     };
   }
 
@@ -252,7 +270,13 @@ export class AdminService {
           errorMessage: `Failed to create record`,
         };
       }
-      res.redirect(`/admin/${entityName}/${created.id}`);
+
+      const successMessage = encodeURIComponent(
+        `Successfully created ${entityName}/${created.id}!`,
+      );
+      res.redirect(
+        `/admin/${entityName}/${created.id}?successMessage=${successMessage}`,
+      );
       return;
     } catch (error) {
       console.error(error);
@@ -261,6 +285,47 @@ export class AdminService {
         resourceName: entityName,
         userinfo: req?.user?.userinfo,
         errorMessage: `Failed to create record: ${error.message}`,
+      };
+    }
+  }
+
+  async editEntity(
+    @Req() req,
+    @Res() res,
+    editInput: UpdateInputType,
+    entityName: EntityNames,
+    id: string,
+  ) {
+    const excludedFields = ['id', 'createdAt', 'updatedAt'];
+
+    Object.keys(editInput).forEach((key) => {
+      if (excludedFields.includes(key)) {
+        delete editInput[key];
+      }
+    });
+    try {
+      const entityService = this.getServiceFromEntityName(entityName);
+      const updated = await entityService.update(id, editInput);
+      if (!updated) {
+        return {
+          data: editInput,
+          resourceName: entityName,
+          userinfo: req?.user?.userinfo,
+          errorMessage: `Failed to update record`,
+        };
+      }
+      const successMessage = encodeURIComponent(`Updated ${entityName}/${id}!`);
+      res.redirect(
+        `/admin/${entityName}/${id}/edit?successMessage=${successMessage}`,
+      );
+      return;
+    } catch (error) {
+      console.error(error);
+      return {
+        data: editInput,
+        resourceName: entityName,
+        userinfo: req?.user?.userinfo,
+        errorMessage: `Failed to update record: ${error.message}`,
       };
     }
   }
@@ -278,6 +343,39 @@ export class AdminService {
       );
     } catch (error) {
       console.error(error);
+    }
+  }
+
+  async deleteEntity(
+    @Req() request,
+    @Res() res,
+    entityName: EntityNames,
+    id: string,
+    from: string,
+  ) {
+    const entityService = this.getServiceFromEntityName(entityName);
+    try {
+      const deleted = await entityService.remove(id);
+      if (!deleted) {
+        return {
+          resourceName: entityName,
+          userinfo: request.user?.userinfo,
+          errorMessage: `Failed to delete record`,
+        };
+      }
+      const successMessage = `Successfully deleted ${entityName}/${deleted.id}!`;
+      const params = new URLSearchParams({
+        from,
+        successMessage,
+      });
+      return res.redirect(`/admin/${entityName}?${params.toString()}`);
+    } catch (error) {
+      console.error(error);
+      return {
+        resourceName: entityName,
+        userinfo: request.user?.userinfo,
+        errorMessage: `Failed to delete record: ${error.message}`,
+      };
     }
   }
 }

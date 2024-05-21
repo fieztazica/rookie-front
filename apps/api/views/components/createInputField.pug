@@ -9,4 +9,4 @@ case field.type
         else
             input(type='text' class=className name=field.key id=field.key data-key=field.key value=field.value)
     default
-        input(class=className name=field.key id=field.key data-key=field.key value=field.value)
+        input(class=className type=`${field.type}` name=field.key id=field.key data-key=field.key value=field.value)
