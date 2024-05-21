@@ -11,24 +11,24 @@ export class CustomersResolver {
   @Mutation(() => Customer)
   createCustomer(
     @Args('createCustomerInput') createCustomerInput: CreateCustomerInput,
-  ) {
+  ): Promise<Customer> {
     return this.customersService.create(createCustomerInput);
   }
 
   @Query(() => [Customer], { name: 'customers' })
-  findAll() {
-    return this.customersService.findAll();
+  async findAll(): Promise<Customer[]> {
+    return (await this.customersService.findAll()).data;
   }
 
   @Query(() => Customer, { name: 'customer' })
-  findOne(@Args('id', { type: () => String }) id: string) {
+  findOne(@Args('id', { type: () => String }) id: string): Promise<Customer> {
     return this.customersService.findOne(id);
   }
 
   @Mutation(() => Customer)
   updateCustomer(
     @Args('updateCustomerInput') updateCustomerInput: UpdateCustomerInput,
-  ) {
+  ): Promise<Customer> {
     return this.customersService.update(
       updateCustomerInput.id,
       updateCustomerInput,
@@ -36,7 +36,9 @@ export class CustomersResolver {
   }
 
   @Mutation(() => Customer)
-  removeCustomer(@Args('id', { type: () => String }) id: string) {
+  removeCustomer(
+    @Args('id', { type: () => String }) id: string,
+  ): Promise<Customer> {
     return this.customersService.remove(id);
   }
 }

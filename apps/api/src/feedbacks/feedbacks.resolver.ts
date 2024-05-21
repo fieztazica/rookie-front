@@ -11,24 +11,24 @@ export class FeedbacksResolver {
   @Mutation(() => Feedback)
   createFeedback(
     @Args('createFeedbackInput') createFeedbackInput: CreateFeedbackInput,
-  ) {
+  ): Promise<Feedback> {
     return this.feedbacksService.create(createFeedbackInput);
   }
 
   @Query(() => [Feedback], { name: 'feedbacks' })
-  findAll() {
-    return this.feedbacksService.findAll();
+  async findAll(): Promise<Feedback[]> {
+    return (await this.feedbacksService.findAll()).data;
   }
 
   @Query(() => Feedback, { name: 'feedback' })
-  findOne(@Args('id', { type: () => String }) id: string) {
+  findOne(@Args('id', { type: () => String }) id: string): Promise<Feedback> {
     return this.feedbacksService.findOne(id);
   }
 
   @Mutation(() => Feedback)
   updateFeedback(
     @Args('updateFeedbackInput') updateFeedbackInput: UpdateFeedbackInput,
-  ) {
+  ): Promise<Feedback> {
     return this.feedbacksService.update(
       updateFeedbackInput.id,
       updateFeedbackInput,
@@ -36,7 +36,9 @@ export class FeedbacksResolver {
   }
 
   @Mutation(() => Feedback)
-  removeFeedback(@Args('id', { type: () => String }) id: string) {
+  removeFeedback(
+    @Args('id', { type: () => String }) id: string,
+  ): Promise<Feedback> {
     return this.feedbacksService.remove(id);
   }
 }

@@ -11,24 +11,24 @@ export class PublishersResolver {
   @Mutation(() => Publisher)
   createPublisher(
     @Args('createPublisherInput') createPublisherInput: CreatePublisherInput,
-  ) {
+  ): Promise<Publisher> {
     return this.publishersService.create(createPublisherInput);
   }
 
   @Query(() => [Publisher], { name: 'publishers' })
-  findAll() {
-    return this.publishersService.findAll();
+  async findAll(): Promise<Publisher[]> {
+    return (await this.publishersService.findAll()).data;
   }
 
   @Query(() => Publisher, { name: 'publisher' })
-  findOne(@Args('id', { type: () => String }) id: string) {
+  findOne(@Args('id', { type: () => String }) id: string): Promise<Publisher> {
     return this.publishersService.findOne(id);
   }
 
   @Mutation(() => Publisher)
   updatePublisher(
     @Args('updatePublisherInput') updatePublisherInput: UpdatePublisherInput,
-  ) {
+  ): Promise<Publisher> {
     return this.publishersService.update(
       updatePublisherInput.id,
       updatePublisherInput,
@@ -36,7 +36,9 @@ export class PublishersResolver {
   }
 
   @Mutation(() => Publisher)
-  removePublisher(@Args('id', { type: () => String }) id: string) {
+  removePublisher(
+    @Args('id', { type: () => String }) id: string,
+  ): Promise<Publisher> {
     return this.publishersService.remove(id);
   }
 }

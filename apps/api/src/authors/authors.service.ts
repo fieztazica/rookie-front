@@ -21,7 +21,7 @@ export class AuthorsService {
   }
 
   findAll(
-    options: PaginateOptions = {perPage: 1},
+    options: PaginateOptions = {},
   ): Promise<PaginatedResult<AuthorPrisma>> {
     const paginate = createPaginator(options);
     return paginate<AuthorPrisma, FindManyAuthorArgs>(this.prisma.author, {

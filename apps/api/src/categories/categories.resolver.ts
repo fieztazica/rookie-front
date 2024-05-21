@@ -11,25 +11,24 @@ export class CategoriesResolver {
   @Mutation(() => Category)
   createCategory(
     @Args('createCategoryInput') createCategoryInput: CreateCategoryInput,
-  ) {
-    console.log(createCategoryInput);
+  ): Promise<Category> {
     return this.categoriesService.create(createCategoryInput);
   }
 
   @Query(() => [Category], { name: 'categories' })
-  findAll() {
-    return this.categoriesService.findAll();
+  async findAll(): Promise<Category[]> {
+    return (await this.categoriesService.findAll()).data;
   }
 
   @Query(() => Category, { name: 'category' })
-  findOne(@Args('id', { type: () => String }) id: string) {
+  findOne(@Args('id', { type: () => String }) id: string): Promise<Category> {
     return this.categoriesService.findOne(id);
   }
 
   @Mutation(() => Category)
   updateCategory(
     @Args('updateCategoryInput') updateCategoryInput: UpdateCategoryInput,
-  ) {
+  ): Promise<Category> {
     return this.categoriesService.update(
       updateCategoryInput.id,
       updateCategoryInput,
@@ -37,7 +36,9 @@ export class CategoriesResolver {
   }
 
   @Mutation(() => Category)
-  removeCategory(@Args('id', { type: () => String }) id: string) {
+  removeCategory(
+    @Args('id', { type: () => String }) id: string,
+  ): Promise<Category> {
     return this.categoriesService.remove(id);
   }
 }

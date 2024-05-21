@@ -11,24 +11,24 @@ export class ProductsResolver {
   @Mutation(() => Product)
   createProduct(
     @Args('createProductInput') createProductInput: CreateProductInput,
-  ) {
+  ): Promise<Product> {
     return this.productsService.create(createProductInput);
   }
 
   @Query(() => [Product], { name: 'products' })
-  findAll() {
-    return this.productsService.findAll();
+  async findAll(): Promise<Product[]> {
+    return (await this.productsService.findAll()).data;
   }
 
   @Query(() => Product, { name: 'product' })
-  findOne(@Args('id', { type: () => String }) id: string) {
+  findOne(@Args('id', { type: () => String }) id: string): Promise<Product> {
     return this.productsService.findOne(id);
   }
 
   @Mutation(() => Product)
   updateProduct(
     @Args('updateProductInput') updateProductInput: UpdateProductInput,
-  ) {
+  ): Promise<Product> {
     return this.productsService.update(
       updateProductInput.id,
       updateProductInput,
@@ -36,7 +36,9 @@ export class ProductsResolver {
   }
 
   @Mutation(() => Product)
-  removeProduct(@Args('id', { type: () => String }) id: string) {
+  removeProduct(
+    @Args('id', { type: () => String }) id: string,
+  ): Promise<Product> {
     return this.productsService.remove(id);
   }
 }
