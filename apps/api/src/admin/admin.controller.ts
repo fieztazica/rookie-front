@@ -144,7 +144,12 @@ export class AdminController {
   @Get(':entity')
   @RedirectAuth()
   @Render('list')
-  listPage(@Req() request, @Param('entity') entityName: EntityNames) {
-    return this.adminService.listRes(request, entityName);
+  listPage(
+    @Req() request,
+    @Param('entity') entityName: EntityNames,
+    @Query('page') page: number = 1,
+    @Query('perPage') perPage: number = 10,
+  ) {
+    return this.adminService.listRes(request, entityName, page, perPage);
   }
 }

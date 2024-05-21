@@ -3,7 +3,9 @@ extends layouts/main
 block content
     main.container.mx-auto.py-8.flex.flex-col
         .flex.justify-between
-            h1.text-xl.font-bold #{heading}
+            div.flex.space-x-2.items-center
+                h1.text-xl.font-bold #{heading}
+                span #{meta.total} entries in total
             a(href=`/admin/${resourceName}/create`) Create
         div(class="overflow-x-auto sm:-mx-6 lg:-mx-8")
             div(class="inline-block min-w-full py-2 sm:px-6 lg:px-8")
@@ -23,3 +25,11 @@ block content
                                         include components/listActionsTd
                     else
                         p No records
+            div(class="flex justify-between items-center")
+                div(class="flex justify-center items-center space-x-2")
+                    a(class=meta.prev ? "" : "pointer-events-none opacity-25" href=`?page=${meta.prev}&perPage=${meta.perPage}`) Previous
+                    a(class=meta.next ? "" : "pointer-events-none opacity-25" href=`?page=${meta.next}&perPage=${meta.perPage}`) Next
+                div(class="flex items-center space-x-2")
+                    span= `Per Page: `
+                    each val in [1, 5, 10]
+                        a(href=`?page=${meta.currentPage}&perPage=${val}` class= meta.perPage == val ? "underline" : "") #{val}

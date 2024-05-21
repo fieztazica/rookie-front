@@ -52,6 +52,9 @@ type ListViewRes = MainLayoutRes & {
   heading: string;
   resourceName: string;
   data: unknown[];
+  meta: {
+    [key: string]: any;
+  };
 };
 
 type DynamicCreateFormRes = MainLayoutRes & {
@@ -184,13 +187,20 @@ export class AdminService {
   async listRes(
     @Req() request,
     entityName: EntityNames,
+    page: number,
+    perPage: number,
   ): Promise<ListViewRes | MainLayoutRes> {
     const entityService = this.getServiceFromEntityName(entityName);
 
+    let paginatedRes;
     let entityRecords;
     let errorMessage = '';
     try {
-      entityRecords = await entityService.findAll();
+      paginatedRes = await entityService.findAll({
+        page,
+        perPage,
+      });
+      entityRecords = paginatedRes.data;
       this.beautifyEntities(entityRecords);
     } catch (error) {
       errorMessage = `Failed to fetch ${entityName} records`;
@@ -219,6 +229,7 @@ export class AdminService {
       resourceName: entityName,
       uniqueKeys,
       data: entityRecords,
+      meta: paginatedRes.meta,
       userinfo: request.user?.userinfo,
     };
   }
