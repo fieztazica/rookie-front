@@ -1,5 +1,4 @@
-import { Prisma } from '@prisma/client';
-import { ProductCreateInput } from '../../@generated/product/product-create.input';
+import { Prisma, ProductCreateInput } from '@repo/db';
 
 export { ProductCreateInput as CreateProductInput };
 

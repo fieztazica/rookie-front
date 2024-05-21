@@ -1,4 +1,4 @@
-import { CategoryCreateInput } from '../../@generated/category/category-create.input';
+import { CategoryCreateInput } from '@repo/db';
 
 export { CategoryCreateInput as CreateCategoryInput };
 

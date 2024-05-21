@@ -1,3 +1,3 @@
-import { OrderCreateInput } from '../../@generated/order/order-create.input';
+import { OrderCreateInput } from '@repo/db';
 
 export { OrderCreateInput as CreateOrderInput };

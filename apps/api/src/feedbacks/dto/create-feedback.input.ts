@@ -1,3 +1,3 @@
-import { FeedbackCreateInput } from '../../@generated/feedback/feedback-create.input';
+import { FeedbackCreateInput } from '@repo/db';
 
 export { FeedbackCreateInput as CreateFeedbackInput };

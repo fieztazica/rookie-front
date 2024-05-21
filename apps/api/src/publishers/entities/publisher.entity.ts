@@ -1,1 +1,1 @@
-export { Publisher } from '../../@generated/publisher/publisher.model';
+export { Publisher } from '@repo/db';

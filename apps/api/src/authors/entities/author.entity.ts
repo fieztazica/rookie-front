@@ -1,1 +1,1 @@
-export { Author } from '../../@generated/author/author.model';
+export { Author } from '@repo/db';

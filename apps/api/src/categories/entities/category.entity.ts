@@ -1,1 +1,1 @@
-export { Category } from '../../@generated/category/category.model';
+export { Category } from '@repo/db';

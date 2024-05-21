@@ -1,1 +1,1 @@
-export { Customer } from '../../@generated/customer/customer.model';
+export { Customer } from '@repo/db';

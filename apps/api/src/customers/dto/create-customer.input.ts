@@ -1,1 +1,1 @@
-export { CustomerCreateInput as CreateCustomerInput } from '../../@generated/customer/customer-create.input';
+export { CustomerCreateInput as CreateCustomerInput } from '@repo/db';
