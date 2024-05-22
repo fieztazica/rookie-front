@@ -1,9 +1,11 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { Float } from '@nestjs/graphql';
+import { IntFilter } from './int-filter.input';
+import { FloatFilter } from './float-filter.input';
 
 @InputType()
-export class FloatFilter {
+export class FloatWithAggregatesFilter {
 
     @Field(() => Float, {nullable:true})
     equals?: number;
@@ -26,6 +28,21 @@ export class FloatFilter {
     @Field(() => Float, {nullable:true})
     gte?: number;
 
+    @Field(() => FloatWithAggregatesFilter, {nullable:true})
+    not?: FloatWithAggregatesFilter;
+
+    @Field(() => IntFilter, {nullable:true})
+    _count?: IntFilter;
+
     @Field(() => FloatFilter, {nullable:true})
-    not?: FloatFilter;
+    _avg?: FloatFilter;
+
+    @Field(() => FloatFilter, {nullable:true})
+    _sum?: FloatFilter;
+
+    @Field(() => FloatFilter, {nullable:true})
+    _min?: FloatFilter;
+
+    @Field(() => FloatFilter, {nullable:true})
+    _max?: FloatFilter;
 }

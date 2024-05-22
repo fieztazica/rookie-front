@@ -3,6 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { Type } from 'class-transformer';
 import { StringWithAggregatesFilter } from '../prisma/string-with-aggregates-filter.input';
 import { DecimalWithAggregatesFilter } from '../prisma/decimal-with-aggregates-filter.input';
+import { FloatWithAggregatesFilter } from '../prisma/float-with-aggregates-filter.input';
 import { IntWithAggregatesFilter } from '../prisma/int-with-aggregates-filter.input';
 import { BoolWithAggregatesFilter } from '../prisma/bool-with-aggregates-filter.input';
 import { DateTimeWithAggregatesFilter } from '../prisma/date-time-with-aggregates-filter.input';
@@ -41,6 +42,9 @@ export class ProductScalarWhereWithAggregatesInput {
     @Field(() => DecimalWithAggregatesFilter, {nullable:true})
     @Type(() => DecimalWithAggregatesFilter)
     salePrice?: DecimalWithAggregatesFilter;
+
+    @Field(() => FloatWithAggregatesFilter, {nullable:true})
+    ratings?: FloatWithAggregatesFilter;
 
     @Field(() => StringWithAggregatesFilter, {nullable:true})
     accountId?: StringWithAggregatesFilter;

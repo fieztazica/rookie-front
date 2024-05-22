@@ -5,6 +5,7 @@ import { GraphQLDecimal } from 'prisma-graphql-type-decimal';
 import { transformToDecimal } from 'prisma-graphql-type-decimal';
 import { Transform } from 'class-transformer';
 import { Type } from 'class-transformer';
+import { Float } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
 
 @InputType()
@@ -31,6 +32,9 @@ export class ProductCreateManyInput {
     @Type(() => Object)
     @Transform(transformToDecimal)
     salePrice?: Decimal;
+
+    @Field(() => Float, {nullable:true})
+    ratings?: number;
 
     @Field(() => String, {nullable:true})
     accountId?: string;

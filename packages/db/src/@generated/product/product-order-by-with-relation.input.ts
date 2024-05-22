@@ -32,6 +32,9 @@ export class ProductOrderByWithRelationInput {
     @Type(() => SortOrderInput)
     salePrice?: SortOrderInput;
 
+    @Field(() => SortOrder, {nullable:true})
+    ratings?: keyof typeof SortOrder;
+
     @Field(() => SortOrderInput, {nullable:true})
     accountId?: SortOrderInput;
 

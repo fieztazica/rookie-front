@@ -11,5 +11,8 @@ export class ProductAvgAggregateInput {
     salePrice?: true;
 
     @Field(() => Boolean, {nullable:true})
+    ratings?: true;
+
+    @Field(() => Boolean, {nullable:true})
     storeQuantity?: true;
 }

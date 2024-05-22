@@ -5,6 +5,7 @@ import { GraphQLDecimal } from 'prisma-graphql-type-decimal';
 import { transformToDecimal } from 'prisma-graphql-type-decimal';
 import { Transform } from 'class-transformer';
 import { Type } from 'class-transformer';
+import { Float } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
 import { OrderItemCreateNestedManyWithoutProductInput } from '../order-item/order-item-create-nested-many-without-product.input';
 import { FeedbackCreateNestedManyWithoutProductInput } from '../feedback/feedback-create-nested-many-without-product.input';
@@ -36,6 +37,9 @@ export class ProductCreateWithoutCategoriesInput {
     @Type(() => Object)
     @Transform(transformToDecimal)
     salePrice?: Decimal;
+
+    @Field(() => Float, {nullable:true})
+    ratings?: number;
 
     @Field(() => String, {nullable:true})
     accountId?: string;

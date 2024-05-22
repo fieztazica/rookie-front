@@ -24,6 +24,9 @@ export class ProductCountAggregate {
     salePrice!: number;
 
     @Field(() => Int, {nullable:false})
+    ratings!: number;
+
+    @Field(() => Int, {nullable:false})
     accountId!: number;
 
     @Field(() => Int, {nullable:false})

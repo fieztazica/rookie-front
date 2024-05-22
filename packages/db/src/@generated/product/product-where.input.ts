@@ -3,6 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { Type } from 'class-transformer';
 import { StringFilter } from '../prisma/string-filter.input';
 import { DecimalFilter } from '../prisma/decimal-filter.input';
+import { FloatFilter } from '../prisma/float-filter.input';
 import { IntFilter } from '../prisma/int-filter.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
@@ -47,6 +48,9 @@ export class ProductWhereInput {
     @Field(() => DecimalFilter, {nullable:true})
     @Type(() => DecimalFilter)
     salePrice?: DecimalFilter;
+
+    @Field(() => FloatFilter, {nullable:true})
+    ratings?: FloatFilter;
 
     @Field(() => StringFilter, {nullable:true})
     accountId?: StringFilter;

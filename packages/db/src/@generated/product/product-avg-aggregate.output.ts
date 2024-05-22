@@ -14,5 +14,8 @@ export class ProductAvgAggregate {
     salePrice?: Decimal;
 
     @Field(() => Float, {nullable:true})
+    ratings?: number;
+
+    @Field(() => Float, {nullable:true})
     storeQuantity?: number;
 }

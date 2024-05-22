@@ -23,6 +23,9 @@ export class ProductMinAggregateInput {
     salePrice?: true;
 
     @Field(() => Boolean, {nullable:true})
+    ratings?: true;
+
+    @Field(() => Boolean, {nullable:true})
     accountId?: true;
 
     @Field(() => Boolean, {nullable:true})

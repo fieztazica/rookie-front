@@ -3,6 +3,7 @@ import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
 import { GraphQLDecimal } from 'prisma-graphql-type-decimal';
 import { Decimal } from '@prisma/client/runtime/library';
+import { Float } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
 import { ProductToCategory } from '../product-to-category/product-to-category.model';
 import { OrderItem } from '../order-item/order-item.model';
@@ -35,6 +36,9 @@ export class Product {
 
     @Field(() => GraphQLDecimal, {nullable:true})
     salePrice!: Decimal | null;
+
+    @Field(() => Float, {nullable:false,defaultValue:0})
+    ratings!: number;
 
     @Field(() => String, {nullable:true})
     accountId!: string | null;
