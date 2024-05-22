@@ -325,6 +325,9 @@ importers:
       prisma-nestjs-graphql:
         specifier: ^20.0.2
         version: 20.0.2
+      ts-node:
+        specifier: ^10.9.1
+        version: 10.9.2(@types/node@20.12.12)(typescript@5.4.5)
       tsconfig-paths:
         specifier: ^4.2.0
         version: 4.2.0
@@ -332,8 +335,8 @@ importers:
         specifier: ^5.4.5
         version: 5.4.5
       zenstack:
-        specifier: 2.1.0
-        version: 2.1.0(@prisma/client@5.13.0)(prisma@5.13.0)
+        specifier: 2.1.2
+        version: 2.1.2(@prisma/client@5.13.0)(prisma@5.13.0)
 
   packages/ui:
     dependencies:
@@ -1420,7 +1423,7 @@ packages:
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     dependencies:
       '@jest/types': 29.6.3
-      '@types/node': 20.12.11
+      '@types/node': 20.12.12
       chalk: 4.1.2
       jest-message-util: 29.7.0
       jest-util: 29.7.0
@@ -1476,7 +1479,7 @@ packages:
     dependencies:
       '@jest/fake-timers': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.12.11
+      '@types/node': 20.12.12
       jest-mock: 29.7.0
     dev: true
 
@@ -1503,7 +1506,7 @@ packages:
     dependencies:
       '@jest/types': 29.6.3
       '@sinonjs/fake-timers': 10.3.0
-      '@types/node': 20.12.11
+      '@types/node': 20.12.12
       jest-message-util: 29.7.0
       jest-mock: 29.7.0
       jest-util: 29.7.0
@@ -1536,7 +1539,7 @@ packages:
       '@jest/transform': 29.7.0
       '@jest/types': 29.6.3
       '@jridgewell/trace-mapping': 0.3.25
-      '@types/node': 20.12.11
+      '@types/node': 20.12.12
       chalk: 4.1.2
       collect-v8-coverage: 1.0.2
       exit: 0.1.2
@@ -3645,7 +3648,7 @@ packages:
   /@types/connect@3.4.38:
     resolution: {integrity: sha512-K6uROf1LD88uDQqJCktA4yzL1YYAK6NgfsI0v/mTgyPKWsX1CnJ0XPSDhViejru1GcRkLWb8RlzFYJRqGUbaug==}
     dependencies:
-      '@types/node': 20.12.11
+      '@types/node': 20.12.12
 
   /@types/cookie@0.6.0:
     resolution: {integrity: sha512-4Kh9a6B2bQciAhf7FSuMRRkUWecJgJu9nPnx3yzpsfXX/c50REIqpHY4C82bXP90qrLtXtkDxTZosYO3UpOwlA==}
@@ -3692,7 +3695,7 @@ packages:
   /@types/graceful-fs@4.1.9:
     resolution: {integrity: sha512-olP3sd1qOEe5dXTSaFvQG+02VdRXcdytWLAZsAq1PecU8uqQAhkrnbli7DagjtXKW/Bl7YJbUsa8MPcuc8LHEQ==}
     dependencies:
-      '@types/node': 20.12.11
+      '@types/node': 20.12.12
     dev: true
 
   /@types/http-errors@2.0.4:
@@ -3766,7 +3769,6 @@ packages:
     resolution: {integrity: sha512-eWLDGF/FOSPtAvEqeRAQ4C8LSA7M1I7i0ky1I8U7kD1J5ITyW3AsRhQrKVoWf5pFKZ2kILsEGJhsI9r93PYnOw==}
     dependencies:
       undici-types: 5.26.5
-    dev: true
 
   /@types/normalize-package-data@2.4.4:
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
@@ -3801,7 +3803,7 @@ packages:
     resolution: {integrity: sha512-x2EM6TJOybec7c52BX0ZspPodMsQUd5L6PRwOunVyVUhXiBSKf3AezDL8Dgvgt5o0UfKNfuA0eMLr2wLT4AiBA==}
     dependencies:
       '@types/mime': 1.3.5
-      '@types/node': 20.12.11
+      '@types/node': 20.12.12
 
   /@types/serve-static@1.15.7:
     resolution: {integrity: sha512-W8Ym+h8nhuRwaKPaDw34QUkwsGi6Rc4yYqvKFo5rm2FUEhCFbzVWrxXUxuKK8TASjWsysJY0nsmNCGhCOIsrOw==}
@@ -4217,6 +4219,12 @@ packages:
       langium: 1.3.1
     dev: true
 
+  /@zenstackhq/language@2.1.2:
+    resolution: {integrity: sha512-pfdxnu2boDHYbBBVe734GMKpGmMrMjI82gWM8XZJwUAqEgBqyhYBf4asuoil1NkhEjsaSeUGc+G39ZoElQo1Zw==}
+    dependencies:
+      langium: 1.3.1
+    dev: true
+
   /@zenstackhq/runtime@2.1.0(@prisma/client@5.13.0):
     resolution: {integrity: sha512-mkWyXpUgV8dtIb79PEQyFHbdeZEKsuC2j0HjD7YfYZu8Blf93uS49jY13TgVtQ4YCbC8P4XLjGJy1CHUWmL2pw==}
     peerDependencies:
@@ -4243,6 +4251,33 @@ packages:
       zod: 3.23.8
       zod-validation-error: 1.5.0(zod@3.23.8)
 
+  /@zenstackhq/runtime@2.1.2(@prisma/client@5.13.0):
+    resolution: {integrity: sha512-PH/86SGvk5DRsuwceoShbNXSdnGWiUS/19aLCKqhV5+KoaXDfWYnRY+NaVACCYY9zhf5evm88nEwy10myEyBQg==}
+    peerDependencies:
+      '@prisma/client': 5.0.0 - 5.13.x
+    dependencies:
+      '@prisma/client': 5.13.0(prisma@5.13.0)
+      bcryptjs: 2.4.3
+      buffer: 6.0.3
+      change-case: 4.1.2
+      decimal.js: 10.4.3
+      deepcopy: 2.1.0
+      deepmerge: 4.3.1
+      logic-solver: 2.0.1
+      lower-case-first: 2.0.2
+      pluralize: 8.0.0
+      safe-json-stringify: 1.2.0
+      semver: 7.6.1
+      superjson: 1.13.3
+      tiny-invariant: 1.3.3
+      ts-pattern: 4.3.0
+      tslib: 2.6.2
+      upper-case-first: 2.0.2
+      uuid: 9.0.1
+      zod: 3.23.8
+      zod-validation-error: 1.5.0(zod@3.23.8)
+    dev: true
+
   /@zenstackhq/sdk@2.1.0(@prisma/client@5.13.0):
     resolution: {integrity: sha512-d3nd2njyaYU2cRV6lXRkyK7pyJRXHi1/v1xwiQDVWobuOtWvuGZaq2ixduUN1RrgonI1V4ML/GHhCGZTv1WcCQ==}
     dependencies:
@@ -4250,6 +4285,23 @@ packages:
       '@prisma/internals': 5.13.0
       '@zenstackhq/language': 2.1.0
       '@zenstackhq/runtime': 2.1.0(@prisma/client@5.13.0)
+      langium: 1.3.1
+      lower-case-first: 2.0.2
+      semver: 7.6.1
+      ts-morph: 16.0.0
+      ts-pattern: 4.3.0
+      upper-case-first: 2.0.2
+    transitivePeerDependencies:
+      - '@prisma/client'
+    dev: true
+
+  /@zenstackhq/sdk@2.1.2(@prisma/client@5.13.0):
+    resolution: {integrity: sha512-ZQrxj6T+3nAqIf5vUClZ1MDA/LAJ2vIWVHZK3hXA843RrmKhPebXwlZeheFSQS67L7Zp8E+Nm+bRaG6QB7lQ3w==}
+    dependencies:
+      '@prisma/generator-helper': 5.13.0
+      '@prisma/internals': 5.13.0
+      '@zenstackhq/language': 2.1.2
+      '@zenstackhq/runtime': 2.1.2(@prisma/client@5.13.0)
       langium: 1.3.1
       lower-case-first: 2.0.2
       semver: 7.6.1
@@ -7553,7 +7605,7 @@ packages:
       '@jest/expect': 29.7.0
       '@jest/test-result': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.12.11
+      '@types/node': 20.12.12
       chalk: 4.1.2
       co: 4.6.0
       dedent: 1.5.3
@@ -7678,7 +7730,7 @@ packages:
       '@jest/environment': 29.7.0
       '@jest/fake-timers': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.12.11
+      '@types/node': 20.12.12
       jest-mock: 29.7.0
       jest-util: 29.7.0
     dev: true
@@ -7694,7 +7746,7 @@ packages:
     dependencies:
       '@jest/types': 29.6.3
       '@types/graceful-fs': 4.1.9
-      '@types/node': 20.12.11
+      '@types/node': 20.12.12
       anymatch: 3.1.3
       fb-watchman: 2.0.2
       graceful-fs: 4.2.11
@@ -7745,7 +7797,7 @@ packages:
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     dependencies:
       '@jest/types': 29.6.3
-      '@types/node': 20.12.11
+      '@types/node': 20.12.12
       jest-util: 29.7.0
     dev: true
 
@@ -7800,7 +7852,7 @@ packages:
       '@jest/test-result': 29.7.0
       '@jest/transform': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.12.11
+      '@types/node': 20.12.12
       chalk: 4.1.2
       emittery: 0.13.1
       graceful-fs: 4.2.11
@@ -7831,7 +7883,7 @@ packages:
       '@jest/test-result': 29.7.0
       '@jest/transform': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.12.11
+      '@types/node': 20.12.12
       chalk: 4.1.2
       cjs-module-lexer: 1.3.1
       collect-v8-coverage: 1.0.2
@@ -7908,7 +7960,7 @@ packages:
     dependencies:
       '@jest/test-result': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.12.11
+      '@types/node': 20.12.12
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       emittery: 0.13.1
@@ -7920,7 +7972,7 @@ packages:
     resolution: {integrity: sha512-7vuh85V5cdDofPyxn58nrPjBktZo0u9x1g8WtjQol+jZDaE+fhN+cIvTj11GndBnMnyfrUOG1sZQxCdjKh+DKg==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 20.12.11
+      '@types/node': 20.12.12
       merge-stream: 2.0.0
       supports-color: 8.1.1
     dev: true
@@ -7929,7 +7981,7 @@ packages:
     resolution: {integrity: sha512-eIz2msL/EzL9UFTFFx7jBTkeZfku0yUAyZZZmJ93H2TYEiroIx2PQjEXcwYtYl8zXCxb+PAmA2hLIt/6ZEkPHw==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     dependencies:
-      '@types/node': 20.12.11
+      '@types/node': 20.12.12
       jest-util: 29.7.0
       merge-stream: 2.0.0
       supports-color: 8.1.1
@@ -10915,6 +10967,37 @@ packages:
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
 
+  /ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5):
+    resolution: {integrity: sha512-f0FFpIdcHgn8zcPSbf1dRevwt047YMnaiJM3u2w2RewrB+fob/zePZcrOyQoLMMO7aBIddLcQIEK5dYjkLnGrQ==}
+    hasBin: true
+    peerDependencies:
+      '@swc/core': '>=1.2.50'
+      '@swc/wasm': '>=1.2.50'
+      '@types/node': '*'
+      typescript: '>=2.7'
+    peerDependenciesMeta:
+      '@swc/core':
+        optional: true
+      '@swc/wasm':
+        optional: true
+    dependencies:
+      '@cspotcode/source-map-support': 0.8.1
+      '@tsconfig/node10': 1.0.11
+      '@tsconfig/node12': 1.0.11
+      '@tsconfig/node14': 1.0.3
+      '@tsconfig/node16': 1.0.4
+      '@types/node': 20.12.12
+      acorn: 8.11.3
+      acorn-walk: 8.3.2
+      arg: 4.1.3
+      create-require: 1.1.1
+      diff: 4.0.2
+      make-error: 1.3.6
+      typescript: 5.4.5
+      v8-compile-cache-lib: 3.0.1
+      yn: 3.1.1
+    dev: true
+
   /ts-pattern@4.3.0:
     resolution: {integrity: sha512-pefrkcd4lmIVR0LA49Imjf9DYLK8vtWhqBPA3Ya1ir8xCW0O2yjL9dsCVvI7pCodLC5q7smNpEtDR2yVulQxOg==}
 
@@ -11728,6 +11811,52 @@ packages:
       '@types/node': 20.12.12
       '@zenstackhq/language': 2.1.0
       '@zenstackhq/sdk': 2.1.0(@prisma/client@5.13.0)
+      async-exit-hook: 2.0.1
+      change-case: 4.1.2
+      colors: 1.4.0
+      commander: 8.3.0
+      get-latest-version: 5.1.0
+      langium: 1.3.1
+      lower-case-first: 2.0.2
+      mixpanel: 0.17.0
+      ora: 5.4.1
+      pluralize: 8.0.0
+      pretty-repl: 4.0.1
+      prisma: 5.13.0
+      promisify: 0.0.3
+      semver: 7.6.1
+      sleep-promise: 9.1.0
+      strip-color: 0.1.0
+      tiny-invariant: 1.3.3
+      ts-morph: 16.0.0
+      ts-pattern: 4.3.0
+      upper-case-first: 2.0.2
+      uuid: 9.0.1
+      vscode-jsonrpc: 8.2.0
+      vscode-languageclient: 8.1.0
+      vscode-languageserver: 8.1.0
+      vscode-languageserver-textdocument: 1.0.11
+      vscode-uri: 3.0.8
+      zod: 3.23.8
+      zod-validation-error: 1.5.0(zod@3.23.8)
+    transitivePeerDependencies:
+      - '@prisma/client'
+      - debug
+      - supports-color
+    dev: true
+
+  /zenstack@2.1.2(@prisma/client@5.13.0)(prisma@5.13.0):
+    resolution: {integrity: sha512-xprgh99yk3PPPEMwNpC8zTiwTDf+gPlGA7Fw5NUqPMLRDLLza0d6QK4c9fXjzraKpIpdt+4Dzp1MO1gYBAbsng==}
+    engines: {vscode: ^1.63.0}
+    hasBin: true
+    requiresBuild: true
+    peerDependencies:
+      prisma: 5.0.0 - 5.13.x
+    dependencies:
+      '@paralleldrive/cuid2': 2.2.2
+      '@types/node': 20.12.12
+      '@zenstackhq/language': 2.1.2
+      '@zenstackhq/sdk': 2.1.2(@prisma/client@5.13.0)
       async-exit-hook: 2.0.1
       change-case: 4.1.2
       colors: 1.4.0

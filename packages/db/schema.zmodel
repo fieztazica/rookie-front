@@ -123,6 +123,7 @@ model Product {
     description   String?              @db.Text
     price         Decimal              @db.Decimal
     salePrice     Decimal?             @db.Decimal
+    ratings       Float                @default(0)
     accountId     String?              @map("account_id")
     storeQuantity Int                  @default(0)
 

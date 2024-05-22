@@ -48,30 +48,27 @@ export class AdminService {
     private readonly publishersService: PublishersService,
   ) {}
 
-  beautifyEntities(entities: unknown[]) {
+  beautifyEntities<T>(entities: T[]) {
     entities.forEach((record) => {
-      Object.keys(record).forEach((prop) => {
-        if (!['id', 'username', 'name'].includes(prop)) {
-          delete record[prop];
-          return;
-        }
-        if (!record[prop]) {
-          record[prop] = 'null';
-        }
-        if (record['firstName'] && record['lastName']) {
-          record['name'] = `${record['firstName']} ${record['lastName']}`;
-        }
-      });
-      if (record['price']) {
-        record['price'] = record['price'].toString();
-      }
-      if (record['createdAt']) {
-        record['createdAt'] = dayjs(record['createdAt']).calendar();
-      }
-      if (record['updatedAt']) {
-        record['updatedAt'] = dayjs(record['updatedAt']).calendar();
-      }
+      this.beautifyEntity(record);
     });
+    return entities;
+  }
+
+  beautifyEntity<T>(record: T) {
+    if (record['firstName'] && record['lastName']) {
+      record['name'] = `${record['firstName']} ${record['lastName']}`;
+    }
+    if (record['price']) {
+      record['price'] = record['price'].toString();
+    }
+    if (record['createdAt']) {
+      record['createdAt'] = dayjs(record['createdAt']).calendar();
+    }
+    if (record['updatedAt']) {
+      record['updatedAt'] = dayjs(record['updatedAt']).calendar();
+    }
+    return record;
   }
 
   // https://stackoverflow.com/questions/44002447/building-dynamic-table-with-handlebars
@@ -96,13 +93,26 @@ export class AdminService {
     return defaultCreateInputs[entityName];
   }
 
-  getFieldsFromObj<T>(obj: T) {
+  getFieldsFromEntity<T>(obj: T) {
     return Object.keys(obj).map((key) => ({
       key: key,
       type: typeof obj[key],
       title: convertCamelCaseToTitleCase(key),
       value: obj[key],
     }));
+  }
+
+  filterFieldsFromEntity<T>(
+    object: T,
+    fields: string[] = ['id', 'createdAt', 'updatedAt'],
+    exclude: boolean = true,
+  ) {
+    Object.keys(object).forEach((key) => {
+      if (exclude ? fields.includes(key) : !fields.includes(key)) {
+        delete object[key];
+      }
+    });
+    return object;
   }
 
   dynamicCreateForm(
@@ -116,7 +126,7 @@ export class AdminService {
         userinfo: req?.user?.userinfo,
       };
     }
-    const fields = this.getFieldsFromObj(defaultCreateInput);
+    const fields = this.getFieldsFromEntity(defaultCreateInput);
     return {
       fields,
       heading: `Create ${convertCamelCaseToTitleCase(entityName)}`,
@@ -143,7 +153,13 @@ export class AdminService {
         perPage,
       });
       entityRecords = paginatedRes.data;
-      this.beautifyEntities(entityRecords);
+      entityRecords.forEach((record) => {
+        this.filterFieldsFromEntity(
+          this.beautifyEntity(record),
+          ['id', 'name', 'username', 'email'],
+          false,
+        );
+      });
     } catch (error) {
       errorMessage = `Failed to fetch ${entityName} records`;
       console.error(`${errorMessage}:`, error);
@@ -183,7 +199,7 @@ export class AdminService {
     entityName: EntityNames,
     createInput: CreateInputType,
   ) {
-    const fields = this.getFieldsFromObj(createInput);
+    const fields = this.getFieldsFromEntity(createInput);
     try {
       const entityService = this.getServiceFromEntityName(entityName);
       const created = await entityService.create(createInput);
@@ -221,13 +237,8 @@ export class AdminService {
     entityName: EntityNames,
     id: string,
   ) {
-    const excludedFields = ['id', 'createdAt', 'updatedAt'];
+    this.filterFieldsFromEntity(editInput, ['id', 'createdAt', 'updatedAt']);
 
-    Object.keys(editInput).forEach((key) => {
-      if (excludedFields.includes(key)) {
-        delete editInput[key];
-      }
-    });
     try {
       const entityService = this.getServiceFromEntityName(entityName);
       const updated = await entityService.update(id, editInput);
@@ -263,7 +274,7 @@ export class AdminService {
     const entityService = this.getServiceFromEntityName(entityName);
     try {
       const entity = await entityService.findOne(id);
-      return entity;
+      return this.beautifyEntity(entity);
     } catch (error) {
       console.error(error);
     }
