@@ -37,3 +37,9 @@ dist/
 
 # .env files
 .env
+
+# generated contents
+__generated__
+__generated__/
+__generated__/*
+/__generated__
