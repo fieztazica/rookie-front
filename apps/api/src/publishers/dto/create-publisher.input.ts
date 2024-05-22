@@ -1,4 +1,4 @@
-import { PublisherCreateInput } from '@repo/db';
+import { PublisherCreateInput } from 'src/__generated__/publisher/publisher-create.input';
 
 export { PublisherCreateInput as CreatePublisherInput };
 

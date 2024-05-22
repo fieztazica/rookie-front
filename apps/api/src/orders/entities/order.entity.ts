@@ -1,1 +1,1 @@
-export { Order } from '@repo/db';
+export { Order } from 'src/__generated__/order/order.model';

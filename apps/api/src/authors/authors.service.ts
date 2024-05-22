@@ -8,7 +8,8 @@ import {
   PaginatedResult,
   PaginateOptions,
 } from 'prisma-pagination';
-import { AuthorPrisma, FindManyAuthorArgs } from '@repo/db';
+import { Author } from '@prisma/client';
+import { FindManyAuthorArgs } from 'src/__generated__/author/find-many-author.args';
 
 @Injectable()
 export class AuthorsService {
@@ -16,36 +17,31 @@ export class AuthorsService {
     @Inject(ENHANCED_PRISMA) private readonly prisma: PrismaService,
   ) {}
 
-  create(createAuthorInput: CreateAuthorInput): Promise<AuthorPrisma> {
+  create(createAuthorInput: CreateAuthorInput): Promise<Author> {
     return this.prisma.author.create({ data: createAuthorInput });
   }
 
-  findAll(
-    options: PaginateOptions = {},
-  ): Promise<PaginatedResult<AuthorPrisma>> {
+  findAll(options: PaginateOptions = {}): Promise<PaginatedResult<Author>> {
     const paginate = createPaginator(options);
-    return paginate<AuthorPrisma, FindManyAuthorArgs>(this.prisma.author, {
+    return paginate<Author, FindManyAuthorArgs>(this.prisma.author, {
       where: {
         deleted: { equals: false },
       },
     });
   }
 
-  findOne(id: string): Promise<AuthorPrisma> {
+  findOne(id: string): Promise<Author> {
     return this.prisma.author.findUnique({ where: { id, deleted: false } });
   }
 
-  update(
-    id: string,
-    updateAuthorInput: UpdateAuthorInput,
-  ): Promise<AuthorPrisma> {
+  update(id: string, updateAuthorInput: UpdateAuthorInput): Promise<Author> {
     return this.prisma.author.update({
       where: { id, deleted: false },
       data: updateAuthorInput,
     });
   }
 
-  remove(id: string): Promise<AuthorPrisma> {
+  remove(id: string): Promise<Author> {
     return this.prisma.author.update({
       where: { id, deleted: false },
       data: {

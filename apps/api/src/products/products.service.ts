@@ -1,5 +1,4 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { FindManyProductArgs, ProductPrisma } from '@repo/db';
 import { ENHANCED_PRISMA } from '@zenstackhq/server/nestjs';
 import {
   createPaginator,
@@ -9,40 +8,37 @@ import {
 import { PrismaService } from '../common/database/prisma.service';
 import { CreateProductInput } from './dto/create-product.input';
 import { UpdateProductInput } from './dto/update-product.input';
+import { Product } from '@prisma/client';
+import { FindManyProductArgs } from 'src/__generated__/product/find-many-product.args';
 
 @Injectable()
 export class ProductsService {
   constructor(
     @Inject(ENHANCED_PRISMA) private readonly prisma: PrismaService,
   ) {}
-  create(createProductInput: CreateProductInput): Promise<ProductPrisma> {
+  create(createProductInput: CreateProductInput): Promise<Product> {
     return this.prisma.product.create({ data: createProductInput });
   }
 
-  findAll(
-    options: PaginateOptions = {},
-  ): Promise<PaginatedResult<ProductPrisma>> {
+  findAll(options: PaginateOptions = {}): Promise<PaginatedResult<Product>> {
     const paginate = createPaginator(options);
-    return paginate<ProductPrisma, FindManyProductArgs>(this.prisma.product, {
+    return paginate<Product, FindManyProductArgs>(this.prisma.product, {
       where: { deleted: { equals: false } },
     });
   }
 
-  findOne(id: string): Promise<ProductPrisma> {
+  findOne(id: string): Promise<Product> {
     return this.prisma.product.findUnique({ where: { id, deleted: false } });
   }
 
-  update(
-    id: string,
-    updateProductInput: UpdateProductInput,
-  ): Promise<ProductPrisma> {
+  update(id: string, updateProductInput: UpdateProductInput): Promise<Product> {
     return this.prisma.product.update({
       where: { id, deleted: false },
       data: updateProductInput,
     });
   }
 
-  remove(id: string): Promise<ProductPrisma> {
+  remove(id: string): Promise<Product> {
     return this.prisma.product.update({
       where: { id, deleted: false },
       data: {

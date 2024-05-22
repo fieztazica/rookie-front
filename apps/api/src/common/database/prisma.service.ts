@@ -1,5 +1,5 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
-import { PrismaClient } from '@repo/db';
+import { PrismaClient } from '@prisma/client';
 import { createPaginator, PaginateOptions } from 'prisma-pagination';
 
 @Injectable()

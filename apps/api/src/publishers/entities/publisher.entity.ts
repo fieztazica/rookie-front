@@ -1,1 +1,1 @@
-export { Publisher } from '@repo/db';
+export { Publisher } from 'src/__generated__/publisher/publisher.model';

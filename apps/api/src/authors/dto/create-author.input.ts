@@ -1,4 +1,4 @@
-import { AuthorCreateInput } from '@repo/db';
+import { AuthorCreateInput } from 'src/__generated__/author/author-create.input';
 
 export { AuthorCreateInput as CreateAuthorInput };
 

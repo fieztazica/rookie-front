@@ -1,1 +1,1 @@
-export { Product } from '@repo/db';
+export { Product } from 'src/__generated__/product/product.model';
