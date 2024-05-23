@@ -5,7 +5,7 @@ type Props = {};
 
 function Header({}: Props) {
   return (
-    <header className="p-2 bg-accent">
+    <header className="p-2 bg-accent sticky top-0 z-50">
       <div className="flex items-center justify-between container mx-auto">
         <div className="flex items-center space-x-2">
           <div>
