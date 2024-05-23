@@ -1,10 +1,13 @@
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { CacheModule } from '@nestjs/cache-manager';
 import { Global, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { ThrottlerModule } from '@nestjs/throttler';
+import * as redisStore from 'cache-manager-redis-store';
 import { join } from 'path';
+import type { RedisClientOptions } from 'redis';
 import { AdminModule } from './admin/admin.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -20,6 +23,8 @@ import { FeedbacksModule } from './feedbacks/feedbacks.module';
 import { OrdersModule } from './orders/orders.module';
 import { ProductsModule } from './products/products.module';
 import { RedisModule } from './redis/redis.module';
+import { CartModule } from './cart/cart.module';
+
 const serveStaticFactory = {
   useFactory: () => {
     const jqueryPath = join(process.cwd(), 'node_modules', 'jquery', 'dist');
@@ -60,6 +65,16 @@ const serveStaticFactory = {
         ],
       }),
     }),
+    CacheModule.registerAsync<RedisClientOptions>({
+      isGlobal: true,
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        ttl: configService.get('cacheTtl'),
+        store: redisStore,
+        url: configService.get('redisUrl'),
+      }),
+      inject: [ConfigService],
+    }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: '~schema.gql',
@@ -69,6 +84,7 @@ const serveStaticFactory = {
     AuthModule,
     RedisModule,
     AuthorsModule,
+    CartModule,
   ],
   controllers: [AppController],
   providers: [AppService, PrismaService],
