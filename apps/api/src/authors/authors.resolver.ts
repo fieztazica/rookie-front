@@ -2,7 +2,8 @@ import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { AuthorsService } from './authors.service';
 import { CreateAuthorInput } from './dto/create-author.input';
 import { UpdateAuthorInput } from './dto/update-author.input';
-import { Author } from './entities/author.entity';
+import { Author, PaginatedAuthor } from './entities/author.entity';
+import { PaginationArgs } from 'src/common/graphql/pagination.args';
 
 @Resolver(() => Author)
 export class AuthorsResolver {
@@ -15,11 +16,11 @@ export class AuthorsResolver {
     return this.authorsService.create(createAuthorInput);
   }
 
-  @Query(() => [Author], {
+  @Query(() => PaginatedAuthor, {
     name: 'authors',
   })
-  async findAll(): Promise<Author[]> {
-    return (await this.authorsService.findAll()).data;
+  async findAll(@Args() options: PaginationArgs) {
+    return this.authorsService.findAll(options);
   }
 
   @Query(() => Author, { name: 'author' })

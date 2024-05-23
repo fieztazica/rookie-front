@@ -1,8 +1,9 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { OrdersService } from './orders.service';
-import { Order } from './entities/order.entity';
+import { Order, PaginatedOrder } from './entities/order.entity';
 import { CreateOrderInput } from './dto/create-order.input';
 import { UpdateOrderInput } from './dto/update-order.input';
+import { PaginationArgs } from 'src/common/graphql/pagination.args';
 
 @Resolver(() => Order)
 export class OrdersResolver {
@@ -15,9 +16,9 @@ export class OrdersResolver {
     return this.ordersService.create(createOrderInput);
   }
 
-  @Query(() => [Order], { name: 'orders' })
-  async findAll(): Promise<Order[]> {
-    return (await this.ordersService.findAll()).data;
+  @Query(() => PaginatedOrder, { name: 'orders' })
+  async findAll(@Args() options: PaginationArgs) {
+    return this.ordersService.findAll(options);
   }
 
   @Query(() => Order, { name: 'order' })

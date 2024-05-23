@@ -1,8 +1,9 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { CustomersService } from './customers.service';
-import { Customer } from './entities/customer.entity';
+import { Customer, PaginatedCustomer } from './entities/customer.entity';
 import { CreateCustomerInput } from './dto/create-customer.input';
 import { UpdateCustomerInput } from './dto/update-customer.input';
+import { PaginationArgs } from 'src/common/graphql/pagination.args';
 
 @Resolver(() => Customer)
 export class CustomersResolver {
@@ -15,9 +16,9 @@ export class CustomersResolver {
     return this.customersService.create(createCustomerInput);
   }
 
-  @Query(() => [Customer], { name: 'customers' })
-  async findAll(): Promise<Customer[]> {
-    return (await this.customersService.findAll()).data;
+  @Query(() => PaginatedCustomer, { name: 'customers' })
+  async findAll(@Args() options: PaginationArgs) {
+    return this.customersService.findAll(options);
   }
 
   @Query(() => Customer, { name: 'customer' })
