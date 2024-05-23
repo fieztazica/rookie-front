@@ -11,8 +11,8 @@ const fontSans = FontSans({
 });
 
 export const metadata: Metadata = {
-  title: 'YA Shop',
-  description: 'Shopping with passion',
+  title: 'Rookie Store',
+  description: 'Rookie Store',
 };
 
 export default function RootLayout({

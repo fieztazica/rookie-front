@@ -1,23 +1,18 @@
-'use client';
-
-import React from 'react';
-import { useGetProducts } from '../features/product/useGetProducts';
+import Link from 'next/link';
+import { Product } from '../__generated__/graphql';
 import ProductCard from './product-card';
 
-type Props = {};
+type Props = {
+  products: Product[];
+};
 
-function ProductList({}: Props) {
-  const { data, loading, error } = useGetProducts();
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error : {error.message}</p>;
-
+function ProductList({ products }: Props) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-      {data?.products.map((p) => (
-        <div key={`product_${p.id}`}>
+      {products.map((p) => (
+        <Link key={`product_${p.id}`} href={`/product/${p.id}`}>
           <ProductCard product={p} />
-        </div>
+        </Link>
       ))}
     </div>
   );

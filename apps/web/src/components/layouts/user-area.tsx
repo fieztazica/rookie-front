@@ -26,7 +26,7 @@ type Props = {};
 
 async function UserArea({}: Props) {
   const session = await auth();
-  console.log(session);
+//   console.log(session);
   if (!session) return <SignIn />;
   return (
     <DropdownMenu>

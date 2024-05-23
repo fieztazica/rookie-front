@@ -15,7 +15,7 @@ type Props = {
 
 function ProductCard({ product }: Props) {
   return (
-    <Card className="w-fit">
+    <Card className="w-fit transition-all hover:cursor-pointer hover:scale-105">
       <CardHeader>
         <CardTitle>{product.displayName || product.name}</CardTitle>
         <CardDescription>

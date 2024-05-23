@@ -46,7 +46,7 @@ function NavMenu({}: Props) {
                   className: cn(
                     'bg-muted',
                     'hover:bg-white',
-                    pathname.includes(link.href) && 'bg-white',
+                    pathname == link.href && 'bg-white',
                   ),
                 })}
               >

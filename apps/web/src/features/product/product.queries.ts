@@ -1,20 +1,27 @@
 import { gql } from '@/src/__generated__';
 
 export const GET_PRODUCTS = gql(`
-    query GetProducts {
-        products {
-            id
-            name
-            displayName
-            authors {
-                author {
-                    firstName
-                    lastName
+    query GetProducts($page: Int, $perPage: Int) {
+        products(page: $page, perPage: $perPage) {
+            data {
+                id
+                name
+                displayName
+                authors {
+                    author {
+                        firstName
+                        lastName
+                    }
                 }
+                salePrice
+                imageUrl
+                price
             }
-            salePrice
-            imageUrl
-            price
+            meta {
+                total
+                currentPage
+                perPage
+            }
         }
     }
 `);
