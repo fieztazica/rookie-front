@@ -1,3 +1,4 @@
+import { UserinfoResponse } from 'openid-client';
 import { AuthorsService } from 'src/authors/authors.service';
 import {
   CreateAuthorInput,
@@ -34,7 +35,7 @@ export type GetUniqueKeysReturns = {
 export type MainLayoutRes = {
   successMessage?: string;
   errorMessage?: string;
-  userinfo?: unknown;
+  userinfo?: UserinfoResponse;
 };
 
 export type ResourcePageRes = MainLayoutRes & {

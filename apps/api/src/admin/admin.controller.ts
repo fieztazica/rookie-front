@@ -18,6 +18,7 @@ import { OrdersService } from 'src/orders/orders.service';
 import { ProductsService } from 'src/products/products.service';
 import { AdminService } from './admin.service';
 import { DetailPage, EntityNames, MainLayoutRes } from './admin.type';
+import { Request } from 'express';
 
 @Controller('admin')
 export class AdminController {
@@ -45,7 +46,7 @@ export class AdminController {
   @Post(':entity/:id/delete')
   @RedirectAuth()
   async delete(
-    @Req() req,
+    @Req() req: Request,
     @Res() res,
     @Param('entity') entity: EntityNames,
     @Param('id') entityId: string,
@@ -58,7 +59,7 @@ export class AdminController {
   @RedirectAuth()
   @Render('deleteConfirm')
   async deleteConfirm(
-    @Req() req,
+    @Req() req: Request,
     @Res() res,
     @Param('entity') entity: EntityNames,
     @Param('id') entityId: string,
@@ -76,7 +77,7 @@ export class AdminController {
   @Post(':entity/:id/edit')
   @RedirectAuth()
   async editPost(
-    @Req() req,
+    @Req() req: Request,
     @Res() res,
     @Body() body,
     @Param('entity') entity: EntityNames,
@@ -89,7 +90,7 @@ export class AdminController {
   @RedirectAuth()
   @Render('edit')
   async editPage(
-    @Req() req,
+    @Req() req: Request,
     @Param('entity') entity: EntityNames,
     @Param('id') id: string,
     @Query('successMessage') successMessage: string,
@@ -114,7 +115,7 @@ export class AdminController {
   @RedirectAuth()
   @Render('create')
   async createPost(
-    @Req() req,
+    @Req() req: Request,
     @Res() res,
     @Body() body,
     @Param('entity') entity: EntityNames,
@@ -133,7 +134,7 @@ export class AdminController {
   @RedirectAuth()
   @Render('detail')
   async detailPage(
-    @Req() req,
+    @Req() req: Request,
     @Param('entity') entity: EntityNames,
     @Param('id') id: string,
     @Query('successMessage') successMessage: string,
@@ -158,14 +159,14 @@ export class AdminController {
   @RedirectAuth()
   @Render('list')
   listPage(
-    @Req() request,
+    @Req() req: Request,
     @Param('entity') entityName: EntityNames,
     @Query('page') page: number = 1,
     @Query('perPage') perPage: number = 10,
     @Query('successMessage') successMessage: string,
   ) {
     return this.adminService.listRes(
-      request,
+      req,
       entityName,
       page,
       perPage,

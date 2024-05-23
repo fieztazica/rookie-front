@@ -1,7 +1,7 @@
 import { Global, Module } from '@nestjs/common';
+import { enhance } from '@zenstackhq/runtime';
 import { ZenStackModule } from '@zenstackhq/server/nestjs';
 import { PrismaService } from './prisma.service';
-import { enhance } from '@zenstackhq/runtime';
 
 @Global()
 @Module({

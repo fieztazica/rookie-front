@@ -28,6 +28,7 @@ import {
   Service,
   UpdateInputType,
 } from './admin.type';
+import { Request } from 'express';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -120,7 +121,7 @@ export class AdminService {
   }
 
   dynamicCreateForm(
-    @Req() req,
+    @Req() req: Request,
     entityName: EntityNames,
   ): DynamicCreateFormRes | MainLayoutRes {
     const defaultCreateInput = this.getDefaultCreateInput(entityName);
@@ -140,7 +141,7 @@ export class AdminService {
   }
 
   async listRes(
-    @Req() request,
+    @Req() req: Request,
     entityName: EntityNames,
     page: number,
     perPage: number,
@@ -169,7 +170,7 @@ export class AdminService {
       console.error(`${errorMessage}:`, error);
       return {
         errorMessage,
-        userinfo: request.user?.userinfo,
+        userinfo: req.user?.userinfo,
         resourceName: entityName,
       };
     }
@@ -182,7 +183,7 @@ export class AdminService {
       console.error(`${errorMessage}:`, error);
       return {
         errorMessage,
-        userinfo: request.user?.userinfo,
+        userinfo: req.user?.userinfo,
       };
     }
 
@@ -192,13 +193,13 @@ export class AdminService {
       uniqueKeys,
       data: entityRecords,
       meta: paginatedRes.meta,
-      userinfo: request.user?.userinfo,
+      userinfo: req.user?.userinfo,
       successMessage: successMessage ? decodeURIComponent(successMessage) : '',
     };
   }
 
   async createEntity(
-    @Req() req,
+    @Req() req: Request,
     @Res() res,
     entityName: EntityNames,
     createInput: CreateInputType,
@@ -235,7 +236,7 @@ export class AdminService {
   }
 
   async editEntity(
-    @Req() req,
+    @Req() req: Request,
     @Res() res,
     editInput: UpdateInputType,
     entityName: EntityNames,
@@ -271,7 +272,7 @@ export class AdminService {
   }
 
   async getEntityDetails(
-    @Req() request,
+    @Req() req: Request,
     entityName: EntityNames,
     id: string,
   ): Promise<ReturnType<Service['findOne']>> {
@@ -285,7 +286,7 @@ export class AdminService {
   }
 
   async deleteEntity(
-    @Req() request,
+    @Req() req: Request,
     @Res() res,
     entityName: EntityNames,
     id: string,
@@ -297,7 +298,7 @@ export class AdminService {
       if (!deleted) {
         return {
           resourceName: entityName,
-          userinfo: request.user?.userinfo,
+          userinfo: req.user?.userinfo,
           errorMessage: `Failed to delete record`,
         };
       }
@@ -311,7 +312,7 @@ export class AdminService {
       console.error(error);
       return {
         resourceName: entityName,
-        userinfo: request.user?.userinfo,
+        userinfo: req.user?.userinfo,
         errorMessage: `Failed to delete record: ${error.message}`,
       };
     }
