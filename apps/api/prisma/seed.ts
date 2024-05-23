@@ -3,7 +3,6 @@ import {
   seedCustomers,
   seedCategories,
   seedAuthors,
-  seedPublishers,
   seedProducts,
 } from './seeders';
 
@@ -11,8 +10,7 @@ async function main() {
   const customers = await seedCustomers();
   const categories = await seedCategories();
   const authors = await seedAuthors();
-  const publishers = await seedPublishers();
-  const products = await seedProducts(authors, categories, publishers);
+  const products = await seedProducts(authors, categories);
 }
 main()
   .then(async () => {

@@ -1,33 +1,30 @@
-import { CreateCustomerInput } from 'src/customers/dto/create-customer.input';
-import { UpdateCustomerInput } from 'src/customers/dto/update-customer.input';
-import { CreateFeedbackInput } from 'src/feedbacks/dto/create-feedback.input';
-import { UpdateFeedbackInput } from 'src/feedbacks/dto/update-feedback.input';
-import { CreateOrderInput } from 'src/orders/dto/create-order.input';
-import { UpdateOrderInput } from 'src/orders/dto/update-order.input';
-import { CreateProductInput } from 'src/products/dto/create-product.input';
-import { UpdateProductInput } from 'src/products/dto/update-product.input';
-import {
-  CreatePublisherInput,
-  DEFAULT_PUBLISHER_CREATE_INPUT,
-} from 'src/publishers/dto/create-publisher.input';
-import { UpdatePublisherInput } from 'src/publishers/dto/update-publisher.input';
-import { UpdateCategoryInput } from 'src/categories/dto/update-category.input';
-import { UpdateAuthorInput } from 'src/authors/dto/update-author.input';
+import { AuthorsService } from 'src/authors/authors.service';
 import {
   CreateAuthorInput,
   DEFAULT_AUTHOR_CREATE_INPUT,
 } from 'src/authors/dto/create-author.input';
+import { UpdateAuthorInput } from 'src/authors/dto/update-author.input';
+import { CategoriesService } from 'src/categories/categories.service';
 import {
   CreateCategoryInput,
   DEFAULT_CATEGORY_CREATE_INPUT,
 } from 'src/categories/dto/create-category.input';
-import { AuthorsService } from 'src/authors/authors.service';
-import { CategoriesService } from 'src/categories/categories.service';
+import { UpdateCategoryInput } from 'src/categories/dto/update-category.input';
 import { CustomersService } from 'src/customers/customers.service';
-import { OrdersService } from 'src/orders/orders.service';
-import { ProductsService } from 'src/products/products.service';
-import { PublishersService } from 'src/publishers/publishers.service';
+import { CreateCustomerInput } from 'src/customers/dto/create-customer.input';
+import { UpdateCustomerInput } from 'src/customers/dto/update-customer.input';
+import { CreateFeedbackInput } from 'src/feedbacks/dto/create-feedback.input';
+import { UpdateFeedbackInput } from 'src/feedbacks/dto/update-feedback.input';
 import { FeedbacksService } from 'src/feedbacks/feedbacks.service';
+import { CreateOrderInput } from 'src/orders/dto/create-order.input';
+import { UpdateOrderInput } from 'src/orders/dto/update-order.input';
+import { OrdersService } from 'src/orders/orders.service';
+import {
+  CreateProductInput,
+  DEFAULT_PRODUCT_CREATE_INPUT,
+} from 'src/products/dto/create-product.input';
+import { UpdateProductInput } from 'src/products/dto/update-product.input';
+import { ProductsService } from 'src/products/products.service';
 
 export type GetUniqueKeysReturns = {
   key: string;
@@ -69,12 +66,10 @@ export type Service =
   | CustomersService
   | OrdersService
   | ProductsService
-  | PublishersService
   | FeedbacksService;
 
 export type CreateInputType = CreateAuthorInput &
   CreateCategoryInput &
-  CreatePublisherInput &
   CreateProductInput &
   CreateCustomerInput &
   CreateFeedbackInput &
@@ -82,7 +77,6 @@ export type CreateInputType = CreateAuthorInput &
 
 export type UpdateInputType = UpdateAuthorInput &
   UpdateCategoryInput &
-  UpdatePublisherInput &
   UpdateProductInput &
   UpdateCustomerInput &
   UpdateFeedbackInput &
@@ -94,11 +88,10 @@ export type EntityNames =
   | 'customers'
   | 'orders'
   | 'products'
-  | 'publishers'
   | 'feedbacks';
 
 export type DefaultCreateInputType = {
   authors: ReturnType<typeof DEFAULT_AUTHOR_CREATE_INPUT>;
-  publishers: ReturnType<typeof DEFAULT_PUBLISHER_CREATE_INPUT>;
   categories: ReturnType<typeof DEFAULT_CATEGORY_CREATE_INPUT>;
+  products: ReturnType<typeof DEFAULT_PRODUCT_CREATE_INPUT>;
 };

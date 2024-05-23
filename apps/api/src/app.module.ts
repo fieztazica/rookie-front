@@ -2,11 +2,14 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Global, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
+import { ServeStaticModule } from '@nestjs/serve-static';
 import { ThrottlerModule } from '@nestjs/throttler';
+import { join } from 'path';
 import { AdminModule } from './admin/admin.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
+import { AuthorsModule } from './authors/authors.module';
 import { CategoriesModule } from './categories/categories.module';
 import configuration from './common/config/configuration';
 import { validate } from './common/config/env.validation';
@@ -17,11 +20,6 @@ import { FeedbacksModule } from './feedbacks/feedbacks.module';
 import { OrdersModule } from './orders/orders.module';
 import { ProductsModule } from './products/products.module';
 import { RedisModule } from './redis/redis.module';
-import { AuthorsModule } from './authors/authors.module';
-import { PublishersModule } from './publishers/publishers.module';
-import { ServeStaticModule } from '@nestjs/serve-static';
-import { join } from 'path';
-
 const serveStaticFactory = {
   useFactory: () => {
     const jqueryPath = join(process.cwd(), 'node_modules', 'jquery', 'dist');
@@ -71,7 +69,6 @@ const serveStaticFactory = {
     AuthModule,
     RedisModule,
     AuthorsModule,
-    PublishersModule,
   ],
   controllers: [AppController],
   providers: [AppService, PrismaService],

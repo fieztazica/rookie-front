@@ -69,25 +69,6 @@ model Author {
     @@deny('read', deleted)
 }
 
-model Publisher {
-    id          String               @id @default(cuid()) @map("publisher_id")
-    name        String               @unique @db.VarChar(64)
-    displayName String?              @db.VarChar(255)
-    email       String               @unique @db.VarChar(255)
-    phoneNumber String               @db.VarChar(24)
-    website     String               @db.Text
-
-    deleted     Boolean              @default(false) @omit
-    createdAt   DateTime             @default(now())
-    updatedAt   DateTime             @updatedAt
-
-    products    ProductToPublisher[]
-
-    @@map("publishers")
-    @@deny('read', deleted)
-}
-
-
 model ProductToAuthor {
     productId String   @map("product_id")
     authorId  String   @map("author_id")
@@ -102,61 +83,28 @@ model ProductToAuthor {
     @@map("product_to_authors")
 }
 
-model ProductToPublisher {
-    productId   String    @map("product_id")
-    publisherId String    @map("publisher_id")
-
-    product     Product   @relation(fields: [productId], references: [id])
-    publisher   Publisher @relation(fields: [publisherId], references: [id])
-
-    createdAt   DateTime  @default(now())
-    updatedAt   DateTime  @updatedAt
-
-    @@id([productId, publisherId])
-    @@map("product_to_publishers")
-}
-
 model Product {
-    id            String               @id @default(cuid()) @map("product_id")
-    name          String               @unique @db.VarChar(255)
-    displayName   String?              @db.VarChar(255)
-    description   String?              @db.Text
-    price         Decimal              @db.Decimal
-    salePrice     Decimal?             @db.Decimal
-    ratings       Float                @default(0)
-    accountId     String?              @map("account_id")
-    storeQuantity Int                  @default(0)
+    id            String              @id @default(cuid()) @map("product_id")
+    name          String              @unique @db.VarChar(255)
+    displayName   String?             @db.VarChar(255)
+    description   String?             @db.Text
+    imageUrl      String?
+    price         Float
+    salePrice     Float               @default(-1)
+    ratings       Float               @default(0)
+    accountId     String?             @map("account_id")
+    storeQuantity Int                 @default(0)
 
     categories    ProductToCategory[]
     orderItems    OrderItem[]
     feedbacks     Feedback[]
-    images        Image[]
-    publishers    ProductToPublisher[]
     authors       ProductToAuthor[]
 
-    deleted       Boolean              @default(false) @omit
-    createdAt     DateTime             @default(now())
-    updatedAt     DateTime             @updatedAt
+    deleted       Boolean             @default(false) @omit
+    createdAt     DateTime            @default(now())
+    updatedAt     DateTime            @updatedAt
 
     @@map("products")
-    @@deny('read', deleted)
-}
-
-model Image {
-    id          Int      @default(autoincrement()) @map("image_id")
-    productId   String   @map("product_id")
-    url         String   @db.Text
-    alt         String?  @db.VarChar(255)
-    isThumbnail Boolean  @default(false)
-
-    product     Product  @relation(fields: [productId], references: [id])
-
-    deleted     Boolean  @default(false) @omit
-    createdAt   DateTime @default(now())
-    updatedAt   DateTime @updatedAt
-
-    @@id([id, productId])
-    @@map("images")
     @@deny('read', deleted)
 }
 
@@ -212,7 +160,7 @@ model Feedback {
 model Order {
     id         String      @id @default(cuid()) @map("order_id")
     customerId String      @map("customer_id")
-    total      Decimal     @db.Decimal
+    total      Float
 
     customer   Customer    @relation(fields: [customerId], references: [id])
     orderItems OrderItem[]
@@ -228,7 +176,7 @@ model Order {
 model OrderItem {
     orderId   String   @map("order_id")
     productId String   @map("product_id")
-    price     Decimal  @db.Decimal
+    price     Float
     quantity  Int
 
     order     Order    @relation(fields: [orderId], references: [id])

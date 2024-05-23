@@ -16,7 +16,6 @@ import { CustomersService } from 'src/customers/customers.service';
 import { FeedbacksService } from 'src/feedbacks/feedbacks.service';
 import { OrdersService } from 'src/orders/orders.service';
 import { ProductsService } from 'src/products/products.service';
-import { PublishersService } from 'src/publishers/publishers.service';
 import { AdminService } from './admin.service';
 import { DetailPage, EntityNames, MainLayoutRes } from './admin.type';
 
@@ -30,7 +29,6 @@ export class AdminController {
     private readonly feedbacksService: FeedbacksService,
     private readonly productsService: ProductsService,
     private readonly ordersService: OrdersService,
-    private readonly publishersService: PublishersService,
   ) {}
 
   @Get()

@@ -2,7 +2,6 @@ import { PrismaClient } from '@prisma/client';
 export { seedAuthors } from './authors';
 export { seedCategories } from './categories';
 export { seedCustomers } from './customers';
-export { seedPublishers } from './publishers';
 export { seedProducts } from './products';
 export const prisma = new PrismaClient();
 export function getRandomFrom<T>(array: T[]): T {

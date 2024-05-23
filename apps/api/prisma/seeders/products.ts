@@ -1,21 +1,16 @@
-import { Author, Category, Publisher } from '@prisma/client';
+import { Author, Category } from '@prisma/client';
 import { getCreateModels, prisma } from '.';
 
 /**
-
-name,author,category,publisher,price
-Barricade,Hymie Quan,non-fiction,Roombo,28.34
-Blackadder Back & Forth,Farrel Meritt,romance,Twitternation,21.12
-"Devil's Chair, The",Westleigh Nias,fiction,Brainbox,30.62
-Tennessee Johnson,Layne Pollendine,mystery,Linkbuzz,9.79
-"Best of Ernie and Bert, The",Roderick Vasilyevski,fiction,Oyonder,32.19
+name,author,category,price
+Barricade,Hymie Quan,non-fiction,28.34
+Blackadder Back & Forth,Farrel Meritt,romance,21.12
+"Devil's Chair, The",Westleigh Nias,fiction,30.62
+Tennessee Johnson,Layne Pollendine,mystery,9.79
+"Best of Ernie and Bert, The",Roderick Vasilyevski,fiction,32.19
 */
 
-export async function seedProducts(
-  authors: Author[],
-  categories: Category[],
-  publishers: Publisher[],
-) {
+export async function seedProducts(authors: Author[], categories: Category[]) {
   const book1 = await prisma.product.upsert({
     where: { name: 'Barricade' },
     update: {},
@@ -24,7 +19,7 @@ export async function seedProducts(
       displayName: 'Barricade',
       authors: await getCreateModels(2, 'author', authors),
       categories: await getCreateModels(3, 'category', categories),
-      publishers: await getCreateModels(1, 'publisher', publishers),
+      imageUrl: `https://dummyimage.com/300x400?text=${encodeURIComponent('Barricade')}`,
       price: 28.34,
     },
   });
@@ -37,7 +32,7 @@ export async function seedProducts(
       displayName: 'Blackadder Back & Forth',
       authors: await getCreateModels(2, 'author', authors),
       categories: await getCreateModels(3, 'category', categories),
-      publishers: await getCreateModels(1, 'publisher', publishers),
+      imageUrl: `https://dummyimage.com/300x400?text=${encodeURIComponent('Blackadder Back & Forth')}`,
       price: 21.12,
     },
   });
@@ -50,7 +45,7 @@ export async function seedProducts(
       displayName: "Devil's Chair, The",
       authors: await getCreateModels(2, 'author', authors),
       categories: await getCreateModels(3, 'category', categories),
-      publishers: await getCreateModels(1, 'publisher', publishers),
+      imageUrl: `https://dummyimage.com/300x400?text=${encodeURIComponent("Devil's Chair, The")}`,
       price: 30.62,
     },
   });

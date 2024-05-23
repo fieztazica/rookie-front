@@ -15,9 +15,8 @@ import { CustomersService } from 'src/customers/customers.service';
 import { FeedbacksService } from 'src/feedbacks/feedbacks.service';
 import { OrdersService } from 'src/orders/orders.service';
 import { ProductsService } from 'src/products/products.service';
-import { DEFAULT_PUBLISHER_CREATE_INPUT } from 'src/publishers/dto/create-publisher.input';
 
-import { PublishersService } from 'src/publishers/publishers.service';
+import { DEFAULT_PRODUCT_CREATE_INPUT } from 'src/products/dto/create-product.input';
 import {
   CreateInputType,
   DefaultCreateInputType,
@@ -45,7 +44,6 @@ export class AdminService {
     private readonly feedbacksService: FeedbacksService,
     private readonly productsService: ProductsService,
     private readonly ordersService: OrdersService,
-    private readonly publishersService: PublishersService,
   ) {}
 
   beautifyEntities<T>(entities: T[]) {
@@ -58,9 +56,6 @@ export class AdminService {
   beautifyEntity<T>(record: T) {
     if (record['firstName'] && record['lastName']) {
       record['name'] = `${record['firstName']} ${record['lastName']}`;
-    }
-    if (record['price']) {
-      record['price'] = record['price'].toString();
     }
     if (record['createdAt']) {
       record['createdAt'] = dayjs(record['createdAt']).calendar();
@@ -86,8 +81,8 @@ export class AdminService {
   getDefaultCreateInput(entityName: EntityNames) {
     const defaultCreateInputs: DefaultCreateInputType = {
       authors: DEFAULT_AUTHOR_CREATE_INPUT(),
-      publishers: DEFAULT_PUBLISHER_CREATE_INPUT(),
       categories: DEFAULT_CATEGORY_CREATE_INPUT(),
+      products: DEFAULT_PRODUCT_CREATE_INPUT(),
     };
 
     return defaultCreateInputs[entityName];
@@ -110,6 +105,15 @@ export class AdminService {
     Object.keys(object).forEach((key) => {
       if (exclude ? fields.includes(key) : !fields.includes(key)) {
         delete object[key];
+      }
+    });
+    return object;
+  }
+
+  parseNumberOfEntity<T>(object: T) {
+    Object.keys(object).forEach((key) => {
+      if (object[key] && !isNaN(object[key])) {
+        object[key] = Number(object[key]);
       }
     });
     return object;
@@ -238,7 +242,7 @@ export class AdminService {
     id: string,
   ) {
     this.filterFieldsFromEntity(editInput, ['id', 'createdAt', 'updatedAt']);
-
+    this.parseNumberOfEntity(editInput);
     try {
       const entityService = this.getServiceFromEntityName(entityName);
       const updated = await entityService.update(id, editInput);
