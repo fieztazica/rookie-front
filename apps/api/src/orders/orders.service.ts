@@ -1,4 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
+import { Order, Prisma } from '@prisma/client';
 import { ENHANCED_PRISMA } from '@zenstackhq/server/nestjs';
 import {
   createPaginator,
@@ -8,8 +9,6 @@ import {
 import { PrismaService } from '../common/database/prisma.service';
 import { CreateOrderInput } from './dto/create-order.input';
 import { UpdateOrderInput } from './dto/update-order.input';
-import { Order } from '@prisma/client';
-import { FindManyOrderArgs } from 'src/__generated__/order/find-many-order.args';
 
 @Injectable()
 export class OrdersService {
@@ -22,7 +21,7 @@ export class OrdersService {
 
   findAll(options: PaginateOptions = {}): Promise<PaginatedResult<Order>> {
     const paginate = createPaginator(options);
-    return paginate<Order, FindManyOrderArgs>(this.prisma.order, {
+    return paginate<Order, Prisma.OrderFindManyArgs>(this.prisma.order, {
       where: { deleted: { equals: false } },
     });
   }

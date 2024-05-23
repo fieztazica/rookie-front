@@ -1,15 +1,14 @@
 import { Inject, Injectable } from '@nestjs/common';
+import { Customer, Prisma } from '@prisma/client';
 import { ENHANCED_PRISMA } from '@zenstackhq/server/nestjs';
 import {
   createPaginator,
   PaginatedResult,
   PaginateOptions,
 } from 'prisma-pagination';
-import { PrismaService } from '../common/database/prisma.service';
-import { Customer } from '@prisma/client';
 import { CustomerCreateInput } from 'src/__generated__/customer/customer-create.input';
-import { FindManyCustomerArgs } from 'src/__generated__/customer/find-many-customer.args';
 import { CustomerUpdateInput } from 'src/__generated__/customer/customer-update.input';
+import { PrismaService } from '../common/database/prisma.service';
 
 @Injectable()
 export class CustomersService {
@@ -22,9 +21,12 @@ export class CustomersService {
 
   findAll(options: PaginateOptions = {}): Promise<PaginatedResult<Customer>> {
     const paginate = createPaginator(options);
-    return paginate<Customer, FindManyCustomerArgs>(this.prisma.customer, {
-      where: { deleted: { equals: false } },
-    });
+    return paginate<Customer, Prisma.CustomerFindManyArgs>(
+      this.prisma.customer,
+      {
+        where: { deleted: { equals: false } },
+      },
+    );
   }
 
   findOne(id: string): Promise<Customer> {

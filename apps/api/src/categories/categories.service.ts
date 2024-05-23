@@ -1,4 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
+import { Category, Prisma } from '@prisma/client';
 import { ENHANCED_PRISMA } from '@zenstackhq/server/nestjs';
 import {
   createPaginator,
@@ -8,8 +9,6 @@ import {
 import { PrismaService } from '../common/database/prisma.service';
 import { CreateCategoryInput } from './dto/create-category.input';
 import { UpdateCategoryInput } from './dto/update-category.input';
-import { Category } from '@prisma/client';
-import { FindManyCategoryArgs } from 'src/__generated__/category/find-many-category.args';
 
 @Injectable()
 export class CategoriesService {
@@ -22,9 +21,12 @@ export class CategoriesService {
 
   findAll(options?: PaginateOptions): Promise<PaginatedResult<Category>> {
     const paginate = createPaginator(options);
-    return paginate<Category, FindManyCategoryArgs>(this.prisma.category, {
-      where: { deleted: { equals: false } },
-    });
+    return paginate<Category, Prisma.CategoryFindManyArgs>(
+      this.prisma.category,
+      {
+        where: { deleted: { equals: false } },
+      },
+    );
   }
 
   findOne(id: string): Promise<Category> {

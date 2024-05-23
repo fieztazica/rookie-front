@@ -1,4 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
+import { Feedback, Prisma } from '@prisma/client';
 import { ENHANCED_PRISMA } from '@zenstackhq/server/nestjs';
 import {
   createPaginator,
@@ -8,8 +9,6 @@ import {
 import { PrismaService } from '../common/database/prisma.service';
 import { CreateFeedbackInput } from './dto/create-feedback.input';
 import { UpdateFeedbackInput } from './dto/update-feedback.input';
-import { Feedback } from '@prisma/client';
-import { FindManyFeedbackArgs } from 'src/__generated__/feedback/find-many-feedback.args';
 
 @Injectable()
 export class FeedbacksService {
@@ -22,9 +21,12 @@ export class FeedbacksService {
 
   findAll(options: PaginateOptions = {}): Promise<PaginatedResult<Feedback>> {
     const paginate = createPaginator(options);
-    return paginate<Feedback, FindManyFeedbackArgs>(this.prisma.feedback, {
-      where: { deleted: { equals: false } },
-    });
+    return paginate<Feedback, Prisma.FeedbackFindManyArgs>(
+      this.prisma.feedback,
+      {
+        where: { deleted: { equals: false } },
+      },
+    );
   }
 
   findOne(id: string): Promise<Feedback> {

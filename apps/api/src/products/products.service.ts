@@ -8,8 +8,7 @@ import {
 import { PrismaService } from '../common/database/prisma.service';
 import { CreateProductInput } from './dto/create-product.input';
 import { UpdateProductInput } from './dto/update-product.input';
-import { Product } from '@prisma/client';
-import { FindManyProductArgs } from 'src/__generated__/product/find-many-product.args';
+import { Prisma, Product } from '@prisma/client';
 
 @Injectable()
 export class ProductsService {
@@ -22,8 +21,9 @@ export class ProductsService {
 
   findAll(options: PaginateOptions = {}): Promise<PaginatedResult<Product>> {
     const paginate = createPaginator(options);
-    return paginate<Product, FindManyProductArgs>(this.prisma.product, {
+    return paginate<Product, Prisma.ProductFindManyArgs>(this.prisma.product, {
       where: { deleted: { equals: false } },
+      include: { authors: { include: { author: true } } },
     });
   }
 

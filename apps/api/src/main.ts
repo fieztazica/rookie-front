@@ -18,7 +18,10 @@ async function bootstrap() {
 
   const configService: ConfigService = app.get(ConfigService);
   const port: number = configService.get('port');
-  const redisClient = await createClient()
+  const redisUrl: string = configService.get('redisUrl');
+  const redisClient = await createClient({
+    url: redisUrl,
+  })
     .on('error', (err) => console.log('Redis Client Error', err))
     .connect();
   const sessionSecret: string = configService.get('sessionSecret');

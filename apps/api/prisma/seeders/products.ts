@@ -38,7 +38,7 @@ export async function seedProducts(authors: Author[], categories: Category[]) {
   });
 
   const book3 = await prisma.product.upsert({
-    where: { name: 'Blackadder Back & Forth'.trim() },
+    where: { name: "Devil's Chair, The" },
     update: {},
     create: {
       name: "Devil's Chair, The",
@@ -50,7 +50,33 @@ export async function seedProducts(authors: Author[], categories: Category[]) {
     },
   });
 
-  const products = [book1, book2, book3];
+  const book4 = await prisma.product.upsert({
+    where: { name: 'Tennessee Johnson' },
+    update: {},
+    create: {
+      name: 'Tennessee Johnson',
+      displayName: 'Tennessee Johnson',
+      authors: await getCreateModels(2, 'author', authors),
+      categories: await getCreateModels(3, 'category', categories),
+      imageUrl: `https://dummyimage.com/300x400?text=${encodeURIComponent('Tennessee Johnson')}`,
+      price: 30.62,
+    },
+  });
+
+  const book5 = await prisma.product.upsert({
+    where: { name: 'Best of Ernie and Bert, The' },
+    update: {},
+    create: {
+      name: 'Best of Ernie and Bert, The',
+      displayName: 'Best of Ernie and Bert, The',
+      authors: await getCreateModels(2, 'author', authors),
+      categories: await getCreateModels(3, 'category', categories),
+      imageUrl: `https://dummyimage.com/300x400?text=${encodeURIComponent('Best of Ernie and Bert, The')}`,
+      price: 30.62,
+    },
+  });
+
+  const products = [book1, book2, book3, book4, book5];
   console.log(`Seeded ${products.length} products.`);
   return products;
 }
