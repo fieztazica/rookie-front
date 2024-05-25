@@ -1,7 +1,7 @@
 import {
     PaginationOptions,
     usePaginatedQuery,
-} from './pagination/usePaginatedQuery';
+} from '../pagination/usePaginatedQuery';
 import { GET_PRODUCTS } from './product.queries';
 
 export function useGetProducts(options?: PaginationOptions) {

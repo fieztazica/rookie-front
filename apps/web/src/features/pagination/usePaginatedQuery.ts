@@ -1,8 +1,7 @@
 import {
-  DocumentNode,
-  TypedDocumentNode,
-  useQuery,
-  OperationVariables,
+    DocumentNode,
+    TypedDocumentNode,
+    useSuspenseQuery
 } from '@apollo/client';
 
 export type PaginationOptions = {
@@ -14,7 +13,7 @@ export function usePaginatedQuery<T, OperationVariables>(
   query: DocumentNode | TypedDocumentNode<T, OperationVariables>,
   { page, perPage }: PaginationOptions = { page: 1, perPage: 10 },
 ) {
-  return useQuery(query, {
+  return useSuspenseQuery(query, {
     variables: {
       page,
       perPage,

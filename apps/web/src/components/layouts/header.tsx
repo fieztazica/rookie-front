@@ -1,9 +1,11 @@
+import { auth } from '@/auth';
 import NavMenu from './nav';
 import UserArea from './user-area';
 
 type Props = {};
 
 function Header({}: Props) {
+  const session = auth();
   return (
     <header className="p-2 bg-accent sticky top-0 z-50">
       <div className="flex items-center justify-between container mx-auto">

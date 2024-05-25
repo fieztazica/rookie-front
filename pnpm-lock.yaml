@@ -243,6 +243,9 @@ importers:
       '@apollo/client':
         specifier: ^3.10.4
         version: 3.10.4(@types/react@18.3.1)(graphql@16.8.1)(react-dom@18.3.1)(react@18.3.1)
+      '@apollo/experimental-nextjs-app-support':
+        specifier: ^0.10.1
+        version: 0.10.1(@apollo/client@3.10.4)(next@14.2.3)(react@18.3.1)
       '@hookform/resolvers':
         specifier: ^3.4.2
         version: 3.4.2(react-hook-form@7.51.5)
@@ -530,6 +533,18 @@ packages:
       graphql: 16.8.1
     dev: false
 
+  /@apollo/client-react-streaming@0.10.1(@apollo/client@3.10.4)(react@18.3.1):
+    resolution: {integrity: sha512-8wM4y2Q1sSo4BTsemsI5G/G4U2pTM1r0BbwrCL/R2xMF4nSdJBTFO69fDGV+gaGt52bmNtV+MGbV2nJdURH2OQ==}
+    peerDependencies:
+      '@apollo/client': ^3.9.6
+      react: ^18
+    dependencies:
+      '@apollo/client': 3.10.4(@types/react@18.3.1)(graphql@16.8.1)(react-dom@18.3.1)(react@18.3.1)
+      react: 18.3.1
+      superjson: 1.13.3
+      ts-invariant: 0.10.3
+    dev: false
+
   /@apollo/client@3.10.4(@types/react@18.3.1)(graphql@16.8.1)(react-dom@18.3.1)(react@18.3.1):
     resolution: {integrity: sha512-51gk0xOwN6Ls1EbTG5svFva1kdm2APHYTzmFhaAdvUQoJFDxfc0UwQgDxGptzH84vkPlo1qunY1FuboyF9LI3Q==}
     peerDependencies:
@@ -567,6 +582,19 @@ packages:
       zen-observable-ts: 1.2.5
     transitivePeerDependencies:
       - '@types/react'
+    dev: false
+
+  /@apollo/experimental-nextjs-app-support@0.10.1(@apollo/client@3.10.4)(next@14.2.3)(react@18.3.1):
+    resolution: {integrity: sha512-oPDHqSq+cxpE+vm5GsQCYWnj68nTul0wQx/i8MHdjhSBcwmCbOO6oJtfZpXGX8FTzY8Hvb85FrMqIeqQtFTsMw==}
+    peerDependencies:
+      '@apollo/client': ^3.9.6
+      next: ^13.4.1 || ^14.0.0
+      react: ^18
+    dependencies:
+      '@apollo/client': 3.10.4(@types/react@18.3.1)(graphql@16.8.1)(react-dom@18.3.1)(react@18.3.1)
+      '@apollo/client-react-streaming': 0.10.1(@apollo/client@3.10.4)(react@18.3.1)
+      next: 14.2.3(@babel/core@7.24.5)(react-dom@18.3.1)(react@18.3.1)
+      react: 18.3.1
     dev: false
 
   /@apollo/protobufjs@1.2.6:

@@ -1,6 +1,8 @@
 'use client';
 
-import React from 'react';
+import { cn } from '@/lib/utils';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -8,11 +10,11 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from '../ui/navigation-menu';
-import Link from 'next/link';
-import { cn } from '@/lib/utils';
-import { usePathname } from 'next/navigation';
+import Cart from './cart';
 
-type Props = {};
+type Props = {
+  accessToken?: string;
+};
 
 const navLinks: { title: string; href: string }[] = [
   {
@@ -27,13 +29,9 @@ const navLinks: { title: string; href: string }[] = [
     title: 'About',
     href: '/about',
   },
-  {
-    title: 'Cart',
-    href: '/cart',
-  },
 ];
 
-function NavMenu({}: Props) {
+function NavMenu({ accessToken }: Props) {
   const pathname = usePathname();
   return (
     <NavigationMenu>
@@ -55,6 +53,21 @@ function NavMenu({}: Props) {
             </Link>
           </NavigationMenuItem>
         ))}
+        <NavigationMenuItem key={`nav_cart`}>
+          <Link href={'/cart'} legacyBehavior passHref>
+            <NavigationMenuLink
+              className={navigationMenuTriggerStyle({
+                className: cn(
+                  'bg-muted',
+                  'hover:bg-white',
+                  pathname == '/cart' && 'bg-white',
+                ),
+              })}
+            >
+              <Cart />
+            </NavigationMenuLink>
+          </Link>
+        </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
   );

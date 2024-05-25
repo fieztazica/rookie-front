@@ -9,9 +9,9 @@ import ProductCarousel from '../product-carousel';
 type Props = {};
 
 function OnSale({}: Props) {
-  const { data, loading, error } = useGetProducts();
+  const { data,  error } = useGetProducts();
 
-  if (loading) return <p>Loading...</p>;
+//   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error : {error.message}</p>;
   return (
     <section>
