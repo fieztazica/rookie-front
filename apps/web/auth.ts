@@ -6,8 +6,16 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
     Auth0({
       issuer: process.env.AUTH_AUTH0_ISSUER,
+      token: {
+        params: {
+          audience: encodeURI(process.env.AUTH_AUTH0_AUDIENCE as string),
+        },
+      },
       authorization: {
-        params: { scope: process.env.AUTH_AUTH0_SCOPE },
+        params: {
+          scope: process.env.AUTH_AUTH0_SCOPE,
+          audience: encodeURI(process.env.AUTH_AUTH0_AUDIENCE as string),
+        },
       },
       // You can also make calls to external resources if necessary.
       async profile(profile) {
@@ -55,6 +63,7 @@ declare module 'next-auth/jwt' {
     id?: string;
     access_token?: string;
     admin: boolean;
+    idToken?: string
   }
 }
 
