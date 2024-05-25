@@ -19,7 +19,7 @@ export class GraphQLConfig implements GqlOptionsFactory {
         req,
         res,
       }),
-      path: '/graphql',
+      path: '/api/graphql',
       autoSchemaFile: '~schema.gql',
       sortSchema: true,
       playground: this.testing,
