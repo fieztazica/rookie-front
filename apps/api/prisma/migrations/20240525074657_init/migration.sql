@@ -136,6 +136,9 @@ CREATE UNIQUE INDEX "customers_email_key" ON "customers"("email");
 CREATE UNIQUE INDEX "customers_phoneNumber_key" ON "customers"("phoneNumber");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "customers_account_id_key" ON "customers"("account_id");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "authors_email_key" ON "authors"("email");
 
 -- CreateIndex

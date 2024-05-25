@@ -38,7 +38,7 @@ model Customer {
     displayName String?    @db.VarChar(255)
     gender      Gender?    @default(UNDEFINED)
 
-    accountId   String?    @map("account_id")
+    accountId   String?    @unique @map("account_id")
 
     orders      Order[]
     feedback    Feedback[]
