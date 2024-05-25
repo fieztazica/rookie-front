@@ -6,20 +6,27 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
     Auth0({
       issuer: process.env.AUTH_AUTH0_ISSUER,
-      authorization: { params: { scope: process.env.AUTH_AUTH0_SCOPE } },
+      authorization: {
+        params: { scope: process.env.AUTH_AUTH0_SCOPE },
+      },
       // You can also make calls to external resources if necessary.
       async profile(profile) {
-        // console.log(profile);
+        console.log('auth0 profile', profile);
         return {};
       },
     }),
   ],
   callbacks: {
     jwt({ token, user, account, profile }) {
+      if (account) {
+        token.access_token = account.access_token;
+      }
+
       if (profile) {
         token.email = profile.email;
         token.name = profile.name;
         token.picture = profile.picture;
+        token.admin = profile.userRoles?.includes('Admin') || false;
       }
 
       if (user) {
@@ -27,15 +34,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         token.id = user.id;
       }
 
-      if (account) {
-        token.access_token = account.access_token;
-      }
-
       return token;
     },
     session({ session, token, user }) {
       session.access_token = token.access_token;
       session.user.id = token.sub!;
+      session.admin = token.admin || false;
       return session;
     },
   },
@@ -50,6 +54,7 @@ declare module 'next-auth/jwt' {
     /** OpenID ID Token */
     id?: string;
     access_token?: string;
+    admin: boolean;
   }
 }
 
@@ -59,5 +64,10 @@ declare module 'next-auth' {
    */
   interface Session {
     access_token?: string;
+    admin: boolean;
+  }
+
+  interface Profile {
+    userRoles?: string[];
   }
 }
