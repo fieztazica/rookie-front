@@ -1,24 +1,66 @@
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { CartData } from './entities/cart.entity';
-import { AddCartItemInput } from './dto/add-cart-item.input';
+import { UseGuards } from '@nestjs/common';
+import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { GqlJwtAuthGuard } from 'src/auth/guard/gql.jwt.guard';
 import { CartService } from './cart.service';
+import { CartItemInput } from './dto/cart-item.input';
+import { Cart } from './entities/cart.entity';
 
 @Resolver()
 export class CartResolver {
   constructor(private readonly cartService: CartService) {}
 
-  @Query(() => CartData, { name: 'cart' })
-  async getCart(@Args('userId', { type: () => String }) userId: string) {
-    const cart = await this.cartService.get(userId);
-    console.log(cart);
+  @Query(() => Int, { name: 'countCartItems' })
+  @UseGuards(GqlJwtAuthGuard)
+  async countCart(
+    @Args('customerId', { type: () => String }) customerId: string,
+  ) {
+    const cart = await this.cartService.get(customerId);
+    return cart.items.length;
+  }
+
+  @Query(() => Cart, { name: 'cart' })
+  @UseGuards(GqlJwtAuthGuard)
+  async getCart(
+    @Args('customerId', { type: () => String }) customerId: string,
+  ) {
+    const cart = await this.cartService.get(customerId);
     return cart;
   }
 
-  @Mutation(() => CartData)
+  @Mutation(() => Cart)
   addCartItem(
-    @Args('userId', { type: () => String }) userId: string,
-    @Args('input') input: AddCartItemInput,
+    @Args('customerId', { type: () => String }) customerId: string,
+    @Args('input') input: CartItemInput,
   ) {
-    return this.cartService.add(userId, input.key, input.value);
+    return this.cartService.add(customerId, input.key, input.value);
+  }
+
+  @Mutation(() => Cart)
+  removeCartItem(
+    @Args('customerId', { type: () => String }) customerId: string,
+    @Args('input') input: CartItemInput,
+  ) {
+    return this.cartService.remove(customerId, input.key, input.value);
+  }
+
+  @Mutation(() => Cart)
+  deleteCartItem(
+    @Args('customerId', { type: () => String }) customerId: string,
+    @Args('key', { type: () => String }) key: string,
+  ) {
+    return this.cartService.delete(customerId, key);
+  }
+
+  @Mutation(() => Boolean)
+  async clearCart(
+    @Args('customerId', { type: () => String }) customerId: string,
+  ) {
+    try {
+      await this.cartService.clear(customerId);
+    } catch (e) {
+      console.log(e);
+      return false;
+    }
+    return true;
   }
 }

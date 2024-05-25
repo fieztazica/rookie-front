@@ -1,6 +1,6 @@
 import { passportJwtSecret } from 'jwks-rsa';
 
-const jwtConstants = {
+export const jwtConstants = {
   secret: process.env.JWT_SECRET,
   secretOrKeyProvider: passportJwtSecret({
     cache: true,
@@ -18,7 +18,7 @@ const jwtConstants = {
   defaultRefreshTokenExpiresIn: 60 * 60 * 24 * 30,
 };
 
-const openIdConstants = {
+export const openIdConstants = {
   issuer: process.env.AUTH0_ISSUER_URL,
   clientId: process.env.AUTH0_CLIENT_ID,
   clientSecret: process.env.AUTH0_CLIENT_SECRET,
@@ -26,5 +26,3 @@ const openIdConstants = {
   scope: process.env.OAUTH2_CLIENT_REGISTRATION_LOGIN_SCOPE,
   domain: process.env.AUTH0_DOMAIN,
 };
-
-export { jwtConstants, openIdConstants };
