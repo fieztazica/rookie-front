@@ -28,6 +28,7 @@ import { FeedbacksModule } from './feedbacks/feedbacks.module';
 import { OrdersModule } from './orders/orders.module';
 import { ProductsModule } from './products/products.module';
 import { RedisModule } from './redis/redis.module';
+import { ConfigsModule } from './configs/configs.module';
 
 @Global()
 @Module({
@@ -66,6 +67,7 @@ import { RedisModule } from './redis/redis.module';
     RedisModule,
     AuthorsModule,
     CartModule,
+    ConfigsModule,
   ],
   controllers: [AppController],
   providers: [

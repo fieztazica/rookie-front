@@ -13,6 +13,8 @@ import { ProductsModule } from 'src/products/products.module';
 import { ProductsService } from 'src/products/products.service';
 import { AdminController } from './admin.controller';
 import { AdminService } from './admin.service';
+import { ConfigsModule } from 'src/configs/configs.module';
+import { ConfigsService } from 'src/configs/configs.service';
 
 @Module({
   imports: [
@@ -22,6 +24,7 @@ import { AdminService } from './admin.service';
     CategoriesModule,
     ProductsModule,
     OrdersModule,
+    ConfigsModule,
   ],
   controllers: [AdminController],
   providers: [
@@ -32,6 +35,7 @@ import { AdminService } from './admin.service';
     FeedbacksService,
     OrdersService,
     ProductsService,
+    ConfigsService,
   ],
 })
 export class AdminModule {}

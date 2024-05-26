@@ -188,3 +188,14 @@ model OrderItem {
     @@id([orderId, productId])
     @@map("order_items")
 }
+
+model Config {
+    key       String   @id
+    value     String   @db.Text
+
+    deleted   Boolean  @default(false) @omit
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@deny('read', deleted)
+}

@@ -173,3 +173,13 @@ model OrderItem {
   @@id([orderId, productId])
   @@map("order_items")
 }
+
+/// @@deny('read', deleted)
+model Config {
+  key       String   @id()
+  value     String   @db.Text()
+  /// @omit
+  deleted   Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+}

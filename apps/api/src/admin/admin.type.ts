@@ -26,6 +26,12 @@ import {
 } from 'src/products/dto/create-product.input';
 import { UpdateProductInput } from 'src/products/dto/update-product.input';
 import { ProductsService } from 'src/products/products.service';
+import { ConfigsService } from '../configs/configs.service';
+import {
+  CreateConfigInput,
+  DEFAULT_CONFIG_CREATE_INPUT,
+} from '../configs/dto/create-config.input';
+import { UpdateConfigInput } from '../configs/dto/update-config.input';
 
 export type GetUniqueKeysReturns = {
   key: string;
@@ -67,21 +73,24 @@ export type Service =
   | CustomersService
   | OrdersService
   | ProductsService
-  | FeedbacksService;
+  | FeedbacksService
+  | ConfigsService;
 
 export type CreateInputType = CreateAuthorInput &
   CreateCategoryInput &
   CreateProductInput &
   CreateCustomerInput &
   CreateFeedbackInput &
-  CreateOrderInput;
+  CreateOrderInput &
+  CreateConfigInput;
 
 export type UpdateInputType = UpdateAuthorInput &
   UpdateCategoryInput &
   UpdateProductInput &
   UpdateCustomerInput &
   UpdateFeedbackInput &
-  UpdateOrderInput;
+  UpdateOrderInput &
+  UpdateConfigInput;
 
 export type EntityNames =
   | 'authors'
@@ -89,10 +98,12 @@ export type EntityNames =
   | 'customers'
   | 'orders'
   | 'products'
-  | 'feedbacks';
+  | 'feedbacks'
+  | 'configs';
 
 export type DefaultCreateInputType = {
   authors: ReturnType<typeof DEFAULT_AUTHOR_CREATE_INPUT>;
   categories: ReturnType<typeof DEFAULT_CATEGORY_CREATE_INPUT>;
   products: ReturnType<typeof DEFAULT_PRODUCT_CREATE_INPUT>;
+  configs: ReturnType<typeof DEFAULT_CONFIG_CREATE_INPUT>;
 };

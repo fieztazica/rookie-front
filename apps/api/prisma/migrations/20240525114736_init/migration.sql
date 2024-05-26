@@ -126,6 +126,17 @@ CREATE TABLE "order_items" (
     CONSTRAINT "order_items_pkey" PRIMARY KEY ("order_id","product_id")
 );
 
+-- CreateTable
+CREATE TABLE "Config" (
+    "key" TEXT NOT NULL,
+    "value" TEXT NOT NULL,
+    "deleted" BOOLEAN NOT NULL DEFAULT false,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Config_pkey" PRIMARY KEY ("key")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "customers_username_key" ON "customers"("username");
 

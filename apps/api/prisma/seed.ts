@@ -5,8 +5,10 @@ import {
   seedAuthors,
   seedProducts,
 } from './seeders';
+import { seedConfigs } from './seeders/config';
 
 async function main() {
+  const configs = await seedConfigs();
   const customers = await seedCustomers();
   const categories = await seedCategories();
   const authors = await seedAuthors();

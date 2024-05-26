@@ -29,6 +29,8 @@ import {
   UpdateInputType,
 } from './admin.type';
 import { Request } from 'express';
+import { ConfigsService } from 'src/configs/configs.service';
+import { DEFAULT_CONFIG_CREATE_INPUT } from 'src/configs/dto/create-config.input';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -45,6 +47,7 @@ export class AdminService {
     private readonly feedbacksService: FeedbacksService,
     private readonly productsService: ProductsService,
     private readonly ordersService: OrdersService,
+    private readonly configsService: ConfigsService,
   ) {}
 
   beautifyEntities<T>(entities: T[]) {
@@ -55,7 +58,7 @@ export class AdminService {
   }
 
   beautifyEntity<T>(record: T) {
-    if (record['firstName'] && record['lastName']) {
+    if (record?.['firstName'] && record?.['lastName']) {
       record['name'] = `${record['firstName']} ${record['lastName']}`;
     }
     if (record['createdAt']) {
@@ -84,6 +87,7 @@ export class AdminService {
       authors: DEFAULT_AUTHOR_CREATE_INPUT(),
       categories: DEFAULT_CATEGORY_CREATE_INPUT(),
       products: DEFAULT_PRODUCT_CREATE_INPUT(),
+      configs: DEFAULT_CONFIG_CREATE_INPUT(),
     };
 
     return defaultCreateInputs[entityName];
@@ -161,7 +165,7 @@ export class AdminService {
       entityRecords.forEach((record) => {
         this.filterFieldsFromEntity(
           this.beautifyEntity(record),
-          ['id', 'name', 'username', 'email'],
+          ['id', 'name', 'username', 'email', 'key'],
           false,
         );
       });
@@ -217,11 +221,15 @@ export class AdminService {
         };
       }
 
+      const uniqueProp =
+        (created as { key?: string; id?: string }).key ??
+        (created as { id?: string }).id;
+
       const successMessage = encodeURIComponent(
-        `Successfully created ${entityName}/${created.id}!`,
+        `Successfully created ${entityName}/${uniqueProp}!`,
       );
       res.redirect(
-        `/admin/${entityName}/${created.id}?successMessage=${successMessage}`,
+        `/admin/${entityName}/${uniqueProp}?successMessage=${successMessage}`,
       );
       return;
     } catch (error) {
@@ -302,7 +310,10 @@ export class AdminService {
           errorMessage: `Failed to delete record`,
         };
       }
-      const successMessage = `Successfully deleted ${entityName}/${deleted.id}!`;
+      const uniqueProp =
+        (deleted as { key?: string; id?: string }).key ??
+        (deleted as { id?: string }).id;
+      const successMessage = `Successfully deleted ${entityName}/${uniqueProp}!`;
       const params = new URLSearchParams({
         from,
         successMessage,
