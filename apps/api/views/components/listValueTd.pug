@@ -1,5 +1,5 @@
 td.table-cell.border.px-6.py-4
     if uniqueKey.key === 'id'
-        a(href=`/admin/${resourceName}/${row.id}`) #{row[uniqueKey.key]}
+        a(href=`/admin/${resourceName}/${row.id || row.key}`) #{row[uniqueKey.key]}
     else
         span= row[uniqueKey.key]

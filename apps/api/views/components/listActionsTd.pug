@@ -1,5 +1,5 @@
 td.table-cell.border.px-6.py-4
     span.flex.space-x-2
-        a(href=`/admin/${resourceName}/${row.id}`) View
-        a(href=`/admin/${resourceName}/${row.id}/edit`) Edit
-        a(href=`/admin/${resourceName}/${row.id}/delete?from=list`) Delete
+        a(href=`/admin/${resourceName}/${row.id || row.key}`) View
+        a(href=`/admin/${resourceName}/${row.id || row.key}/edit`) Edit
+        a(href=`/admin/${resourceName}/${row.id || row.key}/delete?from=list`) Delete

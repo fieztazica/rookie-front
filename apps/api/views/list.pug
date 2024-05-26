@@ -20,7 +20,7 @@ block content
                                     th(scope="col" class="table-cell border px-6.py-4") Actions
                             tbody#list-entity.table-row-group
                                 each row in data
-                                    tr.table-row(id=`row-${resourceName}-${row.id}`)
+                                    tr.table-row(id=`row-${resourceName}-${row.id || row.key}`)
                                         each uniqueKey in uniqueKeys
                                             include components/listValueTd
                                         include components/listActionsTd
