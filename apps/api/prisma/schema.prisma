@@ -28,9 +28,8 @@ enum Gender {
 /// @@deny('read', deleted)
 model Customer {
   id          String     @id() @default(cuid()) @map("customer_id")
-  username    String     @unique() @db.VarChar(64)
   email       String     @unique() @db.VarChar(255)
-  phoneNumber String     @unique() @db.VarChar(24)
+  phoneNumber String?    @unique() @db.VarChar(24)
   firstName   String     @db.VarChar(255)
   lastName    String     @db.VarChar(255)
   displayName String?    @db.VarChar(255)

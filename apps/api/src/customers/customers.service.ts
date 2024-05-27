@@ -6,16 +6,16 @@ import {
   PaginatedResult,
   PaginateOptions,
 } from 'prisma-pagination';
-import { CustomerCreateInput } from 'src/__generated__/customer/customer-create.input';
-import { CustomerUpdateInput } from 'src/__generated__/customer/customer-update.input';
 import { PrismaService } from '../common/database/prisma.service';
+import { CreateCustomerInput } from './dto/create-customer.input';
+import { UpdateCustomerInput } from './dto/update-customer.input';
 
 @Injectable()
 export class CustomersService {
   constructor(
     @Inject(ENHANCED_PRISMA) private readonly prisma: PrismaService,
   ) {}
-  create(createCustomerInput: CustomerCreateInput): Promise<Customer> {
+  create(createCustomerInput: CreateCustomerInput) {
     return this.prisma.customer.create({ data: createCustomerInput });
   }
 
@@ -42,21 +42,30 @@ export class CustomersService {
     );
   }
 
-  findOne(id: string): Promise<Customer> {
+  findOne(id: string) {
     return this.prisma.customer.findUnique({ where: { id, deleted: false } });
   }
 
-  update(
-    id: string,
-    updateCustomerInput: CustomerUpdateInput,
-  ): Promise<Customer> {
+  findOneByEmail(email: string) {
+    return this.prisma.customer.findUnique({
+      where: { email, deleted: false },
+    });
+  }
+
+  findOneByAccountId(accountId: string) {
+    return this.prisma.customer.findUnique({
+      where: { accountId, deleted: false },
+    });
+  }
+
+  update(id: string, updateCustomerInput: UpdateCustomerInput) {
     return this.prisma.customer.update({
       where: { id, deleted: false },
       data: updateCustomerInput,
     });
   }
 
-  remove(id: string): Promise<Customer> {
+  remove(id: string) {
     return this.prisma.customer.update({
       where: { id, deleted: false },
       data: {

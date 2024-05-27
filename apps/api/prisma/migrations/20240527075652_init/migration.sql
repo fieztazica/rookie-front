@@ -4,9 +4,8 @@ CREATE TYPE "Gender" AS ENUM ('MALE', 'FEMALE', 'UNDEFINED');
 -- CreateTable
 CREATE TABLE "customers" (
     "customer_id" TEXT NOT NULL,
-    "username" VARCHAR(64) NOT NULL,
     "email" VARCHAR(255) NOT NULL,
-    "phoneNumber" VARCHAR(24) NOT NULL,
+    "phoneNumber" VARCHAR(24),
     "firstName" VARCHAR(255) NOT NULL,
     "lastName" VARCHAR(255) NOT NULL,
     "displayName" VARCHAR(255),
@@ -136,9 +135,6 @@ CREATE TABLE "Config" (
 
     CONSTRAINT "Config_pkey" PRIMARY KEY ("key")
 );
-
--- CreateIndex
-CREATE UNIQUE INDEX "customers_username_key" ON "customers"("username");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "customers_email_key" ON "customers"("email");

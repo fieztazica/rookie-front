@@ -6,7 +6,6 @@ export async function seedCustomers() {
     update: {},
     create: {
       email: 'alice@prisma.io',
-      username: 'prisma-alice',
       firstName: 'Alice',
       lastName: 'Smith',
       phoneNumber: '555-555-5555',
@@ -19,7 +18,6 @@ export async function seedCustomers() {
     update: {},
     create: {
       email: 'bob@prisma.io',
-      username: 'prisma-bob',
       firstName: 'Bob',
       lastName: 'Smith',
       phoneNumber: '555-555-5556',
@@ -32,7 +30,6 @@ export async function seedCustomers() {
     update: {},
     create: {
       email: 'charlie@prisma.io',
-      username: 'prisma-charlie',
       firstName: 'Charlie',
       lastName: 'Smith',
       phoneNumber: '555-555-5557',

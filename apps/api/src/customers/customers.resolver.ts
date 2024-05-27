@@ -32,6 +32,20 @@ export class CustomersResolver {
     return this.customersService.findOne(id);
   }
 
+  @Query(() => Customer, { name: 'getCustomerByEmail' })
+  getCustomerByEmail(
+    @Args('email', { type: () => String }) email: string,
+  ): Promise<Customer> {
+    return this.customersService.findOneByEmail(email);
+  }
+
+  @Query(() => Customer, { name: 'getCustomerByAccountId' })
+  findOneByAccountId(
+    @Args('accountId', { type: () => String }) accountId: string,
+  ): Promise<Customer> {
+    return this.customersService.findOneByAccountId(accountId);
+  }
+
   @Mutation(() => Customer)
   updateCustomer(
     @Args('updateCustomerInput') updateCustomerInput: UpdateCustomerInput,

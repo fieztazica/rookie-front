@@ -165,7 +165,7 @@ export class AdminService {
       entityRecords.forEach((record) => {
         this.filterFieldsFromEntity(
           this.beautifyEntity(record),
-          ['id', 'name', 'username', 'email', 'key'],
+          ['id', 'name', 'email', 'key'],
           false,
         );
       });
