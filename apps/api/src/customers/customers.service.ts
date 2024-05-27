@@ -19,7 +19,20 @@ export class CustomersService {
     return this.prisma.customer.create({ data: createCustomerInput });
   }
 
-  findAll(options: PaginateOptions = {}): Promise<PaginatedResult<Customer>> {
+  findAll(
+    options: Prisma.CustomerFindManyArgs = {
+      where: { deleted: { equals: false } },
+    },
+  ) {
+    return this.prisma.customer.findMany(options);
+  }
+
+  paginatedFindAll(
+    options: PaginateOptions = {
+      page: 1,
+      perPage: 10,
+    },
+  ): Promise<PaginatedResult<Customer>> {
     const paginate = createPaginator(options);
     return paginate<Customer, Prisma.CustomerFindManyArgs>(
       this.prisma.customer,

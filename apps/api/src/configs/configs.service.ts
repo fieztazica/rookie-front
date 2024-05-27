@@ -19,7 +19,20 @@ export class ConfigsService {
     return this.prisma.config.create({ data: createConfigInput });
   }
 
-  findAll(options?: PaginateOptions): Promise<PaginatedResult<Config>> {
+  findAll(
+    options: Prisma.ConfigFindManyArgs = {
+      where: { deleted: { equals: false } },
+    },
+  ) {
+    return this.prisma.config.findMany(options);
+  }
+
+  paginatedFindAll(
+    options: PaginateOptions = {
+      page: 1,
+      perPage: 10,
+    },
+  ): Promise<PaginatedResult<Config>> {
     const paginate = createPaginator(options);
     return paginate<Config, Prisma.ConfigFindManyArgs>(this.prisma.config, {
       where: { deleted: { equals: false } },

@@ -19,18 +19,35 @@ export class ProductsService {
     return this.prisma.product.create({ data: createProductInput });
   }
 
-  findAll(options: PaginateOptions = {}): Promise<PaginatedResult<Product>> {
+  findAll(
+    options: Prisma.ProductFindManyArgs = {
+      where: { deleted: { equals: false } },
+    },
+  ) {
+    return this.prisma.product.findMany(options);
+  }
+
+  paginatedFindAll(
+    options: PaginateOptions = {
+      page: 1,
+      perPage: 10,
+    },
+  ): Promise<PaginatedResult<Product>> {
     const paginate = createPaginator(options);
     return paginate<Product, Prisma.ProductFindManyArgs>(this.prisma.product, {
       where: { deleted: { equals: false } },
-      include: { authors: { include: { author: true } } },
     });
   }
 
   findOne(id: string): Promise<Product> {
     return this.prisma.product.findUnique({
       where: { id, deleted: false },
-      include: { authors: { include: { author: true } } },
+      include: {
+        authors: { include: { author: true } },
+        categories: {
+          include: { category: true },
+        },
+      },
     });
   }
 

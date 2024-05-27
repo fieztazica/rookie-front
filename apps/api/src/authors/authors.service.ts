@@ -16,11 +16,24 @@ export class AuthorsService {
     @Inject(ENHANCED_PRISMA) private readonly prisma: PrismaService,
   ) {}
 
-  create(createAuthorInput: CreateAuthorInput): Promise<Author> {
+  create(createAuthorInput: CreateAuthorInput) {
     return this.prisma.author.create({ data: createAuthorInput });
   }
 
-  findAll(options: PaginateOptions = {}): Promise<PaginatedResult<Author>> {
+  findAll(
+    options: Prisma.AuthorFindManyArgs = {
+      where: { deleted: { equals: false } },
+    },
+  ) {
+    return this.prisma.author.findMany(options);
+  }
+
+  paginatedFindAll(
+    options: PaginateOptions = {
+      page: 1,
+      perPage: 10,
+    },
+  ): Promise<PaginatedResult<Author>> {
     const paginate = createPaginator(options);
     return paginate<Author, Prisma.AuthorFindManyArgs>(this.prisma.author, {
       where: {
@@ -29,18 +42,18 @@ export class AuthorsService {
     });
   }
 
-  findOne(id: string): Promise<Author> {
+  findOne(id: string) {
     return this.prisma.author.findUnique({ where: { id, deleted: false } });
   }
 
-  update(id: string, updateAuthorInput: UpdateAuthorInput): Promise<Author> {
+  update(id: string, updateAuthorInput: UpdateAuthorInput) {
     return this.prisma.author.update({
       where: { id, deleted: false },
       data: updateAuthorInput,
     });
   }
 
-  remove(id: string): Promise<Author> {
+  remove(id: string) {
     return this.prisma.author.update({
       where: { id, deleted: false },
       data: {

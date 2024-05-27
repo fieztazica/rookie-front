@@ -19,7 +19,17 @@ export class OrdersService {
     return this.prisma.order.create({ data: createOrderInput });
   }
 
-  findAll(options: PaginateOptions = {}): Promise<PaginatedResult<Order>> {
+  findAll(
+    options: Prisma.OrderFindManyArgs = {
+      where: { deleted: { equals: false } },
+    },
+  ) {
+    return this.prisma.order.findMany(options);
+  }
+
+  paginatedFindAll(
+    options: PaginateOptions = { page: 1, perPage: 10 },
+  ): Promise<PaginatedResult<Order>> {
     const paginate = createPaginator(options);
     return paginate<Order, Prisma.OrderFindManyArgs>(this.prisma.order, {
       where: { deleted: { equals: false } },

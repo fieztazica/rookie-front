@@ -19,7 +19,20 @@ export class CategoriesService {
     return this.prisma.category.create({ data: createCategoryInput });
   }
 
-  findAll(options?: PaginateOptions): Promise<PaginatedResult<Category>> {
+  findAll(
+    options: Prisma.CategoryFindManyArgs = {
+      where: { deleted: { equals: false } },
+    },
+  ) {
+    return this.prisma.category.findMany(options);
+  }
+
+  paginatedFindAll(
+    options: PaginateOptions = {
+      page: 1,
+      perPage: 10,
+    },
+  ): Promise<PaginatedResult<Category>> {
     const paginate = createPaginator(options);
     return paginate<Category, Prisma.CategoryFindManyArgs>(
       this.prisma.category,

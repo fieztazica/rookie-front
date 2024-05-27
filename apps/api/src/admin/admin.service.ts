@@ -157,7 +157,7 @@ export class AdminService {
     let entityRecords;
     let errorMessage = '';
     try {
-      paginatedRes = await entityService.findAll({
+      paginatedRes = await entityService.paginatedFindAll({
         page,
         perPage,
       });

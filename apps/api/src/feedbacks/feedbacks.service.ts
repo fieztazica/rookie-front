@@ -19,7 +19,16 @@ export class FeedbacksService {
     return this.prisma.feedback.create({ data: createFeedbackInput });
   }
 
-  findAll(options: PaginateOptions = {}): Promise<PaginatedResult<Feedback>> {
+  findAll(
+    options: Prisma.FeedbackFindManyArgs = {
+      where: { deleted: { equals: false } },
+    },
+  ) {
+    return this.prisma.feedback.findMany(options);
+  }
+  paginatedFindAll(
+    options: PaginateOptions = { page: 1, perPage: 10 },
+  ): Promise<PaginatedResult<Feedback>> {
     const paginate = createPaginator(options);
     return paginate<Feedback, Prisma.FeedbackFindManyArgs>(
       this.prisma.feedback,
