@@ -1,8 +1,5 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
-
-interface CartItems {
-  [key: string]: number;
-}
+import { Product } from 'src/__generated__/product/product.model';
 
 @ObjectType()
 export class KeyValuePair {
@@ -17,6 +14,9 @@ export class KeyValuePair {
 export class Cart {
   @Field(() => [KeyValuePair])
   items: KeyValuePair[];
+
+  @Field(() => [Product], { nullable: true })
+  products?: Product[];
 
   constructor();
   constructor(items: KeyValuePair[]);

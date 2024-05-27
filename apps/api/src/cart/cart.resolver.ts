@@ -1,13 +1,26 @@
 import { UseGuards } from '@nestjs/common';
-import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
+import {
+  Args,
+  Int,
+  Mutation,
+  Parent,
+  Query,
+  ResolveField,
+  Resolver,
+} from '@nestjs/graphql';
 import { GqlJwtAuthGuard } from 'src/auth/guard/gql.jwt.guard';
 import { CartService } from './cart.service';
 import { CartItemInput } from './dto/cart-item.input';
 import { Cart } from './entities/cart.entity';
+import { ProductsService } from 'src/products/products.service';
+import { Product } from 'src/__generated__/product/product.model';
 
-@Resolver()
+@Resolver(() => Cart)
 export class CartResolver {
-  constructor(private readonly cartService: CartService) {}
+  constructor(
+    private readonly cartService: CartService,
+    private readonly productsService: ProductsService,
+  ) {}
 
   @Query(() => Int, { name: 'countCartItems' })
   @UseGuards(GqlJwtAuthGuard)
@@ -25,6 +38,20 @@ export class CartResolver {
   ) {
     const cart = await this.cartService.get(customerId);
     return cart;
+  }
+
+  @ResolveField('products', () => [Product])
+  async getProducts(@Parent() cart: Cart) {
+    const { items } = cart;
+    const itemsIds = items.map((item) => item.key);
+
+    return this.productsService.findAll({
+      where: {
+        id: {
+          in: itemsIds,
+        },
+      },
+    });
   }
 
   @Mutation(() => Cart)
