@@ -17,7 +17,7 @@ export class JwtStrategy extends PassportStrategy(BaseStrategy) {
   }
 
   validate(payload: unknown): unknown {
-    console.log(payload);
+    // console.log(payload);
     return payload;
   }
 }
