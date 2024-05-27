@@ -4,6 +4,7 @@ import { Customer, PaginatedCustomer } from './entities/customer.entity';
 import { CreateCustomerInput } from './dto/create-customer.input';
 import { UpdateCustomerInput } from './dto/update-customer.input';
 import { PaginationArgs } from 'src/common/graphql/pagination.args';
+import { FindManyCustomerArgs } from 'src/__generated__/customer/find-many-customer.args';
 
 @Resolver(() => Customer)
 export class CustomersResolver {
@@ -16,9 +17,14 @@ export class CustomersResolver {
     return this.customersService.create(createCustomerInput);
   }
 
-  @Query(() => PaginatedCustomer, { name: 'customers' })
-  async findAll(@Args() options: PaginationArgs) {
+  @Query(() => [Customer], { name: 'customers' })
+  async findAll(@Args() options: FindManyCustomerArgs) {
     return this.customersService.findAll(options);
+  }
+
+  @Query(() => PaginatedCustomer, { name: 'paginatedCustomers' })
+  async paginatedFindAll(@Args() options: PaginationArgs) {
+    return this.customersService.paginatedFindAll(options);
   }
 
   @Query(() => Customer, { name: 'customer' })

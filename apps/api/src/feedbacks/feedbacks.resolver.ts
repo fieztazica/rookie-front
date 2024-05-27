@@ -4,6 +4,7 @@ import { Feedback, PaginatedFeedback } from './entities/feedback.entity';
 import { CreateFeedbackInput } from './dto/create-feedback.input';
 import { UpdateFeedbackInput } from './dto/update-feedback.input';
 import { PaginationArgs } from 'src/common/graphql/pagination.args';
+import { FindManyFeedbackArgs } from 'src/__generated__/feedback/find-many-feedback.args';
 
 @Resolver(() => Feedback)
 export class FeedbacksResolver {
@@ -16,9 +17,14 @@ export class FeedbacksResolver {
     return this.feedbacksService.create(createFeedbackInput);
   }
 
-  @Query(() => PaginatedFeedback, { name: 'feedbacks' })
-  async findAll(@Args() options: PaginationArgs) {
+  @Query(() => [Feedback], { name: 'feedbacks' })
+  async findAll(@Args() options: FindManyFeedbackArgs) {
     return this.feedbacksService.findAll(options);
+  }
+
+  @Query(() => PaginatedFeedback, { name: 'paginatedFeedbacks' })
+  async paginatedFindAll(@Args() options: PaginationArgs) {
+    return this.feedbacksService.paginatedFindAll(options);
   }
 
   @Query(() => Feedback, { name: 'feedback' })

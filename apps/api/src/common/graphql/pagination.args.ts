@@ -1,13 +1,15 @@
 import { ArgsType, Field, Int } from '@nestjs/graphql';
-import { Min } from 'class-validator';
+
+export interface IPaginationArgs {
+  page?: number;
+  perPage?: number;
+}
 
 @ArgsType()
-export class PaginationArgs {
-  @Field(() => Int, { defaultValue: 1, nullable: true })
-  @Min(1)
-  page: number;
+export class PaginationArgs implements IPaginationArgs {
+  @Field(() => Int, { nullable: true })
+  page?: number;
 
-  @Field(() => Int, { defaultValue: 10, nullable: true })
-  @Min(1)
-  perPage: number;
+  @Field(() => Int, { nullable: true })
+  perPage?: number;
 }

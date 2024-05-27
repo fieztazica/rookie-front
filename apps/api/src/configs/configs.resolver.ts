@@ -3,6 +3,7 @@ import { ConfigsService } from './configs.service';
 import { Config } from './entities/config.entity';
 import { CreateConfigInput } from './dto/create-config.input';
 import { UpdateConfigInput } from './dto/update-config.input';
+import { FindManyConfigArgs } from 'src/__generated__/config/find-many-config.args';
 
 @Resolver(() => Config)
 export class ConfigsResolver {
@@ -16,7 +17,12 @@ export class ConfigsResolver {
   }
 
   @Query(() => [Config], { name: 'configs' })
-  findAll() {
+  findAll(@Args() options: FindManyConfigArgs) {
+    return this.configsService.findAll(options);
+  }
+
+  @Query(() => [Config], { name: 'paginatedConfigs' })
+  paginatedFindAll() {
     return this.configsService.findAll();
   }
 

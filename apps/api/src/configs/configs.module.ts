@@ -4,5 +4,6 @@ import { ConfigsResolver } from './configs.resolver';
 
 @Module({
   providers: [ConfigsResolver, ConfigsService],
+  exports: [ConfigsService],
 })
 export class ConfigsModule {}

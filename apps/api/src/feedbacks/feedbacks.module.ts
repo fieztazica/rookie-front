@@ -4,5 +4,6 @@ import { FeedbacksResolver } from './feedbacks.resolver';
 
 @Module({
   providers: [FeedbacksResolver, FeedbacksService],
+  exports: [FeedbacksService],
 })
 export class FeedbacksModule {}

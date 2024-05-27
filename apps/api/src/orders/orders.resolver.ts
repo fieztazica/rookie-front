@@ -4,6 +4,7 @@ import { Order, PaginatedOrder } from './entities/order.entity';
 import { CreateOrderInput } from './dto/create-order.input';
 import { UpdateOrderInput } from './dto/update-order.input';
 import { PaginationArgs } from 'src/common/graphql/pagination.args';
+import { FindManyOrderArgs } from 'src/__generated__/order/find-many-order.args';
 
 @Resolver(() => Order)
 export class OrdersResolver {
@@ -16,9 +17,14 @@ export class OrdersResolver {
     return this.ordersService.create(createOrderInput);
   }
 
-  @Query(() => PaginatedOrder, { name: 'orders' })
-  async findAll(@Args() options: PaginationArgs) {
+  @Query(() => [Order], { name: 'orders' })
+  async findAll(@Args() options: FindManyOrderArgs) {
     return this.ordersService.findAll(options);
+  }
+
+  @Query(() => PaginatedOrder, { name: 'paginatedOrders' })
+  async paginatedFindAll(@Args() options: PaginationArgs) {
+    return this.ordersService.paginatedFindAll(options);
   }
 
   @Query(() => Order, { name: 'order' })
