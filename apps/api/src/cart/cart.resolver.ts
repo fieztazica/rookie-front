@@ -16,6 +16,7 @@ import { ProductsService } from 'src/products/products.service';
 import { Product } from 'src/__generated__/product/product.model';
 
 @Resolver(() => Cart)
+@UseGuards(GqlJwtAuthGuard)
 export class CartResolver {
   constructor(
     private readonly cartService: CartService,
@@ -23,7 +24,6 @@ export class CartResolver {
   ) {}
 
   @Query(() => Int, { name: 'countCartItems' })
-  @UseGuards(GqlJwtAuthGuard)
   async countCart(
     @Args('customerId', { type: () => String }) customerId: string,
   ) {
@@ -32,7 +32,6 @@ export class CartResolver {
   }
 
   @Query(() => Cart, { name: 'cart' })
-  @UseGuards(GqlJwtAuthGuard)
   async getCart(
     @Args('customerId', { type: () => String }) customerId: string,
   ) {
