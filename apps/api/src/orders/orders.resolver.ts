@@ -18,12 +18,12 @@ export class OrdersResolver {
   }
 
   @Query(() => [Order], { name: 'orders' })
-  async findAll(@Args() options: FindManyOrderArgs) {
+  async findAll(@Args({ nullable: true }) options?: FindManyOrderArgs) {
     return this.ordersService.findAll(options);
   }
 
   @Query(() => PaginatedOrder, { name: 'paginatedOrders' })
-  async paginatedFindAll(@Args() options: PaginationArgs) {
+  async paginatedFindAll(@Args({ nullable: true }) options?: PaginationArgs) {
     return this.ordersService.paginatedFindAll(options);
   }
 

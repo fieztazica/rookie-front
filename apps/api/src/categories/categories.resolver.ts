@@ -18,12 +18,12 @@ export class CategoriesResolver {
   }
 
   @Query(() => [Category], { name: 'categories' })
-  async findAll(@Args() options: FindManyCategoryArgs) {
+  async findAll(@Args({ nullable: true }) options?: FindManyCategoryArgs) {
     return this.categoriesService.findAll(options);
   }
 
   @Query(() => PaginatedCategory, { name: 'paginatedCategories' })
-  async paginatedFindAll(@Args() options: PaginationArgs) {
+  async paginatedFindAll(@Args({ nullable: true }) options?: PaginationArgs) {
     return this.categoriesService.paginatedFindAll(options);
   }
 

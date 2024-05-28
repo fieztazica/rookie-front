@@ -32,14 +32,14 @@ export class AuthorsResolver {
   @Query(() => [Author], {
     name: 'authors',
   })
-  async findAll(@Args() options: FindManyAuthorArgs) {
+  async findAll(@Args({ nullable: true }) options?: FindManyAuthorArgs) {
     return this.authorsService.findAll(options);
   }
 
   @Query(() => PaginatedAuthor, {
     name: 'paginatedAuthors',
   })
-  async paginatedFindAll(@Args() options: PaginationArgs) {
+  async paginatedFindAll(@Args({ nullable: true }) options?: PaginationArgs) {
     return this.authorsService.paginatedFindAll(options);
   }
 
