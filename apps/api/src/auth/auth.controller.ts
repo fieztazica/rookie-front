@@ -1,9 +1,22 @@
-import { Controller, Get, Request, Res, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Query,
+  Request,
+  Res,
+  UseGuards,
+} from '@nestjs/common';
 import { Response } from 'express';
+import { AuthService } from './auth.service';
 import { LoginGuard } from './guard/login.guard';
+import { CreateCustomerInput } from 'src/customers/dto/create-customer.input';
 
 @Controller('auth')
 export class AuthController {
+  constructor(private readonly authService: AuthService) {}
+
   @Get('/user')
   user(@Request() req) {
     return req.user;
@@ -27,5 +40,13 @@ export class AuthController {
       }
     });
     res.redirect('/');
+  }
+
+  @Post('/register')
+  register(
+    @Body() customer: CreateCustomerInput,
+    @Query('apiKey') apiKey: string,
+  ) {
+    return this.authService.register(apiKey, customer);
   }
 }
