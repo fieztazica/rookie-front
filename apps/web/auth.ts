@@ -1,6 +1,7 @@
-import NextAuth, { DefaultSession } from 'next-auth';
+import NextAuth from 'next-auth';
 import { JWT } from 'next-auth/jwt';
 import Auth0 from 'next-auth/providers/auth0';
+import { getCustomerByEmail } from './src/features/customer/useGetCustomerByEmail';
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
@@ -19,8 +20,16 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
       // You can also make calls to external resources if necessary.
       async profile(profile) {
-        console.log('auth0 profile', profile);
-        return {};
+        let returns = { ...profile };
+        const { data } = await getCustomerByEmail(profile.email);
+        if (data?.getCustomerByEmail) {
+          returns = {
+            ...returns,
+            ...data?.getCustomerByEmail,
+            customer_id: data?.getCustomerByEmail?.id,
+          };
+        }
+        return returns;
       },
     }),
   ],
@@ -40,13 +49,20 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       if (user) {
         // User is available during sign-in
         token.id = user.id;
+        token.customer_id = user.customer_id;
+        token.firstName = user.firstName;
+        token.lastName = user.lastName;
+        token.displayName = user.displayName;
       }
-
       return token;
     },
-    session({ session, token, user }) {
+    session({ session, token }) {
       session.access_token = token.access_token;
       session.user.id = token.sub!;
+      session.user.customer_id = token.customer_id;
+      session.user.firstName = token.firstName;
+      session.user.lastName = token.lastName;
+      session.user.displayName = token.displayName;
       session.admin = token.admin || false;
       return session;
     },
@@ -61,9 +77,13 @@ declare module 'next-auth/jwt' {
   interface JWT {
     /** OpenID ID Token */
     id?: string;
+    customer_id?: string;
     access_token?: string;
     admin: boolean;
-    idToken?: string
+    idToken?: string;
+    firstName?: string;
+    lastName?: string;
+    displayName?: string;
   }
 }
 
@@ -78,5 +98,16 @@ declare module 'next-auth' {
 
   interface Profile {
     userRoles?: string[];
+    customer_id?: string;
+    firstName?: string;
+    lastName?: string;
+    displayName?: string;
+  }
+
+  interface User {
+    customer_id?: string;
+    firstName?: string;
+    lastName?: string;
+    displayName?: string;
   }
 }
