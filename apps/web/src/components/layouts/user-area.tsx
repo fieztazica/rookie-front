@@ -1,5 +1,6 @@
 import { auth } from '@/auth';
 import { SignIn } from '@/components/auth/sign-in';
+import { SignOut } from '@/components/auth/sign-out';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -20,30 +21,35 @@ import {
   User,
 } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
-import { SignOut } from '@/components/auth/sign-out';
 
 type Props = {};
 
 async function UserArea({}: Props) {
   const session = await auth();
-//   console.log(session);
   if (!session) return <SignIn />;
+  const name =
+    session.user?.displayName ||
+    session.user?.name ||
+    session.user?.email ||
+    'Unknown User';
+  const shortHand =
+    name
+      .split(' ')
+      .map((w) => w[0])
+      .join('')
+      .slice(0, 2)
+      .toUpperCase() || '??';
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant={'ghost'} className="hover:bg-white">
-          <span className="font-semibold">
-            Hi, {session.user?.name || session.user?.email}!
-          </span>
+          <span className="font-semibold">Hi, {name}!</span>
           <Avatar className="ml-2">
             <AvatarImage
               src={session.user?.image || undefined}
               alt={session.user?.email || undefined}
             />
-            <AvatarFallback>
-              {session.user?.name?.slice(0, 2) ||
-                session.user?.email?.slice(0, 2)}
-            </AvatarFallback>
+            <AvatarFallback>{shortHand}</AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
