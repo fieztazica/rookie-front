@@ -131,6 +131,7 @@ model Feedback {
   id         String   @id() @default(cuid()) @map("feedback_id")
   customerId String   @map("customer_id")
   productId  String   @map("product_id")
+  title      String   @db.Text()
   message    String   @db.Text()
   rating     Int      @db.SmallInt()
   status     String?  @db.VarChar(255)

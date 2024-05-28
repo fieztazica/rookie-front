@@ -91,6 +91,7 @@ CREATE TABLE "feedbacks" (
     "feedback_id" TEXT NOT NULL,
     "customer_id" TEXT NOT NULL,
     "product_id" TEXT NOT NULL,
+    "title" TEXT NOT NULL,
     "message" TEXT NOT NULL,
     "rating" SMALLINT NOT NULL,
     "status" VARCHAR(255),
