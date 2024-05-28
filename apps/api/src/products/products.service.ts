@@ -21,7 +21,7 @@ export class ProductsService {
 
   findAll(
     options: Prisma.ProductFindManyArgs = {
-      where: { deleted: { equals: false } },
+      where: { deleted: false },
     },
   ) {
     return this.prisma.product.findMany(options);
@@ -35,7 +35,7 @@ export class ProductsService {
   ): Promise<PaginatedResult<Product>> {
     const paginate = createPaginator(options);
     return paginate<Product, Prisma.ProductFindManyArgs>(this.prisma.product, {
-      where: { deleted: { equals: false } },
+      where: { deleted: false },
     });
   }
 
