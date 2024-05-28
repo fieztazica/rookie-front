@@ -1,9 +1,9 @@
 import RootProvider from '@/components/providers/root-provider';
-import './globals.css';
+import { cn } from '@/lib/utils';
 import type { Metadata } from 'next';
 import { Inter as FontSans } from 'next/font/google';
-import MainLayout from '@/components/layouts/main';
-import { cn } from '@/lib/utils';
+import './globals.css';
+import { Toaster } from '@/components/ui/toaster';
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -28,9 +28,8 @@ export default function RootLayout({
           fontSans.variable,
         )}
       >
-        <RootProvider>
-          <MainLayout>{children}</MainLayout>
-        </RootProvider>
+        <RootProvider>{children}</RootProvider>
+        <Toaster />
       </body>
     </html>
   );

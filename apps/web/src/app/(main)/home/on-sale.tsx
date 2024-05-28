@@ -1,10 +1,10 @@
 'use client';
 
 import React from 'react';
-import { TypographyH3 } from '../typos/h3';
-import { Button } from '../ui/button';
+import { TypographyH3 } from '../../../components/typos/h3';
+import { Button } from '../../../components/ui/button';
 import { useGetProducts } from '@/src/features/product/useGetProducts';
-import ProductCarousel from '../product-carousel';
+import ProductCarousel from '../../../components/product-carousel';
 
 type Props = {};
 
@@ -20,7 +20,7 @@ function OnSale({}: Props) {
         <Button>View All</Button>
       </div>
       <div>
-        <ProductCarousel products={data?.products.data} />
+        <ProductCarousel products={data?.paginatedProducts.data} />
       </div>
     </section>
   );

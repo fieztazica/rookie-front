@@ -3,15 +3,15 @@
 import { useGetProducts } from '@/src/features/product/useGetProducts';
 import React from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import ProductList from '../product-list';
-import { TypographyH3 } from '../typos/h3';
+import ProductList from '../../../components/product-list';
+import { TypographyH3 } from '../../../components/typos/h3';
 
 type Props = {};
 
 function FeaturedProducts({}: Props) {
-  const { data, loading, error } = useGetProducts();
+  const { data, error } = useGetProducts();
 
-  if (loading) return <p>Loading...</p>;
+//   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error : {error.message}</p>;
   return (
     <section>
@@ -27,10 +27,10 @@ function FeaturedProducts({}: Props) {
           <TabsTrigger value="popular">Popular</TabsTrigger>
         </TabsList>
         <TabsContent value="recommended">
-          <ProductList products={data?.products.data} />
+          <ProductList products={data?.paginatedProducts.data} />
         </TabsContent>
         <TabsContent value="popular">
-          <ProductList products={data?.products.data} />
+          <ProductList products={data?.paginatedProducts.data} />
         </TabsContent>
       </Tabs>
     </section>
