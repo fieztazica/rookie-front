@@ -21,7 +21,7 @@ export class FeedbacksService {
 
   findAll(
     options: Prisma.FeedbackFindManyArgs = {
-      where: { deleted: { equals: false } },
+      where: { deleted: false },
     },
   ) {
     return this.prisma.feedback.findMany(options);
@@ -33,7 +33,20 @@ export class FeedbacksService {
     return paginate<Feedback, Prisma.FeedbackFindManyArgs>(
       this.prisma.feedback,
       {
-        where: { deleted: { equals: false } },
+        where: { deleted: false },
+      },
+    );
+  }
+
+  paginatedFindAllByProductId(
+    productId: string,
+    options: PaginateOptions = { page: 1, perPage: 10 },
+  ): Promise<PaginatedResult<Feedback>> {
+    const paginate = createPaginator(options);
+    return paginate<Feedback, Prisma.FeedbackFindManyArgs>(
+      this.prisma.feedback,
+      {
+        where: { productId, deleted: false },
       },
     );
   }

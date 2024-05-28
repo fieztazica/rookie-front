@@ -5,6 +5,7 @@ import { CreateFeedbackInput } from './dto/create-feedback.input';
 import { UpdateFeedbackInput } from './dto/update-feedback.input';
 import { PaginationArgs } from 'src/common/graphql/pagination.args';
 import { FindManyFeedbackArgs } from 'src/__generated__/feedback/find-many-feedback.args';
+import { PaginationInput } from 'src/common/graphql/pagination.input';
 
 @Resolver(() => Feedback)
 export class FeedbacksResolver {
@@ -18,13 +19,24 @@ export class FeedbacksResolver {
   }
 
   @Query(() => [Feedback], { name: 'feedbacks' })
-  async findAll(@Args() options: FindManyFeedbackArgs) {
+  async findAll(@Args({ nullable: true }) options?: FindManyFeedbackArgs) {
     return this.feedbacksService.findAll(options);
   }
 
   @Query(() => PaginatedFeedback, { name: 'paginatedFeedbacks' })
-  async paginatedFindAll(@Args() options: PaginationArgs) {
+  async paginatedFindAll(@Args({ nullable: true }) options?: PaginationArgs) {
     return this.feedbacksService.paginatedFindAll(options);
+  }
+
+  @Query(() => PaginatedFeedback, { name: 'paginatedFeedbacksByProductId' })
+  async paginatedFindAllByProductId(
+    @Args('productId', { type: () => String }) productId: string,
+    @Args('pagination', { nullable: true }) options: PaginationInput,
+  ) {
+    return this.feedbacksService.paginatedFindAllByProductId(
+      productId,
+      options,
+    );
   }
 
   @Query(() => Feedback, { name: 'feedback' })
