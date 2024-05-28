@@ -1,4 +1,4 @@
-import { gql } from '@/src/__generated__';
+import { gql } from "@/src/__generated__";
 
 export const COUNT_CART_ITEMS = gql(`
     query CountCartItems($customerId: String!) {

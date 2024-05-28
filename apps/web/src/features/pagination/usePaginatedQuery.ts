@@ -1,7 +1,7 @@
 import {
-    DocumentNode,
-    TypedDocumentNode,
-    useSuspenseQuery
+  DocumentNode,
+  TypedDocumentNode,
+  useSuspenseQuery,
 } from '@apollo/client';
 
 export type PaginationOptions = {

@@ -2,7 +2,7 @@ import { gql } from '@/src/__generated__';
 
 export const GET_PRODUCTS = gql(`
     query GetProducts($page: Int, $perPage: Int) {
-        products(page: $page, perPage: $perPage) {
+        paginatedProducts(page: $page, perPage: $perPage) {
             data {
                 id
                 name
@@ -35,6 +35,20 @@ export const GET_PRODUCT = gql(`
             description
             imageUrl
             price
+            salePrice
+            authors {
+                author {
+                    firstName
+                    lastName
+                    displayName
+                }
+            }
+            categories {
+                category {
+                    name
+                    displayName
+                }
+            }
         }
     }
 `);
