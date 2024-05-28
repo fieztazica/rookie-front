@@ -42,12 +42,6 @@ export class ProductsService {
   findOne(id: string): Promise<Product> {
     return this.prisma.product.findUnique({
       where: { id, deleted: false },
-      include: {
-        authors: { include: { author: true } },
-        categories: {
-          include: { category: true },
-        },
-      },
     });
   }
 
