@@ -3,7 +3,7 @@ extends layouts/main
 block content
     main.container.mx-auto
         .py-8
-            form(action=`/admin/${resourceName}/${data.id}/edit` method="POST")
+            form(action=`/admin/${resourceName}/${data.id || data.key}/edit` method="POST")
                 if data
                     table
                         each value, key in data

@@ -250,7 +250,12 @@ export class AdminService {
     entityName: EntityNames,
     id: string,
   ) {
-    this.filterFieldsFromEntity(editInput, ['id', 'createdAt', 'updatedAt']);
+    this.filterFieldsFromEntity(editInput, [
+      'id',
+      'key',
+      'createdAt',
+      'updatedAt',
+    ]);
     this.parseNumberOfEntity(editInput);
     try {
       const entityService = this.getServiceFromEntityName(entityName);

@@ -43,6 +43,23 @@ export class ConfigsService {
     return this.prisma.config.findUnique({ where: { key, deleted: false } });
   }
 
+  get(key: string) {
+    return this.findOne(key);
+  }
+
+  set(key: string, value: string) {
+    return this.prisma.config.upsert({
+      where: { key, deleted: false },
+      update: {
+        value,
+      },
+      create: {
+        key,
+        value,
+      },
+    });
+  }
+
   update(key: string, updateConfigInput: UpdateConfigInput) {
     return this.prisma.config.update({
       where: { key, deleted: false },

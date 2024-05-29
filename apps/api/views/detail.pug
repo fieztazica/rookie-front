@@ -10,5 +10,5 @@ block content
                         td.text-lg.font-semibold.px-2.py-1= titleCase(key)
                         td.text-md.px-2.py-1= value
             .flex.space-x-2.mt-2
-                a(href=`/admin/${resourceName}/${data.id}/edit`) Edit
+                a(href=`/admin/${resourceName}/${data.id || data.key}/edit`) Edit
                 a(href=`/admin/${resourceName}`) Back
