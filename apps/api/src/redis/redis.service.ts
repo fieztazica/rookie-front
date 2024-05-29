@@ -13,20 +13,28 @@ export class RedisService {
     return this.redisClient;
   }
 
-  hSet(key: string, field: string, value: string) {
-    return this.cacheManager.set(`${key}:${field}`, value);
+  set(key: string, value: string, ttl?: number) {
+    return this.cacheManager.set(key, value, ttl);
   }
 
-  hGet(key: string, field: string) {
-    return this.cacheManager.get(`${key}:${field}`);
+  get<T = unknown>(key: string) {
+    return this.cacheManager.get<T>(key);
   }
 
-  hGetAll(key: string) {
-    return this.cacheManager.get(`${key}:*`);
+  del(key: string) {
+    return this.cacheManager.del(key);
+  }
+
+  hSet(key: string, field: string, value: string, ttl?: number) {
+    return this.set(`${key}:${field}`, value, ttl);
+  }
+
+  hGet<T = unknown>(key: string, field: string) {
+    return this.get<T>(`${key}:${field}`);
   }
 
   hDel(key: string, field: string) {
-    return this.cacheManager.del(`${key}:${field}`);
+    return this.del(`${key}:${field}`);
   }
 
   async hGetJson<T>(key: string, field: string) {
@@ -35,15 +43,15 @@ export class RedisService {
     return JSON.parse(result as string) as T;
   }
 
-  hSetJson<T>(key: string, field: string, value: T) {
-    return this.hSet(key, field, JSON.stringify(value));
+  hSetJson<T>(key: string, field: string, value: T, ttl?: number) {
+    return this.hSet(key, field, JSON.stringify(value), ttl);
   }
 
-  async hGetOrSetJson<T>(key: string, field: string, value?: T) {
+  async hGetOrSetJson<T>(key: string, field: string, value?: T, ttl?: number) {
     const result = await this.hGetJson<T>(key, field);
     if (result) return result;
     if (value) {
-      await this.hSetJson(key, field, value);
+      await this.hSetJson(key, field, value, ttl);
     }
     return value;
   }
