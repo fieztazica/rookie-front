@@ -46,7 +46,7 @@ function WriteReviewForm({}: Props) {
     <div className="border rounded">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <div className="border p-2 rounded">
+          <div className="border-b p-2 rounded">
             <h3 className="text-lg font-bold">Write a review</h3>
           </div>
           <div className="p-2">
@@ -108,7 +108,7 @@ function WriteReviewForm({}: Props) {
               )}
             />
           </div>
-          <div className="border p-2 rounded">
+          <div className="border-t p-2 rounded">
             <Button type="submit" className="w-full">
               Submit
             </Button>
