@@ -1,14 +1,11 @@
-import { useSuspenseQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { COUNT_CART_ITEMS } from './cart.queries';
 
-export function useCountCartItems() {
-  return useSuspenseQuery(COUNT_CART_ITEMS, {
+export function useCountCartItems(customerId: string) {
+  return useQuery(COUNT_CART_ITEMS, {
     errorPolicy: 'all',
-    context: {
-      simulateError: true,
-    },
     variables: {
-      customerId: '1',
+      customerId,
     },
   });
 }
