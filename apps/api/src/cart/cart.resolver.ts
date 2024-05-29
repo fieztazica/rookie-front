@@ -1,4 +1,3 @@
-import { UseGuards } from '@nestjs/common';
 import {
   Args,
   Int,
@@ -8,7 +7,6 @@ import {
   ResolveField,
   Resolver,
 } from '@nestjs/graphql';
-import { GqlJwtAuthGuard } from 'src/auth/guard/gql.jwt.guard';
 import { CartService } from './cart.service';
 import { CartItemInput } from './dto/cart-item.input';
 import { Cart } from './entities/cart.entity';
@@ -16,7 +14,6 @@ import { ProductsService } from 'src/products/products.service';
 import { Product } from 'src/__generated__/product/product.model';
 
 @Resolver(() => Cart)
-@UseGuards(GqlJwtAuthGuard)
 export class CartResolver {
   constructor(
     private readonly cartService: CartService,
