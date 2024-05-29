@@ -21,7 +21,7 @@ async function MainLayout({ children }: PropsWithChildren<Props>) {
   return (
     <div>
       {!data && (
-        <div className="px-4 py-1 bg-accent">
+        <div className="px-4 py-1 bg-accent border-b">
           Seems like you are missing some information. Click{' '}
           <Link href="/welcome" className="font-semibold underline">
             here

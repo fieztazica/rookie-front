@@ -9,11 +9,11 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   navigationMenuTriggerStyle,
-} from '../ui/navigation-menu';
-import Cart from './cart';
+} from '../../components/ui/navigation-menu';
+import { useCountCartItems } from '@/src/features/cart/useCountCartItems';
 
 type Props = {
-  accessToken?: string;
+  customerId?: string;
 };
 
 const navLinks: { title: string; href: string }[] = [
@@ -31,8 +31,13 @@ const navLinks: { title: string; href: string }[] = [
   },
 ];
 
-function NavMenu({ accessToken }: Props) {
+function NavMenu({ customerId }: Props) {
   const pathname = usePathname();
+  const { data } = useCountCartItems(customerId || '');
+  console.log('nav', customerId, data);
+  const cartString = !customerId
+    ? 'Cart'
+    : `Cart (${data?.countCartItems || 0})`;
   return (
     <NavigationMenu>
       <NavigationMenuList>
@@ -64,7 +69,7 @@ function NavMenu({ accessToken }: Props) {
                 ),
               })}
             >
-              <Cart />
+              {cartString}
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
