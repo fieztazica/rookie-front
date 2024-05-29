@@ -24,6 +24,7 @@ import {
 } from '@/components/ui/select';
 import { customerInformationSchema } from './schema';
 import { submitCustomerInformation } from './actions';
+import { toast } from '@/components/ui/use-toast';
 
 type Props = {
   email: string;
@@ -42,11 +43,20 @@ function WelcomeForm({ email, accountId }: Props) {
     },
   });
 
-  function onSubmit(values: z.infer<typeof customerInformationSchema>) {
+  async function onSubmit(values: z.infer<typeof customerInformationSchema>) {
     try {
-      submitCustomerInformation(values);
+      await submitCustomerInformation(values);
+      toast({
+        title: 'Thank you!',
+        description: 'Now please login again. Redirecting you to login page...',
+      });
     } catch (error) {
       console.log(error);
+      toast({
+        variant: 'destructive',
+        title: 'Error',
+        description: 'Something went wrong. Please try again.',
+      });
     }
   }
   return (

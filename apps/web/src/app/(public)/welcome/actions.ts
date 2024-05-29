@@ -3,6 +3,7 @@
 import { z } from 'zod';
 import { customerInformationSchema } from './schema';
 import { redirect } from 'next/navigation';
+import { signOut } from '@/auth';
 
 export const submitCustomerInformation = async (
   values: z.infer<typeof customerInformationSchema>,
@@ -27,5 +28,6 @@ export const submitCustomerInformation = async (
     throw new Error(body?.message || 'Internal Server Error');
 
   console.log(res.status);
+  await signOut();
   return redirect('/');
 };
