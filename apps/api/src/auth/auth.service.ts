@@ -1,7 +1,7 @@
 import { BadRequestException, Inject, Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import { ENHANCED_PRISMA } from '@zenstackhq/server/nestjs';
 import { PrismaService } from 'src/common/database/prisma.service';
+import { ConfigsService } from 'src/configs/configs.service';
 import { CustomersService } from 'src/customers/customers.service';
 import { CreateCustomerInput } from 'src/customers/dto/create-customer.input';
 
@@ -10,12 +10,12 @@ export class AuthService {
   constructor(
     @Inject(ENHANCED_PRISMA) private readonly prisma: PrismaService,
     private readonly customersService: CustomersService,
-    private readonly configService: ConfigService,
+    private readonly configsService: ConfigsService,
   ) {}
 
   async register(apiKey: string, createCustomerInput: CreateCustomerInput) {
-    console.log(apiKey, createCustomerInput);
-    if (apiKey !== this.configService.get('API_KEY')) {
+    const dbApiKey = (await this.configsService.get('API_KEY')).value;
+    if (apiKey !== dbApiKey) {
       throw new BadRequestException('Invalid API key');
     }
     createCustomerInput.displayName =

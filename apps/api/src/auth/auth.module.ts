@@ -6,6 +6,7 @@ import { SessionSerializer } from './serializer/session.serializer';
 import { JwtStrategy } from './strategy/jwt.strategy';
 import { buildOpenIdClient, OidcStrategy } from './strategy/oidc.strategy';
 import { CustomersModule } from 'src/customers/customers.module';
+import { ConfigsModule } from 'src/configs/configs.module';
 
 const OidcStrategyFactory = {
   provide: 'OidcStrategy',
@@ -20,6 +21,7 @@ const OidcStrategyFactory = {
 @Module({
   imports: [
     CustomersModule,
+    ConfigsModule,
     PassportModule.register({
       session: true,
       defaultStrategy: ['oidc', 'jwt'],
