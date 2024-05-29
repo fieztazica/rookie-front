@@ -7,6 +7,8 @@ import { Cart } from './entities/cart.entity';
 @Injectable()
 export class CartService {
   name = 'basket';
+  // 1 month in milliseconds
+  ttl = 30 * 24 * 60 * 60 * 1000;
   constructor(
     private readonly redisService: RedisService,
     private readonly productsService: ProductsService,
@@ -22,7 +24,7 @@ export class CartService {
     if (amount < 1) return cart;
     if (!cart.addItem) cart = new Cart(cart.items);
     cart.addItem(productId, amount);
-    await this.redisService.hSetJson(this.name, customerId, cart);
+    await this.setCart(customerId, cart);
     return cart;
   }
 
@@ -31,7 +33,7 @@ export class CartService {
     if (amount < 1) return cart;
     if (!cart.removeItem) cart = new Cart(cart.items);
     cart.removeItem(key, amount);
-    this.redisService.hSetJson(this.name, customerId, cart);
+    await this.setCart(customerId, cart);
     return cart;
   }
 
@@ -39,7 +41,7 @@ export class CartService {
     let cart = await this.getOrSetCart(customerId);
     if (!cart.deleteItem) cart = new Cart(cart.items);
     cart.deleteItem(key);
-    this.redisService.hSetJson(this.name, customerId, cart);
+    await this.setCart(customerId, cart);
     return cart;
   }
 
@@ -54,6 +56,11 @@ export class CartService {
       this.name,
       customer.id,
       new Cart(),
+      this.ttl,
     );
+  }
+
+  setCart(customerId: string, cart: Cart) {
+    this.redisService.hSetJson(this.name, customerId, cart, this.ttl);
   }
 }
