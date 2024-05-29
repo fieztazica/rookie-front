@@ -7,11 +7,11 @@ import React from 'react';
 type Props = {};
 
 function ShopProducts({}: Props) {
-  const { data, loading, error } = useGetProducts();
+  const { data, error } = useGetProducts();
 
-  if (loading) return <p>Loading...</p>;
+//   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error : {error.message}</p>;
-  return <ProductList products={data?.products.data} />;
+  return <ProductList products={data?.paginatedProducts.data} />;
 }
 
 export default ShopProducts;
