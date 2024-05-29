@@ -19,6 +19,16 @@ export class CustomersService {
     return this.prisma.customer.create({ data: createCustomerInput });
   }
 
+  async isExist(id: string) {
+    return (
+      (await this.prisma.customer.count({
+        where: {
+          id,
+        },
+      })) > 0
+    );
+  }
+
   findAll(
     options: Prisma.CustomerFindManyArgs = {
       where: { deleted: { equals: false } },
