@@ -63,17 +63,15 @@ function ProductReviews({}: Props) {
           </div>
         </div>
         {new Array(10).fill(0).map((_, i) => (
-          <>
-            <div key={`review_${i}`}>
-              <ReviewBox
-                title={'Review title'}
-                stars={5}
-                feedback={`lorem ipsum lorem ipsum lorem ipsum`}
-                timestamp={`${i}`}
-              />
-            </div>
+          <div key={`review_${i}`}>
+            <ReviewBox
+              title={'Review title'}
+              stars={5}
+              feedback={`lorem ipsum lorem ipsum lorem ipsum`}
+              timestamp={`${i}`}
+            />
             <Separator />
-          </>
+          </div>
         ))}
       </div>
     </div>
