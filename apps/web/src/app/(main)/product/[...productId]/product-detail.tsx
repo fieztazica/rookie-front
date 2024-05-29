@@ -1,25 +1,23 @@
-'use client';
-
-import { useGetProduct } from '@/src/features/product/useGetProduct';
 import React from 'react';
 import ProductDescription from './product-description';
 import { Separator } from '@/components/ui/separator';
 import ProductPrice from './product-price';
 import ProductReviews from './product-reviews';
 import WriteReviewForm from './write-review-form';
+import { Product } from '@/src/__generated__/graphql';
+import { auth } from '@/auth';
 
 type Props = {
-  id: string;
+  product: Product;
 };
 
-function ProductDetail({ id }: Props) {
-  const { data, error } = useGetProduct(id);
-  if (error) return <p>Error : {error.message}</p>;
+async function ProductDetail({ product }: Props) {
+  const session = await auth();
   return (
     <div>
       <div className="text-2xl font-bold mb-6">
         Category:{' '}
-        {data.product?.categories
+        {product?.categories
           .map((a) => a.category.displayName || a.category.name)
           .join(', ')}
       </div>
@@ -27,22 +25,24 @@ function ProductDetail({ id }: Props) {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="col-span-2">
           <ProductDescription
-            imageUrl={data.product.imageUrl}
-            title={data.product?.displayName || data.product?.name}
-            author={data.product?.authors
+            imageUrl={product.imageUrl}
+            title={product?.displayName || product?.name}
+            author={product?.authors
               .map(
                 (a) =>
                   a.author.displayName ||
                   `${a.author.firstName} ${a.author.lastName}`,
               )
               .join(', ')}
-            description={data.product?.description}
+            description={product?.description}
           />
         </div>
         <div>
           <ProductPrice
-            price={data.product.price}
-            salePrice={data.product.salePrice}
+            productId={product.id}
+            price={product.price}
+            salePrice={product.salePrice}
+            customerId={session?.user?.customer_id}
           />
         </div>
         <div className="col-span-2">

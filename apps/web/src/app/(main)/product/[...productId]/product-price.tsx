@@ -6,13 +6,19 @@ import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
 import { MinusIcon, PlusIcon } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
+import { addToCartAction } from './actions';
+import { toast } from '@/components/ui/use-toast';
+import { useCountCartItems } from '@/src/features/cart/useCountCartItems';
 
 type Props = {
+  productId: string;
   price: number;
   salePrice: number;
+  customerId?: string;
 };
 
-function ProductPrice({ price, salePrice }: Props) {
+function ProductPrice({ customerId, productId, price, salePrice }: Props) {
+  const { refetch } = useCountCartItems(customerId || '');
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
@@ -21,9 +27,29 @@ function ProductPrice({ price, salePrice }: Props) {
     if (flooredQuantity !== quantity) setQuantity(flooredQuantity);
   }, [quantity]);
 
+  const onAddToCartClick = async () => {
+    try {
+      const { data } = await addToCartAction(productId, quantity);
+      if (!data) {
+        throw new Error('Unknown error');
+      }
+      await refetch();
+      toast({
+        title: 'Success',
+        description: 'Product added to cart',
+      });
+    } catch (e) {
+      toast({
+        title: 'Oh oh! Something went wrong.',
+        description: 'Failed to add product to cart.',
+        variant: 'destructive',
+      });
+    }
+  };
+
   return (
     <div className="rounded border h-fit">
-      <div className="bg-accent border rounded px-8 py-2">
+      <div className="bg-accent border-b rounded px-8 py-2">
         <p className="space-x-2">
           <span
             className={cn(
@@ -39,7 +65,7 @@ function ProductPrice({ price, salePrice }: Props) {
         </p>
       </div>
       <div className="px-4 py-6 flex items-center justify-center min-h-56">
-        <form>
+        <div>
           <Label htmlFor="quantity">Quantity</Label>
           <div className="flex w-full max-w-sm items-center space-x-2 mb-2">
             <div className="flex items-center space-x-2">
@@ -72,10 +98,10 @@ function ProductPrice({ price, salePrice }: Props) {
               </Button>
             </div>
           </div>
-          <Button type="submit" className="w-full">
+          <Button onClick={onAddToCartClick} className="w-full">
             Add to cart
           </Button>
-        </form>
+        </div>
       </div>
     </div>
   );

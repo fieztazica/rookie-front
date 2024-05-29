@@ -1,4 +1,4 @@
-import { gql } from "@/src/__generated__";
+import { gql } from '@/src/__generated__';
 
 export const COUNT_CART_ITEMS = gql(`
     query CountCartItems($customerId: String!) {
@@ -14,5 +14,21 @@ export const GET_CART = gql(`
                 value
             }
         }
+    }
+`);
+
+export const ADD_TO_CART = gql(`
+    mutation AddToCart($customerId: String!, $productId: String!, $amount: Int!) {
+        addCartItem(
+            customerId: $customerId,
+            input: {
+                key: $productId,
+                value: $amount
+            }) {
+                items {
+                    key
+                    value
+                }
+            }
     }
 `);
