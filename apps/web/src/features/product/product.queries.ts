@@ -27,8 +27,8 @@ export const GET_PRODUCTS = gql(`
 `);
 
 export const GET_PRODUCT = gql(`
-    query GetProduct($id: String!) {
-        product(id: $id) {
+    query GetProduct($productId: String!) {
+        product(id: $productId) {
             id
             name
             displayName
