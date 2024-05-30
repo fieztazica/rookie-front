@@ -25,15 +25,19 @@ export class Cart {
     if (!items) {
       this.items = [];
     } else if (Array.isArray(items)) {
-      this.items = items.map(({ key, value }) => ({
-        key,
-        value: this.intValue(value),
-      }));
+      this.items = items
+        .filter((item) => item.value >= 1)
+        .map(({ key, value }) => ({
+          key,
+          value: this.intValue(value),
+        }));
     } else {
-      this.items = Object.entries(items).map(([key, value]) => ({
-        key,
-        value: this.intValue(value),
-      }));
+      this.items = Object.entries(items)
+        .filter(([_, value]) => value >= 1)
+        .map(([key, value]) => ({
+          key,
+          value: this.intValue(value),
+        }));
     }
   }
 

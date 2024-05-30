@@ -30,7 +30,7 @@ export class CartService {
   }
 
   async update(customerId: string, items: CartItemInput[]) {
-    return this.getOrSetCart(customerId, items);
+    return this.setCart(customerId, new Cart(items));
   }
 
   async remove(customerId: string, key: string, amount: number = 1) {
@@ -54,22 +54,29 @@ export class CartService {
     return this.redisService.hDel(this.name, customerId);
   }
 
+  async verifyCustomerId(id: string) {
+    const customer = await this.customersService.findOne(id);
+    if (!customer) throw new BadRequestException();
+    return customer.id;
+  }
+
   async getOrSetCart(
     customerId: string,
     items?: { key: string; value: number }[],
   ) {
-    const customer = await this.customersService.findOne(customerId);
-    if (!customer) throw new BadRequestException();
+    customerId = await this.verifyCustomerId(customerId);
     const cart = items ? new Cart(items) : new Cart();
     return this.redisService.hGetOrSetJson<Cart>(
       this.name,
-      customer.id,
+      customerId,
       cart,
       this.ttl,
     );
   }
 
-  setCart(customerId: string, cart: Cart) {
+  async setCart(customerId: string, cart: Cart) {
+    customerId = await this.verifyCustomerId(customerId);
     this.redisService.hSetJson(this.name, customerId, cart, this.ttl);
+    return cart;
   }
 }

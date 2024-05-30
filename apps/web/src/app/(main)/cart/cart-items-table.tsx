@@ -18,7 +18,8 @@ import { Decimal } from 'decimal.js';
 import { MinusIcon, PlusIcon } from 'lucide-react';
 import { useEffect } from 'react';
 import { useMap } from 'usehooks-ts';
-import { refetchCart } from './actions';
+import { updateCart } from './actions';
+import _ from 'lodash';
 type Props = {
   cart: GetCartWithProductsQuery['cart'];
 };
@@ -47,8 +48,19 @@ function CartItemsTable({ cart }: Props) {
   );
 
   useEffect(() => {
-    refetchCart();
+    const debouncedMapObjectItems = Array.from(debouncedMapItems.entries()).map(
+      ([key, value]) => ({
+        key,
+        value,
+      }),
+    );
+    if (_.isEqual(cart.items, debouncedMapObjectItems)) return;
+    updateCart(debouncedMapObjectItems);
   }, [debouncedMapItems]);
+
+  useEffect(() => {
+    actionsMapItems.setAll(cart.items.map((i) => [i.key, i.value]));
+  }, [cart]);
 
   return (
     <Table>
@@ -97,9 +109,9 @@ function CartItemsTable({ cart }: Props) {
                   <Button
                     size="icon"
                     onClick={() => {
-                      if (amount > 1) actionsMapItems.set(itemId, amount - 1);
+                      if (amount >= 1) actionsMapItems.set(itemId, amount - 1);
                     }}
-                    disabled={amount <= 1}
+                    disabled={amount <= 0}
                   >
                     <MinusIcon className="h-4 w-4" />
                   </Button>
@@ -110,8 +122,8 @@ function CartItemsTable({ cart }: Props) {
                       const parsedValue = parseInt(e.target.value || '0');
                       const amountToSet = isNaN(parsedValue)
                         ? 1
-                        : parsedValue < 1
-                          ? 1
+                        : parsedValue < 0
+                          ? 0
                           : parsedValue;
                       actionsMapItems.set(itemId, amountToSet);
                     }}
