@@ -11,11 +11,17 @@ import { Product } from '../__generated__/graphql';
 
 type Props = {
   product: Product;
-};
+} & React.HTMLAttributes<HTMLDivElement>;
 
-function ProductCard({ product }: Props) {
+function ProductCard({ product, className, ...props }: Props) {
   return (
-    <Card className="w-fit transition-all hover:cursor-pointer hover:scale-105">
+    <Card
+      className={cn(
+        'w-fit transition-all hover:cursor-pointer hover:scale-105',
+        className,
+      )}
+      {...props}
+    >
       <CardHeader>
         <CardTitle>{product.displayName || product.name}</CardTitle>
         <CardDescription>
