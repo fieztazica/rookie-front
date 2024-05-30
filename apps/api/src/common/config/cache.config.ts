@@ -9,7 +9,6 @@ export class CacheConfig implements CacheOptionsFactory {
 
   async createCacheOptions(): Promise<CacheModuleOptions> {
     return {
-      ttl: this.configService.get('cacheTtl'),
       store: redisStore,
       url: this.configService.get('redisUrl'),
     };
