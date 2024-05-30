@@ -7,11 +7,11 @@ import {
   ResolveField,
   Resolver,
 } from '@nestjs/graphql';
+import { Product } from 'src/__generated__/product/product.model';
+import { ProductsService } from 'src/products/products.service';
 import { CartService } from './cart.service';
 import { CartItemInput } from './dto/cart-item.input';
 import { Cart } from './entities/cart.entity';
-import { ProductsService } from 'src/products/products.service';
-import { Product } from 'src/__generated__/product/product.model';
 
 @Resolver(() => Cart)
 export class CartResolver {
@@ -56,6 +56,14 @@ export class CartResolver {
     @Args('input') input: CartItemInput,
   ) {
     return this.cartService.add(customerId, input.key, input.value);
+  }
+
+  @Mutation(() => Cart)
+  updateCart(
+    @Args('customerId', { type: () => String }) customerId: string,
+    @Args('items', { type: () => [CartItemInput] }) items: CartItemInput[],
+  ) {
+    return this.cartService.update(customerId, items);
   }
 
   @Mutation(() => Cart)

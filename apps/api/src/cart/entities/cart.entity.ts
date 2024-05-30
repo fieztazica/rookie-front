@@ -25,11 +25,14 @@ export class Cart {
     if (!items) {
       this.items = [];
     } else if (Array.isArray(items)) {
-      this.items = items;
+      this.items = items.map(({ key, value }) => ({
+        key,
+        value: this.intValue(value),
+      }));
     } else {
       this.items = Object.entries(items).map(([key, value]) => ({
         key,
-        value,
+        value: this.intValue(value),
       }));
     }
   }
@@ -37,15 +40,15 @@ export class Cart {
   addItem(key: string, value: number) {
     const existingItem = this.items.find((item) => item.key === key);
     if (existingItem) {
-      existingItem.value += value;
+      existingItem.value = Math.max(1, existingItem.value + Math.trunc(value));
     } else {
-      this.items.push({ key, value });
+      this.items.push({ key, value: this.intValue(value) });
     }
   }
 
   addMultipleItems(items: Record<string, number>) {
     Object.entries(items).forEach(([key, value]) => {
-      this.addItem(key, value);
+      this.addItem(key, this.intValue(value));
     });
   }
 
@@ -65,5 +68,9 @@ export class Cart {
 
   itemsToRecord() {
     return Object.fromEntries(this.items.map((item) => [item.key, item.value]));
+  }
+
+  intValue(value: number) {
+    return Math.max(1, Math.trunc(value));
   }
 }

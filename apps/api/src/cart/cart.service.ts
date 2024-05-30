@@ -1,14 +1,15 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { ProductsService } from 'src/products/products.service';
 import { CustomersService } from 'src/customers/customers.service';
+import { ProductsService } from 'src/products/products.service';
 import { RedisService } from 'src/redis/redis.service';
 import { Cart } from './entities/cart.entity';
+import { CartItemInput } from './dto/cart-item.input';
 
 @Injectable()
 export class CartService {
   name = 'basket';
-  // 1 month in milliseconds
-  ttl = 30 * 24 * 60 * 60 * 1000;
+  // 7 days in milliseconds
+  ttl = 7 * 24 * 60 * 60 * 1000;
   constructor(
     private readonly redisService: RedisService,
     private readonly productsService: ProductsService,
@@ -26,6 +27,10 @@ export class CartService {
     cart.addItem(productId, amount);
     await this.setCart(customerId, cart);
     return cart;
+  }
+
+  async update(customerId: string, items: CartItemInput[]) {
+    return this.getOrSetCart(customerId, items);
   }
 
   async remove(customerId: string, key: string, amount: number = 1) {
@@ -49,13 +54,17 @@ export class CartService {
     return this.redisService.hDel(this.name, customerId);
   }
 
-  async getOrSetCart(customerId: string) {
+  async getOrSetCart(
+    customerId: string,
+    items?: { key: string; value: number }[],
+  ) {
     const customer = await this.customersService.findOne(customerId);
     if (!customer) throw new BadRequestException();
+    const cart = items ? new Cart(items) : new Cart();
     return this.redisService.hGetOrSetJson<Cart>(
       this.name,
       customer.id,
-      new Cart(),
+      cart,
       this.ttl,
     );
   }

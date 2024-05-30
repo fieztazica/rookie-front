@@ -1,13 +1,14 @@
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import { RedisCache, RedisClient } from './redis.interface';
 
 @Injectable()
-export class RedisService {
+export class RedisService implements OnModuleInit {
   private redisClient: RedisClient;
   constructor(@Inject(CACHE_MANAGER) private cacheManager: RedisCache) {
     this.redisClient = this.cacheManager.store.getClient();
   }
+  onModuleInit() {}
 
   getRedisClient(): RedisClient {
     return this.redisClient;
