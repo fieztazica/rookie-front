@@ -34,7 +34,6 @@ const navLinks: { title: string; href: string }[] = [
 function NavMenu({ customerId }: Props) {
   const pathname = usePathname();
   const { data } = useCountCartItems(customerId || '');
-  console.log('nav', customerId, data);
   const cartString = !customerId
     ? 'Cart'
     : `Cart (${data?.countCartItems || 0})`;
