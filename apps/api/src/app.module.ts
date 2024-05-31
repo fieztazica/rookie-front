@@ -29,6 +29,7 @@ import { OrdersModule } from './orders/orders.module';
 import { ProductsModule } from './products/products.module';
 import { RedisModule } from './redis/redis.module';
 import { ConfigsModule } from './configs/configs.module';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Global()
 @Module({
@@ -42,6 +43,7 @@ import { ConfigsModule } from './configs/configs.module';
     ServeStaticModule.forRootAsync({
       useClass: ServeStaticConfig,
     }),
+    ScheduleModule.forRoot(),
     PrismaModule,
     CustomersModule,
     FeedbacksModule,

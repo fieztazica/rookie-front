@@ -39,6 +39,7 @@
         "@nestjs/mongoose": "^10.0.6",
         "@nestjs/passport": "^10.0.3",
         "@nestjs/platform-express": "^10.0.0",
+        "@nestjs/schedule": "^4.0.2",
         "@nestjs/serve-static": "^4.0.2",
         "@nestjs/throttler": "^5.1.2",
         "@prisma/client": "^5.13.0",
