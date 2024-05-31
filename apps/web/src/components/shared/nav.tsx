@@ -2,18 +2,17 @@
 
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
   navigationMenuTriggerStyle,
-} from '../../components/ui/navigation-menu';
-import { useCountCartItems } from '@/src/features/cart/useCountCartItems';
+} from '../ui/navigation-menu';
+import { usePathname } from 'next/navigation';
 
 type Props = {
-  customerId?: string;
+  cartString?: string;
 };
 
 const navLinks: { title: string; href: string }[] = [
@@ -31,12 +30,8 @@ const navLinks: { title: string; href: string }[] = [
   },
 ];
 
-function NavMenu({ customerId }: Props) {
+function NavMenu({ cartString = 'Cart' }: Props) {
   const pathname = usePathname();
-  const { data } = useCountCartItems(customerId || '');
-  const cartString = !customerId
-    ? 'Cart'
-    : `Cart (${data?.countCartItems || 0})`;
   return (
     <NavigationMenu>
       <NavigationMenuList>
