@@ -36,6 +36,7 @@ function ProductPrice({ productId, price, salePrice }: Props) {
         description: 'Product added to cart',
       });
     } catch (e) {
+      console.error(e);
       toast({
         title: 'Oh oh! Something went wrong.',
         description: 'Failed to add product to cart.',

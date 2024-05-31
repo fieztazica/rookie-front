@@ -1,3 +1,5 @@
+'use client';
+
 import {
   Select,
   SelectContent,
@@ -7,10 +9,51 @@ import {
 } from '@/components/ui/select';
 import { Separator } from '@/components/ui/separator';
 import ReviewBox from './review';
+import { usePathname, useSearchParams, useRouter } from 'next/navigation';
+import { useCallback } from 'react';
+import { useGetFeedbacksByProductId } from '@/features/feedback/getFeedbacksByProductId';
+import { useDebounceValue } from 'usehooks-ts';
+import PaginBox from './pagin-box';
 
-type Props = {};
+type Props = {
+  productId: string;
+};
 
-function ProductReviews({}: Props) {
+function ProductReviews({ productId }: Props) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const sortBy = searchParams.get('sortBy') || 'recent';
+  const page = parseInt(searchParams.get('page') || '1');
+  const perPage = parseInt(searchParams.get('perPage') || '10');
+  const { data } = useGetFeedbacksByProductId(productId, {
+    page,
+    perPage,
+  });
+
+  // Get a new searchParams string by merging the current
+  // searchParams with a provided key/value pair
+  const createQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set(name, value);
+
+      return params.toString();
+    },
+    [searchParams],
+  );
+
+  if (!data) return null;
+  const feedbacks = data?.paginatedFeedbacksByProductId?.data || [];
+  const meta = data?.paginatedFeedbacksByProductId?.meta;
+
+  const startIndex = (page - 1) * perPage + 1;
+  const endIndex = Math.min(page * perPage, meta?.total);
+  const showingStatement =
+    feedbacks.length > 0
+      ? `Showing ${startIndex}-${endIndex} of ${meta?.total} reviews`
+      : `Showing 0 of ${meta?.total} reviews`;
+
   return (
     <div className="border bg-accent p-4 rounded">
       <div className="mb-4">
@@ -34,9 +77,15 @@ function ProductReviews({}: Props) {
           </div>
         </div>
         <div className="flex items-center justify-between">
-          <div className="text-xs">Showing 1-12 of 3134 reviews</div>
+          <div className="text-xs">{showingStatement}</div>
           <div className="flex space-x-2">
-            <Select>
+            <Select
+              onValueChange={(e) => {
+                router.push(pathname + '?' + createQueryString('sortBy', e), {
+                  scroll: false,
+                });
+              }}
+            >
               <SelectTrigger className="w-fit">
                 <SelectValue placeholder="Sort by" />
               </SelectTrigger>
@@ -50,29 +99,37 @@ function ProductReviews({}: Props) {
                 </SelectItem>
               </SelectContent>
             </Select>
-            <Select>
+            <Select
+              defaultValue={perPage.toString()}
+              onValueChange={(e) => {
+                router.push(pathname + '?' + createQueryString('perPage', e), {
+                  scroll: false,
+                });
+              }}
+            >
               <SelectTrigger className="w-fit">
                 <SelectValue placeholder="Show" />
               </SelectTrigger>
               <SelectContent>
+                <SelectItem value="5">Show 5</SelectItem>
                 <SelectItem value="10">Show 10</SelectItem>
                 <SelectItem value="20">Show 20</SelectItem>
-                <SelectItem value="50">Show 50</SelectItem>
               </SelectContent>
             </Select>
           </div>
         </div>
-        {new Array(10).fill(0).map((_, i) => (
-          <div key={`review_${i}`}>
+        {feedbacks.map((feedback) => (
+          <div key={`review_${feedback.id}`}>
             <ReviewBox
-              title={'Review title'}
-              stars={5}
-              feedback={`lorem ipsum lorem ipsum lorem ipsum`}
-              timestamp={`${i}`}
+              title={feedback.title}
+              stars={feedback.rating}
+              feedback={feedback.message}
+              timestamp={feedback?.createdAt || ''}
             />
             <Separator />
           </div>
         ))}
+        {feedbacks.length > 0 && <PaginBox meta={meta} />}
       </div>
     </div>
   );

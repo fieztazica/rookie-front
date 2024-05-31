@@ -1,13 +1,10 @@
-import React from 'react';
-import { getClient } from '@/lib/apollo/apollo-client';
-import { GET_PRODUCT } from '@/features/product/product.queries';
+import { Separator } from '@/components/ui/separator';
+import { getProduct } from '@/features/product/getProduct';
 import { notFound } from 'next/navigation';
 import ProductDescription from './components/product-description';
 import ProductPrice from './components/product-price';
 import ProductReviews from './components/product-reviews';
 import WriteReviewForm from './components/write-review-form';
-import { Separator } from '@/components/ui/separator';
-import { getProduct } from '@/features/product/getProduct';
 
 type Props = {
   params: {
@@ -51,10 +48,10 @@ async function ProductPage({ params }: Props) {
           />
         </div>
         <div className="col-span-2">
-          <ProductReviews />
+          <ProductReviews productId={product.id} />
         </div>
         <div>
-          <WriteReviewForm />
+          <WriteReviewForm productId={product.id}/>
         </div>
       </div>
     </div>

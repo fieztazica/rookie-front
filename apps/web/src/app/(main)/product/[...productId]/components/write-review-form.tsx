@@ -23,23 +23,42 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { ReviewSchema } from '../schema';
+import { feedback } from '../actions';
 
-type Props = {};
+type Props = {
+  productId: string;
+};
 
-function WriteReviewForm({}: Props) {
+function WriteReviewForm({ productId }: Props) {
   const form = useForm<z.infer<typeof ReviewSchema>>({
     resolver: zodResolver(ReviewSchema),
   });
 
-  function onSubmit(data: z.infer<typeof ReviewSchema>) {
-    toast({
-      title: 'You submitted the following values:',
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
+  async function onSubmit(values: z.infer<typeof ReviewSchema>) {
+    try {
+      const { data } = await feedback(productId, values);
+      if (!data) {
+        throw new Error('Unknown error');
+      }
+      form.reset();
+      toast({
+        title: 'You submitted the following values:',
+        description: (
+          <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+            <code className="text-white">
+              {JSON.stringify(values, null, 2)}
+            </code>
+          </pre>
+        ),
+      });
+    } catch (e) {
+      console.error(e);
+      toast({
+        title: 'Oh oh! Something went wrong.',
+        description: 'Failed to add product to cart.',
+        variant: 'destructive',
+      });
+    }
   }
 
   return (
