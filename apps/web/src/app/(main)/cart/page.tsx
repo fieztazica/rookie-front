@@ -1,35 +1,12 @@
 import { auth } from '@/auth';
+import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { GetCartWithProductsQuery } from '@/src/__generated__/graphql';
-import { GET_CART_WITH_PRODUCTS } from '@/src/features/cart/cart.queries';
-import { ApolloQueryResult } from '@apollo/client';
-import { print } from 'graphql';
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import CartItemsTable from './cart-items-table';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
+import { getDetailCart } from '@/features/cart/getDetailCart';
 
 type Props = {};
-
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
-
-async function fetchCart(customerId: string) {
-  return (await fetch(`${process.env.API_URL}/api/graphql`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      query: print(GET_CART_WITH_PRODUCTS),
-      variables: {
-        customerId,
-      },
-    }),
-    cache: 'no-store',
-    next: { tags: [`cart/${customerId}`] },
-  }).then((res) => res.json())) as ApolloQueryResult<GetCartWithProductsQuery>;
-}
 
 async function CartPage({}: Props) {
   const session = await auth();
@@ -38,7 +15,7 @@ async function CartPage({}: Props) {
     return redirect('/');
   }
 
-  const { data } = await fetchCart(session.user.customer_id);
+  const { data } = await getDetailCart(session.user.customer_id);
   if (!data)
     return (
       <div className="flex flex-col space-y-2">

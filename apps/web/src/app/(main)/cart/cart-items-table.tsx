@@ -12,16 +12,17 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { GetCartWithProductsQuery } from '@/src/__generated__/graphql';
+import { GetDetailCartQuery } from '@/src/__generated__/graphql';
 import { useDebounce } from '@uidotdev/usehooks';
 import { Decimal } from 'decimal.js';
+import _ from 'lodash';
 import { MinusIcon, PlusIcon } from 'lucide-react';
 import { useEffect } from 'react';
 import { useMap } from 'usehooks-ts';
-import { updateCart } from './actions';
-import _ from 'lodash';
+import { makeUpdateCart } from './actions';
+
 type Props = {
-  cart: GetCartWithProductsQuery['cart'];
+  cart: GetDetailCartQuery['cart'];
 };
 
 function CartItemsTable({ cart }: Props) {
@@ -48,14 +49,15 @@ function CartItemsTable({ cart }: Props) {
   );
 
   useEffect(() => {
+    const cartItems = cart.items.map(({ key, value }) => ({ key, value }));
     const debouncedMapObjectItems = Array.from(debouncedMapItems.entries()).map(
       ([key, value]) => ({
         key,
         value,
       }),
     );
-    if (_.isEqual(cart.items, debouncedMapObjectItems)) return;
-    updateCart(debouncedMapObjectItems);
+    if (_.isEqual(cartItems, debouncedMapObjectItems)) return;
+    makeUpdateCart(debouncedMapObjectItems);
   }, [debouncedMapItems]);
 
   useEffect(() => {
@@ -159,9 +161,7 @@ function CartItemsTable({ cart }: Props) {
 
 export default CartItemsTable;
 
-function getProductPrice(
-  product?: GetCartWithProductsQuery['cart']['products'][0],
-) {
+function getProductPrice(product?: GetDetailCartQuery['cart']['products'][0]) {
   if (!product) return new Decimal(0);
   return new Decimal(
     product?.salePrice < 0 ? product?.price : product?.salePrice || 0,
