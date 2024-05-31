@@ -17,7 +17,7 @@ async function OnSale({}: Props) {
   if (!data.products.length) return null;
 
   return (
-    <section>
+    <section className="w-full">
       <div className="flex items-center justify-between w-full">
         <TypographyH3>On Sale</TypographyH3>
         <Button asChild>

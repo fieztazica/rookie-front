@@ -1,20 +1,17 @@
-'use client';
-
-import { useGetProducts } from '@/features/product/useGetProducts';
-import React from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import ProductList from '../../../components/product-list';
-import { TypographyH3 } from '../../../components/typos/h3';
+import { getProducts } from '@/features/product/getProducts';
+import ProductList from '@/components/product-list';
+import { TypographyH3 } from '@/components/typos/h3';
 
 type Props = {};
 
-function FeaturedProducts({}: Props) {
-  const { data, error } = useGetProducts();
+async function FeaturedProducts({}: Props) {
+  const { data, error } = await getProducts();
 
-//   if (loading) return <p>Loading...</p>;
+  //   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error : {error.message}</p>;
   return (
-    <section>
+    <section className="w-full">
       <div className="flex items-center justify-center mb-2">
         <TypographyH3>Featured Books</TypographyH3>
       </div>
