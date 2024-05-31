@@ -1,7 +1,7 @@
 import NextAuth from 'next-auth';
 import { JWT } from 'next-auth/jwt';
 import Auth0 from 'next-auth/providers/auth0';
-import { getCustomerByEmail } from './src/features/customer/useGetCustomerByEmail';
+import { getCustomerByEmail } from './src/features/customer/getCustomerByEmail';
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
