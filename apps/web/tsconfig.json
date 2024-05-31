@@ -11,6 +11,9 @@
             "@/components/*": [
                 "./src/components/*"
             ],
+            "@/features/*": [
+                "./src/features/*"
+            ],
             "@/lib/*": [
                 "./src/lib/*"
             ],
@@ -23,7 +26,8 @@
         "next-env.d.ts",
         "**/*.ts",
         "**/*.tsx",
-        ".next/types/**/*.ts"
+        ".next/types/**/*.ts",
+        "src/app/(main)/product/[...productId]/not-found.tss"
     ],
     "exclude": [
         "node_modules"
