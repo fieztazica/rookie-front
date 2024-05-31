@@ -3,22 +3,19 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { toast } from '@/components/ui/use-toast';
 import { cn } from '@/lib/utils';
 import { MinusIcon, PlusIcon } from 'lucide-react';
-import React, { useEffect, useState } from 'react';
-import { addToCartAction } from './actions';
-import { toast } from '@/components/ui/use-toast';
-import { useCountCartItems } from '@/src/features/cart/useCountCartItems';
+import { useEffect, useState } from 'react';
+import { addToCartAction, refetch } from '../actions';
 
 type Props = {
   productId: string;
   price: number;
   salePrice: number;
-  customerId?: string;
 };
 
-function ProductPrice({ customerId, productId, price, salePrice }: Props) {
-  const { refetch } = useCountCartItems(customerId || '');
+function ProductPrice({ productId, price, salePrice }: Props) {
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {

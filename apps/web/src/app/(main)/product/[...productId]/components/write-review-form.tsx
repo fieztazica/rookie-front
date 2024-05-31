@@ -22,7 +22,7 @@ import { toast } from '@/components/ui/use-toast';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { ReviewSchema } from './schema';
+import { ReviewSchema } from '../schema';
 
 type Props = {};
 
