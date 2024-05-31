@@ -1,14 +1,14 @@
 'use client';
 
+import React from 'react';
 import ProductList from '@/components/product-list';
 import { useSearchParams } from 'next/navigation';
 import { useGetProducts } from '@/features/product/useGetProducts';
-import React from 'react';
-import PaginBox from './pagin-box';
+import PaginBox from '../components/pagin-box';
 
 type Props = {};
 
-function ShopProducts({}: Props) {
+function ShopHomePage({}: Props) {
   const searchParams = useSearchParams();
   const options: PaginationOptions = {
     page: parseInt(searchParams.get('page') || '1'),
@@ -33,4 +33,4 @@ function ShopProducts({}: Props) {
   );
 }
 
-export default ShopProducts;
+export default ShopHomePage;

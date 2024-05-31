@@ -25,7 +25,10 @@ function ProductCard({ product, className, ...props }: Props) {
       <CardHeader>
         <CardTitle>{product.displayName || product.name}</CardTitle>
         <CardDescription>
-          {product.authors?.map((a) => a.author.firstName).join(', ')}
+          {product.authors
+            ?.map((a) => a.author)
+            .map((a) => a.displayName || `${a.firstName} ${a.lastName}`)
+            .join(', ')}
         </CardDescription>
       </CardHeader>
       <CardContent>

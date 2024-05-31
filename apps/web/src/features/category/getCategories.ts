@@ -1,5 +1,5 @@
 import { gql } from '@/src/__generated__';
-import { getClient } from '@/lib/apollo/apollo-client';
+import { useSuspenseQuery } from '@apollo/client';
 
 export const GET_ALL_CATEGORIES = gql(`
     query GetAllCategories {
@@ -11,9 +11,8 @@ export const GET_ALL_CATEGORIES = gql(`
     }
 `);
 
-export async function getCategories() {
-  return getClient().query({
+export function useGetCategories() {
+  return useSuspenseQuery(GET_ALL_CATEGORIES, {
     errorPolicy: 'all',
-    query: GET_ALL_CATEGORIES,
   });
 }

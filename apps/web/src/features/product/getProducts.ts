@@ -11,6 +11,49 @@ export const getProductsTag = (options?: PaginationOptions) => {
   return 'products';
 };
 
+export const GET_PRODUCTS_BY_CATEGORY = gql(`
+    query GetProductsByCategory(
+        $input: String!
+    ) {
+        products(where: {
+            categories: {
+                some: {
+                    category: {
+                        is: {
+                            name: {
+                                contains: $input
+                            }
+                            displayName: {
+                                contains: $input
+                            }
+                        }
+                    }
+                }
+            }
+        }) {
+            id
+            name
+            displayName
+            authors {
+                author {
+                    firstName
+                    lastName
+                    displayName
+                }
+            }
+            categories {
+                category {
+                    name
+                    displayName
+                }
+            }
+            salePrice
+            imageUrl
+            price
+        }
+    }
+`)
+
 export const GET_PRODUCTS = gql(`
     query GetProducts($page: Int, $perPage: Int) {
         paginatedProducts(page: $page, perPage: $perPage) {
@@ -22,6 +65,13 @@ export const GET_PRODUCTS = gql(`
                     author {
                         firstName
                         lastName
+                        displayName
+                    }
+                }
+                categories {
+                    category {
+                        name
+                        displayName
                     }
                 }
                 salePrice
