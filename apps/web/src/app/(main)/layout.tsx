@@ -4,6 +4,7 @@ import Header from '@/components/shared/header';
 import { getCustomerByEmail } from '@/features/customer/getCustomerByEmail';
 import Link from 'next/link';
 import { PropsWithChildren } from 'react';
+import { redirect } from 'next/navigation';
 
 type Props = {};
 
@@ -17,6 +18,9 @@ async function MainLayout({ children }: PropsWithChildren<Props>) {
         <Footer />
       </div>
     );
+
+  if (session && !session?.user?.customer_id) return redirect('/welcome');
+
   const { data } = await getCustomerByEmail(session.user?.email);
   return (
     <div>

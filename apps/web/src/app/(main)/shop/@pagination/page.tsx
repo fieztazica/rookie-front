@@ -16,9 +16,6 @@ function ShopHomePage({}: Props) {
   };
   const { data, error } = useGetProducts(options);
 
-  console.log(data.paginatedProducts.meta);
-
-  //   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error : {error.message}</p>;
   if (!data) return <p>No data</p>;
 
