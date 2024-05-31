@@ -1,14 +1,26 @@
-import { Resolver, Query, Mutation, Args, Parent } from '@nestjs/graphql';
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  Parent,
+  ResolveField,
+} from '@nestjs/graphql';
 import { CategoriesService } from './categories.service';
 import { Category, PaginatedCategory } from './entities/category.entity';
 import { CreateCategoryInput } from './dto/create-category.input';
 import { UpdateCategoryInput } from './dto/update-category.input';
 import { PaginationArgs } from 'src/common/graphql/pagination.args';
 import { FindManyCategoryArgs } from 'src/__generated__/category/find-many-category.args';
+import { ProductToCategory } from 'src/__generated__/product-to-category/product-to-category.model';
+import { PrismaService } from 'src/common/database/prisma.service';
 
 @Resolver(() => Category)
 export class CategoriesResolver {
-  constructor(private readonly categoriesService: CategoriesService) {}
+  constructor(
+    private readonly categoriesService: CategoriesService,
+    private readonly prismaService: PrismaService,
+  ) {}
 
   @Mutation(() => Category)
   createCategory(
@@ -30,6 +42,19 @@ export class CategoriesResolver {
   @Query(() => Category, { name: 'category' })
   findOne(@Args('id', { type: () => String }) id: string): Promise<Category> {
     return this.categoriesService.findOne(id);
+  }
+
+  @ResolveField('products', () => [ProductToCategory])
+  getCategories(@Parent() category: Category) {
+    const { id } = category;
+    return this.prismaService.productToCategory.findMany({
+      where: {
+        categoryId: id,
+      },
+      include: {
+        product: true,
+      },
+    });
   }
 
   @Mutation(() => Category)
