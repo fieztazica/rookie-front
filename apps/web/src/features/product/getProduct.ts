@@ -1,30 +1,7 @@
+import { getClient } from '@/lib/apollo/apollo-client';
 import { gql } from '@/src/__generated__';
 
-export const GET_PRODUCTS = gql(`
-    query GetProducts($page: Int, $perPage: Int) {
-        paginatedProducts(page: $page, perPage: $perPage) {
-            data {
-                id
-                name
-                displayName
-                authors {
-                    author {
-                        firstName
-                        lastName
-                    }
-                }
-                salePrice
-                imageUrl
-                price
-            }
-            meta {
-                total
-                currentPage
-                perPage
-            }
-        }
-    }
-`);
+export const getProductTag = (productId: string) => `products/${productId}`;
 
 export const GET_PRODUCT = gql(`
     query GetProduct($productId: String!) {
@@ -52,3 +29,18 @@ export const GET_PRODUCT = gql(`
         }
     }
 `);
+
+export async function getProduct(productId: string) {
+  return getClient().query({
+    errorPolicy: 'all',
+    query: GET_PRODUCT,
+    variables: { productId: productId },
+    context: {
+        fetchOptions: {
+            next: {
+                tags: [getProductTag(productId)]
+            }
+        }
+    }
+  });
+}

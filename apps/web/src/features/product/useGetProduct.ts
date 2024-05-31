@@ -1,5 +1,5 @@
 import { useSuspenseQuery } from '@apollo/client';
-import { GET_PRODUCT } from './product.queries';
+import { GET_PRODUCT } from './getProduct';
 
 export function useGetProduct(id: string) {
   return useSuspenseQuery(GET_PRODUCT, {
