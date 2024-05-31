@@ -1,7 +1,7 @@
 import { auth } from '@/auth';
 import { redirect } from 'next/navigation';
 import WelcomeForm from './form';
-import { getCustomerByEmail } from '@/src/features/customer/useGetCustomerByEmail';
+import { getCustomerByEmail } from '@/features/customer/getCustomerByEmail';
 
 type Props = {};
 
