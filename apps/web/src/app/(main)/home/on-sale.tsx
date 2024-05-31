@@ -3,7 +3,7 @@
 import React from 'react';
 import { TypographyH3 } from '../../../components/typos/h3';
 import { Button } from '../../../components/ui/button';
-import { useGetProducts } from '@/src/features/product/useGetProducts';
+import { useGetProducts } from '@/features/product/useGetProducts';
 import ProductCarousel from '../../../components/product-carousel';
 
 type Props = {};

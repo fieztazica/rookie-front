@@ -1,6 +1,6 @@
 'use client';
 
-import { useGetProducts } from '@/src/features/product/useGetProducts';
+import { useGetProducts } from '@/features/product/useGetProducts';
 import React from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import ProductList from '../../../components/product-list';
