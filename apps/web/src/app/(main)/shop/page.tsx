@@ -1,10 +1,10 @@
 import { TypographyH4 } from '@/components/typos/h4';
 import { Separator } from '@/components/ui/separator';
 import React from 'react';
-import ShopProducts from './shop-products';
-import AuthorScrollArea from './author-scroll-area';
-import RatingScrollArea from './rating-scroll-area';
-import CategoryScrollArea from './category-scroll-area';
+import ShopProducts from './components/shop-products';
+import AuthorScrollArea from './components/author-scroll-area';
+import RatingScrollArea from './components/rating-scroll-area';
+import CategoryScrollArea from './components/category-scroll-area';
 
 type Props = {};
 
