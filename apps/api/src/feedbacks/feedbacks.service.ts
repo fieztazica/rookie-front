@@ -9,6 +9,7 @@ import {
 import { PrismaService } from '../common/database/prisma.service';
 import { CreateFeedbackInput } from './dto/create-feedback.input';
 import { UpdateFeedbackInput } from './dto/update-feedback.input';
+import { ProductRating } from './entities/product-rating.entity';
 
 @Injectable()
 export class FeedbacksService {
@@ -53,6 +54,43 @@ export class FeedbacksService {
 
   findOne(id: string): Promise<Feedback> {
     return this.prisma.feedback.findUnique({ where: { id, deleted: false } });
+  }
+
+  async calculateRatingByProductId(productId: string): Promise<ProductRating> {
+    const ratings = {
+      five: await this.prisma.feedback.count({
+        where: { productId, deleted: false, rating: 5 },
+      }),
+      four: await this.prisma.feedback.count({
+        where: { productId, deleted: false, rating: 4 },
+      }),
+      three: await this.prisma.feedback.count({
+        where: { productId, deleted: false, rating: 3 },
+      }),
+      two: await this.prisma.feedback.count({
+        where: { productId, deleted: false, rating: 2 },
+      }),
+      one: await this.prisma.feedback.count({
+        where: { productId, deleted: false, rating: 1 },
+      }),
+    };
+
+    const totalRatings =
+      ratings['one'] +
+      ratings['two'] +
+      ratings['three'] +
+      ratings['four'] +
+      ratings['five'];
+
+    const averageRatings =
+      (1 * ratings['one'] +
+        2 * ratings['two'] +
+        3 * ratings['three'] +
+        4 * ratings['four'] +
+        5 * ratings['five']) /
+      totalRatings;
+
+    return { ratings, totalRatings, averageRatings };
   }
 
   update(
