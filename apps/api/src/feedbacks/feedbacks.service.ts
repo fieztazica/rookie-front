@@ -88,7 +88,7 @@ export class FeedbacksService {
         3 * ratings['three'] +
         4 * ratings['four'] +
         5 * ratings['five']) /
-      totalRatings;
+      Math.max(totalRatings, 1);
 
     return { ratings, totalRatings, averageRatings };
   }

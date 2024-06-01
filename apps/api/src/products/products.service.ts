@@ -56,15 +56,21 @@ export class ProductsService {
         ? differenceInSeconds(new Date(), new Date(product.updatedAt))
         : differenceInDays(new Date(), new Date(product.updatedAt));
 
-      if (diff < 7 && product.ratings > 0) return;
+      if (diff < 7 && product.ratings > 0) return product.ratings;
     }
     const ratings =
       await this.feedbacksService.calculateRatingByProductId(productId);
-    await this.update(productId, {
+    const { ratings: productRatings } = await this.update(productId, {
       id: productId,
       ratings: ratings.averageRatings,
     });
-    return ratings.averageRatings;
+    console.log(
+      'triggered calculate ratings',
+      productId,
+      productRatings,
+      new Date(),
+    );
+    return productRatings;
   }
 
   update(id: string, updateProductInput: UpdateProductInput): Promise<Product> {
