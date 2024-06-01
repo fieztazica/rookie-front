@@ -35,6 +35,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       - name: Generate prisma and graphql types
-        run: pnpm run --filter api prisma generate
+        run: cd apps/api && pnpm run --filter api prisma generate
       - name: Do check
         run: pnpm run type-check
