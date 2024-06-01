@@ -6,15 +6,25 @@ import {
   PaginatedResult,
   PaginateOptions,
 } from 'prisma-pagination';
+import { cleanupObject } from 'src/common/utils/object';
+import { RedisService } from 'src/redis/redis.service';
 import { PrismaService } from '../common/database/prisma.service';
 import { CreateFeedbackInput } from './dto/create-feedback.input';
+import {
+  AllowedFeedbacksSortBy,
+  FilterFeedbackInput,
+} from './dto/filter-feedback.input';
 import { UpdateFeedbackInput } from './dto/update-feedback.input';
 import { ProductRating } from './entities/product-rating.entity';
 
 @Injectable()
 export class FeedbacksService {
+  productRatingsCacheKey = 'productRatings';
+  productRatingsCacheTTL = 60 * 60 * 24;
+
   constructor(
     @Inject(ENHANCED_PRISMA) private readonly prisma: PrismaService,
+    private readonly redisService: RedisService,
   ) {}
   create(createFeedbackInput: CreateFeedbackInput): Promise<Feedback> {
     return this.prisma.feedback.create({ data: createFeedbackInput });
@@ -42,12 +52,43 @@ export class FeedbacksService {
   paginatedFindAllByProductId(
     productId: string,
     options: PaginateOptions = { page: 1, perPage: 10 },
+    filters: FilterFeedbackInput = {
+      sortBy: AllowedFeedbacksSortBy.LATEST,
+      star: 5,
+    },
   ): Promise<PaginatedResult<Feedback>> {
+    const additionalQuery = cleanupObject({
+      orderBy: {
+        createdAt:
+          filters.sortBy === AllowedFeedbacksSortBy.OLDEST
+            ? 'asc'
+            : filters.sortBy === AllowedFeedbacksSortBy.LATEST
+              ? 'desc'
+              : undefined,
+        product: {
+          salePrice:
+            filters.sortBy === AllowedFeedbacksSortBy.ONSALE
+              ? 'asc'
+              : undefined,
+        },
+      },
+      include: {
+        product: {
+          select: {
+            salePrice:
+              filters.sortBy === AllowedFeedbacksSortBy.ONSALE
+                ? true
+                : undefined,
+          },
+        },
+      },
+    });
     const paginate = createPaginator(options);
     return paginate<Feedback, Prisma.FeedbackFindManyArgs>(
       this.prisma.feedback,
       {
-        where: { productId, deleted: false },
+        where: { productId, deleted: false, rating: filters.star },
+        ...additionalQuery,
       },
     );
   }
@@ -57,6 +98,11 @@ export class FeedbacksService {
   }
 
   async calculateRatingByProductId(productId: string): Promise<ProductRating> {
+    const cachedProductRating = await this.redisService.hGetJson<ProductRating>(
+      this.productRatingsCacheKey,
+      productId,
+    );
+    if (cachedProductRating) return cachedProductRating;
     const ratings = {
       five: await this.prisma.feedback.count({
         where: { productId, deleted: false, rating: 5 },
@@ -90,7 +136,20 @@ export class FeedbacksService {
         5 * ratings['five']) /
       Math.max(totalRatings, 1);
 
-    return { ratings, totalRatings, averageRatings };
+    const calculatedProductRating: ProductRating = {
+      ratings,
+      totalRatings,
+      averageRatings,
+    };
+
+    await this.redisService.hSetJson(
+      this.productRatingsCacheKey,
+      productId,
+      calculatedProductRating,
+      this.productRatingsCacheTTL,
+    );
+
+    return calculatedProductRating;
   }
 
   update(
