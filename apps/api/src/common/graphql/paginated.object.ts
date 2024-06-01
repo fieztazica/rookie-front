@@ -7,31 +7,31 @@ export interface IPaginatedType<T> extends PaginatedResult<T> {}
 export function Paginated<T>(classRef: Type<T>): Type<IPaginatedType<T>> {
   @ObjectType(`${classRef.name}Meta`)
   abstract class MetaType {
-    @Field((type) => Int)
+    @Field(() => Int)
     total: number;
 
-    @Field((type) => Int)
+    @Field(() => Int)
     lastPage: number;
 
-    @Field((type) => Int)
+    @Field(() => Int)
     currentPage: number;
 
-    @Field((type) => Int)
+    @Field(() => Int)
     perPage: number;
 
-    @Field((type) => Int, { nullable: true })
+    @Field(() => Int, { nullable: true })
     prev: number;
 
-    @Field((type) => Int, { nullable: true })
+    @Field(() => Int, { nullable: true })
     next: number;
   }
 
   @ObjectType({ isAbstract: true })
   abstract class PaginatedType implements IPaginatedType<T> {
-    @Field((type) => [classRef])
+    @Field(() => [classRef])
     data: T[];
 
-    @Field((type) => MetaType)
+    @Field(() => MetaType)
     meta: MetaType;
   }
   return PaginatedType as Type<IPaginatedType<T>>;
