@@ -1,11 +1,16 @@
 import { gql } from '@/src/__generated__';
+import {
+  AllowedFeedbacksSortBy,
+  FilterFeedbackInput,
+} from '@/src/__generated__/graphql';
 import { useSuspenseQuery } from '@apollo/client';
 
 export const GET_FEEDBACKS_BY_PRODUCT_ID = gql(`
-    query GetFeedbackByProductId($productId: String!, $pagination: PaginationInput) {
+    query GetFeedbackByProductId($productId: String!, $pagination: PaginationInput, $filters: FilterFeedbackInput) {
         paginatedFeedbacksByProductId(
-        productId: $productId,
-        pagination: $pagination
+            productId: $productId,
+            pagination: $pagination,
+            filters: $filters
         ) {
             data {
                 id
@@ -36,8 +41,12 @@ export const GET_FEEDBACKS_BY_PRODUCT_ID = gql(`
 export function useGetFeedbacksByProductId(
   productId: string,
   pagination: PaginationOptions = { page: 1, perPage: 10 },
+  filters: FilterFeedbackInput = {
+    sortBy: AllowedFeedbacksSortBy.Onsale,
+    star: 5,
+  },
 ) {
   return useSuspenseQuery(GET_FEEDBACKS_BY_PRODUCT_ID, {
-    variables: { productId, pagination },
+    variables: { productId, pagination, filters },
   });
 }
