@@ -1,6 +1,9 @@
-# Rookie Store
+#  Rookie Store
 
-Welcome to the **Rookie Store** repository! This project is a simple e-commerce platform built with modern web technologies, designed to help beginners understand the basics of full-stack development.
+This project is a simple e-commerce platform built with modern web technologies, designed to help rookies (me) understand the basics of full-stack development.
+
+[![Build](https://github.com/fieztazica/rookie-store/actions/workflows/build.yml/badge.svg)](https://github.com/fieztazica/rookie-store/actions/workflows/build.yml)
+[![CI](https://github.com/fieztazica/rookie-store/actions/workflows/ci.yml/badge.svg)](https://github.com/fieztazica/rookie-store/actions/workflows/ci.yml)
 
 ## Table of Contents
 
