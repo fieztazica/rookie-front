@@ -34,7 +34,9 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
-      - name: Generate prisma and graphql types
-        run: cd apps/api && pnpm run --filter api prisma generate
+      - name: (API) Generate prisma and graphql types
+        run: pnpm run --filter api prisma generate
+      - name: (WEB) Graphql Codegen
+        run: pnpm run --filter web gc:compile
       - name: Do check
         run: pnpm run type-check
