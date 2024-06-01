@@ -18,6 +18,7 @@ import { Customer } from 'src/__generated__/customer/customer.model';
 import { ProductsService } from 'src/products/products.service';
 import { Product } from 'src/__generated__/product/product.model';
 import { ProductRating } from './entities/product-rating.entity';
+import { FilterFeedbackInput } from './dto/filter-feedback.input';
 
 @Resolver(() => Feedback)
 export class FeedbacksResolver {
@@ -47,11 +48,14 @@ export class FeedbacksResolver {
   @Query(() => PaginatedFeedback, { name: 'paginatedFeedbacksByProductId' })
   async paginatedFindAllByProductId(
     @Args('productId', { type: () => String }) productId: string,
-    @Args('pagination', { nullable: true }) options: PaginationInput,
+    @Args('pagination', { nullable: true }) options?: PaginationInput,
+    @Args('filters', { nullable: true }) filters?: FilterFeedbackInput,
   ) {
+    console.log('filters', filters);
     return this.feedbacksService.paginatedFindAllByProductId(
       productId,
       options,
+      filters,
     );
   }
 

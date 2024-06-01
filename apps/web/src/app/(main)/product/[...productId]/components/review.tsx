@@ -18,7 +18,7 @@ function ReviewBox({ title, stars, feedback, timestamp }: Props) {
       <div className="flex space-x-1 items-center">
         <div className="text-lg font-semibold">{title}</div>
         <Separator orientation="vertical" className="h-4" />
-        <div className="text-sm">{`${stars} ${stars > 1 ? 'stars' : 'star'}`}</div>
+        <div className="text-sm">{`${stars} star`}</div>
       </div>
       <p className="mb-1">{feedback}</p>
       <p className="text-xs">{createdAt}</p>

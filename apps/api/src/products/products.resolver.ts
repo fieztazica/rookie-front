@@ -1,25 +1,26 @@
 import {
   Args,
+  Float,
   Mutation,
   Parent,
   Query,
   ResolveField,
   Resolver,
 } from '@nestjs/graphql';
+import { Feedback } from 'src/__generated__/feedback/feedback.model';
+import { OrderItem } from 'src/__generated__/order-item/order-item.model';
+import { ProductToAuthor } from 'src/__generated__/product-to-author/product-to-author.model';
+import { ProductToCategory } from 'src/__generated__/product-to-category/product-to-category.model';
 import { FindManyProductArgs } from 'src/__generated__/product/find-many-product.args';
 import { UseGqlAuthRoles } from 'src/auth/decorator/authRoles.decorator';
 import { Role } from 'src/auth/enum/role.enum';
+import { PrismaService } from 'src/common/database/prisma.service';
 import { PaginationArgs } from 'src/common/graphql/pagination.args';
+import { FeedbacksService } from 'src/feedbacks/feedbacks.service';
 import { CreateProductInput } from './dto/create-product.input';
 import { UpdateProductInput } from './dto/update-product.input';
 import { PaginatedProduct, Product } from './entities/product.entity';
 import { ProductsService } from './products.service';
-import { ProductToAuthor } from 'src/__generated__/product-to-author/product-to-author.model';
-import { PrismaService } from 'src/common/database/prisma.service';
-import { ProductToCategory } from 'src/__generated__/product-to-category/product-to-category.model';
-import { OrderItem } from 'src/__generated__/order-item/order-item.model';
-import { FeedbacksService } from 'src/feedbacks/feedbacks.service';
-import { Feedback } from 'src/__generated__/feedback/feedback.model';
 
 @Resolver(() => Product)
 export class ProductsResolver {
@@ -50,6 +51,14 @@ export class ProductsResolver {
   @Query(() => Product, { name: 'product' })
   findOne(@Args('id', { type: () => String }) id: string): Promise<Product> {
     return this.productsService.findOne(id);
+  }
+
+  @ResolveField('ratings', () => Float)
+  async getRating(@Parent() product: Product) {
+    return this.productsService.calculateRatingsByProductId(
+      product.id,
+      product,
+    );
   }
 
   @ResolveField('authors', () => [ProductToAuthor])

@@ -42,7 +42,7 @@ function WriteReviewForm({ productId }: Props) {
       }
       form.reset();
       toast({
-        title: 'You submitted the following values:',
+        title: 'You submitted a review:',
         description: (
           <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
             <code className="text-white">
