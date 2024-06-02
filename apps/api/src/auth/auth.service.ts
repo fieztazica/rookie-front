@@ -14,12 +14,16 @@ export class AuthService {
   ) {}
 
   async register(apiKey: string, createCustomerInput: CreateCustomerInput) {
-    const dbApiKey = (await this.configsService.get('API_KEY')).value;
-    if (apiKey !== dbApiKey) {
+    const isKeyValid = await this.isKeyValid(apiKey);
+    if (!isKeyValid) {
       throw new BadRequestException('Invalid API key');
     }
     createCustomerInput.displayName =
       createCustomerInput.firstName + ' ' + createCustomerInput.lastName;
     return this.customersService.create(createCustomerInput);
+  }
+
+  async isKeyValid(apiKey: string) {
+    return (await this.configsService.get('API_KEY')).value === apiKey;
   }
 }
