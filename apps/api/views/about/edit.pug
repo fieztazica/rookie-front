@@ -1,0 +1,12 @@
+extends ../layouts/main
+
+block content
+    main.container.mx-auto
+        .py-8
+            .flex.space-x-2.items-center.py-4
+                a(href="/admin/configs") Back
+                a(href="/admin/configs/about") View
+            form(action="/admin/configs/about/edit", method="post")
+                textarea(id="editor" name="about") !{data.value}
+                div.w-full.text-right.py-4
+                    input(class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type='submit' value="Save" role="button")
