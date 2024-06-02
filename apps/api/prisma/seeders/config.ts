@@ -10,7 +10,16 @@ export async function seedConfigs() {
     },
   });
 
-  const configs = [about];
+  const apiKey = await prisma.config.upsert({
+    where: { key: 'API_KEY' },
+    update: {},
+    create: {
+      key: 'API_KEY',
+      value: process.env.API_KEY,
+    },
+  });
+
+  const configs = [about, apiKey];
 
   console.log(`Seeded ${configs.length} configs.`);
 

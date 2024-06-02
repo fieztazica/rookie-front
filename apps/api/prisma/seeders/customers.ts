@@ -1,45 +1,41 @@
+import { Prisma, Customer } from '@prisma/client';
 import { prisma } from '.';
+import { faker } from '@faker-js/faker';
 
 export async function seedCustomers() {
-  const alice = await prisma.customer.upsert({
-    where: { email: 'alice@prisma.io' },
-    update: {},
-    create: {
-      email: 'alice@prisma.io',
-      firstName: 'Alice',
-      lastName: 'Smith',
-      phoneNumber: '555-555-5555',
-      displayName: 'Alice Smith',
+  await prisma.customer.deleteMany();
+  function createRandomCustomer(): Prisma.CustomerCreateInput {
+    const firstName = faker.person.firstName();
+    const lastName = faker.person.lastName();
+    return {
+      email: faker.internet.email({
+        firstName,
+        lastName,
+      }),
+      firstName,
+      lastName,
+      phoneNumber: faker.phone.number(),
+      displayName: `${firstName} ${lastName}`,
+      gender: faker.helpers.arrayElement(['MALE', 'FEMALE', 'UNDEFINED']),
+    };
+  }
+
+  const CUSTOMERS: Prisma.CustomerCreateInput[] = faker.helpers.multiple(
+    createRandomCustomer,
+    {
+      count: 5,
     },
-  });
+  );
 
-  const bob = await prisma.customer.upsert({
-    where: { email: 'bob@prisma.io' },
-    update: {},
-    create: {
-      email: 'bob@prisma.io',
-      firstName: 'Bob',
-      lastName: 'Smith',
-      phoneNumber: '555-555-5556',
-      displayName: 'Bob Smith',
-    },
-  });
+  const customers: Customer[] = [];
+  for await (const customer of CUSTOMERS) {
+    const created = await prisma.customer.create({
+      data: customer,
+    });
+    customers.push(created);
+  }
 
-  const charlie = await prisma.customer.upsert({
-    where: { email: 'charlie@prisma.io' },
-    update: {},
-    create: {
-      email: 'charlie@prisma.io',
-      firstName: 'Charlie',
-      lastName: 'Smith',
-      phoneNumber: '555-555-5557',
-      displayName: 'Charlie Smith',
-    },
-  });
-
-  const customers = [alice, bob, charlie];
-
-  console.log(`Seeded ${customers.length} customers.`);
+  console.log(`Seeded ${customers.length}/${CUSTOMERS.length} customers.`);
 
   return customers;
 }

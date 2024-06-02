@@ -1,61 +1,34 @@
+import { Prisma, Author } from '@prisma/client';
 import { prisma } from '.';
+import { faker } from '@faker-js/faker';
 
-/**
- *
-author_id,first_name,last_name,email,phone_number
-1,Von,Maidlow,vmaidlow0@aboutads.info,815-545-1444
-2,Claribel,Barwis,cbarwis1@auda.org.au,437-907-0792
-3,Francklyn,De Roeck,fderoeck2@lulu.com,234-735-3399
-4,Robin,Farrer,rfarrer3@oracle.com,488-760-7186
-5,Town,Bagwell,tbagwell4@salon.com,492-241-1620
- */
+export function createRandomAuthor(): Prisma.AuthorCreateInput {
+  return {
+    email: faker.internet.email(),
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
+    phoneNumber: faker.phone.number(),
+    displayName: `${faker.person.firstName()} ${faker.person.lastName()}`,
+  };
+}
+
+export const AUTHORS: Prisma.AuthorCreateInput[] = faker.helpers.multiple(
+  createRandomAuthor,
+  {
+    count: 5,
+  },
+);
 
 export async function seedAuthors() {
-  const von = await prisma.author.upsert({
-    where: { email: 'vmaidlow0@aboutads.info' },
-    update: {},
-    create: {
-      firstName: 'Von',
-      lastName: 'Maidlow',
-      email: 'vmaidlow0@aboutads.info',
-      phoneNumber: '815-545-1444',
-    },
-  });
+  await prisma.author.deleteMany();
+  const authors: Author[] = [];
+  for await (const author of AUTHORS) {
+    const created = await prisma.author.create({
+      data: author
+    });
+    authors.push(created);
+  }
 
-  const claribel = await prisma.author.upsert({
-    where: { email: 'cbarwis1@auda.org.au' },
-    update: {},
-    create: {
-      firstName: 'Claribel',
-      lastName: 'Barwis',
-      email: 'cbarwis1@auda.org.au',
-      phoneNumber: '437-907-0792',
-    },
-  });
-
-  const franks = await prisma.author.upsert({
-    where: { email: 'fderoeck2@lulu.com' },
-    update: {},
-    create: {
-      firstName: 'Francklyn',
-      lastName: 'De Roeck',
-      email: 'fderoeck2@lulu.com',
-      phoneNumber: '234-735-3399',
-    },
-  });
-
-  const town = await prisma.author.upsert({
-    where: { email: 'tbagwell4@salon.com' },
-    update: {},
-    create: {
-      firstName: 'Town',
-      lastName: 'Bagwell',
-      email: 'tbagwell4@salon.com',
-      phoneNumber: '492-241-1620',
-    },
-  });
-
-  const authors = [von, claribel, franks, town];
-  console.log(`Seeded ${authors.length} authors.`);
+  console.log(`Seeded ${authors.length}/${AUTHORS.length} authors.`);
   return authors;
 }

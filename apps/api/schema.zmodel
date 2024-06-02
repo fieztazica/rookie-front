@@ -72,8 +72,8 @@ model ProductToAuthor {
     productId String   @map("product_id")
     authorId  String   @map("author_id")
 
-    product   Product  @relation(fields: [productId], references: [id])
-    author    Author   @relation(fields: [authorId], references: [id])
+    product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+    author    Author   @relation(fields: [authorId], references: [id], onDelete: Cascade)
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
@@ -127,8 +127,8 @@ model ProductToCategory {
     productId  String   @map("product_id")
     categoryId String   @map("category_id")
 
-    category   Category @relation(fields: [categoryId], references: [id])
-    product    Product  @relation(fields: [productId], references: [id])
+    category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+    product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
 
     createdAt  DateTime @default(now())
     updatedAt  DateTime @updatedAt
@@ -146,8 +146,8 @@ model Feedback {
     rating     Int      @db.SmallInt
     status     String?  @db.VarChar(255)
 
-    customer   Customer @relation(fields: [customerId], references: [id])
-    product    Product  @relation(fields: [productId], references: [id])
+    customer   Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+    product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
 
     deleted    Boolean  @default(false) @omit
     createdAt  DateTime @default(now())
@@ -162,7 +162,7 @@ model Order {
     customerId String      @map("customer_id")
     total      Float
 
-    customer   Customer    @relation(fields: [customerId], references: [id])
+    customer   Customer    @relation(fields: [customerId], references: [id], onDelete: Cascade)
     orderItems OrderItem[]
 
     deleted    Boolean     @default(false) @omit
@@ -179,8 +179,8 @@ model OrderItem {
     price     Float
     quantity  Int
 
-    order     Order    @relation(fields: [orderId], references: [id])
-    product   Product  @relation(fields: [productId], references: [id])
+    order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+    product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt

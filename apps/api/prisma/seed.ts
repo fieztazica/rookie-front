@@ -4,8 +4,9 @@ import {
   seedCategories,
   seedAuthors,
   seedProducts,
+  seedFeedbacks,
+  seedConfigs,
 } from './seeders';
-import { seedConfigs } from './seeders/config';
 
 async function main() {
   const configs = await seedConfigs();
@@ -13,6 +14,7 @@ async function main() {
   const categories = await seedCategories();
   const authors = await seedAuthors();
   const products = await seedProducts(authors, categories);
+  const feedbacks = await seedFeedbacks(products, customers);
 }
 main()
   .then(async () => {
