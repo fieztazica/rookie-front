@@ -100,7 +100,7 @@ function CartItemsTable({ cart }: Props) {
                         (a) =>
                           a.author.displayName ||
                           `${a.author.firstName} ${a.author.lastName}`,
-                      )}
+                      ).join(', ')}
                     </div>
                   </div>
                 </div>
