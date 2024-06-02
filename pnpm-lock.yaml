@@ -134,6 +134,9 @@ importers:
       passport:
         specifier: ^0.7.0
         version: 0.7.0
+      passport-custom:
+        specifier: ^1.1.1
+        version: 1.1.1
       passport-jwt:
         specifier: ^4.0.1
         version: 4.0.1
@@ -11100,6 +11103,13 @@ packages:
     dependencies:
       no-case: 3.0.4
       tslib: 2.6.2
+
+  /passport-custom@1.1.1:
+    resolution: {integrity: sha512-/2m7jUGxmCYvoqenLB9UrmkCgPt64h8ZtV+UtuQklZ/Tn1NpKBeOorCYkB/8lMRoiZ5hUrCoMmDtxCS/d38mlg==}
+    engines: {node: '>= 0.10.0'}
+    dependencies:
+      passport-strategy: 1.0.0
+    dev: false
 
   /passport-jwt@4.0.1:
     resolution: {integrity: sha512-UCKMDYhNuGOBE9/9Ycuoyh7vP6jpeTp/+sfMJl7nLff/t6dps+iaeE0hhNkKN8/HZHcJ7lCdOyDxHdDoxoSvdQ==}

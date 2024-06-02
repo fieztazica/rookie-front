@@ -7,6 +7,7 @@ import { JwtStrategy } from './strategy/jwt.strategy';
 import { buildOpenIdClient, OidcStrategy } from './strategy/oidc.strategy';
 import { CustomersModule } from 'src/customers/customers.module';
 import { ConfigsModule } from 'src/configs/configs.module';
+import { ApiKeyStrategy } from './strategy/apikey.strategy';
 
 const OidcStrategyFactory = {
   provide: 'OidcStrategy',
@@ -28,7 +29,13 @@ const OidcStrategyFactory = {
     }),
   ],
   controllers: [AuthController],
-  providers: [OidcStrategyFactory, SessionSerializer, AuthService, JwtStrategy],
+  providers: [
+    OidcStrategyFactory,
+    SessionSerializer,
+    AuthService,
+    JwtStrategy,
+    ApiKeyStrategy,
+  ],
   exports: [AuthService],
 })
 export class AuthModule {}
