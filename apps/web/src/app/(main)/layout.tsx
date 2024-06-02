@@ -12,7 +12,7 @@ async function MainLayout({ children }: PropsWithChildren<Props>) {
   const session = await auth();
   if (!session || !session.user?.email)
     return (
-      <div>
+      <div className="min-h-dvh">
         <Header />
         <main>{children}</main>
         <Footer />
@@ -23,7 +23,7 @@ async function MainLayout({ children }: PropsWithChildren<Props>) {
 
   const { data } = await getCustomerByEmail(session.user?.email);
   return (
-    <div>
+    <div className="min-h-dvh">
       {!data && (
         <div className="px-4 py-1 bg-accent border-b">
           Seems like you are missing some information. Click{' '}

@@ -1,11 +1,18 @@
-import React from 'react'
+import React from 'react';
+import { getAbout } from './query';
+import parse from 'html-react-parser';
 
-type Props = {}
+type Props = {};
 
-function AboutPage({}: Props) {
-  return (
-    <div className="flex flex-col items-center justify-between p-24 container mx-auto space-y-24">About</div>
-  )
+async function AboutPage({}: Props) {
+  const { data, error } = await getAbout();
+
+  if (error) return <div>There is an error occurred</div>;
+  if (!data) return <div>Loading...</div>;
+
+  const content = data.config.value;
+
+  return <div>{parse(content)}</div>;
 }
 
-export default AboutPage
+export default AboutPage;

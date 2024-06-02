@@ -52,9 +52,12 @@ async function CartPage({}: Props) {
         {`Your cart: ${data.cart.items.length} items`}
       </div>
       <Separator />
-      <div className="grid grid-cols-1">
-        <div className="col-span-1">
-          <CartItemsTable cart={data.cart} />
+      <div className="w-full">
+        <CartItemsTable cart={data.cart} />
+        <div className='text-right'>
+          <Button asChild>
+            <Link href={'/'}>Place order</Link>
+          </Button>
         </div>
       </div>
     </div>
