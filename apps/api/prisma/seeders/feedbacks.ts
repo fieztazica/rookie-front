@@ -28,10 +28,10 @@ export async function seedFeedbacks(
   const FEEDBACKS: Prisma.FeedbackCreateInput[] = faker.helpers.multiple(
     createRandomFeedback,
     {
-      count: faker.number.int({
-        min: 20,
-        max: 200,
-      }),
+      count: {
+        min: 100,
+        max: 500,
+      },
     },
   );
 

@@ -15,7 +15,10 @@ export function createRandomAuthor(): Prisma.AuthorCreateInput {
 export const AUTHORS: Prisma.AuthorCreateInput[] = faker.helpers.multiple(
   createRandomAuthor,
   {
-    count: 5,
+    count: {
+      min: 10,
+      max: 30,
+    },
   },
 );
 

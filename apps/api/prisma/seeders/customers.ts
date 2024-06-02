@@ -23,7 +23,10 @@ export async function seedCustomers() {
   const CUSTOMERS: Prisma.CustomerCreateInput[] = faker.helpers.multiple(
     createRandomCustomer,
     {
-      count: 5,
+      count: {
+        min: 5,
+        max: 50,
+      },
     },
   );
 

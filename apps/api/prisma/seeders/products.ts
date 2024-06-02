@@ -33,7 +33,7 @@ export function createRandomProduct(): Prisma.ProductCreateInput {
 export const PRODUCTS: Prisma.ProductCreateInput[] = faker.helpers.multiple(
   createRandomProduct,
   {
-    count: 20,
+    count: 30,
   },
 );
 
@@ -46,14 +46,24 @@ export async function seedProducts(authors: Author[], categories: Category[]) {
       create: {
         ...product,
         categories: {
-          create: faker.helpers.arrayElements(categories).map((category) => ({
-            categoryId: category.id,
-          })),
+          create: faker.helpers
+            .arrayElements(categories, {
+              min: 1,
+              max: 3,
+            })
+            .map((category) => ({
+              categoryId: category.id,
+            })),
         },
         authors: {
-          create: faker.helpers.arrayElements(authors).map((authors) => ({
-            authorId: authors.id,
-          })),
+          create: faker.helpers
+            .arrayElements(authors, {
+              min: 1,
+              max: 3,
+            })
+            .map((authors) => ({
+              authorId: authors.id,
+            })),
         },
       },
       update: {},
