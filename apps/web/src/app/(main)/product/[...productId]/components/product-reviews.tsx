@@ -83,7 +83,7 @@ function ProductReviews({ productId }: Props) {
         <span className="text-primary/70 text-sm">{`(Filtered by ${starParam} star)`}</span>
       </div>
       <div className="space-y-2">
-        <p className="text-xl font-bold">{averageStars} Stars</p>
+        <p className="text-xl font-bold">{averageStars.toFixed(1)} Stars</p>
         <div className="flex space-x-4 text-xs">
           <span>{`(${totalFeedbacks})`}</span>
           <Starbucks

@@ -18,7 +18,7 @@ function ProductDescription({ title, imageUrl, author, description }: Props) {
             className="w-full max-w-64"
           />
         </div>
-        <div>
+        <div className="text-right">
           <span>{`By (author) `}</span>
           <span className="font-semibold">{author}</span>
         </div>

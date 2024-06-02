@@ -12,7 +12,7 @@ function ShopHomePage({}: Props) {
   const searchParams = useSearchParams();
   const options: PaginationOptions = {
     page: parseInt(searchParams.get('page') || '1'),
-    perPage: parseInt(searchParams.get('perPage') || '10'),
+    perPage: parseInt(searchParams.get('perPage') || '8'),
   };
   const { data, error } = useGetProducts(options);
 
