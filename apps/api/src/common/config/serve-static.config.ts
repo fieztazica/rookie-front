@@ -8,8 +8,11 @@ import { join } from 'path';
 @Injectable()
 export class ServeStaticConfig implements ServeStaticModuleOptionsFactory {
   jqueryPath: string;
+  editorPath: string;
+  ckSourceEditPath: string;
   constructor() {
     this.jqueryPath = join(process.cwd(), 'node_modules', 'jquery', 'dist');
+    this.editorPath = join(process.cwd(), 'node_modules', 'tinymce');
   }
 
   createLoggerOptions():
@@ -19,6 +22,10 @@ export class ServeStaticConfig implements ServeStaticModuleOptionsFactory {
       {
         rootPath: this.jqueryPath,
         serveRoot: '/jquery/',
+      },
+      {
+        rootPath: this.editorPath,
+        serveRoot: '/editor/',
       },
     ];
   }
