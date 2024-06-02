@@ -11,7 +11,7 @@ export const submitCustomerInformation = async (
   console.log('values', values);
 
   const params = new URLSearchParams({
-    apiKey: process.env.API_KEY as string,
+    api_key: process.env.API_KEY as string,
   });
   const apiUrl = `${process.env.API_URL}/auth/register?${params.toString()}`;
   const res = await fetch(new URL(apiUrl), {

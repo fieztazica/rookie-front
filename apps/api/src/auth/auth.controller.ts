@@ -12,6 +12,7 @@ import { Response } from 'express';
 import { AuthService } from './auth.service';
 import { LoginGuard } from './guard/login.guard';
 import { CreateCustomerInput } from 'src/customers/dto/create-customer.input';
+import { ApiKeyGuard } from './guard/apikey.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -42,11 +43,9 @@ export class AuthController {
     res.redirect('/');
   }
 
+  @UseGuards(ApiKeyGuard)
   @Post('/register')
-  register(
-    @Body() customer: CreateCustomerInput,
-    @Query('apiKey') apiKey: string,
-  ) {
-    return this.authService.register(apiKey, customer);
+  register(@Body() customer: CreateCustomerInput) {
+    return this.authService.register(customer);
   }
 }
