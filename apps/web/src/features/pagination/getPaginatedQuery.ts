@@ -6,6 +6,7 @@ export function getPaginatedQuery<T, OperationVariables>(
   { page, perPage }: PaginationOptions = { page: 1, perPage: 10 },
 ) {
   return getClient().query({
+    errorPolicy: 'all',
     query,
     variables: {
       page,

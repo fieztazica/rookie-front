@@ -1,11 +1,12 @@
 import { useSuspenseQuery } from '@apollo/client';
 import { GET_PRODUCT } from './getProduct';
 
-export function useGetProduct(id: string) {
+export function useGetProduct(productId: string) {
   return useSuspenseQuery(GET_PRODUCT, {
+    errorPolicy: 'all',
     variables: {
-      id: `${id}`
+      productId,
     },
-    queryKey: `product_${id}`,
+    queryKey: `product_${productId}`,
   });
 }

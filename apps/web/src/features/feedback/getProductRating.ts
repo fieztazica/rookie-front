@@ -1,4 +1,4 @@
-import { gql } from "@/src/__generated__";
+import { gql } from '@/src/__generated__';
 import { useSuspenseQuery } from '@apollo/client';
 
 export const GET_PRODUCT_RATING = gql(`
@@ -17,10 +17,9 @@ export const GET_PRODUCT_RATING = gql(`
     }
 `);
 
-export function useGetProductRating(
-    productId: string
-  ) {
-    return useSuspenseQuery(GET_PRODUCT_RATING, {
-      variables: { productId },
-    });
-  }
+export function useGetProductRating(productId: string) {
+  return useSuspenseQuery(GET_PRODUCT_RATING, {
+    errorPolicy: 'all',
+    variables: { productId },
+  });
+}

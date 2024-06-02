@@ -47,6 +47,7 @@ export function useGetFeedbacksByProductId(
   },
 ) {
   return useSuspenseQuery(GET_FEEDBACKS_BY_PRODUCT_ID, {
+    errorPolicy: 'all',
     variables: { productId, pagination, filters },
   });
 }

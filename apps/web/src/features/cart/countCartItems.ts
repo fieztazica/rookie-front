@@ -13,6 +13,7 @@ export const COUNT_CART_ITEMS = gql(`
 export async function getCountCartItems(customerId?: string) {
   if (!customerId) return null;
   return getClient().query({
+    errorPolicy: 'all',
     query: COUNT_CART_ITEMS,
     variables: {
       customerId,
