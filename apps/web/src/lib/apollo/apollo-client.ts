@@ -5,6 +5,9 @@ export const { getClient } = registerApolloClient(() => {
   return new ApolloClient({
     cache: new InMemoryCache(),
     link: new HttpLink({
+      headers: {
+        ['X-API-KEY']: process.env.API_KEY as string,
+      },
       // this needs to be an absolute url, as relative urls cannot be used in SSR
       uri: `${process.env.API_URL as string}/api/graphql`,
       // you can disable result caching here if you want to

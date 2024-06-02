@@ -35,6 +35,27 @@ export class AdminController {
     private readonly ordersService: OrdersService,
   ) {}
 
+  @Post('configs/about/edit')
+  @RedirectAuth()
+  async postAboutPage(@Req() req, @Res() res, @Body() body: { about: string }) {
+    await this.adminService.setAbout(body.about);
+    res.redirect('/admin/configs/about/edit?successMessage=Saved');
+  }
+
+  @Get('configs/about/edit')
+  @RedirectAuth()
+  @Render('about/edit')
+  async editAboutPage(
+    @Req() req,
+    @Query('successMessage') successMessage: string,
+  ) {
+    return {
+      successMessage: successMessage ? decodeURIComponent(successMessage) : '',
+      userinfo: req?.user?.userinfo,
+      data: await this.adminService.getAbout(),
+    };
+  }
+
   @Get()
   @Render('home')
   home(@Req() req) {

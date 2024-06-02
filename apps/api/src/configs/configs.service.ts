@@ -60,6 +60,10 @@ export class ConfigsService {
     });
   }
 
+  getOrSet(key: string, value: string) {
+    return this.get(key) || this.set(key, value);
+  }
+
   update(key: string, updateConfigInput: UpdateConfigInput) {
     return this.prisma.config.update({
       where: { key, deleted: false },

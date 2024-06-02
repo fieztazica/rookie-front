@@ -69,7 +69,8 @@
         "pug": "^3.0.2",
         "redis": "^4.6.13",
         "reflect-metadata": "^0.2.2",
-        "rxjs": "^7.8.1"
+        "rxjs": "^7.8.1",
+        "tinymce": "^7.1.1"
     },
     "devDependencies": {
         "@nestjs/cli": "^10.0.0",

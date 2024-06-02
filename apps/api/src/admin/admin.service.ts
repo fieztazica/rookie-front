@@ -333,4 +333,13 @@ export class AdminService {
       };
     }
   }
+
+  async getAbout() {
+    const result = await this.configsService.getOrSet('about', '');
+    return result;
+  }
+
+  async setAbout(content: string) {
+    return await this.configsService.set('about', content);
+  }
 }
