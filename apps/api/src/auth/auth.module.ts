@@ -25,7 +25,7 @@ const OidcStrategyFactory = {
     ConfigsModule,
     PassportModule.register({
       session: true,
-      defaultStrategy: ['oidc', 'jwt'],
+      defaultStrategy: ['oidc', 'jwt', 'api-key'],
     }),
   ],
   controllers: [AuthController],

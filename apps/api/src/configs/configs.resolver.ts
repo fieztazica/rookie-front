@@ -1,10 +1,13 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import { UseGuards } from '@nestjs/common';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { FindManyConfigArgs } from 'src/__generated__/config/find-many-config.args';
+import { GqlApiKeyAuthGuard } from 'src/auth/guard/gql/gql.apikey.guard';
 import { ConfigsService } from './configs.service';
-import { Config } from './entities/config.entity';
 import { CreateConfigInput } from './dto/create-config.input';
 import { UpdateConfigInput } from './dto/update-config.input';
-import { FindManyConfigArgs } from 'src/__generated__/config/find-many-config.args';
+import { Config } from './entities/config.entity';
 
+@UseGuards(GqlApiKeyAuthGuard)
 @Resolver(() => Config)
 export class ConfigsResolver {
   constructor(private readonly configsService: ConfigsService) {}

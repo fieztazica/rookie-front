@@ -1,16 +1,27 @@
-'use client'
+'use client';
 
-import React from 'react'
+import React from 'react';
 import { useSearchParams } from 'next/navigation';
 
-type Props = {}
+type Props = {};
 
 function FilterByRatingShop({}: Props) {
-    const searchParams = useSearchParams();
-    const ratingParam = searchParams.get('rating');
+  const searchParams = useSearchParams();
+  const ratingParam = searchParams.get('rating');
+  const { data } = useGetCategoryProducts(ratingParam);
+
+  if (!data) return <p>No data</p>;
+
+  const products =
+    data.category.products.map(
+      (productToCategory) => productToCategory.product,
+    ) || [];
+
   return (
-    <div>FilterByRatingShop</div>
-  )
+    <div>
+      <ProductList products={products} />
+    </div>
+  );
 }
 
-export default FilterByRatingShop
+export default FilterByRatingShop;

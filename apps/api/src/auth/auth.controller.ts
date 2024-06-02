@@ -3,16 +3,15 @@ import {
   Controller,
   Get,
   Post,
-  Query,
   Request,
   Res,
   UseGuards,
 } from '@nestjs/common';
 import { Response } from 'express';
-import { AuthService } from './auth.service';
-import { LoginGuard } from './guard/login.guard';
 import { CreateCustomerInput } from 'src/customers/dto/create-customer.input';
+import { AuthService } from './auth.service';
 import { ApiKeyGuard } from './guard/apikey.guard';
+import { LoginGuard } from './guard/login.guard';
 
 @Controller('auth')
 export class AuthController {

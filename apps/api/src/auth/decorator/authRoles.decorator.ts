@@ -1,19 +1,29 @@
 import { applyDecorators, SetMetadata, UseGuards } from '@nestjs/common';
 import { Role } from '../enum/role.enum';
-import { AuthenticatedGuard } from '../guard/authenticated.guard';
 import { Roles } from './roles.decorator';
-import { GqlJwtAuthGuard } from '../guard/gql/gql.jwt.guard';
-import { JwtAuthGuard } from '../guard/jwt.guard';
+import { GqlMixedAuthGuard } from '../guard/gql/gql.mixed.guard';
+import { MixedAuthGuard } from '../guard/mixed.guard';
+import { AuthenticatedGuard } from '../guard/authenticated.guard';
+import { RolesGuard } from '../guard/roles.guard';
+import { GqlRolesGuard } from '../guard/gql/gql.roles.guard';
 
 export const AuthRoles = (...args: Role[]) =>
   applyDecorators(
     SetMetadata('authRoles', args),
-    UseGuards(AuthenticatedGuard),
+    UseGuards(AuthenticatedGuard, RolesGuard),
     Roles(...args),
   );
 
 export const UseGqlAuthRoles = (...args: Role[]) =>
-  applyDecorators(UseGuards(GqlJwtAuthGuard), AuthRoles(...args));
+  applyDecorators(
+    SetMetadata('gqpMixedAuthRoles', args),
+    UseGuards(GqlMixedAuthGuard, GqlRolesGuard),
+    Roles(...args),
+  );
 
 export const UseAuthRoles = (...args: Role[]) =>
-  applyDecorators(UseGuards(JwtAuthGuard), AuthRoles(...args));
+  applyDecorators(
+    SetMetadata('mixedAuthRoles', args),
+    UseGuards(MixedAuthGuard, RolesGuard),
+    Roles(...args),
+  );
