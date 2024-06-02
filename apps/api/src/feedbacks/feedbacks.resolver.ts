@@ -51,7 +51,6 @@ export class FeedbacksResolver {
     @Args('pagination', { nullable: true }) options?: PaginationInput,
     @Args('filters', { nullable: true }) filters?: FilterFeedbackInput,
   ) {
-    console.log('filters', filters);
     return this.feedbacksService.paginatedFindAllByProductId(
       productId,
       options,
