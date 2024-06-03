@@ -1,6 +1,6 @@
 $(function () {
   tinymce.init({
-    selector: '#editor',
+    selector: 'textarea',
     license_key: 'gpl',
   });
 });
