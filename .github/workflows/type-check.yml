@@ -6,8 +6,8 @@ name: Types
 on:
   # push:
   #   branches: ['master', 'main', 'dev']
-  pull_request:
-    branches: ['master', 'main', 'dev']
+  # pull_request:
+  #   branches: ['master', 'main', 'dev']
 
   # allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -34,9 +34,9 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
-      - name: (API) Generate prisma and graphql types
-        run: pnpm run --filter api prisma generate
-      - name: (WEB) Graphql Codegen
-        run: pnpm run --filter web gc:compile
+      # - name: (API) Generate prisma and graphql types
+      #   run: pnpm run --filter api prisma generate
+      # - name: (WEB) Graphql Codegen
+      #   run: pnpm run --filter web gc:compile
       - name: Do check
         run: pnpm run type-check
