@@ -1,4 +1,3 @@
-// src/prisma/prisma.mock.ts
 export const prismaMock = {
   customer: {
     findUnique: jest.fn(),
@@ -7,7 +6,6 @@ export const prismaMock = {
     update: jest.fn(),
     delete: jest.fn(),
   },
-  // Add more models and methods as needed
   author: {
     findUnique: jest.fn(),
     findMany: jest.fn(),
@@ -37,6 +35,13 @@ export const prismaMock = {
     delete: jest.fn(),
   },
   product: {
+    findUnique: jest.fn(),
+    findMany: jest.fn(),
+    create: jest.fn(),
+    update: jest.fn(),
+    delete: jest.fn(),
+  },
+  configs: {
     findUnique: jest.fn(),
     findMany: jest.fn(),
     create: jest.fn(),
