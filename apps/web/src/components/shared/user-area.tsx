@@ -21,6 +21,7 @@ import {
   User,
 } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+import Link from 'next/link';
 
 type Props = {};
 
@@ -44,7 +45,7 @@ async function UserArea({}: Props) {
       <DropdownMenuTrigger asChild>
         <Button variant={'ghost'} className="hover:bg-white">
           <span className="font-semibold">Hi, {name}!</span>
-          <Avatar className="ml-2">
+          <Avatar className="ml-2 w-8 h-8">
             <AvatarImage
               src={session.user?.image || undefined}
               alt={session.user?.email || undefined}
@@ -61,9 +62,11 @@ async function UserArea({}: Props) {
             <User className="mr-2 h-4 w-4" />
             <span>Profile</span>
           </DropdownMenuItem>
-          <DropdownMenuItem>
-            <CreditCard className="mr-2 h-4 w-4" />
-            <span>Billing</span>
+          <DropdownMenuItem asChild>
+            <Link href="/order/manage">
+              <CreditCard className="mr-2 h-4 w-4" />
+              <span>Order</span>
+            </Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
             <Settings className="mr-2 h-4 w-4" />
@@ -71,9 +74,14 @@ async function UserArea({}: Props) {
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          <Github className="mr-2 h-4 w-4" />
-          <span>GitHub</span>
+        <DropdownMenuItem asChild>
+          <Link
+            href="https://github.com/fieztazica/rookie-store"
+            target="_blank"
+          >
+            <Github className="mr-2 h-4 w-4" />
+            <span>GitHub</span>
+          </Link>
         </DropdownMenuItem>
         <DropdownMenuItem>
           <LifeBuoy className="mr-2 h-4 w-4" />
