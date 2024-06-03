@@ -17,12 +17,12 @@ function ProductCard({ product, className, ...props }: Props) {
   return (
     <Card
       className={cn(
-        'w-fit transition-all hover:cursor-pointer hover:scale-105',
+        'w-fit transition-all hover:cursor-pointer hover:scale-105 flex flex-col',
         className,
       )}
       {...props}
     >
-      <CardHeader>
+      <CardHeader className='flex-1'>
         <CardTitle>{product.displayName || product.name}</CardTitle>
         <CardDescription>
           {product.authors
