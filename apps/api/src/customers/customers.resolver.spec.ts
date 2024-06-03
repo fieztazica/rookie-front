@@ -9,7 +9,10 @@ describe('CustomersResolver', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [PrismaModule],
-      providers: [CustomersResolver, CustomersService],
+      providers: [
+        { provide: CustomersResolver, useValue: {} },
+        { provide: CustomersService, useValue: {} },
+      ],
     }).compile();
 
     resolver = module.get<CustomersResolver>(CustomersResolver);
