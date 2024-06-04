@@ -198,4 +198,5 @@ model Config {
     updatedAt DateTime @updatedAt
 
     @@deny('read', deleted)
+    @@map("configs")
 }

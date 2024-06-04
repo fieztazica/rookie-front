@@ -127,14 +127,14 @@ CREATE TABLE "order_items" (
 );
 
 -- CreateTable
-CREATE TABLE "Config" (
+CREATE TABLE "configs" (
     "key" TEXT NOT NULL,
     "value" TEXT NOT NULL,
     "deleted" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
-    CONSTRAINT "Config_pkey" PRIMARY KEY ("key")
+    CONSTRAINT "configs_pkey" PRIMARY KEY ("key")
 );
 
 -- CreateIndex
