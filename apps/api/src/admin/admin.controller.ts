@@ -13,27 +13,13 @@ import {
 import { Request } from 'express';
 import { RedirectAuth } from 'src/auth/decorator/redirectAuth.decorator';
 import { RolesGuard } from 'src/auth/guard/roles.guard';
-import { AuthorsService } from 'src/authors/authors.service';
-import { CategoriesService } from 'src/categories/categories.service';
-import { CustomersService } from 'src/customers/customers.service';
-import { FeedbacksService } from 'src/feedbacks/feedbacks.service';
-import { OrdersService } from 'src/orders/orders.service';
-import { ProductsService } from 'src/products/products.service';
 import { AdminService } from './admin.service';
 import { DetailPage, EntityNames, MainLayoutRes } from './admin.type';
 
 @Controller('admin')
 @UseGuards(RolesGuard)
 export class AdminController {
-  constructor(
-    private readonly adminService: AdminService,
-    private readonly authorsService: AuthorsService,
-    private readonly categoriesService: CategoriesService,
-    private readonly customersService: CustomersService,
-    private readonly feedbacksService: FeedbacksService,
-    private readonly productsService: ProductsService,
-    private readonly ordersService: OrdersService,
-  ) {}
+  constructor(private readonly adminService: AdminService) {}
 
   @Post('configs/about/edit')
   @RedirectAuth()

@@ -33,7 +33,7 @@ export class Cart {
         }));
     } else {
       this.items = Object.entries(items)
-        .filter(([_, value]) => value >= 1)
+        .filter(([, value]) => value >= 1)
         .map(([key, value]) => ({
           key,
           value: this.intValue(value),

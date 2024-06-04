@@ -24,11 +24,6 @@ export class ConfigsResolver {
     return this.configsService.findAll(options);
   }
 
-  @Query(() => [Config], { name: 'paginatedConfigs' })
-  paginatedFindAll() {
-    return this.configsService.findAll();
-  }
-
   @Query(() => Config, { name: 'config' })
   findOne(@Args('key', { type: () => String }) key: string) {
     return this.configsService.findOne(key);

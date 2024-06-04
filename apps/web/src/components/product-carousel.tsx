@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import React from 'react';
 import {
@@ -9,12 +9,12 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 import { Product } from '../__generated__/graphql';
-import ProductCard from './product-card';
+import ProductCard, { ReceivedProduct } from './product-card';
 import Autoplay from 'embla-carousel-autoplay';
 import Link from 'next/link';
 
 type Props = {
-  products: Product[];
+  products: ReceivedProduct[];
 };
 
 function ProductCarousel({ products }: Props) {

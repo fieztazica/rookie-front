@@ -71,10 +71,10 @@ function ProductReviews({ productId }: Props) {
       ? `Showing ${startIndex}-${endIndex} of ${meta?.total} reviews`
       : `Showing 0 of ${meta?.total} reviews`;
   const averageStars =
-    getProductRatingData?.calculateRatingByProductId?.averageRatings || 0;
+    getProductRatingData?.calculateProductRatingByProductId?.averageRatings || 0;
   const totalFeedbacks =
-    getProductRatingData?.calculateRatingByProductId?.totalRatings || 0;
-  const stars = getProductRatingData?.calculateRatingByProductId?.ratings;
+    getProductRatingData?.calculateProductRatingByProductId?.totalRatings || 0;
+  const stars = getProductRatingData?.calculateProductRatingByProductId?.ratings;
 
   return (
     <div className="border bg-accent p-4 rounded">

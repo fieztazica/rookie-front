@@ -49,6 +49,47 @@ export class ProductsService {
     });
   }
 
+  getProductFeedbacks(productId: string) {
+    return this.feedbacksService.findAll({
+      where: {
+        productId: productId,
+      },
+    });
+  }
+
+  getProductOrderItems(productId: string) {
+    return this.prisma.orderItem.findMany({
+      where: {
+        productId,
+      },
+      include: {
+        order: true,
+      },
+    });
+  }
+
+  getProductCategories(productId: string) {
+    return this.prisma.productToCategory.findMany({
+      where: {
+        productId,
+      },
+      include: {
+        category: true,
+      },
+    });
+  }
+
+  getProductAuthors(productId: string) {
+    return this.prisma.productToAuthor.findMany({
+      where: {
+        productId,
+      },
+      include: {
+        author: true,
+      },
+    });
+  }
+
   async calculateRatingsByProductId(productId: string, product?: Product) {
     if (product) {
       const testing: boolean = this.configService.get('testing');
@@ -59,7 +100,7 @@ export class ProductsService {
       if (diff < 7 && product.ratings > 0) return product.ratings;
     }
     const ratings =
-      await this.feedbacksService.calculateRatingByProductId(productId);
+      await this.feedbacksService.calculateProductRatingByProductId(productId);
     const { ratings: productRatings } = await this.update(productId, {
       id: productId,
       ratings: ratings.averageRatings,

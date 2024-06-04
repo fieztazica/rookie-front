@@ -7,10 +7,25 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
-import { Product } from '../__generated__/graphql';
+
+export type ReceivedProduct = {
+  name: string;
+  id: string;
+  displayName?: string | null;
+  authors?: {
+    author: {
+      firstName?: string | null;
+      lastName?: string | null;
+      displayName?: string | null;
+    };
+  }[];
+  imageUrl?: string | null;
+  price?: number | null;
+  salePrice?: number | null;
+};
 
 type Props = {
-  product: Product;
+  product: ReceivedProduct;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 function ProductCard({ product, className, ...props }: Props) {
@@ -22,7 +37,7 @@ function ProductCard({ product, className, ...props }: Props) {
       )}
       {...props}
     >
-      <CardHeader className='flex-1'>
+      <CardHeader className="flex-1">
         <CardTitle>{product.displayName || product.name}</CardTitle>
         <CardDescription>
           {product.authors
@@ -45,12 +60,12 @@ function ProductCard({ product, className, ...props }: Props) {
           <span
             className={cn(
               'text-primary/70',
-              product.salePrice >= 0 ? 'line-through' : '',
+              (product?.salePrice || 0) >= 0 ? 'line-through' : '',
             )}
           >
             ${product.price}
           </span>
-          {product.salePrice >= 0 && (
+          {(product?.salePrice || 0) >= 0 && (
             <span className="font-bold">${product.salePrice}</span>
           )}
         </p>

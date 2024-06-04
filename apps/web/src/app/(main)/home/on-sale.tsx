@@ -1,9 +1,8 @@
-import React from 'react';
+import { getOnSaleProducts } from '@/features/product/getOnSaleProducts';
+import Link from 'next/link';
+import ProductCarousel from '../../../components/product-carousel';
 import { TypographyH3 } from '../../../components/typos/h3';
 import { Button } from '../../../components/ui/button';
-import ProductCarousel from '../../../components/product-carousel';
-import Link from 'next/link';
-import { getOnSaleProducts } from '@/features/product/getOnSaleProducts';
 
 type Props = {};
 
