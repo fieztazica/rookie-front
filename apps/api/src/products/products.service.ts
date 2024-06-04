@@ -100,7 +100,7 @@ export class ProductsService {
       if (diff < 7 && product.ratings > 0) return product.ratings;
     }
     const ratings =
-      await this.feedbacksService.calculateRatingByProductId(productId);
+      await this.feedbacksService.calculateProductRatingByProductId(productId);
     const { ratings: productRatings } = await this.update(productId, {
       id: productId,
       ratings: ratings.averageRatings,

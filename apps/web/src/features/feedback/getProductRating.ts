@@ -3,7 +3,7 @@ import { useSuspenseQuery } from '@apollo/client';
 
 export const GET_PRODUCT_RATING = gql(`
     query GetProductRating($productId: String!) {
-        calculateRatingByProductId(id: $productId) {
+        calculateProductRatingByProductId(id: $productId) {
             averageRatings
             totalRatings
             ratings {
