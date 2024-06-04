@@ -1,6 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { FeedbacksService } from './feedbacks.service';
 import { Feedback } from '@prisma/client';
+import { ProductRating, StarRatings } from './entities/product-rating.entity';
 
 export const mockFeedbacks: Feedback[] = [
   {
@@ -48,6 +49,33 @@ export const mockPaginatedFeedbacks = {
   },
 };
 
+export const mockStarRatings: StarRatings = {
+  five: Math.floor(Math.random() * 20),
+  four: Math.floor(Math.random() * 20),
+  three: Math.floor(Math.random() * 20),
+  two: Math.floor(Math.random() * 20),
+  one: Math.floor(Math.random() * 20),
+};
+
+export const mockTotalRatings = Object.values(mockStarRatings).reduce(
+  (acc, val) => acc + val,
+  0,
+);
+
+export const mockAverageRatings =
+  (1 * mockStarRatings['one'] +
+    2 * mockStarRatings['two'] +
+    3 * mockStarRatings['three'] +
+    4 * mockStarRatings['four'] +
+    5 * mockStarRatings['five']) /
+  Math.max(mockTotalRatings, 1);
+
+export const mockProductRating: ProductRating = {
+  totalRatings: mockTotalRatings,
+  averageRatings: mockAverageRatings,
+  ratings: mockStarRatings,
+};
+
 export const mockFeedbacksService = {
   create: jest.fn().mockResolvedValue(oneFeedback),
   findAll: jest.fn().mockResolvedValue(mockFeedbacks),
@@ -58,6 +86,9 @@ export const mockFeedbacksService = {
   findOne: jest.fn().mockResolvedValue(oneFeedback),
   update: jest.fn().mockResolvedValue(updatedFeedback),
   remove: jest.fn().mockResolvedValue(deletedFeedback),
+  calculateProductRatingByProductId: jest
+    .fn()
+    .mockResolvedValue(mockProductRating),
 };
 
 describe('FeedbacksService', () => {
@@ -117,6 +148,14 @@ describe('FeedbacksService', () => {
       expect(
         await service.paginatedFindAllByProductId('fakeProductId'),
       ).toEqual(mockPaginatedFeedbacks);
+    });
+  });
+
+  describe('calculateProductRatingByProductId', () => {
+    it('should returns calculated ratings of the product', async () => {
+      expect(
+        await service.calculateProductRatingByProductId('fakeProductId'),
+      ).toEqual(mockProductRating);
     });
   });
 });
