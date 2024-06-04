@@ -15,7 +15,7 @@ import {
   FilterFeedbackInput,
 } from './dto/filter-feedback.input';
 import { UpdateFeedbackInput } from './dto/update-feedback.input';
-import { ProductRating } from './entities/product-rating.entity';
+import { ProductRating, StarRatings } from './entities/product-rating.entity';
 
 @Injectable()
 export class FeedbacksService {
@@ -97,13 +97,15 @@ export class FeedbacksService {
     return this.prisma.feedback.findUnique({ where: { id, deleted: false } });
   }
 
-  async calculateRatingByProductId(productId: string): Promise<ProductRating> {
+  async calculateProductRatingByProductId(
+    productId: string,
+  ): Promise<ProductRating> {
     const cachedProductRating = await this.redisService.hGetJson<ProductRating>(
       this.productRatingsCacheKey,
       productId,
     );
     if (cachedProductRating) return cachedProductRating;
-    const ratings = {
+    const ratings: StarRatings = {
       five: await this.prisma.feedback.count({
         where: { productId, deleted: false, rating: 5 },
       }),
@@ -121,12 +123,10 @@ export class FeedbacksService {
       }),
     };
 
-    const totalRatings =
-      ratings['one'] +
-      ratings['two'] +
-      ratings['three'] +
-      ratings['four'] +
-      ratings['five'];
+    const totalRatings = Object.values(ratings).reduce(
+      (acc, val) => acc + val,
+      0,
+    );
 
     const averageRatings =
       (1 * ratings['one'] +

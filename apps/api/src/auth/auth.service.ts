@@ -1,6 +1,4 @@
-import { BadRequestException, Inject, Injectable } from '@nestjs/common';
-import { ENHANCED_PRISMA } from '@zenstackhq/server/nestjs';
-import { PrismaService } from 'src/common/database/prisma.service';
+import { Injectable } from '@nestjs/common';
 import { ConfigsService } from 'src/configs/configs.service';
 import { CustomersService } from 'src/customers/customers.service';
 import { CreateCustomerInput } from 'src/customers/dto/create-customer.input';
@@ -8,7 +6,6 @@ import { CreateCustomerInput } from 'src/customers/dto/create-customer.input';
 @Injectable()
 export class AuthService {
   constructor(
-    @Inject(ENHANCED_PRISMA) private readonly prisma: PrismaService,
     private readonly customersService: CustomersService,
     private readonly configsService: ConfigsService,
   ) {}

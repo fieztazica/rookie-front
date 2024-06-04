@@ -76,10 +76,10 @@ export class FeedbacksResolver {
   }
 
   @Query(() => ProductRating)
-  calculateRatingByProductId(
+  calculateProductRatingByProductId(
     @Args('id', { type: () => String }) id: string,
   ): Promise<ProductRating> {
-    return this.feedbacksService.calculateRatingByProductId(id);
+    return this.feedbacksService.calculateProductRatingByProductId(id);
   }
 
   @Mutation(() => Feedback)

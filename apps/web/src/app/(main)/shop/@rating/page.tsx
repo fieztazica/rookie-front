@@ -8,18 +8,19 @@ type Props = {};
 function FilterByRatingShop({}: Props) {
   const searchParams = useSearchParams();
   const ratingParam = searchParams.get('rating');
-  const { data } = useGetCategoryProducts(ratingParam);
+//   const { data } = useGetCategoryProducts(ratingParam);
 
-  if (!data) return <p>No data</p>;
+//   if (!data) return <p>No data</p>;
 
-  const products =
-    data.category.products.map(
-      (productToCategory) => productToCategory.product,
-    ) || [];
+//   const products =
+//     data.category.products.map(
+//       (productToCategory) => productToCategory.product,
+//     ) || [];
 
   return (
     <div>
-      <ProductList products={products} />
+      {/* <ProductList products={products} /> */}
+      OrderByRating
     </div>
   );
 }

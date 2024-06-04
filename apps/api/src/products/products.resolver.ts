@@ -14,9 +14,7 @@ import { ProductToCategory } from 'src/__generated__/product-to-category/product
 import { FindManyProductArgs } from 'src/__generated__/product/find-many-product.args';
 import { UseGqlAuthRoles } from 'src/auth/decorator/authRoles.decorator';
 import { Role } from 'src/auth/enum/role.enum';
-import { PrismaService } from 'src/common/database/prisma.service';
 import { PaginationArgs } from 'src/common/graphql/pagination.args';
-import { FeedbacksService } from 'src/feedbacks/feedbacks.service';
 import { CreateProductInput } from './dto/create-product.input';
 import { UpdateProductInput } from './dto/update-product.input';
 import { PaginatedProduct, Product } from './entities/product.entity';
@@ -24,11 +22,7 @@ import { ProductsService } from './products.service';
 
 @Resolver(() => Product)
 export class ProductsResolver {
-  constructor(
-    private readonly productsService: ProductsService,
-    private readonly feedbacksService: FeedbacksService,
-    private readonly prismaService: PrismaService,
-  ) {}
+  constructor(private readonly productsService: ProductsService) {}
 
   @Mutation(() => Product)
   @UseGqlAuthRoles(Role.Admin)
@@ -64,50 +58,25 @@ export class ProductsResolver {
   @ResolveField('authors', () => [ProductToAuthor])
   getAuthors(@Parent() product: Product) {
     const { id } = product;
-    return this.prismaService.productToAuthor.findMany({
-      where: {
-        productId: id,
-      },
-      include: {
-        author: true,
-      },
-    });
+    return this.productsService.getProductAuthors(id);
   }
 
   @ResolveField('categories', () => [ProductToCategory])
   getCategories(@Parent() product: Product) {
     const { id } = product;
-    return this.prismaService.productToCategory.findMany({
-      where: {
-        productId: id,
-      },
-      include: {
-        category: true,
-      },
-    });
+    return this.productsService.getProductCategories(id);
   }
 
   @ResolveField('orders', () => [OrderItem])
   getOrders(@Parent() product: Product) {
     const { id } = product;
-    return this.prismaService.orderItem.findMany({
-      where: {
-        productId: id,
-      },
-      include: {
-        order: true,
-      },
-    });
+    return this.productsService.getProductOrderItems(id);
   }
 
   @ResolveField('feedbacks', () => [Feedback])
   getFeedbacks(@Parent() product: Product) {
     const { id } = product;
-    return this.feedbacksService.findAll({
-      where: {
-        productId: id,
-      },
-    });
+    return this.productsService.getProductFeedbacks(id);
   }
 
   @Mutation(() => Product)

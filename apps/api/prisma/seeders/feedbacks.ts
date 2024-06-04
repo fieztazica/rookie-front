@@ -29,8 +29,8 @@ export async function seedFeedbacks(
     createRandomFeedback,
     {
       count: {
-        min: 100,
-        max: 500,
+        min: 500,
+        max: 1000,
       },
     },
   );

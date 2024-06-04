@@ -4,6 +4,9 @@ This project is a simple e-commerce platform built with modern web technologies,
 
 [![Build](https://github.com/fieztazica/rookie-store/actions/workflows/build.yml/badge.svg)](https://github.com/fieztazica/rookie-store/actions/workflows/build.yml)
 [![CI](https://github.com/fieztazica/rookie-store/actions/workflows/ci.yml/badge.svg)](https://github.com/fieztazica/rookie-store/actions/workflows/ci.yml)
+[![Test](https://github.com/fieztazica/rookie-store/actions/workflows/test.yml/badge.svg)](https://github.com/fieztazica/rookie-store/actions/workflows/test.yml)
+[![ESLint](https://github.com/fieztazica/rookie-store/actions/workflows/lint.yml/badge.svg)](https://github.com/fieztazica/rookie-store/actions/workflows/lint.yml)
+[![Types](https://github.com/fieztazica/rookie-store/actions/workflows/type-check.yml/badge.svg)](https://github.com/fieztazica/rookie-store/actions/workflows/type-check.yml)
 
 ## Table of Contents
 

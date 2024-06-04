@@ -6,7 +6,7 @@ import { Separator } from '@/components/ui/separator';
 type Props = {
   pathname: string;
   createQueryString: (key: string, value: string) => string;
-  stars: GetProductRatingQuery['calculateRatingByProductId']['ratings'];
+  stars: GetProductRatingQuery['calculateProductRatingByProductId']['ratings'];
 };
 
 function Starbucks({ stars, pathname, createQueryString }: Props) {
