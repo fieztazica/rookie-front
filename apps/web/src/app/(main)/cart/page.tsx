@@ -56,7 +56,7 @@ async function CartPage({}: Props) {
         <CartItemsTable cart={data.cart} />
         <div className='text-right'>
           <Button asChild>
-            <Link href={'/'}>Place order</Link>
+            <Link href={'/order/confirm'}>Confirm your order</Link>
           </Button>
         </div>
       </div>

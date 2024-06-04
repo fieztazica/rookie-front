@@ -62,7 +62,7 @@ function WriteReviewForm({ productId }: Props) {
   }
 
   return (
-    <div className="border rounded">
+    <div id="write-a-review" className="border rounded">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="border-b p-2 rounded">

@@ -20,11 +20,14 @@ export const GET_ORDERS = gql(`
                     name
                     displayName
                     imageUrl
+                    price
+                    salePrice
                 }
                 price
                 quantity
             }
             total
+            createdAt
         }
     }
 `);
