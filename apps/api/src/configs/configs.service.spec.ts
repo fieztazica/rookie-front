@@ -11,7 +11,7 @@ export const mockConfigs = [
 ];
 
 export const paginatedConfigs = {
-  data: [mockConfigs],
+  data: mockConfigs,
   meta: {
     total: mockConfigs.length,
     page: 1,

@@ -36,7 +36,7 @@ export const mockProducts: Product[] = [
 ];
 
 export const paginatedProducts = {
-  data: [mockProducts],
+  data: mockProducts,
   meta: {
     total: mockProducts.length,
     page: 1,
