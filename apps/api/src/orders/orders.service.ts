@@ -11,19 +11,22 @@ import { CreateOrderInput } from './dto/create-order.input';
 import { UpdateOrderInput } from './dto/update-order.input';
 import { CartItemInput } from 'src/cart/dto/cart-item.input';
 import { ProductsService } from 'src/products/products.service';
+import { CartService } from 'src/cart/cart.service';
 
 @Injectable()
 export class OrdersService {
   constructor(
     @Inject(ENHANCED_PRISMA) private readonly prisma: PrismaService,
     private readonly productsService: ProductsService,
+    private readonly cartService: CartService,
   ) {}
   create(createOrderInput: CreateOrderInput) {
     return this.prisma.order.create({ data: createOrderInput });
   }
 
   async make(customerId: string, items: CartItemInput[]) {
-    const productIds = items.map((item) => item.key);
+    const cart = await this.cartService.getOrSetCart(customerId, items);
+    const productIds = cart.items.map((item) => item.key);
     const foundProducts = await this.productsService.findAll({
       where: {
         id: {
@@ -39,17 +42,17 @@ export class OrdersService {
       ]),
     );
 
-    const orderTotal = items.reduce((acc, item) => {
+    const orderTotal = cart.items.reduce((acc, item) => {
       const price = priceMap.get(item.key);
       if (!price) return acc;
       return acc + price * item.value;
     }, 0);
 
-    return this.prisma.order.create({
+    const createdOrder = await this.prisma.order.create({
       data: {
         customerId,
         orderItems: {
-          create: items.map((item) => ({
+          create: cart.items.map((item) => ({
             price: priceMap.get(item.key),
             quantity: item.value,
             product: {
@@ -62,6 +65,10 @@ export class OrdersService {
         total: orderTotal,
       },
     });
+
+    await this.cartService.clear(customerId);
+
+    return createdOrder;
   }
 
   findAll(
