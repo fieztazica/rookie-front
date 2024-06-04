@@ -7,7 +7,7 @@ import { toast } from '@/components/ui/use-toast';
 import { cn } from '@/lib/utils';
 import { MinusIcon, PlusIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { addToCartAction, refetch } from '../actions';
+import AddToCartButton from '@/src/app/(main)/cart/add-to-cart-btn';
 
 type Props = {
   productId: string;
@@ -23,27 +23,6 @@ function ProductPrice({ productId, price, salePrice }: Props) {
     const flooredQuantity = Math.floor(quantity);
     if (flooredQuantity !== quantity) setQuantity(flooredQuantity);
   }, [quantity]);
-
-  const onAddToCartClick = async () => {
-    try {
-      const { data } = await addToCartAction(productId, quantity);
-      if (!data) {
-        throw new Error('Unknown error');
-      }
-      await refetch();
-      toast({
-        title: 'Success',
-        description: 'Product added to cart',
-      });
-    } catch (e) {
-      console.error(e);
-      toast({
-        title: 'Oh oh! Something went wrong.',
-        description: 'Failed to add product to cart.',
-        variant: 'destructive',
-      });
-    }
-  };
 
   return (
     <div className="rounded border h-fit">
@@ -96,9 +75,13 @@ function ProductPrice({ productId, price, salePrice }: Props) {
               </Button>
             </div>
           </div>
-          <Button onClick={onAddToCartClick} className="w-full">
+          <AddToCartButton
+            productId={productId}
+            quantity={quantity}
+            className="w-full"
+          >
             Add to cart
-          </Button>
+          </AddToCartButton>
         </div>
       </div>
     </div>
