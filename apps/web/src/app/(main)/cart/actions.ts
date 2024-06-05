@@ -22,13 +22,20 @@ export async function makeUpdateCart(items: CartItemInput[]) {
 }
 
 export async function addToCartAction(productId: string, quantity: number) {
-  const session = await auth();
-  if (!session || !session.user?.customer_id)
-    throw new Error('Unauthenticated');
+  try {
+    const session = await auth();
+    if (!session || !session.user?.customer_id)
+      throw new Error('Unauthenticated');
 
-  const res = await addToCart(session.user.customer_id, productId, quantity);
+    const res = await addToCart(session.user.customer_id, productId, quantity);
 
-  await revalidateTag(countCartItemsTag(session.user.customer_id));
+    await revalidateTag(countCartItemsTag(session.user.customer_id));
 
-  return res;
+    return res;
+  } catch (e) {
+    console.error(e);
+    return {
+      errors: [(e as unknown as any).message],
+    };
+  }
 }

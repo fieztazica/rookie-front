@@ -21,9 +21,12 @@ function AddToCartButton({
   const onAddToCartClick = async () => {
     try {
       setIsPending(true);
-      const { data } = await addToCartAction(productId, quantity);
-      if (!data) {
-        throw new Error('Unknown error');
+      const res = await addToCartAction(productId, quantity);
+      if (res.errors?.length) {
+        console.error(res.errors);
+        throw new Error(
+          res?.errors?.[0]?.message || res?.errors?.[0] || 'unknown error',
+        );
       }
       toast({
         title: 'Success',
@@ -33,7 +36,8 @@ function AddToCartButton({
       console.error(e);
       toast({
         title: 'Oh oh! Something went wrong.',
-        description: 'Failed to add product to cart.',
+        description:
+          (e as unknown as any).message || 'Failed to add product to cart.',
         variant: 'destructive',
       });
     } finally {
