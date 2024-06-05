@@ -6,7 +6,6 @@ import { makeAnOrder } from '../actions';
 import { CartItemInput } from '@/src/__generated__/graphql';
 import { toast } from '@/components/ui/use-toast';
 import { Loader2 } from 'lucide-react';
-
 type Props = {
   cartItems: CartItemInput[];
 } & ButtonProps;
@@ -20,16 +19,7 @@ function PlaceOrderButton({
   async function handleOnClick() {
     try {
       setIsPending(true);
-      const { data } = await makeAnOrder(
-        cartItems.map((i) => ({ key: i.key, value: i.value })),
-      );
-      if (!data) {
-        throw new Error('Unknown error');
-      }
-      toast({
-        title: 'Success',
-        description: 'Placed your order!',
-      });
+      await makeAnOrder(cartItems.map((i) => ({ key: i.key, value: i.value })));
     } catch (e) {
       console.error(e);
       toast({
