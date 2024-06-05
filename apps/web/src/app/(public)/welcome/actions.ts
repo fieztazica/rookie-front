@@ -29,5 +29,5 @@ export const submitCustomerInformation = async (
 
   console.log(res.status);
   await signOut();
-  return redirect('/');
+  redirect('/');
 };
