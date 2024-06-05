@@ -36,7 +36,7 @@ block content
                                                     span= row[uniqueKey.key]
                                         td.table-cell.border.px-6.py-4
                                             span.flex.space-x-2
-                                                a(href=`/admin/orders?orderId=${row.id || row.key}`) View
+                                                a(href=`/admin/orders?${searchParams}&orderId=${row.id || row.key}`) View
                                                 form(action=`/admin/orders/${row.id || row.key}/status?data=CANCELLED` method="POST")
                                                     input(type="submit" class="cursor-pointer hover:underline" value="Cancel")
                                                 form(action=`/admin/orders/${row.id || row.key}/status?data=SHIPPING` method="POST")
@@ -45,6 +45,7 @@ block content
                                                     input(type="submit" class="cursor-pointer hover:underline" value="Complete")
                                     if row.id == orderId && orderItems.length > 0
                                         tr.table-row.border
+                                            td(class="border px-6 py-4") Product -->
                                             td(class="border px-6 py-4 font-medium")
                                                 span Product ID
                                             td(class="border px-6 py-4 font-medium")
@@ -55,7 +56,9 @@ block content
                                                 span Order Item Price
                                         each orderItem in orderItems
                                             tr.table-row
-                                                td(class="border px-6 py-4") #{orderItem.product.id}
+                                                td(class="border px-6 py-4") Product -->
+                                                td(class="border px-6 py-4")
+                                                    a(href=`/admin/products/${orderItem.product.id || orderItem.product.key}`) #{orderItem.product.id || orderItem.product.key}
                                                 td(class="border px-6 py-4") #{orderItem.product.name}
                                                 td(class="border px-6 py-4") #{orderItem.quantity}
                                                 td(class="border px-6 py-4") #{orderItem.price}

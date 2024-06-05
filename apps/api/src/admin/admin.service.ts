@@ -188,7 +188,7 @@ export class AdminService {
     @Req() req: Request,
     queries: { name: string; value: string }[] | Record<string, string>,
   ) {
-    const params = new URLSearchParams(req.query.toString());
+    const params = new URLSearchParams(JSON.parse(JSON.stringify(req.query)));
     if (Array.isArray(queries)) {
       for (const query of queries) {
         params.set(query.name, query.value);
@@ -198,6 +198,7 @@ export class AdminService {
         params.set(name, queries[name]);
       }
     }
+    console.log(params);
     return params.toString();
   }
 
@@ -316,6 +317,13 @@ export class AdminService {
       };
     }
 
+    const searchParams = new URLSearchParams({
+      page: page.toString(),
+      perPage: perPage.toString(),
+      sort,
+      order,
+    });
+
     if (orderId) {
       orderItems = await this.ordersService.getOrderItems(orderId);
     }
@@ -332,6 +340,7 @@ export class AdminService {
       sort,
       orderItems,
       orderId,
+      searchParams: searchParams.toString(),
     };
   }
 
