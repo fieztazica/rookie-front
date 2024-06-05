@@ -7,7 +7,7 @@ block content
                 each value, key in data
                     tr
                         include mixins/utils
-                        td.text-lg.font-semibold.px-2.py-1= titleCase(key)
+                        td.text-lg.font-semibold.px-2.py-1.text-right= titleCase(key)
                         td.text-md.px-2.py-1= value
             .flex.space-x-2.mt-2
                 a(href=`/admin/${resourceName}/${data.id || data.key}/edit`) Edit
