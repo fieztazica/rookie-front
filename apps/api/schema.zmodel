@@ -157,10 +157,18 @@ model Feedback {
     @@deny('read', deleted)
 }
 
+enum OrderStatus {
+    CANCELLED
+    PENDING
+    SHIPPING
+    COMPLETED
+}
+
 model Order {
     id         String      @id @default(cuid()) @map("order_id")
     customerId String      @map("customer_id")
     total      Float
+    status     OrderStatus @default(PENDING)
 
     customer   Customer    @relation(fields: [customerId], references: [id], onDelete: Cascade)
     orderItems OrderItem[]
@@ -198,4 +206,5 @@ model Config {
     updatedAt DateTime @updatedAt
 
     @@deny('read', deleted)
+    @@map("configs")
 }

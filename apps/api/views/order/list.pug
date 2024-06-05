@@ -1,0 +1,72 @@
+extends ../layouts/main
+
+block content
+    main.container.mx-auto.pb-8
+        .py-8
+            .flex.space-x-2.items-center
+                a(href="/admin/orders") Back
+                a(href="/admin/orders") View
+        .flex.justify-between
+            div.flex.space-x-2.items-center
+                h1.text-xl.font-bold #{heading}
+                if data && data.length
+                    span Showing #{data.length}/#{meta.total} entries in total
+            a(href=`/admin/orders?=`) Order by
+        div(class="overflow-x-auto sm:-mx-6 lg:-mx-8")
+            div(class="inline-block min-w-full py-2 sm:px-6 lg:px-8")
+                .overflow-hidden
+                    if data && data.length
+                        table.table.table-auto.min-w-full.text-center
+                            thead.table-header-group
+                                tr.table-row
+                                    each key in uniqueKeys
+                                        th(scope="col" class="table-cell border px-6 py-4")
+                                            div.space-x-2
+                                                span= key.titleCase
+                                                a(href=`?sort=${key.key}&order=${key.key == sort ? (order == "desc" ? "asc" : "desc") : "desc"}`) #{key.key == sort ? (order == "desc" ? "▼" : "▲") : "▲"}
+                                    th(scope="col" class="table-cell border px-6.py-4") Actions
+                            tbody#list-entity.table-row-group
+                                each row in data
+                                    tr.table-row(id=`row-${resourceName}-${row.id || row.key}`)
+                                        each uniqueKey in uniqueKeys
+                                            td.table-cell.border.px-6.py-4
+                                                if uniqueKey.key === 'id'
+                                                    a(href=`/admin/${resourceName}/${row.id || row.key}`) #{row[uniqueKey.key]}
+                                                else
+                                                    span= row[uniqueKey.key]
+                                        td.table-cell.border.px-6.py-4
+                                            span.flex.space-x-2
+                                                a(href=`/admin/orders?orderId=${row.id || row.key}`) View
+                                                form(action=`/admin/orders/${row.id || row.key}/status?data=CANCELLED` method="POST")
+                                                    input(type="submit" class="cursor-pointer hover:underline" value="Cancel")
+                                                form(action=`/admin/orders/${row.id || row.key}/status?data=SHIPPING` method="POST")
+                                                    input(type="submit" class="cursor-pointer hover:underline" value="Ship")
+                                                form(action=`/admin/orders/${row.id || row.key}/status?data=COMPLETED` method="POST")
+                                                    input(type="submit" class="cursor-pointer hover:underline" value="Complete")
+                                    if row.id == orderId && orderItems.length > 0
+                                        tr.table-row.border
+                                            td(class="border px-6 py-4 font-medium")
+                                                span Product ID
+                                            td(class="border px-6 py-4 font-medium")
+                                                span Product Name
+                                            td(class="border px-6 py-4 font-medium")
+                                                span Order Item Quantity
+                                            td(class="border px-6 py-4 font-medium")
+                                                span Order Item Price
+                                        each orderItem in orderItems
+                                            tr.table-row
+                                                td(class="border px-6 py-4") #{orderItem.product.id}
+                                                td(class="border px-6 py-4") #{orderItem.product.name}
+                                                td(class="border px-6 py-4") #{orderItem.quantity}
+                                                td(class="border px-6 py-4") #{orderItem.price}
+
+                    else
+                        p No records
+            div(class="flex justify-between items-center")
+                div(class="flex justify-center items-center space-x-2")
+                    a(class=meta.prev ? "" : "pointer-events-none opacity-25" href=`?page=${meta.prev}&perPage=${meta.perPage}`) Previous
+                    a(class=meta.next ? "" : "pointer-events-none opacity-25" href=`?page=${meta.next}&perPage=${meta.perPage}`) Next
+                div(class="flex items-center space-x-2")
+                    span= `Per Page: `
+                    each val in [1, 5, 10, 15, 20, 25]
+                        a(href=`?page=${meta.currentPage}&perPage=${val}` class= meta.perPage == val ? "underline" : "") #{val}

@@ -51,7 +51,7 @@ export class CartService {
   }
 
   clear(customerId: string) {
-    return this.redisService.hDel(this.name, customerId);
+    return this.redisService.hSetJson(this.name, customerId, new Cart());
   }
 
   async verifyCustomerId(id: string) {

@@ -25,6 +25,13 @@ enum Gender {
   UNDEFINED
 }
 
+enum OrderStatus {
+  CANCELLED
+  PENDING
+  SHIPPING
+  COMPLETED
+}
+
 /// @@deny('read', deleted)
 model Customer {
   id          String     @id() @default(cuid()) @map("customer_id")
@@ -150,6 +157,7 @@ model Order {
   id         String      @id() @default(cuid()) @map("order_id")
   customerId String      @map("customer_id")
   total      Float
+  status     OrderStatus @default(PENDING)
   customer   Customer    @relation(fields: [customerId], references: [id], onDelete: Cascade)
   orderItems OrderItem[]
   /// @omit
@@ -182,4 +190,6 @@ model Config {
   deleted   Boolean  @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt()
+
+  @@map("configs")
 }
