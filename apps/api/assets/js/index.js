@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 $(function () {
   tinymce.init({
     selector: 'textarea',
@@ -8,3 +9,19 @@ $(function () {
     content_css: '/css/main.css',
   });
 });
+
+function setQueryString(queries) {
+  const urlParams = new URLSearchParams(window.location.search);
+  if (queries) {
+    if (Array.isArray(queries)) {
+      for (const query of queries) {
+        params.set(query.name, query.value);
+      }
+    } else {
+      for (const name in queries) {
+        params.set(name, queries[name]);
+      }
+    }
+  }
+  return urlParams.toString();
+}

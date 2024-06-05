@@ -42,6 +42,7 @@ export type MainLayoutRes = {
   successMessage?: string;
   errorMessage?: string;
   userinfo?: UserinfoResponse;
+  [key: string]: any;
 };
 
 export type ResourcePageRes = MainLayoutRes & {
@@ -55,6 +56,8 @@ export type ListViewRes = ResourcePageRes & {
   meta: {
     [key: string]: any;
   };
+  sort?: string | string[];
+  order?: 'desc' | 'asc';
 };
 
 export type DynamicCreateFormRes = ResourcePageRes & {

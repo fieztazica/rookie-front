@@ -80,11 +80,13 @@ export class OrdersService {
   }
 
   paginatedFindAll(
-    options: PaginateOptions = { page: 1, perPage: 10 },
+    paginationOptions: PaginateOptions = { page: 1, perPage: 10 },
+    queryOptions: Prisma.OrderFindManyArgs = {},
   ): Promise<PaginatedResult<Order>> {
-    const paginate = createPaginator(options);
+    const paginate = createPaginator(paginationOptions);
     return paginate<Order, Prisma.OrderFindManyArgs>(this.prisma.order, {
-      where: { deleted: { equals: false } },
+      ...queryOptions,
+      where: { deleted: false },
     });
   }
 

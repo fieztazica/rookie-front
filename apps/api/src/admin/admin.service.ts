@@ -31,6 +31,7 @@ import {
 import { Request } from 'express';
 import { ConfigsService } from 'src/configs/configs.service';
 import { DEFAULT_CONFIG_CREATE_INPUT } from 'src/configs/dto/create-config.input';
+import { OrderStatus } from '@prisma/client';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -144,6 +145,29 @@ export class AdminService {
     };
   }
 
+  updateQueryString(@Req() req: Request, name: string, value: string) {
+    const params = new URLSearchParams(req.query.toString());
+    params.set(name, value);
+    return params.toString();
+  }
+
+  updateMultiQueryString(
+    @Req() req: Request,
+    queries: { name: string; value: string }[] | Record<string, string>,
+  ) {
+    const params = new URLSearchParams(req.query.toString());
+    if (Array.isArray(queries)) {
+      for (const query of queries) {
+        params.set(query.name, query.value);
+      }
+    } else {
+      for (const name in queries) {
+        params.set(name, queries[name]);
+      }
+    }
+    return params.toString();
+  }
+
   async listRes(
     @Req() req: Request,
     entityName: EntityNames,
@@ -200,6 +224,93 @@ export class AdminService {
       userinfo: req.user?.userinfo,
       successMessage: successMessage ? decodeURIComponent(successMessage) : '',
     };
+  }
+
+  async orderListRes(
+    @Req() req: Request,
+    page: number,
+    perPage: number,
+    successMessage: string,
+    sort: string = 'createdAt',
+    order: 'desc' | 'asc' = 'desc',
+    orderId?: string,
+  ): Promise<ListViewRes | MainLayoutRes> {
+    const entityService = this.ordersService;
+
+    let paginatedRes;
+    let entityRecords;
+    let errorMessage = '';
+    let orderItems = [];
+    try {
+      paginatedRes = await entityService.paginatedFindAll(
+        {
+          page,
+          perPage,
+        },
+        {
+          orderBy: {
+            [sort]: order,
+          },
+        },
+      );
+      entityRecords = paginatedRes.data;
+      entityRecords.forEach((record) => {
+        this.filterFieldsFromEntity(
+          this.beautifyEntity(record),
+          ['id', 'total', 'status', 'createdAt'],
+          false,
+        );
+      });
+    } catch (error) {
+      errorMessage = `Failed to fetch orders records`;
+      console.error(`${errorMessage}:`, error);
+      return {
+        errorMessage,
+        userinfo: req.user?.userinfo,
+        resourceName: 'orders',
+      };
+    }
+
+    let uniqueKeys;
+    try {
+      uniqueKeys = this.getUniqueKeys(entityRecords);
+    } catch (error) {
+      errorMessage = `Failed to get unique keys for orders records`;
+      console.error(`${errorMessage}:`, error);
+      return {
+        errorMessage,
+        userinfo: req.user?.userinfo,
+      };
+    }
+
+    if (orderId) {
+      orderItems = await this.ordersService.getOrderItems(orderId);
+    }
+
+    return {
+      heading: convertCamelCaseToTitleCase('orders'),
+      resourceName: 'orders',
+      uniqueKeys,
+      data: entityRecords,
+      meta: paginatedRes.meta,
+      userinfo: req.user?.userinfo,
+      successMessage: successMessage ? decodeURIComponent(successMessage) : '',
+      order,
+      sort,
+      orderItems,
+      orderId,
+      util: {
+        updateMultiQueryString: (queries: Record<string, string>) =>
+          this.updateMultiQueryString(req, queries),
+      },
+    };
+  }
+
+  async updateOrderStatus(orderId: string, status: keyof typeof OrderStatus) {
+    return await this.ordersService.update(orderId, {
+      id: orderId,
+      status: OrderStatus[status],
+    });
   }
 
   async createEntity(
