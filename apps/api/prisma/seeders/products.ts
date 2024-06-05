@@ -18,11 +18,16 @@ export function createRandomProduct(): Prisma.ProductCreateInput {
       height: 400,
     }),
     price,
-    salePrice: faker.number.float({
-      min: -1,
-      max: price,
-      precision: 2,
-    }),
+    salePrice:
+      faker.number.int({
+        max: 5,
+      }) < 1
+        ? faker.number.float({
+            min: -1,
+            max: price - 1,
+            precision: 2,
+          })
+        : -1,
     storeQuantity: faker.number.int({ min: 0, max: 100 }),
     authors: {
       connect: [],
@@ -33,7 +38,7 @@ export function createRandomProduct(): Prisma.ProductCreateInput {
 export const PRODUCTS: Prisma.ProductCreateInput[] = faker.helpers.multiple(
   createRandomProduct,
   {
-    count: 30,
+    count: 45,
   },
 );
 
