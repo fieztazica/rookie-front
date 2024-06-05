@@ -16,33 +16,19 @@ async function CartPage({}: Props) {
   }
 
   const { data } = await getDetailCart(session.user.customer_id);
-  if (!data)
-    return (
-      <div className="flex flex-col space-y-2">
-        <h3 className="text-xl">No data returns.</h3>
-        <Button asChild>
-          <Link href={'/shop'}>Continue shopping</Link>
-        </Button>
-      </div>
-    );
 
-  if (!data.cart)
+  if (!data || !data.cart || !data.cart.items.length)
     return (
-      <div className="flex flex-col space-y-2">
-        <h3 className="text-xl">No cart found.</h3>
-        <Button asChild>
-          <Link href={'/shop'}>Continue shopping</Link>
-        </Button>
-      </div>
-    );
-
-  if (!data.cart.items.length)
-    return (
-      <div className="flex flex-col space-y-2">
+      <div className="flex flex-col space-y-2 items-center">
         <h3 className="text-xl">Your cart is empty.</h3>
-        <Button asChild>
-          <Link href={'/shop'}>Continue shopping</Link>
-        </Button>
+        <div className="flex space-x-2">
+          <Button asChild variant="outline">
+            <Link href={'/order/manage'}>Manage your orders</Link>
+          </Button>
+          <Button asChild>
+            <Link href={'/shop'}>Continue shopping</Link>
+          </Button>
+        </div>
       </div>
     );
 
@@ -54,7 +40,7 @@ async function CartPage({}: Props) {
       <Separator />
       <div className="w-full">
         <CartItemsTable cart={data.cart} />
-        <div className='text-right'>
+        <div className="text-right">
           <Button asChild>
             <Link href={'/order/confirm'}>Confirm your order</Link>
           </Button>
