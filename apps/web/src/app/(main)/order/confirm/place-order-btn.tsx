@@ -11,7 +11,11 @@ type Props = {
   cartItems: CartItemInput[];
 } & ButtonProps;
 
-function PlaceOrderButton({ cartItems }: Props) {
+function PlaceOrderButton({
+  cartItems,
+  children = 'Place order',
+  ...props
+}: Props) {
   const [isPending, setIsPending] = useState(false);
   async function handleOnClick() {
     try {
@@ -37,7 +41,12 @@ function PlaceOrderButton({ cartItems }: Props) {
       setIsPending(false);
     }
   }
-  return <Button onClick={handleOnClick}>Place order</Button>;
+  return (
+    <Button onClick={handleOnClick} disabled={isPending} {...props}>
+      {isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+      {children}
+    </Button>
+  );
 }
 
 export default PlaceOrderButton;
