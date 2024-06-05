@@ -1,0 +1,27 @@
+extends ../layouts/main
+
+block content
+    main.container.mx-auto.py-4
+        .mb-4
+            h2.text-xl.font-bold #{heading}
+        div
+            form(action=`/admin/products/create` method="POST")
+                - const className = 'px-2 py-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-80 sm:text-sm border-gray-300 rounded-md border-2'
+                if fields
+                    each field in fields
+                        .mb-4
+                            label(for=field.key class="block mb-2 text-sm font-medium") #{field.key == 'salePrice' ? `${field.title} (Bigger or equals to 0 if this product is on sale)` : field.title}
+                            include ../components/createInputField
+                    .mb-4
+                        label(for="categories" class="block mb-2 text-sm font-medium") Categories (Hold ctrl to select multiple)
+                        select(id="categories" name="categories" data-key="categories" class=className multiple)
+                            each category in additional.categories
+                                option(value=category.id) #{category.displayName || category.name}
+                    .mb-4
+                        label(for="authors" class="block mb-2 text-sm font-medium") Authors
+                        select(id="authors" name="authors" data-key="authors" class=className multiple)
+                            each author in additional.authors
+                                option(value=author.id) #{`${author.firstName} ${author.lastName}`}
+                    div.flex.space-x-4.items-center
+                        button(type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded") Create
+                        a(href=`/admin/products`) Cancel

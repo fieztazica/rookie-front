@@ -8,5 +8,9 @@ case field.type
             input(type='email' class=className name=field.key id=field.key data-key=field.key value=field.value)
         else
             input(type='text' class=className name=field.key id=field.key data-key=field.key value=field.value)
+    when "array"
+        select(class=className name=field.key id=field.key data-key=field.key multiple)
+            each option in field.value
+                option(value=option) #{option}
     default
         input(class=className type=`${field.type}` name=field.key id=field.key data-key=field.key value=field.value)

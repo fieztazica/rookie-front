@@ -1,8 +1,10 @@
-import { Injectable, Req, Res } from '@nestjs/common';
+import { Body, Injectable, Req, Res } from '@nestjs/common';
+import { OrderStatus } from '@prisma/client';
 import dayjs from 'dayjs';
 import calendar from 'dayjs/plugin/calendar';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
+import { Request } from 'express';
 import { AuthorsService } from 'src/authors/authors.service';
 import { DEFAULT_AUTHOR_CREATE_INPUT } from 'src/authors/dto/create-author.input';
 import { CategoriesService } from 'src/categories/categories.service';
@@ -11,12 +13,16 @@ import {
   convertCamelCaseToTitleCase,
   getUniqueKeysFromTArray,
 } from 'src/common/utils';
+import { ConfigsService } from 'src/configs/configs.service';
+import { DEFAULT_CONFIG_CREATE_INPUT } from 'src/configs/dto/create-config.input';
 import { CustomersService } from 'src/customers/customers.service';
 import { FeedbacksService } from 'src/feedbacks/feedbacks.service';
 import { OrdersService } from 'src/orders/orders.service';
+import {
+  CreateProductInput,
+  DEFAULT_PRODUCT_CREATE_INPUT,
+} from 'src/products/dto/create-product.input';
 import { ProductsService } from 'src/products/products.service';
-
-import { DEFAULT_PRODUCT_CREATE_INPUT } from 'src/products/dto/create-product.input';
 import {
   CreateInputType,
   DefaultCreateInputType,
@@ -28,10 +34,6 @@ import {
   Service,
   UpdateInputType,
 } from './admin.type';
-import { Request } from 'express';
-import { ConfigsService } from 'src/configs/configs.service';
-import { DEFAULT_CONFIG_CREATE_INPUT } from 'src/configs/dto/create-config.input';
-import { OrderStatus } from '@prisma/client';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -97,7 +99,7 @@ export class AdminService {
   getFieldsFromEntity<T>(obj: T) {
     return Object.keys(obj).map((key) => ({
       key: key,
-      type: typeof obj[key],
+      type: Array.isArray(obj[key]) ? 'array' : typeof obj[key],
       title: convertCamelCaseToTitleCase(key),
       value: obj[key],
     }));
@@ -125,10 +127,13 @@ export class AdminService {
     return object;
   }
 
-  dynamicCreateForm(
+  async dynamicCreateForm(
     @Req() req: Request,
     entityName: EntityNames,
-  ): DynamicCreateFormRes | MainLayoutRes {
+    errorFields?: string,
+    errorMessage?: string,
+  ): Promise<DynamicCreateFormRes | MainLayoutRes> {
+    let additional = {};
     const defaultCreateInput = this.getDefaultCreateInput(entityName);
     if (!defaultCreateInput) {
       return {
@@ -136,12 +141,40 @@ export class AdminService {
         userinfo: req?.user?.userinfo,
       };
     }
+    if (entityName === 'products') {
+      additional = {
+        authors: await this.authorsService.findAll({
+          select: {
+            id: true,
+            firstName: true,
+            lastName: true,
+          },
+        }),
+        categories: await this.categoriesService.findAll({
+          select: {
+            id: true,
+            name: true,
+            displayName: true,
+          },
+        }),
+      };
+    }
     const fields = this.getFieldsFromEntity(defaultCreateInput);
+    if (errorFields) {
+      const errorFieldsJson = JSON.parse(decodeURIComponent(errorFields));
+      fields.forEach((field) => {
+        field['value'] = errorFieldsJson.find(
+          (f) => f.key === field.key,
+        )?.value;
+      });
+    }
     return {
       fields,
       heading: `Create ${convertCamelCaseToTitleCase(entityName)}`,
       resourceName: entityName,
       userinfo: req?.user?.userinfo,
+      additional,
+      errorMessage: errorMessage ? decodeURIComponent(errorMessage) : undefined,
     };
   }
 
@@ -299,10 +332,6 @@ export class AdminService {
       sort,
       orderItems,
       orderId,
-      util: {
-        updateMultiQueryString: (queries: Record<string, string>) =>
-          this.updateMultiQueryString(req, queries),
-      },
     };
   }
 
@@ -313,25 +342,61 @@ export class AdminService {
     });
   }
 
+  async getCreateInputFromBody(
+    @Body() body,
+    entityName?: EntityNames,
+  ): Promise<CreateInputType> {
+    if (!entityName) return body as CreateInputType;
+    switch (entityName) {
+      case 'products':
+        const categoriesBody = Array.isArray(body.categories)
+          ? ([...body.categories] as string[])
+          : [body.categories as string];
+        const authorsBody = Array.isArray(body.authors)
+          ? ([...body.authors] as string[])
+          : [body.authors as string];
+        body = {
+          ...body,
+          categories: {
+            createMany: {
+              data: categoriesBody.map((categoryId) => ({ categoryId })),
+            },
+          },
+          authors: {
+            createMany: {
+              data: authorsBody.map((authorId) => ({
+                authorId,
+              })),
+            },
+          },
+        } satisfies CreateProductInput;
+        for (const key in body) {
+          if (!isNaN(parseFloat(body[key]))) {
+            body[key] = parseFloat(body[key]);
+          }
+          if (!isNaN(parseInt(body[key]))) {
+            body[key] = parseInt(body[key]);
+          }
+        }
+        console.log(body);
+        break;
+      default:
+        break;
+    }
+    return body as CreateInputType;
+  }
+
   async createEntity(
     @Req() req: Request,
     @Res() res,
     entityName: EntityNames,
-    createInput: CreateInputType,
+    @Body() body,
   ) {
-    const fields = this.getFieldsFromEntity(createInput);
+    const fields = this.getFieldsFromEntity(body);
     try {
       const entityService = this.getServiceFromEntityName(entityName);
+      const createInput = await this.getCreateInputFromBody(body, entityName);
       const created = await entityService.create(createInput);
-      if (!created) {
-        return {
-          fields,
-          resourceName: entityName,
-          userinfo: req?.user?.userinfo,
-          errorMessage: `Failed to create record`,
-        };
-      }
-
       const uniqueProp =
         (created as { key?: string; id?: string }).key ??
         (created as { id?: string }).id;
@@ -339,18 +404,20 @@ export class AdminService {
       const successMessage = encodeURIComponent(
         `Successfully created ${entityName}/${uniqueProp}!`,
       );
-      res.redirect(
+      return res.redirect(
         `/admin/${entityName}/${uniqueProp}?successMessage=${successMessage}`,
       );
-      return;
     } catch (error) {
       console.error(error);
-      return {
-        fields,
-        resourceName: entityName,
-        userinfo: req?.user?.userinfo,
-        errorMessage: `Failed to create record: ${error.message}`,
-      };
+      const searchParams = new URLSearchParams({
+        errorMessage: encodeURIComponent(
+          `Failed to create record: ${error.message}`,
+        ),
+        fields: encodeURIComponent(JSON.stringify(fields)),
+      });
+      return res.redirect(
+        `/admin/${entityName}/create?${searchParams.toString()}`,
+      );
     }
   }
 
@@ -370,28 +437,21 @@ export class AdminService {
     this.parseNumberOfEntity(editInput);
     try {
       const entityService = this.getServiceFromEntityName(entityName);
-      const updated = await entityService.update(id, editInput);
-      if (!updated) {
-        return {
-          data: editInput,
-          resourceName: entityName,
-          userinfo: req?.user?.userinfo,
-          errorMessage: `Failed to update record`,
-        };
-      }
+      await entityService.update(id, editInput);
       const successMessage = encodeURIComponent(`Updated ${entityName}/${id}!`);
-      res.redirect(
+      return res.redirect(
         `/admin/${entityName}/${id}/edit?successMessage=${successMessage}`,
       );
-      return;
     } catch (error) {
       console.error(error);
-      return {
-        data: editInput,
-        resourceName: entityName,
-        userinfo: req?.user?.userinfo,
-        errorMessage: `Failed to update record: ${error.message}`,
-      };
+      const searchParams = new URLSearchParams({
+        errorMessage: encodeURIComponent(
+          `Failed to update record: ${error.message}`,
+        ),
+      });
+      return res.redirect(
+        `/admin/${entityName}/${id}/edit?${searchParams.toString()}`,
+      );
     }
   }
 

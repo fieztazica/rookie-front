@@ -9,7 +9,5 @@ export const DEFAULT_PRODUCT_CREATE_INPUT = (): ProductCreateInput &
   description: '',
   imageUrl: '',
   price: 0,
-  salePrice: 0,
-  categoryNames: '',
-  authorNames: '',
+  salePrice: -1,
 });

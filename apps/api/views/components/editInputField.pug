@@ -1,5 +1,5 @@
 - const className = 'px-2 py-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-80 sm:text-sm border-gray-300 rounded-md border-2'
-- const type = typeof value
+- const type = Array.isArray(value) ? 'array' : typeof value
 
 case type
     when 'string'
@@ -11,5 +11,9 @@ case type
             input(readonly class=className name=key id=key data-key=key value=value)
         else
             input(type='text' class=className name=key id=key data-key=key value=value)
+    when "array"
+        select(class=className name=key id=key data-key=key multiple)
+            each option in value
+                option(value=option) #{option}
     default
         input(class=className type=`${type}` name=key id=key data-key=key value=value)

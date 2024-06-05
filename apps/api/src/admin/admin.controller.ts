@@ -154,7 +154,8 @@ export class AdminController {
     @Req() req: Request,
     @Param('entity') entity: EntityNames,
     @Param('id') id: string,
-    @Query('successMessage') successMessage: string,
+    @Query('successMessage') successMessage?: string,
+    @Query('errorMessage') errorMessage?: string,
   ): Promise<DetailPage | MainLayoutRes> {
     const data = await this.adminService.getEntityDetails(req, entity, id);
     if (!data) {
@@ -169,12 +170,12 @@ export class AdminController {
       resourceName: entity,
       userinfo: req?.user?.userinfo,
       successMessage: successMessage ? decodeURIComponent(successMessage) : '',
+      errorMessage: errorMessage ? decodeURIComponent(errorMessage) : '',
     };
   }
 
   @Post(':entity/create')
   @RedirectAuth()
-  @Render('create')
   async createPost(
     @Req() req: Request,
     @Res() res,
@@ -182,6 +183,22 @@ export class AdminController {
     @Param('entity') entity: EntityNames,
   ) {
     return await this.adminService.createEntity(req, res, entity, body);
+  }
+
+  @Get('products/create')
+  @RedirectAuth()
+  @Render('product/create')
+  async createProductPage(
+    @Req() req,
+    @Query('fields') errorFields?: string,
+    @Query('errorMessage') errorMessage?: string,
+  ) {
+    return this.adminService.dynamicCreateForm(
+      req,
+      'products',
+      errorFields,
+      errorMessage,
+    );
   }
 
   @Get(':entity/create')
