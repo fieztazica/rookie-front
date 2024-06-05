@@ -1,6 +1,9 @@
 -- CreateEnum
 CREATE TYPE "Gender" AS ENUM ('MALE', 'FEMALE', 'UNDEFINED');
 
+-- CreateEnum
+CREATE TYPE "OrderStatus" AS ENUM ('CANCELLED', 'PENDING', 'SHIPPING', 'COMPLETED');
+
 -- CreateTable
 CREATE TABLE "customers" (
     "customer_id" TEXT NOT NULL,
@@ -107,6 +110,7 @@ CREATE TABLE "orders" (
     "order_id" TEXT NOT NULL,
     "customer_id" TEXT NOT NULL,
     "total" DOUBLE PRECISION NOT NULL,
+    "status" "OrderStatus" NOT NULL DEFAULT 'PENDING',
     "deleted" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
