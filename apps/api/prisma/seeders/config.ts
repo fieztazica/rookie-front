@@ -10,7 +10,7 @@ export async function seedConfigs() {
       <p>&nbsp;</p>
       <p style="text-align: center;"><em>"Bookworm is an independent New York bookstore and language school with locations in Manhattan and Brooklyn. We specialize in travel books and language classes."</em></p>
       <p style="text-align: center;">&nbsp;</p>
-      <table style="border-collapse: collapse; width: 100%; height: 53px; border-width: 1px;" border="1"><colgroup><col style="width: 50.0499%;"><col style="width: 50.0499%;"></colgroup>
+      <table style="border-collapse: collapse; width: 100%; height: 53px;><colgroup><col style="width: 50.0499%;"><col style="width: 50.0499%;"></colgroup>
       <tbody>
       <tr style="height: 26.5px;">
       <td>
