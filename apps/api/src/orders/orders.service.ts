@@ -26,6 +26,7 @@ export class OrdersService {
 
   async make(customerId: string, items: CartItemInput[]) {
     const cart = await this.cartService.getOrSetCart(customerId, items);
+
     const productIds = cart.items.map((item) => item.key);
     const foundProducts = await this.productsService.findAll({
       where: {
@@ -34,6 +35,17 @@ export class OrdersService {
         },
       },
     });
+
+    const cartItemsMap = new Map(
+      cart.items.map((item) => [item.key, item.value]),
+    );
+    const isSomeProductQuantityNotEnough = foundProducts.some(
+      (product) => product.storeQuantity < cartItemsMap.get(product.id),
+    );
+
+    if (isSomeProductQuantityNotEnough) {
+      throw new Error('Not enough products in stock');
+    }
 
     const priceMap = new Map<string, number>(
       foundProducts.map((product) => [
@@ -65,6 +77,13 @@ export class OrdersService {
         total: orderTotal,
       },
     });
+
+    for await (const product of foundProducts) {
+      await this.productsService.update(product.id, {
+        id: product.id,
+        storeQuantity: product.storeQuantity - cartItemsMap.get(product.id),
+      });
+    }
 
     await this.cartService.clear(customerId);
 
