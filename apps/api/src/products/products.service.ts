@@ -159,7 +159,7 @@ export class ProductsService {
   @Cron(
     process.env.NODE_ENV !== 'production'
       ? CronExpression.EVERY_10_SECONDS
-      : CronExpression.EVERY_DAY_AT_MIDNIGHT,
+      : CronExpression.EVERY_HOUR,
   )
   async updateProductsViews() {
     this.logger.log('[TASK] Updating products views...');
