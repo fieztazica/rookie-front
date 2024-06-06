@@ -24,6 +24,9 @@ export class CartService {
     let cart = await this.getOrSetCart(customerId);
     if (amount < 1) return cart;
     const product = await this.getProduct(productId);
+    if (product.storeQuantity < amount) {
+      throw new BadRequestException('Not enough products in stock');
+    }
     if (!cart.addItem) cart = new Cart(cart.items);
     cart.addItem(product.id, amount);
     await this.setCart(customerId, cart);
