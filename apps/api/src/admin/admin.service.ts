@@ -223,7 +223,7 @@ export class AdminService {
       entityRecords.forEach((record) => {
         this.filterFieldsFromEntity(
           this.beautifyEntity(record),
-          ['id', 'name', 'email', 'key'],
+          ['id', 'name', 'email', 'key', 'storeQuantity', 'ratings', 'views'],
           false,
         );
       });

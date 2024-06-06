@@ -30,11 +30,11 @@ enum Gender {
 
 model Customer {
     id          String     @id @default(cuid()) @map("customer_id")
-    email       String     @unique @db.VarChar(255)
-    phoneNumber String?    @unique @db.VarChar(24)
-    firstName   String     @db.VarChar(255)
-    lastName    String     @db.VarChar(255)
-    displayName String?    @db.VarChar(255)
+    email       String     @unique @db.VarChar(255) @email
+    phoneNumber String?    @unique @db.VarChar(24) @trim
+    firstName   String     @db.VarChar(255) @trim
+    lastName    String     @db.VarChar(255) @trim
+    displayName String?    @db.VarChar(255) @trim
     gender      Gender?    @default(UNDEFINED)
 
     accountId   String?    @unique @map("account_id")
@@ -52,10 +52,10 @@ model Customer {
 
 model Author {
     id          String            @id @default(cuid()) @map("author_id")
-    firstName   String            @db.VarChar(255)
-    lastName    String            @db.VarChar(255)
-    displayName String?           @db.VarChar(255)
-    email       String            @unique @db.VarChar(255)
+    firstName   String            @db.VarChar(255) @trim
+    lastName    String            @db.VarChar(255) @trim
+    displayName String?           @db.VarChar(255) @trim
+    email       String            @unique @db.VarChar(255) @email
     phoneNumber String            @unique @db.VarChar(24)
     description String?           @db.Text
     deleted     Boolean           @default(false) @omit
@@ -84,15 +84,16 @@ model ProductToAuthor {
 
 model Product {
     id            String              @id @default(cuid()) @map("product_id")
-    name          String              @unique @db.VarChar(255)
-    displayName   String?             @db.VarChar(255)
-    description   String?             @db.Text
-    imageUrl      String?
-    price         Float
+    name          String              @unique @db.VarChar(255) @lower @trim
+    displayName   String?             @db.VarChar(255) @trim
+    description   String?             @db.Text @trim
+    imageUrl      String?             @trim @url
+    price         Float               @gte(0)
     salePrice     Float               @default(-1)
-    ratings       Float               @default(0)
-    accountId     String?             @map("account_id")
-    storeQuantity Int                 @default(0)
+    ratings       Float               @default(0) @gte(0) @lte(5)
+    accountId     String?             @map("account_id") @trim
+    storeQuantity Int                 @default(0) @gte(0)
+    views         Int                 @default(0) @gte(0)
 
     categories    ProductToCategory[]
     orderItems    OrderItem[]
@@ -109,9 +110,9 @@ model Product {
 
 model Category {
     id          String              @id @default(cuid()) @map("category_id")
-    name        String              @unique @db.VarChar(255)
-    description String?             @db.VarChar(255)
-    displayName String?             @db.VarChar(255)
+    name        String              @unique @db.VarChar(255) @lower @trim
+    description String?             @db.VarChar(255) @trim
+    displayName String?             @db.VarChar(255) @trim
 
     products    ProductToCategory[]
 
@@ -143,8 +144,7 @@ model Feedback {
     productId  String   @map("product_id")
     title      String   @db.Text
     message    String   @db.Text
-    rating     Int      @db.SmallInt
-    status     String?  @db.VarChar(255)
+    rating     Int      @db.SmallInt @gte(1) @lte(5)
 
     customer   Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
     product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
@@ -167,7 +167,7 @@ enum OrderStatus {
 model Order {
     id         String      @id @default(cuid()) @map("order_id")
     customerId String      @map("customer_id")
-    total      Float
+    total      Float       @gte(0)
     status     OrderStatus @default(PENDING)
 
     customer   Customer    @relation(fields: [customerId], references: [id], onDelete: Cascade)
@@ -184,8 +184,8 @@ model Order {
 model OrderItem {
     orderId   String   @map("order_id")
     productId String   @map("product_id")
-    price     Float
-    quantity  Int
+    price     Float    @gte(0)
+    quantity  Int      @gte(0)
 
     order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
     product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
@@ -198,7 +198,7 @@ model OrderItem {
 }
 
 model Config {
-    key       String   @id
+    key       String   @id @trim
     value     String   @db.Text
 
     deleted   Boolean  @default(false) @omit

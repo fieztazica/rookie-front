@@ -35,10 +35,15 @@ enum OrderStatus {
 /// @@deny('read', deleted)
 model Customer {
   id          String     @id() @default(cuid()) @map("customer_id")
+  /// @email
   email       String     @unique() @db.VarChar(255)
+  /// @trim
   phoneNumber String?    @unique() @db.VarChar(24)
+  /// @trim
   firstName   String     @db.VarChar(255)
+  /// @trim
   lastName    String     @db.VarChar(255)
+  /// @trim
   displayName String?    @db.VarChar(255)
   gender      Gender?    @default(UNDEFINED)
   accountId   String?    @unique() @map("account_id")
@@ -55,9 +60,13 @@ model Customer {
 /// @@deny('read', deleted)
 model Author {
   id          String            @id() @default(cuid()) @map("author_id")
+  /// @trim
   firstName   String            @db.VarChar(255)
+  /// @trim
   lastName    String            @db.VarChar(255)
+  /// @trim
   displayName String?           @db.VarChar(255)
+  /// @email
   email       String            @unique() @db.VarChar(255)
   phoneNumber String            @unique() @db.VarChar(24)
   description String?           @db.Text()
@@ -85,15 +94,28 @@ model ProductToAuthor {
 /// @@deny('read', deleted)
 model Product {
   id            String              @id() @default(cuid()) @map("product_id")
+  /// @lower
+  /// @trim
   name          String              @unique() @db.VarChar(255)
+  /// @trim
   displayName   String?             @db.VarChar(255)
+  /// @trim
   description   String?             @db.Text()
+  /// @trim
+  /// @url
   imageUrl      String?
+  /// @gte(0)
   price         Float
   salePrice     Float               @default(-1)
+  /// @gte(0)
+  /// @lte(5)
   ratings       Float               @default(0)
+  /// @trim
   accountId     String?             @map("account_id")
+  /// @gte(0)
   storeQuantity Int                 @default(0)
+  /// @gte(0)
+  views         Int                 @default(0)
   categories    ProductToCategory[]
   orderItems    OrderItem[]
   feedbacks     Feedback[]
@@ -109,8 +131,12 @@ model Product {
 /// @@deny('read', deleted)
 model Category {
   id          String              @id() @default(cuid()) @map("category_id")
+  /// @lower
+  /// @trim
   name        String              @unique() @db.VarChar(255)
+  /// @trim
   description String?             @db.VarChar(255)
+  /// @trim
   displayName String?             @db.VarChar(255)
   products    ProductToCategory[]
   /// @omit
@@ -140,8 +166,9 @@ model Feedback {
   productId  String   @map("product_id")
   title      String   @db.Text()
   message    String   @db.Text()
+  /// @gte(1)
+  /// @lte(5)
   rating     Int      @db.SmallInt()
-  status     String?  @db.VarChar(255)
   customer   Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
   product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
   /// @omit
@@ -156,6 +183,7 @@ model Feedback {
 model Order {
   id         String      @id() @default(cuid()) @map("order_id")
   customerId String      @map("customer_id")
+  /// @gte(0)
   total      Float
   status     OrderStatus @default(PENDING)
   customer   Customer    @relation(fields: [customerId], references: [id], onDelete: Cascade)
@@ -171,7 +199,9 @@ model Order {
 model OrderItem {
   orderId   String   @map("order_id")
   productId String   @map("product_id")
+  /// @gte(0)
   price     Float
+  /// @gte(0)
   quantity  Int
   order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
   product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
@@ -184,6 +214,7 @@ model OrderItem {
 
 /// @@deny('read', deleted)
 model Config {
+  /// @trim
   key       String   @id()
   value     String   @db.Text()
   /// @omit
