@@ -1,24 +1,30 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, Logger } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { Cron, CronExpression } from '@nestjs/schedule';
+import { Prisma, Product } from '@prisma/client';
 import { ENHANCED_PRISMA } from '@zenstackhq/server/nestjs';
+import { differenceInDays, differenceInSeconds } from 'date-fns';
 import {
   createPaginator,
   PaginatedResult,
   PaginateOptions,
 } from 'prisma-pagination';
+import { FeedbacksService } from 'src/feedbacks/feedbacks.service';
 import { PrismaService } from '../common/database/prisma.service';
 import { CreateProductInput } from './dto/create-product.input';
 import { UpdateProductInput } from './dto/update-product.input';
-import { Prisma, Product } from '@prisma/client';
-import { FeedbacksService } from 'src/feedbacks/feedbacks.service';
-import { differenceInDays, differenceInSeconds } from 'date-fns';
-import { ConfigService } from '@nestjs/config';
+
 @Injectable()
 export class ProductsService {
+  private readonly logger = new Logger(ProductsService.name);
+  isTesting: boolean;
   constructor(
     @Inject(ENHANCED_PRISMA) private readonly prisma: PrismaService,
     private readonly feedbacksService: FeedbacksService,
     private readonly configService: ConfigService,
-  ) {}
+  ) {
+    this.isTesting = this.configService.get('testing');
+  }
   create(createProductInput: CreateProductInput): Promise<Product> {
     return this.prisma.product.create({ data: createProductInput });
   }
@@ -90,10 +96,34 @@ export class ProductsService {
     });
   }
 
+  @Cron(
+    process.env.NODE_ENV !== 'production'
+      ? CronExpression.EVERY_MINUTE
+      : CronExpression.EVERY_DAY_AT_MIDNIGHT,
+  )
+  async calculateProductsRatings() {
+    this.logger.log('[TASK] calculating products ratings...');
+    const products = await this.findAll({
+      where: {
+        deleted: false,
+      },
+      select: {
+        id: true,
+      },
+    });
+    let i = 0;
+    for await (const product of products) {
+      await this.calculateRatingsByProductId(product.id);
+      i++;
+    }
+    this.logger.log(
+      `[TASK] calculated products ratings ${i}/${products.length}`,
+    );
+  }
+
   async calculateRatingsByProductId(productId: string, product?: Product) {
     if (product) {
-      const testing: boolean = this.configService.get('testing');
-      const diff = testing
+      const diff = this.isTesting
         ? differenceInSeconds(new Date(), new Date(product.updatedAt))
         : differenceInDays(new Date(), new Date(product.updatedAt));
 
@@ -105,8 +135,8 @@ export class ProductsService {
       id: productId,
       ratings: ratings.averageRatings,
     });
-    console.log(
-      'triggered calculate ratings',
+    this.logger.log(
+      `triggered calculate ratings for `,
       productId,
       productRatings,
       new Date(),
