@@ -1,11 +1,7 @@
 extends ../layouts/main
 
 block content
-    main.container.mx-auto.pb-8
-        .py-8
-            .flex.space-x-2.items-center
-                a(href="/admin/orders") Back
-                a(href="/admin/orders") View
+    main.container.mx-auto.py-8.min-h-dvh
         .flex.justify-between
             div.flex.space-x-2.items-center
                 h1.text-xl.font-bold #{heading}
@@ -32,17 +28,20 @@ block content
                                             td.table-cell.border.px-6.py-4
                                                 if uniqueKey.key === 'id'
                                                     a(href=`/admin/${resourceName}/${row.id || row.key}`) #{row[uniqueKey.key]}
+                                                else if uniqueKey.key === 'status'
+                                                    span(class=`font-medium ${row[uniqueKey.key] === 'SHIPPING' ? 'text-blue-500' : (row[uniqueKey.key] === 'COMPLETED' ? 'text-green-500' :
+                                                    (row[uniqueKey.key] === 'CANCELLED' ? 'text-red-500' : 'text-gray-500'))}`) #{row[uniqueKey.key]}
                                                 else
                                                     span= row[uniqueKey.key]
                                         td.table-cell.border.px-6.py-4
                                             span.flex.space-x-2
                                                 a(href=`/admin/orders?${searchParams}&orderId=${row.id || row.key}`) View
                                                 form(action=`/admin/orders/${row.id || row.key}/status?data=CANCELLED` method="POST")
-                                                    input(type="submit" class="cursor-pointer hover:underline" value="Cancel")
+                                                    input(type="submit" class="cursor-pointer hover:underline text-red-500 font-medium" value="Cancel")
                                                 form(action=`/admin/orders/${row.id || row.key}/status?data=SHIPPING` method="POST")
-                                                    input(type="submit" class="cursor-pointer hover:underline" value="Ship")
+                                                    input(type="submit" class="cursor-pointer hover:underline text-blue-500 font-medium" value="Ship")
                                                 form(action=`/admin/orders/${row.id || row.key}/status?data=COMPLETED` method="POST")
-                                                    input(type="submit" class="cursor-pointer hover:underline" value="Complete")
+                                                    input(type="submit" class="cursor-pointer hover:underline text-green-500 font-medium" value="Complete")
                                     if row.id == orderId && orderItems.length > 0
                                         tr.table-row.border
                                             td(class="border px-6 py-4") Product -->
