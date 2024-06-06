@@ -10,7 +10,7 @@ html
         script(src="https://cdn.tailwindcss.com" referrerpolicy="origin")
         script(src="/js/index.js")
         script(src="/js/actions.js")
-    body.min-h-screen.relative
+    body.min-h-dvh.relative
         if errorMessage
             div(id="errorMessage").flex.items-center.justify-between.bg-red-500.text-white.px-4.py-2
                 p.
@@ -21,7 +21,7 @@ html
                 p.
                     #{successMessage}
                 span(id="closeSuccessMessage").cursor-pointer.text-sm Close
-        header
+        header.sticky.top-0
             include navbar.pug
         block content
         include footer.pug
