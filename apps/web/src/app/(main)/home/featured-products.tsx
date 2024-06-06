@@ -1,12 +1,12 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { getProducts } from '@/features/product/getProducts';
 import ProductList from '@/components/product-list';
 import { TypographyH3 } from '@/components/typos/h3';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { getPopularProducts } from '@/features/product/getPopularProducts';
 
 type Props = {};
 
 async function FeaturedProducts({}: Props) {
-  const { data, error } = await getProducts();
+  const { data, error } = await getPopularProducts();
 
   //   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error : {error.message}</p>;
@@ -24,10 +24,10 @@ async function FeaturedProducts({}: Props) {
           <TabsTrigger value="popular">Popular</TabsTrigger>
         </TabsList>
         <TabsContent value="recommended">
-          <ProductList products={data?.paginatedProducts.data} />
+          <ProductList products={data?.getPopularProducts} />
         </TabsContent>
         <TabsContent value="popular">
-          <ProductList products={data?.paginatedProducts.data} />
+          <ProductList products={data?.getPopularProducts} />
         </TabsContent>
       </Tabs>
     </section>
