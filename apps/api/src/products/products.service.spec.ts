@@ -17,6 +17,7 @@ export const mockProducts: Product[] = [
     storeQuantity: 100,
     createdAt: new Date('2021-01-01'),
     updatedAt: new Date('2021-01-02'),
+    views: 1000,
   },
   {
     id: 'xxxx-xxxxxxxxx-xx-2',
@@ -32,6 +33,7 @@ export const mockProducts: Product[] = [
     storeQuantity: 5,
     createdAt: new Date('2022-01-01T00:00:00Z'),
     updatedAt: new Date('2022-01-02T00:00:00Z'),
+    views: 1000,
   },
 ];
 
