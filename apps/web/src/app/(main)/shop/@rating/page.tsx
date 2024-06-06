@@ -2,25 +2,25 @@
 
 import React from 'react';
 import { useSearchParams } from 'next/navigation';
+import { useGetProductsByRating } from '@/features/product/getProductsByRating';
+import ProductList from '@/components/product-list';
 
 type Props = {};
 
 function FilterByRatingShop({}: Props) {
   const searchParams = useSearchParams();
   const ratingParam = searchParams.get('rating');
-//   const { data } = useGetCategoryProducts(ratingParam);
+  const { data } = useGetProductsByRating(parseInt(ratingParam || ''));
 
-//   if (!data) return <p>No data</p>;
+  if (!data) return <p>No data</p>;
 
-//   const products =
-//     data.category.products.map(
-//       (productToCategory) => productToCategory.product,
-//     ) || [];
+  const products = data.products || [];
+
+  if (!products.length) return <p>No product found.</p>;
 
   return (
     <div>
-      {/* <ProductList products={products} /> */}
-      OrderByRating
+      <ProductList products={products} />
     </div>
   );
 }
