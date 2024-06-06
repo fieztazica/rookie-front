@@ -37,6 +37,13 @@ export class ProductsResolver {
     return this.productsService.findAll(options);
   }
 
+  @Query(() => [Product], {
+    name: 'getPopularProducts',
+  })
+  async getPopularProducts() {
+    return this.productsService.getPopularProducts();
+  }
+
   @Query(() => PaginatedProduct, { name: 'paginatedProducts' })
   async paginatedFindAll(@Args({ nullable: true }) options?: PaginationArgs) {
     return this.productsService.paginatedFindAll(options);

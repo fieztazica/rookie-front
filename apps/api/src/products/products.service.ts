@@ -131,6 +131,33 @@ export class ProductsService {
     });
   }
 
+  async getPopularProducts(take: number = 8) {
+    const topProducts = await this.prisma.orderItem.groupBy({
+      by: ['productId'],
+      _count: {
+        productId: true,
+      },
+      orderBy: {
+        _count: {
+          productId: 'desc',
+        },
+      },
+      take,
+    });
+
+    const productIds = topProducts.map((item) => item.productId);
+    const products = await this.prisma.product.findMany({
+      where: {
+        id: {
+          in: productIds,
+        },
+        deleted: false,
+      },
+    });
+
+    return products;
+  }
+
   @Cron(
     process.env.NODE_ENV !== 'production'
       ? CronExpression.EVERY_5_MINUTES
