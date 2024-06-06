@@ -56,4 +56,31 @@ export class RedisService implements OnModuleInit {
     }
     return value;
   }
+
+  keys() {
+    return this.cacheManager.store.keys();
+  }
+
+  async getAll(key: string) {
+    const keys = (await this.keys()).filter((k) => k.startsWith(key));
+    const result: {
+      [key: string]: string;
+    } = {};
+    for await (const key of keys) {
+      result[key] = await this.get(key);
+    }
+    return result;
+  }
+
+  async hGetAllJson<T>(key: string) {
+    const all = await this.getAll(key);
+    const result: {
+      [key: string]: T;
+    } = {};
+    for (const key in all) {
+      const field = key.split(':')[1];
+      result[field] = JSON.parse(all[key]) as T;
+    }
+    return result;
+  }
 }

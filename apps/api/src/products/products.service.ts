@@ -13,15 +13,20 @@ import { FeedbacksService } from 'src/feedbacks/feedbacks.service';
 import { PrismaService } from '../common/database/prisma.service';
 import { CreateProductInput } from './dto/create-product.input';
 import { UpdateProductInput } from './dto/update-product.input';
+import { RedisService } from 'src/redis/redis.service';
 
 @Injectable()
 export class ProductsService {
+  cacheKey = 'products';
+  // 7 days in milliseconds
+  cacheTtl = 7 * 24 * 60 * 60 * 1000;
   private readonly logger = new Logger(ProductsService.name);
   isTesting: boolean;
   constructor(
     @Inject(ENHANCED_PRISMA) private readonly prisma: PrismaService,
     private readonly feedbacksService: FeedbacksService,
     private readonly configService: ConfigService,
+    private readonly redisService: RedisService,
   ) {
     this.isTesting = this.configService.get('testing');
   }
@@ -49,10 +54,40 @@ export class ProductsService {
     });
   }
 
-  findOne(id: string): Promise<Product> {
-    return this.prisma.product.findUnique({
+  async findOne(id: string, addView: number = 1) {
+    let product = await this.redisService.hGetJson<Product>(this.cacheKey, id);
+
+    // if product found in cache store
+    if (product) {
+      if (addView > 0) {
+        product = { ...product, views: product.views + addView };
+        await this.redisService.hSetJson(
+          this.cacheKey,
+          id,
+          product,
+          this.cacheTtl,
+        );
+      }
+      return product;
+    }
+
+    product = await this.prisma.product.findUnique({
       where: { id, deleted: false },
     });
+
+    if (product) {
+      if (addView > 0) {
+        product = { ...product, views: product.views + addView };
+      }
+      await this.redisService.hSetJson(
+        this.cacheKey,
+        id,
+        product,
+        this.cacheTtl,
+      );
+    }
+
+    return product;
   }
 
   getProductFeedbacks(productId: string) {
@@ -98,7 +133,7 @@ export class ProductsService {
 
   @Cron(
     process.env.NODE_ENV !== 'production'
-      ? CronExpression.EVERY_MINUTE
+      ? CronExpression.EVERY_5_MINUTES
       : CronExpression.EVERY_DAY_AT_MIDNIGHT,
   )
   async calculateProductsRatings() {
@@ -121,6 +156,26 @@ export class ProductsService {
     );
   }
 
+  @Cron(
+    process.env.NODE_ENV !== 'production'
+      ? CronExpression.EVERY_10_SECONDS
+      : CronExpression.EVERY_DAY_AT_MIDNIGHT,
+  )
+  async updateProductsViews() {
+    this.logger.log('[TASK] Updating products views...');
+    const products = await this.redisService.hGetAllJson<Product>(
+      this.cacheKey,
+    );
+    const productsArray = Object.values(products);
+    for await (const product of productsArray) {
+      await this.update(product.id, {
+        id: product.id,
+        views: product.views,
+      });
+    }
+    this.logger.log('[TASK] Updated products views...');
+  }
+
   async calculateRatingsByProductId(productId: string, product?: Product) {
     if (product) {
       const diff = this.isTesting
@@ -136,10 +191,7 @@ export class ProductsService {
       ratings: ratings.averageRatings,
     });
     this.logger.log(
-      `triggered calculate ratings for `,
-      productId,
-      productRatings,
-      new Date(),
+      `triggered calculate ratings for ${productId}: ${productRatings}`,
     );
     return productRatings;
   }

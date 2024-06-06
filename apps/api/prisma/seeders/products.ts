@@ -9,9 +9,10 @@ export function createRandomProduct(): Prisma.ProductCreateInput {
       max: 100,
     }),
   );
+  const name = faker.commerce.productName();
   return {
-    name: faker.commerce.productName(),
-    displayName: faker.commerce.productName(),
+    name,
+    displayName: name,
     description: faker.commerce.productDescription(),
     imageUrl: faker.image.url({
       width: 300,

@@ -471,7 +471,7 @@ export class AdminService {
   ): Promise<ReturnType<Service['findOne']>> {
     const entityService = this.getServiceFromEntityName(entityName);
     try {
-      const entity = await entityService.findOne(id);
+      const entity = await entityService.findOne(id, 0);
       return this.beautifyEntity(entity);
     } catch (error) {
       console.error(error);
