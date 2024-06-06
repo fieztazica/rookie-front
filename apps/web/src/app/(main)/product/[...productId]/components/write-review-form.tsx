@@ -55,7 +55,8 @@ function WriteReviewForm({ productId }: Props) {
       console.error(e);
       toast({
         title: 'Oh oh! Something went wrong.',
-        description: 'Failed to add product to cart.',
+        description:
+          (e as unknown as any).message || 'Failed to submit the review.',
         variant: 'destructive',
       });
     }
