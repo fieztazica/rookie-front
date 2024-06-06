@@ -23,8 +23,9 @@ export class CartService {
   async add(customerId: string, productId: string, amount: number = 1) {
     let cart = await this.getOrSetCart(customerId);
     if (amount < 1) return cart;
+    const product = await this.getProduct(productId);
     if (!cart.addItem) cart = new Cart(cart.items);
-    cart.addItem(productId, amount);
+    cart.addItem(product.id, amount);
     await this.setCart(customerId, cart);
     return cart;
   }
@@ -78,5 +79,14 @@ export class CartService {
     customerId = await this.verifyCustomerId(customerId);
     this.redisService.hSetJson(this.name, customerId, cart, this.ttl);
     return cart;
+  }
+
+  async getProduct(productId: string) {
+    return this.redisService.hGetOrSetJson(
+      'products',
+      productId,
+      await this.productsService.findOne(productId),
+      this.ttl,
+    );
   }
 }
