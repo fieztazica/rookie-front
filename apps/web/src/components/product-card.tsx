@@ -46,7 +46,7 @@ function ProductCard({ product, className, ...props }: Props) {
             .join(', ')}
         </CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className='w-full m-0 px-0'>
         <img
           src={product.imageUrl || undefined}
           alt={`${product.name}'s image`}

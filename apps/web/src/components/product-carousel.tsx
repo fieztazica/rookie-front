@@ -31,15 +31,17 @@ function ProductCarousel({ products }: Props) {
       ]}
       className="w-full"
     >
-      <CarouselContent>
+      <CarouselContent className="h-fit m-4">
         {products.map((p, index) => (
           <CarouselItem
             key={index}
-            className="basis-1 md:basis-1/2 lg:basis-1/3 xl:basis-1/4 p-4"
+            className="basis-1 md:basis-1/2 lg:basis-1/3 xl:basis-1/4 pt-4 pb-16"
           >
-            <Link href={`/product/${p.id}`} className="p-1">
-              <ProductCard product={p} />
-            </Link>
+            <div className="p-1 h-full">
+              <Link href={`/product/${p.id}`}>
+                <ProductCard product={p} className="h-full" />
+              </Link>
+            </div>
           </CarouselItem>
         ))}
       </CarouselContent>
