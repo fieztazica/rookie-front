@@ -18,7 +18,7 @@ type Props = {
 function makeClient() {
   const httpLink = new HttpLink({
     // this needs to be an absolute url, as relative urls cannot be used in SSR
-    uri: `${process.env.API_URL}/api/graphql`,
+    uri: `${process.env.NEXT_PUBLIC_API_URL}/api/graphql`,
     // credentials: 'same-origin',
     // you can disable result caching here if you want to
     // (this does not work if you are rendering your page with `export const dynamic = "force-static"`)
