@@ -114,7 +114,7 @@ function OrderBox({ order }: Props) {
                     </div>
                   </div>
                 </div>
-                <div>
+                <div className="flex items-center space-x-2">
                   <Button asChild>
                     <Link href={`/product/${product.id}`}>
                       <PencilLine className="h-4 w-4 mr-2" /> Buy again

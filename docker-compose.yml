@@ -9,7 +9,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
     ports:
-      - "${POSTGRES_PORT}:5432"
+      - "5432:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
     networks:
@@ -19,7 +19,7 @@ services:
     image: redis:latest
     container_name: rookie-store-redis
     ports:
-      - "${REDIS_PORT}:6379"
+      - "6379:6379"
     volumes:
       - redis-data:/data
     networks:
@@ -31,15 +31,15 @@ services:
       dockerfile: apps/api/Dockerfile
     container_name: rookie-store-api
     ports:
-      - "${API_PORT}:3000"
-    environment:
-      DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}
-      REDIS_URL: redis://${REDIS_HOST}:${REDIS_PORT}
+      - "7000:7000"
+    env_file:
+      - .env
+    # environment:
+    #   DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}
+    #   REDIS_URL: redis://rookie-store-redis:${REDIS_PORT}
     depends_on:
       - postgres
       - redis
-    volumes:
-      - ./apps/api:/usr/src/app
     networks:
       - rookie-store-network
 
@@ -50,12 +50,12 @@ services:
     container_name: rookie-store-web
     ports:
       - "${WEB_PORT}:3000"
-    environment:
-      API_URL: http://api:${API_PORT}
+    env_file:
+      - .env
+    # environment:
+    #   API_URL: http://api:${API_PORT}
     depends_on:
       - api
-    volumes:
-      - ./apps/web:/usr/src/app
     networks:
       - rookie-store-network
 
