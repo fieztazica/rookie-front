@@ -43,19 +43,21 @@ services:
     networks:
       - rookie-store-network
 
-  # web:
-  #   build:
-  #     context: .
-  #     dockerfile: apps/web/Dockerfile
-  #   container_name: rookie-store-web
-  #   ports:
-  #     - "${WEB_PORT}:3000"
-  #   environment:
-  #     API_URL: http://api:${API_PORT}
-  #   depends_on:
-  #     - api
-  #   networks:
-  #     - rookie-store-network
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    container_name: rookie-store-web
+    ports:
+      - "${WEB_PORT}:3000"
+    env_file:
+      - .env
+    # environment:
+    #   API_URL: http://api:${API_PORT}
+    depends_on:
+      - api
+    networks:
+      - rookie-store-network
 
 volumes:
   postgres-data:
