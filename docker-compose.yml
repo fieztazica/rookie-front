@@ -42,10 +42,6 @@ services:
       - redis
     networks:
       - rookie-store-network
-    command: >
-      sh -c "
-        pnpm run --filter=api prisma db push && pnpm run --filter=api start:prod
-      "
 
   # web:
   #   build:
