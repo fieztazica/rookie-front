@@ -1,4 +1,5 @@
-FROM node:18
+# Stage 1: Build the NestJS application
+FROM node:18 AS builder
 
 # Install pnpm
 RUN npm install -g pnpm
@@ -29,6 +30,27 @@ RUN pnpm --filter=api run prisma generate
 
 # Build the NestJS application
 RUN pnpm --filter=api build
+
+# Stage 2: Create the final image
+FROM node:18-alpine
+
+# Install pnpm
+RUN npm install -g pnpm
+
+# Set the working directory
+WORKDIR /usr/src/app
+
+# Copy the built files from the builder stage
+COPY --from=builder /usr/src/app/package.json ./
+COPY --from=builder /usr/src/app/node_modules ./node_modules
+COPY --from=builder /usr/src/app/pnpm-workspace.yaml ./
+COPY --from=builder /usr/src/app/apps/api/package*.json ./apps/api/
+COPY --from=builder /usr/src/app/apps/api/dist ./apps/api/dist
+COPY --from=builder /usr/src/app/apps/api/node_modules ./apps/api/node_modules
+COPY --from=builder /usr/src/app/apps/api/public ./apps/api/public
+COPY --from=builder /usr/src/app/apps/api/views ./apps/api/views
+COPY --from=builder /usr/src/app/apps/api/prisma ./apps/api/prisma
+COPY --from=builder /usr/src/app/apps/api/*.env ./apps/api
 
 # Expose the port the app runs on
 EXPOSE 7000
