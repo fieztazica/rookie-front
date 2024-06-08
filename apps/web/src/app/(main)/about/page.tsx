@@ -2,6 +2,8 @@ import React from 'react';
 import { getAbout } from './query';
 import parse from 'html-react-parser';
 
+export const revalidate = 3600;
+
 type Props = {};
 
 async function AboutPage({}: Props) {
