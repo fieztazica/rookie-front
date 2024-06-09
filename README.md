@@ -118,6 +118,9 @@ cd rookie-store
 
 ## Usage
 
+> Make sure your database is up to date with Prisma schema by using `pnpm run --filter api prisma db push`. In case you want mock data, use `pnpm run --filter api prisma db seed`.
+
+
 1. Open your browser and navigate to `http://localhost:3000` to access the frontend.
 2. The admin page will be available at `http://localhost:7000/admin`.
 3. The backend API will be available at `http://localhost:7000/api/graphql`.
