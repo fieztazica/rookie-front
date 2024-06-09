@@ -32,11 +32,6 @@ services:
     container_name: rookie-store-api
     ports:
       - "7000:7000"
-    env_file:
-      - .env
-    # environment:
-    #   DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}
-    #   REDIS_URL: redis://rookie-store-redis:${REDIS_PORT}
     depends_on:
       - postgres
       - redis
@@ -49,11 +44,7 @@ services:
       dockerfile: apps/web/Dockerfile
     container_name: rookie-store-web
     ports:
-      - "${WEB_PORT}:3000"
-    env_file:
-      - .env
-    # environment:
-    #   API_URL: http://api:${API_PORT}
+      - "3000:3000"
     depends_on:
       - api
     networks:
