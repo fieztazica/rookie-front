@@ -50,7 +50,6 @@ COPY --from=builder /usr/src/app/apps/api/node_modules ./apps/api/node_modules
 COPY --from=builder /usr/src/app/apps/api/public ./apps/api/public
 COPY --from=builder /usr/src/app/apps/api/views ./apps/api/views
 COPY --from=builder /usr/src/app/apps/api/prisma ./apps/api/prisma
-COPY --from=builder /usr/src/app/apps/api/.env* ./apps/api
 
 # Expose the port the app runs on
 EXPOSE 7000
