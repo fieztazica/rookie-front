@@ -8,6 +8,11 @@ import { OrdersModule } from 'src/orders/orders.module';
 import { ProductsModule } from 'src/products/products.module';
 import { AdminController } from './admin.controller';
 import { AdminService } from './admin.service';
+import { AdminProductsController } from './products/admin.products.controller';
+import { AdminOrdersController } from './orders/admin.orders.controller';
+import { AdminOrdersService } from './orders/admin.orders.service';
+import { AdminConfigsController } from './configs/admin.configs.controller';
+import { AdminConfigsService } from './configs/admin.configs.service';
 
 @Module({
   imports: [
@@ -19,7 +24,12 @@ import { AdminService } from './admin.service';
     OrdersModule,
     ConfigsModule,
   ],
-  controllers: [AdminController],
-  providers: [AdminService],
+  controllers: [
+    AdminConfigsController,
+    AdminProductsController,
+    AdminOrdersController,
+    AdminController,
+  ],
+  providers: [AdminService, AdminOrdersService, AdminConfigsService],
 })
 export class AdminModule {}

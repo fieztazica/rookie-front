@@ -1,5 +1,4 @@
 import { Body, Injectable, Req, Res } from '@nestjs/common';
-import { OrderStatus } from '@prisma/client';
 import dayjs from 'dayjs';
 import calendar from 'dayjs/plugin/calendar';
 import timezone from 'dayjs/plugin/timezone';
@@ -260,97 +259,6 @@ export class AdminService {
     };
   }
 
-  async orderListRes(
-    @Req() req: Request,
-    page: number,
-    perPage: number,
-    successMessage: string,
-    sort: string = 'createdAt',
-    order: 'desc' | 'asc' = 'desc',
-    orderId?: string,
-  ): Promise<ListViewRes | MainLayoutRes> {
-    const entityService = this.ordersService;
-
-    let paginatedRes;
-    let entityRecords;
-    let errorMessage = '';
-    let orderItems = [];
-    try {
-      paginatedRes = await entityService.paginatedFindAll(
-        {
-          page,
-          perPage,
-        },
-        {
-          orderBy: {
-            [sort]: order,
-          },
-        },
-      );
-      entityRecords = paginatedRes.data;
-      entityRecords.forEach((record) => {
-        this.filterFieldsFromEntity(
-          this.beautifyEntity(record),
-          ['id', 'total', 'status', 'createdAt'],
-          false,
-        );
-      });
-    } catch (error) {
-      errorMessage = `Failed to fetch orders records`;
-      console.error(`${errorMessage}:`, error);
-      return {
-        errorMessage,
-        userinfo: req.user?.userinfo,
-        resourceName: 'orders',
-      };
-    }
-
-    let uniqueKeys;
-    try {
-      uniqueKeys = this.getUniqueKeys(entityRecords);
-    } catch (error) {
-      errorMessage = `Failed to get unique keys for orders records`;
-      console.error(`${errorMessage}:`, error);
-      return {
-        errorMessage,
-        userinfo: req.user?.userinfo,
-      };
-    }
-
-    const searchParams = new URLSearchParams({
-      page: page.toString(),
-      perPage: perPage.toString(),
-      sort,
-      order,
-    });
-
-    if (orderId) {
-      orderItems = await this.ordersService.getOrderItems(orderId);
-    }
-
-    return {
-      heading: convertCamelCaseToTitleCase('orders'),
-      resourceName: 'orders',
-      uniqueKeys,
-      data: entityRecords,
-      meta: paginatedRes.meta,
-      userinfo: req.user?.userinfo,
-      successMessage: successMessage ? decodeURIComponent(successMessage) : '',
-      order,
-      sort,
-      orderItems,
-      orderId,
-      searchParams: searchParams.toString(),
-    };
-  }
-
-  async updateOrderStatus(orderId: string, status: keyof typeof OrderStatus) {
-    return await this.ordersService.update(orderId, {
-      id: orderId,
-      status: OrderStatus[status],
-    });
-  }
-
   async getCreateInputFromBody(
     @Body() body,
     entityName?: EntityNames,
@@ -512,14 +420,5 @@ export class AdminService {
         errorMessage: `Failed to delete record: ${error.message}`,
       };
     }
-  }
-
-  async getAbout() {
-    const result = await this.configsService.getOrSet('about', '');
-    return result;
-  }
-
-  async setAbout(content: string) {
-    return await this.configsService.set('about', content);
   }
 }
