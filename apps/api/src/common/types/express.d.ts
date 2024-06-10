@@ -10,7 +10,9 @@ declare global {
                 id_token: string;
                 access_token: string;
                 refresh_token: string;
-                userinfo?: UserinfoResponse;
+                userinfo?: UserinfoResponse & {
+                    userRoles?: string[];
+                };
             };
         }
     }
