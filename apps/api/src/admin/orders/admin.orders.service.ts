@@ -43,6 +43,7 @@ export class AdminOrdersService {
       return this.adminService.filterFieldsFromEntity(
         this.adminService.beautifyEntity(record),
         ['id', 'total', 'status', 'createdAt'],
+        false,
       );
     });
     return { data, meta: paginatedRes.meta };

@@ -60,8 +60,8 @@ export class AdminOrdersController {
   @Render('order/list')
   async listOrdersPage(
     @Req() req: Request,
-    @Query('page') page: number = 1,
-    @Query('perPage') perPage: number = 10,
+    @Query('page') page: string = '1',
+    @Query('perPage') perPage: string = '10',
     @Query('successMessage') successMessage: string,
     @Query('order') order: 'desc' | 'asc' = 'desc',
     @Query('sort') sort: string = 'createdAt',
@@ -69,15 +69,15 @@ export class AdminOrdersController {
   ): Promise<ListViewRes | MainLayoutRes> {
     try {
       const { data, meta } = await this.adminOrdersService.getOrders({
-        page,
-        perPage,
+        page: parseInt(page),
+        perPage: parseInt(perPage),
         sort,
         order,
       });
 
       const searchParams = new URLSearchParams({
-        page: page.toString(),
-        perPage: perPage.toString(),
+        page,
+        perPage,
         sort,
         order,
       });
